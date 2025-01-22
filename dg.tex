@@ -1,0 +1,224 @@
+\documentclass{report}
+
+
+%% IF YOU HAVE FONTS INSTALLED
+%\usepackage{mtpro2}
+%\usepackage{mathtime}
+\usepackage[style=trad-plain,backref=true,url=false,isbn=false,alldates=year,sortcites=true,maxnames=9]{biblatex}
+\addbibresource{dg-special.bib}
+\addbibresource{dg.bib}
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{latexsym, amsmath, amscd,amsthm}
+\usepackage{thmtools}
+\usepackage{newtxtext,newtxmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[percent]{overpic}
+%\usepackage{pdfsync}
+\usepackage{units}
+\usepackage{tikz}
+\usepackage{diagbox}
+\usepackage{xcolor}
+\definecolor{linkblue}{HTML}{003d73}
+\definecolor{linkgreen}{HTML}{006161}
+\definecolor{linkred}{HTML}{a11950}
+\usepackage{hyperref}
+\hypersetup{ 
+	pdftitle={Introduction to Differential Manifolds},
+	pdfauthor={Clayton Shonkwiler},
+	pdfsubject={differential geometry},
+	pdfkeywords={manifolds, vector fields, differential forms, Lie groups, homogeneous spaces, Riemannian geometry},
+	colorlinks=true,
+	linkcolor=linkblue,
+	citecolor=linkgreen,
+	urlcolor=linkred
+}
+\PassOptionsToPackage{caption=false,labelformat=empty}{subfig}
+\usepackage[lofdepth]{subfig}
+\usepackage[export]{adjustbox}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{authblk}
+\usepackage{enumitem}
+
+\usepackage{supertabular,multicol,ifthen,multirow}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% \usepackage{cite}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\makeatletter
+\let\mcnewpage=\newpage
+\newcommand{\TrickSupertabularIntoMulticols}{%
+\renewcommand\newpage{%
+    \if@firstcolumn%
+        \hrule width\linewidth height0pt%
+            \columnbreak%
+        \else%
+          \mcnewpage%
+        \fi%
+}%
+}
+\makeatother
+
+\graphicspath{{./figs/}}
+
+%\usepackage{clrscode}
+
+% \def\figdir{figs/}
+% \graphicspath{\figdir}
+
+\crefname{figure}{Figure}{Figures}
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{mainthm}{Theorem~\ref*{thm:main}}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{notation}{Notation}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\I}{\mathbf{i}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+\renewcommand{\theenumi}{(\roman{enumi})}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{#1}}
+\newcommand{\ent}[3]{E_{#1,#2}^{(#3)}}
+
+\let\oldReturn\Return
+\renewcommand{\Return}{\State\oldReturn}
+
+
+%% BibLaTeX junk
+%-----------------
+
+% Change backref style
+\DefineBibliographyStrings{english}{%
+  backrefpage = {$\uparrow$},% originally "cited on page"
+  backrefpages = {$\uparrow$},% originally "cited on pages"
+  page = {p\adddot},
+  pages = {pp\adddot},
+}
+
+% Drop fields from output
+\DeclareSourcemap{
+  \maps{
+    \map{
+      \step[fieldset=pagetotal, null]
+	  \step[fieldset=pubstate, null]
+    }
+  }
+}
+
+% New eprint types
+\DeclareFieldFormat{eprint:urn}{%
+  \mkbibacro{URN}\addcolon\space
+  \ifhyperref
+    {\href{https://nbn-resolving.org/urn:#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldAlias{eprint:URN}{eprint:urn}
+\DeclareFieldFormat{eprint:hal}{%
+  \mkbibacro{HAL}\addcolon\space
+  \ifhyperref
+    {\href{https://hal.science/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldAlias{eprint:HAL}{eprint:hal}
+\DeclareFieldFormat{eprint:numdam}{%
+  Numdam\addcolon\space
+  \ifhyperref
+    {\href{http://www.numdam.org/item/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldAlias{eprint:Numdam}{eprint:numdam}
+\DeclareFieldFormat{eprint:ark}{%
+  \mkbibacro{ARK}\addcolon\space
+  \ifhyperref
+    {\href{https://n2t.net/ark:#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldAlias{eprint:ARK}{eprint:ark}
+\DeclareFieldFormat{eprint:zbl}{%
+  Zbl\addcolon\space
+  \ifhyperref
+    {\href{https://zbmath.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldAlias{eprint:Zbl}{eprint:zbl}
+\DeclareFieldFormat{eprint:mr}{%
+  \mkbibacro{MR}\addcolon\space
+  \ifhyperref
+    {\href{https://mathscinet.ams.org/mathscinet-getitem?mr=#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldAlias{eprint:MR}{eprint:mr}
+
+%-----------------
+
+
+
+\hyphenation{pa-ram-e-tri-za-tion}
+
+\tikzset{my node/.style = {shape=circle, fill=black, inner sep = 1.5pt, outer sep = 0pt}}
+
+
+\setlength{\parskip}{3pt}
+
+
+\newenvironment{coordinates}[1]{
+	\nobreak\vfil\penalty0\vfilneg\vtop\bgroup
+	\begin{center} \begin{normalsize} #1 \end{normalsize} \end{center} 
+
+		\ttfamily \begin{tiny}\begin{center}
+	}{
+		\end{center}\end{tiny}\par
+		\xdef\tpd{\the\prevdepth}\egroup\prevdepth=\tpd
+	}
+
+\title{Introduction to Differential Manifolds}
+\author{Clayton Shonkwiler}
+\affil{Department of Mathematics, Colorado State University, Fort Collins, CO, USA}
+
+\date{}
+
+\renewcommand\Affilfont{\itshape\small}
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+
+
+
+\maketitle
+
+\chapter{Manifolds and Vector Fields}
+
+\input{days/day2}
+
+% \input{days/day3}
+
+
+	
+	
+
+
+
+\printbibliography
+
+\end{document}
