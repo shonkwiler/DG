@@ -13,7 +13,7 @@ This is all to say that the point of defining manifolds in the way we are about 
 So what does ``locally like $\R^n$'' actually mean? Here's a standard definition:
 
 \begin{definition}\label{def:manifold}
-	A \emph{smooth manifold of dimension $n$} is a Hausdorff, second-countable topological space $M$ together with a family of injective maps $\phi_\alpha: U_\alpha \to M$ from open sets $U_\alpha \subseteq \R^n$ so that:
+	A \emph{smooth manifold of dimension $n$} is a Hausdorff, second-countable topological space $M$ together with a family of injective maps $\phi_\alpha\from U_\alpha \to M$ from open sets $U_\alpha \subseteq \R^n$ so that:
 	\begin{enumerate}
 		\item \label{it:manifold def cover}$\bigcup_\alpha \phi_\alpha(U_\alpha) = M$ (that is, the images of the maps $\phi_\alpha$ cover all of $M$);
 		\item \label{it:manifold def overlap}For any $\alpha, \beta$ so that $\phi_\alpha(U_\alpha) \cap \phi_\beta(U_\beta) = W \neq \emptyset$, the sets $\phi_\alpha^{-1}(W)$ and $\phi_\beta^{-1}(W)$ are open sets in $\R^n$ and the maps $\phi_\beta^{-1} \circ \phi_\alpha$ and $\phi_\alpha^{-1} \circ \phi_\beta$ (when restricted to these open sets) are smooth.
@@ -100,9 +100,9 @@ is reflection through the unit sphere in $\R^n$, which is smooth away from the o
 As already mentioned, the point of manifolds is that they are spaces in which we can do calculus, so we should be able to say what it means for a map between manifolds to be differentiable. Hopefully it's already starting to become clear what the strategy is: we can talk about differentiability at a point, and then both the point in the domain and the point it maps to in the range lie in coordinate charts that are like open sets in Euclidean spaces. So then locally our map just looks like a map between Euclidean spaces, where we already know what it means for a map to be differentiable.
 
 \begin{definition}\label{def:differentiable}
-	Let $M^m$ and $N^n$ be manifolds. A continuous map $f: M \to N$ is \emph{differentiable} at $p \in M$ if, given a coordinate chart $\psi: V \subseteq \R^n \to N$ containing $f(p)$, there exists a coordinate chart $\phi: U \subseteq \R^m \to M$ containing $p$ so that $f(\phi(U)) \subseteq \psi(V)$ and 
+	Let $M^m$ and $N^n$ be manifolds. A continuous map $f\from M \to N$ is \emph{differentiable} at $p \in M$ if, given a coordinate chart $\psi\from V \subseteq \R^n \to N$ containing $f(p)$, there exists a coordinate chart $\phi\from U \subseteq \R^m \to M$ containing $p$ so that $f(\phi(U)) \subseteq \psi(V)$ and 
 	\[
-		\psi^{-1} \circ f \circ \phi: U \subseteq \R^m \to \R^n
+		\psi^{-1} \circ f \circ \phi\from U \subseteq \R^m \to \R^n
 	\]
 	is differentiable at $\phi^{-1}(p)$ (see \cref{fig:differentiable}). The map $f$ is differentiable on an open set in $M$ if it is differentiable at every point in that set.
 \end{definition}
@@ -117,7 +117,7 @@ As already mentioned, the point of manifolds is that they are spaces in which we
 \begin{example}
 	Consider the antipodal map $\alpha : S^n \to S^n$ given by $\alpha(\vec{y}) = -\vec{y}$. Then, so long as $\vec{y}$ is not the south pole, $\alpha(\vec{y}) = -\vec{y} \in \phi_N(\R^n)$ so we can take $\psi = \phi_N$ and $V = \R^n$. Moreover, $\vec{y} \in \phi_S(\R^n)$ so we can $\phi = \phi_S$ and $U = \R^n$, since $\alpha(\phi_S(\R^n)) = S^n \backslash\{N\} = \phi_N(\R^n)$. Then a straightforward calculation shows that
 	\[
-		\phi_N^{-1} \circ \alpha \circ \phi_S(\vec{x}) = -\vec{x},
+		(\phi_N^{-1} \circ \alpha \circ \phi_S)(\vec{x}) = -\vec{x},
 	\]
 	which is definitely differentiable everywhere (as a map $\R^n \to \R^n$). 
 	
