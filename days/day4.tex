@@ -103,6 +103,66 @@ Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, 
 \end{example}
 
 \begin{remark}
-	I call this a cliché example because it is the first picture everybody draws when the talk about Morse theory, which says that the topology of a manifold is in some sense encoded in the critical points of any sufficiently generic function on the manifold. Such functions are calle \emph{Morse functions}, and the function in this example is a Morse function. In particular, Morse theory tells you that if you are traversing the manifold ``up'' according to a Morse function, the topology only changes when you pass a critical point. In this example, the topology changes from the empty set to a disk when we pass the minimum, then from a disk to a \includegraphics[height=.3in]{handle} (which is homotopic to a circle) when we pass the first saddle point, then to a punctured torus (which is homotopic to a wedge of circles) when we pass the second saddle point, and then finally the puncture is filled in when we pass the maximum. Something analogous happens in general.
+	I call this a cliché example because it is the first picture everybody draws when they talk about Morse theory, which says that the topology of a manifold is in some sense encoded in the critical points of any sufficiently generic function on the manifold. Such functions are calle \emph{Morse functions}, and the function in this example is a Morse function. In particular, Morse theory tells you that if you are traversing the manifold ``up'' according to a Morse function, the topology only changes when you pass a critical point. In this example, the topology changes from the empty set to a disk when we pass the minimum, then from a disk to a \includegraphics[height=.3in]{handle} (which is homotopic to a circle) when we pass the first saddle point, then to a punctured torus (which is homotopic to a wedge of circles) when we pass the second saddle point, and then finally the puncture is filled in when we pass the maximum. Something analogous happens in general.
 \end{remark}
 
+\begin{example}
+	Consider the function $f(x,y,z) = z^2$ on the sphere (see \cref{fig:sphere}). Again, I've shown critical values in red and orange and a regular value in green, and the corresponding level sets on the domain, as well as some tangent vectors to regular points and their images under the differential.
+	
+		\begin{figure}[htbp]
+			\centering
+				\includegraphics[height=2in]{morse-bott-sphere}
+			\caption{A smooth function on the sphere which does not have isolated critical points.}
+			\label{fig:sphere}
+		\end{figure}
+	
+	Some new features:
+	\begin{enumerate}
+		\item The critical points aren't all isolated: the entire equator consists of critical points (which are all global minima).
+		
+		\item The inverse images of critical values aren't necessarily connected: the north and south poles both map to 1.
+	\end{enumerate}
+	
+	Notice again that the level sets of regular values are (collections of) smooth curves. In this case one critical level set is also a smooth curve, and the other is not a curve at all.
+	
+	(This is not a Morse function because not all critical points are isolated, but it is a \emph{Morse–Bott function}, which is almost as good.)
+	\end{example}
+	
+	After looking at these examples, hopefully the following theorem suggests itself:
+	
+	\begin{theorem}[Level Set Theorem]\label{thm:level set theorem}
+		If $m \geq n$, $f \from M^m \to N^n$ is smooth, and $q \in N$ is a regular value of $f$, then $f^{-1}(q)$ is a smooth submanifold of $M$ of dimension $m-n$.
+	\end{theorem}
+	
+	This theorem is basically an application of the Inverse Function Theorem, but before we work on proving it, let's look at some more examples.
+	
+	\begin{example}
+		Define $f \from \R^n \to \R$ by $f(x_1,\dots , x_n) = x_1^2 + \dots + x_n^2$. Then
+		\[
+			df_{(x_1, \dots , x_n)}= \begin{bmatrix} \frac{\partial f}{\partial x_1} & \cdots & \frac{\partial f}{\partial x_n} \end{bmatrix} = \begin{bmatrix} 2x_1 & \cdots & 2x_n \end{bmatrix}
+		\]
+		only fails to be full rank at the origin, so 0 is the only critical value, and for all $r > 0$ the level set $f^{-1}(r)$ is a smooth manifold of dimension $n-1$. But $f^{-1}(r)$ is nothing but the sphere of radius $\sqrt{r}$, so we've just given an alternative (and somehow conceptually prior) proof that spheres are manifolds.
+	\end{example}
+	
+	\begin{example}[Relevant to Frame Theory]
+		Let $\Mat_{d \times N}(\C)$ be the space of $d \times N$ complex matrices. This is trivially a $2dN$-dimensional manifold, since $\Mat_{d \times N} (\C) \cong \C^{dN}$, which is just a copy of $\R^{2dN}$ if you ignore the complex structure. Now, let $\mathcal{H}(d)$ be the space of $d \times d$ Hermitian matrices (i.e., $d \times d$ complex matrices $A$ so that $A^\ast = A$, where $A^\ast$ is the conjugate transpose of $A$) and define the map $\Phi\from \Mat_{d \times N}(\C) \to \mathcal{H}(d)$ by
+		\[
+			\Phi(A) = A A^\ast.
+		\]
+		(In frame theory, we would think of $A \in \Mat_{d \times N}(\C)$ as a frame and $A A^\ast$ as the corresponding frame operator.)
+		
+		I claim that the identity matrix $I_{d \times d} \in \mathcal{H}(d)$ is a regular value of $F$ (\textbf{Exercise:} Prove this); assuming this, the theorem tells us that $\Phi^{-1}(I_{d \times d})$ is a smooth manifold of dimension
+		\[
+			2dN - d^2 = d(2N-d).
+		\]
+		
+		(Notice that $A \in \Phi^{-1}(I_{d \times d})$ means that the rows of $A$ are Hermitian orthonormal. Since each row is a vector in $\C^N$, this means that we can think of $\Phi^{-1}(I_{d \times d})$ as the space of all [ordered] $d$-tuples of Hermitian orthonormal vectors in $\C^N$. This space is an example of a \emph{Stiefel manifold}, and usually denoted $\operatorname{St}_d(\C^N)$ or $V_d(\C^N)$. In frame theory, $\Phi^{-1}(I_{d \times d})$ is precisely the space of \emph{Parseval frames}.)
+	\end{example}
+	
+	\begin{example}
+		Let $N=d$ in the previous example. Then $\Phi^{-1}(I_{d \times d})$ is a smooth manifold of dimension $d^2$ that consists of those $d \times d$ complex matrices $A$ so that $AA^\ast = I_{d \times d}$. But this is precisely the unitary group $U(d)$! So we've proved that $U(d)$ is a $d^2$-dimensional manifold for any $d$.
+	\end{example}
+	
+	\begin{remark}
+		You can play the same game over $\R$ to show that real Stiefel manifolds and the orthogonal group $\operatorname{O}(d)$ are manifolds.
+	\end{remark}

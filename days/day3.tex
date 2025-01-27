@@ -66,11 +66,11 @@ Say that $(U,\phi)$ is a coordinate chart containing $p \in M$ so that $\phi(\ve
 \[
 	(\phi^{-1} \circ \alpha)(t) = (x_1(t), \dots , x_n(t))
 \]
-for some smooth functions $x_1 , \dots , x_n\from (-\epsilon, \epsilon) \to M$. Then
+for some smooth functions $x_1 , \dots , x_n\from (-\epsilon, \epsilon) \to \R$. Then
 \[
-	\alpha'(0) f = \left. \frac{d(f \circ \alpha)}{dt} right_{t = 0} = \left. \frac{d}{dt} (f \circ \phi(x_1(t),\dots , x_n(t))) \right|_{t=0} = \left.\sum_{i=1}^n x_i'(0) \frac{\partial f}{\partial x_i}\right|_{\vec{0}} = \left( \sum_{i=1}^n x_i'(0) \frac{\partial }{\partial x_i}\right|_{\vec{0}}\right)f,
+	\alpha'(0) f = \left. \frac{d(f \circ \alpha)}{dt} \right|_{t = 0} = \left. \frac{d}{dt} (f \circ \phi(x_1(t),\dots , x_n(t))) \right|_{t=0} = \left.\sum_{i=1}^n x_i'(0) \frac{\partial f}{\partial x_i}\right|_{\vec{0}} = \left( \left.\sum_{i=1}^n x_i'(0) \frac{\partial }{\partial x_i}\right|_{\vec{0}}\right)f,
 \]
-where I'm using a very common abuse of notation in the second expression to thinkg of $f$ as being a function on the coordinate chart $U$, and hence a function of coordinates $x_1, \dots , x_n$ (of course, it's really $f \circ \phi$ which is a function of $x_1, \dots , x_n$, as we see in the middle expression).
+where I'm using a very common abuse of notation in the second expression to think of $f$ as being a function on the coordinate chart $U$, and hence a function of coordinates $x_1, \dots , x_n$ (of course, it's really $f \circ \phi$ which is a function of $x_1, \dots , x_n$, as we see in the middle expression).
 
 This all means that we can write the tangent vector $\alpha'(0) \in T_pM$ in local coordinates as
 \[
