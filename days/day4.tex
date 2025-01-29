@@ -17,7 +17,7 @@ And what about the codomain of $df_p$? Again, we should think more conceptually 
 In other words, given a differentiable map $f \from \R^m \to \R^n$ and a point $p$ in the domain of $f$, the differential of $f$ at $p$ is a map $df_p \from T_p \R^m \to T_{f(p)}\R^n$, where domain and range are usually identified with $\R^m$ and $\R^n$ in a standard way. This, then, is the way of thinking about differentials which generalizes.
 
 \begin{definition}\label{def:differential}
-	Suppose $M^m$ and $N^n$ are smooth manifolds and $f \from M \to N$ is smooth. For each $p \in M$, define the \emph{differential} of $f$ at $p$, denoted $df_p\from T_p M \to T_{f(p)}N$ as follows: For any $v \in T_p M$, choose a smooth curve $\alpha \from (-\epsilon, \epsilon) \to M$ such that $\alpha(0) = p$ and $\alpha'(0) = v$. Let $\beta = f \circ \alpha$, which is a smooth curve in $N$. Then
+	Suppose $M^m$ and $N^n$ are smooth manifolds and $f \from M \to N$ is smooth. For each $p \in M$, define the \emph{differential} of $f$ at $p$, denoted $df_p\from T_p M \to T_{f(p)}N$, as follows: For any $v \in T_p M$, choose a smooth curve $\alpha \from (-\epsilon, \epsilon) \to M$ such that $\alpha(0) = p$ and $\alpha'(0) = v$. Let $\beta = f \circ \alpha$, which is a smooth curve in $N$. Then
 	\[
 		df_p(v) := \beta'(0).
 	\]
@@ -79,7 +79,7 @@ In other words, by way of this identification of $T_{f(p)} \R$ with $\R$, we can
 Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, we can talk about critical points and critical values, and doing so is often quite important.
 
 \begin{definition}\label{def:critical points}
-	Let $f \from M \to N$ be smooth. A point $p \in M$ is a \emph{critical point} of $f$ if $df_p\from T_p M \to T_{f(p)}N$ is not surjective; then $f(p)$ is a \emph{critical value} of $f$. A point $q \in n$ which is not a critical value is a \emph{regular value} of $f$.
+	Let $f \from M \to N$ be smooth. A point $p \in M$ is a \emph{critical point} of $f$ if $df_p\from T_p M \to T_{f(p)}N$ is not surjective; then $f(p)$ is a \emph{critical value} of $f$. A point $q \in N$ which is not a critical value is a \emph{regular value} of $f$.
 \end{definition}
 
 \begin{example}[Cliché Example]
@@ -92,18 +92,18 @@ Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, 
 		\label{fig:morse-torus}
 	\end{figure}
 	
-	Notice that there are basically three different types of critical points: a minimum, a maximum, and two saddle points. The differential can't possibly be surjective at a (local) minimum: there's no direction you could go which will cause the function to decrease, so the image of the differential has to miss an entire half of its codomain (and therefore, by linearity, everything except the origin). It's somewhat less geometrically clear that the saddle points are critical points, though in this case it's fairly easy to see once you realize the tangent plane to one of the saddle opints is horizontal.
+	Notice that there are basically three different types of critical points: a minimum, a maximum, and two saddle points. The differential can't possibly be surjective at a (local) minimum: there's no direction you could go which will cause the function to decrease, so the image of the differential has to miss an entire half of its codomain (and therefore, by linearity, everything except the origin). It's somewhat less geometrically clear that the saddle points are critical points, though in this case it's fairly easy to see once you realize the tangent plane to one of the saddle points is horizontal.
 	
 	A couple of other things to notice about this picture:
 	\begin{enumerate}
 		\item The inverse images of the two critical points coming from the saddle points contain plenty of regular points: indeed, the differential is surjective at any of the points in the inverse image \emph{except} the saddle point.
 		
-		\item The level sets of regular values are smooth (collections of) curves, either a single circle or two disjoint circles; in other words, they are smooth (possible disconnected) 1-dimensional manifolds. The level sets of the critical points are either a single point (the minimum and maximum) or a wedge of two circles (like an $\infty$ symbol). In both cases, the result is not a smooth 1-manifold: a point is a 0-manifold and the wedge of two circles is not locally like a copy of $\R$ near the point where the two circles meet (which of course is exactly the saddle point).
+		\item The level sets of regular values are smooth (collections of) curves, either a single circle or two disjoint circles; in other words, they are smooth (possibly disconnected) 1-dimensional manifolds. The level sets of the critical points are either a single point (the minimum and maximum) or a wedge of two circles (like an $\infty$ symbol). In both cases, the result is not a smooth 1-manifold: a point is a 0-manifold and the wedge of two circles is not locally like a copy of $\R$ near the point where the two circles meet (which of course is exactly the saddle point).
 	\end{enumerate}
 \end{example}
 
 \begin{remark}
-	I call this a cliché example because it is the first picture everybody draws when they talk about Morse theory, which says that the topology of a manifold is in some sense encoded in the critical points of any sufficiently generic function on the manifold. Such functions are calle \emph{Morse functions}, and the function in this example is a Morse function. In particular, Morse theory tells you that if you are traversing the manifold ``up'' according to a Morse function, the topology only changes when you pass a critical point. In this example, the topology changes from the empty set to a disk when we pass the minimum, then from a disk to a \includegraphics[height=.3in]{handle} (which is homotopic to a circle) when we pass the first saddle point, then to a punctured torus (which is homotopic to a wedge of circles) when we pass the second saddle point, and then finally the puncture is filled in when we pass the maximum. Something analogous happens in general.
+	I call this a cliché example because it is the first picture everybody draws when they talk about Morse theory, which says that the topology of a manifold is in some sense encoded in the critical points of any sufficiently generic function on the manifold. Such functions are called \emph{Morse functions}, and the function in this example is a Morse function. In particular, Morse theory tells you that if you are traversing the manifold ``up'' according to a Morse function, the topology only changes when you pass a critical point. In this example, the topology changes from the empty set to a disk when we pass the minimum, then from a disk to a \includegraphics[height=.3in]{handle} (which is homotopic to a circle) when we pass the first saddle point, then to a punctured torus (which is homotopic to a wedge of circles) when we pass the second saddle point, and then finally the puncture is filled in when we pass the maximum. Something analogous happens in general.
 \end{remark}
 
 \begin{example}
@@ -144,14 +144,14 @@ Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, 
 		only fails to be full rank at the origin, so 0 is the only critical value, and for all $r > 0$ the level set $f^{-1}(r)$ is a smooth manifold of dimension $n-1$. But $f^{-1}(r)$ is nothing but the sphere of radius $\sqrt{r}$, so we've just given an alternative (and somehow conceptually prior) proof that spheres are manifolds.
 	\end{example}
 	
-	\begin{example}[Relevant to Frame Theory]
+	\begin{example}[Relevant to frame theory]
 		Let $\Mat_{d \times N}(\C)$ be the space of $d \times N$ complex matrices. This is trivially a $2dN$-dimensional manifold, since $\Mat_{d \times N} (\C) \cong \C^{dN}$, which is just a copy of $\R^{2dN}$ if you ignore the complex structure. Now, let $\mathcal{H}(d)$ be the space of $d \times d$ Hermitian matrices (i.e., $d \times d$ complex matrices $A$ so that $A^\ast = A$, where $A^\ast$ is the conjugate transpose of $A$) and define the map $\Phi\from \Mat_{d \times N}(\C) \to \mathcal{H}(d)$ by
 		\[
 			\Phi(A) = A A^\ast.
 		\]
 		(In frame theory, we would think of $A \in \Mat_{d \times N}(\C)$ as a frame and $A A^\ast$ as the corresponding frame operator.)
 		
-		I claim that the identity matrix $I_{d \times d} \in \mathcal{H}(d)$ is a regular value of $F$ (\textbf{Exercise:} Prove this); assuming this, the theorem tells us that $\Phi^{-1}(I_{d \times d})$ is a smooth manifold of dimension
+		I claim that the identity matrix $I_{d \times d} \in \mathcal{H}(d)$ is a regular value of $\Phi$ (\textbf{Exercise:} Prove this); assuming this, the theorem tells us that $\Phi^{-1}(I_{d \times d})$ is a smooth manifold of dimension
 		\[
 			2dN - d^2 = d(2N-d).
 		\]
@@ -160,7 +160,7 @@ Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, 
 	\end{example}
 	
 	\begin{example}
-		Let $N=d$ in the previous example. Then $\Phi^{-1}(I_{d \times d})$ is a smooth manifold of dimension $d^2$ that consists of those $d \times d$ complex matrices $A$ so that $AA^\ast = I_{d \times d}$. But this is precisely the unitary group $U(d)$! So we've proved that $U(d)$ is a $d^2$-dimensional manifold for any $d$.
+		Let $N=d$ in the previous example. Then $\Phi^{-1}(I_{d \times d})$ is a smooth manifold of dimension $d^2$ that consists of those $d \times d$ complex matrices $A$ so that $AA^\ast = I_{d \times d}$. But this is precisely the unitary group $\U(d)$! So we've proved that $\U(d)$ is a $d^2$-dimensional manifold for any $d$.
 	\end{example}
 	
 	\begin{remark}

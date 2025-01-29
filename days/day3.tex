@@ -12,6 +12,8 @@ Now even in Euclidean space you have to be a little careful with this mixing of 
 
 This is a surprisingly nontrivial issue, requiring us to construct some abstract vector space which doesn't really live anywhere in particular. The construction is fairly non-obvious, and feels like a sneaky trick the first few times you encounter it. This is one of those situations where it seems like you're turning a concept inside-out; at least for me, the first time I encountered the following way of thinking, it made me feel uncomfortable in a similar way to when I first encountered the natural embedding of a vector space into its double dual. I will say that at some point my brain switched from ``this is weird and awkward'' to ``this is obviously the right way to do it'' and I think most differential geometers have had similar experiences, so this is something you can eventually develop intuition for.
 
+% Add something about how ``varying the input a little bit'' can really only mean moving along some curve through the point.
+
 Given that preamble, what's the idea? We're going to work by analogy with a way of thinking about vectors in $\R^n$ that's slightly different from what you may be used to. In words, we'll identify a vector $\vec{v} \in \R^n$ with the operator on differentiable functions which gives the directional derivative (in the direction of $\vec{v}$) of a function. 
 
 That's a little vague, so let's try to characterize a tangent vector $\vec{v}$ to a point $p \in \R^n$ in this way (here I'm using the notation $p$ rather than $\vec{p}$, because I'm just thinking of $p$ as a point in a manifold, not as an element of a vector space). Given $\vec{v}$, I claim we can find some smooth curve $\alpha\from (-\epsilon, \epsilon) \to \R^n$ with $\alpha(0) = p$ and $\alpha'(0) = \vec{v}$; see \cref{fig:tangent vector curve}. In coordinates, if
@@ -85,6 +87,8 @@ Since the $x_i'(0)$ are just scalars, what we're doing here is writing $\alpha'(
 \begin{exercise}
 	Suppose a point $p \in M$ lies in two different coordinate charts. How are the two different local coordinate bases related?
 \end{exercise}
+
+% Add example with tangent vectors on the sphere using stereographic projection.
 
 It's extremely important to keep in mind that, if $p$ and $q$ are distinct points on $M$, then the tangent spaces $T_pM$ and $T_qM$ are \emph{completely different vector spaces} that in principle have nothing to do with each other (they're both vector spaces of the same dimension, and hence abstractly isomorphic, but that's essentially all we can know without more detailed information about the geometry of $M$).
 

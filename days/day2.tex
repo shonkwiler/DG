@@ -17,7 +17,7 @@ So what does ``locally like $\R^n$'' actually mean? Here's a standard definition
 	\begin{enumerate}
 		\item \label{it:manifold def cover}$\bigcup_\alpha \phi_\alpha(U_\alpha) = M$ (that is, the images of the maps $\phi_\alpha$ cover all of $M$);
 		\item \label{it:manifold def overlap}For any $\alpha, \beta$ so that $\phi_\alpha(U_\alpha) \cap \phi_\beta(U_\beta) = W \neq \emptyset$, the sets $\phi_\alpha^{-1}(W)$ and $\phi_\beta^{-1}(W)$ are open sets in $\R^n$ and the maps $\phi_\beta^{-1} \circ \phi_\alpha$ and $\phi_\alpha^{-1} \circ \phi_\beta$ (when restricted to these open sets) are smooth.
-		\item \label{it:manifold def maximal}The family $\{(U_\alpha, \phi_\alpha)\}$ is maximal with respect to \Cref{it:manifold def cover,it:manifold def overlap}.
+		\item \label{it:manifold def maximal}The family $\{(U_\alpha, \phi_\alpha)\}$ is maximal with respect to \ref{it:manifold def cover} and \ref{it:manifold def overlap}.
 	\end{enumerate}
 	The pairs $(U_\alpha, \phi_\alpha)$ are called \emph{coordinate charts} and the (maximal) collection $\{(U_\alpha, \phi_\alpha)\}$ is called an \emph{atlas}.	
 \end{definition}
@@ -44,6 +44,8 @@ Of course, most interesting manifolds are not $\R^n$, but the idea of \ref{it:ma
 If the idea is to use the coordinate charts to transport calculations from the manifold to $\R^n$, then a thing you should be very worried about is that, if a point lies in two different charts, then there are two different ways to do this and they might not be compatible. This is the point of \ref{it:manifold def overlap}: whether you do your calculations in $U_\alpha$ or $U_\beta$, the two are related by a smooth map, so you can easily translate between the two calculations using the change-of-variables formula. Indeed, the usual English-language gloss of \ref{it:manifold def overlap} is that ``transition functions are smooth.''
 
 Finally, \ref{it:manifold def maximal} is a technical condition that in practice is not important. The point of it is simply to ensure uniqueness: if you had a collection of coordinate charts satisfying \ref{it:manifold def cover} and \ref{it:manifold def overlap}, and I took your collection and added some new charts while still satisfying \ref{it:manifold def overlap}, it would be kind of silly to say that you and I were talking about different manifolds. Taking maximal families gives uniqueness since your collection of charts and my collection of charts live in the same maximal family.
+
+% Add discussion that a smooth structure is basically a decision of what should be $C^\infty(M)$, and that, if you don't include \ref{it:manifold def maximal}, then you get ``different'' smooth structures with the same collection of smooth functions.
 
 However, it is certainly possible to have distinct maximal collections on the same space (if there is one that is in some sense standard, then any others are sometimes called ``exotic smooth structures''). At least two Fields Medals have been awarded primarily for finding examples of exotic smooth structures: to John Milnor in 1962 (for finding exotic 7-spheres~\cite{milnorManifoldsHomeomorphic7sphere1956}; it turns out there are exactly 28 distinct smooth structures on $S^7$~\cite{kervaireGroupsHomotopySpheres1963a}) and to Simon Donaldson in 1986 (for finding exotic $\R^4$s~\cite{freedmanTopologyFourdimensionalManifolds1982,donaldsonApplicationGaugeTheory1983,gompfThreeExotic$mathbfR^4$s1983}; it turns out there are uncountably many distinct smooth structures on $\R^4$~\cite{taubesGaugeTheoryAsymptotically1987}). It remains an open problem called the \emph{smooth 4-dimensional Poincaré conjecture} whether there are non-standard differentiable structures on $S^4$.
 
@@ -113,6 +115,8 @@ As already mentioned, the point of manifolds is that they are spaces in which we
 	\caption{Locally converting a map between manifolds to a map between open sets in Euclidean spaces, where we know what differentiability means.}
 	\label{fig:differentiable}
 \end{figure}
+
+% Add discussion of why \ref{it:manifold def overlap} implies that if there is \emph{some} coordinate chart in which $\psi^{-1} \circ f \circ \phi$ is smooth, then it will be smooth in \emph{every} coordinate chart.
 
 \begin{example}
 	Consider the antipodal map $\alpha \from S^n \to S^n$ given by $\alpha(\vec{y}) = -\vec{y}$. Then, so long as $\vec{y}$ is not the south pole, $\alpha(\vec{y}) = -\vec{y} \in \phi_N(\R^n)$ so we can take $\psi = \phi_N$ and $V = \R^n$. Moreover, $\vec{y} \in \phi_S(\R^n)$ so we can $\phi = \phi_S$ and $U = \R^n$, since $\alpha(\phi_S(\R^n)) = S^n \backslash\{N\} = \phi_N(\R^n)$. Then a straightforward calculation shows that

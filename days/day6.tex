@@ -1,0 +1,208 @@
+% !TEX root = ../dg.tex
+
+\section{Vector Fields}
+
+Now that we have defined tangent vectors and seen how to push them around with differentials, the next natural object to try to define is a vector field. In physical problems, a vector field might be the velocity field of a fluid flow, or an electrical or magnetic field. In both applied and pure problems, we are very often interested in vector fields that arise as the gradients of functions, whether they be Morse functions on an abstract manifold or the energy of conformations in some conformation space. In symplectic geometry we are very interested in Hamiltonian vector fields associated to functions, which are a sort of symplectic gradient. Whereas the gradient is perpendicular to level sets of the function, Hamiltonian vector fields are parallel to level sets, so the function is constant on orbits, which is desirable when the function is an energy function.
+
+So what is a vector field? Intuitively, it's just what you would expect: a choice of tangent vector at each point in the manifold. As with everything in this class, we're mostly interested in \emph{smooth} vector fields, meaning that the tangent vector should in some sense vary smoothly as you move around the manifold.
+
+The preceding sentence hopefully makes sense on an intuitive level, but you should stop and think about how you might try to make it into a rigorous definition. Unless you've already seen the forthcoming definition before, it's probably not so easy.
+
+The problem is that, as alluded to previously, different tangent spaces are not directly comparable. How do you compare $v_1 \in T_{p_1}M$ with $v_2 \in T_{p_2}M$ and, ideally, put them into some difference quotient? 
+
+Since we know how to compare tangent spaces in Euclidean space (by parallel translating), one strategy is to work in local coordinates and require the tangent vectors to form a smooth vector field in each local coordinate chart. But this rather unwieldy, and in any case we want to state definitions without reference to local coordinates if at all possible. Hence the following definition, which encapsulates exactly the idea above in a very concise (though admittedly kind of abstract and hard to visualize) way:
+
+\begin{definition}\label{def:vector field}
+	A \emph{vector field} $X$ on a smooth manifold $M$ is a smooth section of the tangent bundle $TM$.
+\end{definition}
+
+This requires some unpacking, especially since there's at least one term in this definition which has not been defined yet.
+
+First, recall (\cref{thm:tangent bundles are manifolds}) that $TM$ is a smooth manifold, so it makes sense to talk about smoothness of a map $X\from M \to TM$. So the first part of \cref{def:vector field} is that a vector field is such a smooth map.
+
+This makes sense: such a map takes as input a point in the manifold and outputs a tangent vector. But it would be nonsensical to output a tangent vector at $q$ if the input is $p$: the word ``section'' is how we rule this out.
+
+More precisely, recall that we have a natural projection map $\pi \from TM \to M$ which maps $v \in T_p M$ to the base point $p$. In general, if $E \stackrel{\pi}{\to}B$ is a vector bundle, then a \emph{section} of the bundle is a map $\sigma\from B \to E$ so that $\pi \circ \sigma = \operatorname{id}_B$, the identity map on $B$ (in algebraic terms, $\sigma$ is a right inverse of the projection $\pi$).
+
+So when we say that $X$ is a smooth section of the tangent bundle, we mean that $X \from M \to TM$ is a smooth map satisfying $\pi \circ X = \operatorname{id}_M$. In other words, that $X$ assigns each point in $M$ a tangent vector at that point in a smoothly-varying way. Which is exactly what a (smooth) vector field should be!
+
+\begin{notation}
+	We use the notation $\mathfrak{X}(M)$ to denote the $C^{\infty}(M)$-module of vector spaces on $M$.
+\end{notation}
+
+\begin{remark}
+	\begin{enumerate}
+		\item If $\phi \from U \subseteq \R^n \to M$ is a local coordinate chart at $p \in M$, then 
+		\[
+			X(p) = \sum_{i=1}^n a_i(p) \frac{\partial }{\partial x_i},
+		\]
+		where each $a_i \from U \to \R$ is smooth and $\left\{\frac{\partial}{\partial x_i}\right\}_i$ is the local coordinate basis of $T_pM$ associated to $(U,\phi)$. Notice that this is exactly the local coordinate definition of a smooth vector field informally formulated above.
+		
+		\item Since each individual tangent vector is really a directional derivative at a point, a vector field can be interpreted as a differential operator on $M$: it will input a smooth function and output some new smooth function which records the directional derivative at each point in the direction specified by the tangent vector at that point. In other words, we can also interpret a vector field $X$ on a manifold $M$ as a map $C^\infty(M) \to C^\infty(M)$ given by $f \mapsto Xf$. In local coordinates, the function $Xf$ is given by
+		\[
+			(Xf)(p) = \sum_{i=1}^n a_i(p) \left.\frac{\partial f}{\partial x_i}\right|_p,
+		\]
+		which is indeed a smooth function.
+	\end{enumerate}
+\end{remark}
+
+\begin{example}\label{ex:left invariant vector field}
+	Consider the unitary group $\U(d)$ and let $I = I_{d \times d}$ be the identity matrix. I claim that a choice of tangent vector at the identity actually determines a vector field on all of $\U(d)$.
+	
+	To see this, recall that an element of $T_I \U(d)$ is a tangent vector, which is to say, the velocity of a smooth curve $\alpha \from (-\epsilon, \epsilon) \to \U(d)$ with $\alpha(0) = I$. If we think of $\U(d)$ as living inside $\Mat_{d \times d}(\C) \cong \C^{d^2} \cong \R^{2d^2}$, then we can think of any tangent vector $\alpha'(0)$ as a $d \times d$ complex matrix. What restrictions does being tangent to $\U(d)$ place on this matrix?
+	
+	Notice that, for all $t$, $\alpha(t) \in \U(d)$, which by definition means that $\alpha(t) \alpha(t)^\ast = I$. Since this is the defining equation of $\U(d)$, differentiating at $t=0$ should give precisely the condition for being in $T_I\U(d)$:
+	\[
+		0 = \left.\frac{d}{dt}\right|_{t=0} I  = \left. \frac{d}{dt}\right|_{t=0} \left(\alpha(t) \alpha(t)^\ast\right) = \alpha'(0) \alpha(0)^\ast + \alpha(0) \alpha'(0)^\ast = \alpha'(0) + \alpha'(0)^\ast
+	\]
+	since $\alpha(0) = I = \alpha(0)^\ast$ (note that we're also using $(\alpha(t)^\ast)' = \alpha'(t)^\ast$, which is obvious if you choose a basis and write $\alpha(t)$ as a matrix, but kind of annoying to prove in a coordinate-free way).
+	
+	So we see that $\alpha'(0)^\ast = -\alpha'(0)$. In other words, elements of $T_I \U(d)$ are precisely the skew-Hermitian matrices.
+	
+	Next, how do we get from a tangent vector at $I$ to a vector field on all of $\U(d)$? Well, we know how to push vector fields around by differentials of maps, so if we had a map $\U(d) \to \U(d)$ sending $I$ to a specified element $U \in \U(d)$, then its differential would send $\Delta \in T_I \U(d)$ to something in $T_U \U(d)$. Of course, there's an obvious map sending $I$ to $U$: the map which left-multiplies elements of $\U(d)$ by $U$. 
+	
+	In symbols, for $U \in \U(d)$, define the map $L_U \from \U(d) \to \U(d)$ to be left-multiplication by $U$, namely $L_U(A) := UA$. Then certainly
+	\[
+		(d L_U)_I \from T_I \U(d) \to T_U \U(d)
+	\]
+	and so, for any $\Delta \in T_I \U(d)$, we get a vector field $X_\Delta \in \mathfrak{X}(\U(d))$ on $\U(d)$ defined by
+	\[
+		X_\Delta(U) := (d L_U)_I \Delta.
+	\]
+	We can make this more explicit by finding a formula for $(d L_U)_I$:
+	
+	\begin{lemma}\label{lem:differential of left multiplication}
+		If $U \in \U(d)$ and $\Delta \in T_I \U(d)$, then
+		\[
+			(d L_U)_I \Delta = U \Delta.
+		\]
+	\end{lemma}
+	
+	\begin{exercise}
+		Prove \cref{lem:differential of left multiplication}. The key observation here is that matrix multiplication is linear.
+	\end{exercise}
+	
+	Since $(d L_U)_I \from T_I \U(d) \to T_U \U(d)$ is full rank, it's surjective, so $T_U \U(d)$ consists of matrices of the form $U \Delta$ where $\Delta$ is skew-Hermitian.
+	
+	
+	And now it's clear that, for any $\Delta \in T_I \U(d)$, we get the vector field $X_\Delta$ defined by
+	\[
+		X_\Delta(U) = U\Delta \in T_U \U(d).
+	\]
+	This is what's called a \emph{left-invariant} vector field on $\U(d)$, since it is invariant under the action of $\U(d)$ on itself by left-multiplication:
+	\[
+		(d L_U)_V X_\Delta(V) = X_\Delta(UV).
+	\]
+	
+	\begin{exercise}
+		Check this.
+	\end{exercise}
+	
+	In fact, one can show that all left-invariant vector fields are of this form, so there is an identification between the collection of left-invariant vector fields on $\U(d)$ and $T_I \U(d)$.
+\end{example}
+
+\begin{remark}
+	\begin{enumerate}
+		\item There was nothing special about $\U(d)$ in \cref{ex:left invariant vector field}: we could have used any group $G$ which was a manifold (such groups are called \emph{Lie groups}; more on them later!) and gotten the same correspondence between the tangent space at the identity and left-invariant vector fields. This is important because these are the two standard ways differential geometers think about \emph{Lie algebras}, and this construction shows that they are equivalent.
+		
+		\item More generally, the fact that $T_U \U(d)$ consists of matrices of the form $U \Delta$ where $\Delta$ is skew-Hermitian means that \emph{every} vector field $X \in \mathfrak{X}(\U(d))$ can be written as
+		\[
+			X(U) = U \Delta_U,
+		\]
+		where the skew-Hermitian matrix $\Delta_U$ depends on $U$. So then a vector field on $\U(d)$ induces a mapping $\U(d) \to T_I \U(d)$ given by $U \mapsto \Delta_U$.
+	\end{enumerate}
+\end{remark}	
+	
+	
+	\subsection{The matrix exponential} 
+	\label{sub:the_matrix_exponential}
+	
+	This is not directly related to vector fields, but another reason to be interested in $T_I \U(d)$ (or, more generally, the tangent space at the identity of any Lie group) is that it provides local coordinates on almost all of $\U(d)$ by way of the matrix exponential.
+	
+	
+	First of all, if $\Delta \in T_I \U(d)$ (i.e., $\Delta$ is skew-Hermitian), then I claim that $\exp(\Delta) \in \U(d)$, where $\exp$ is the matrix exponential defined by the power series
+	\[
+		\exp(\Delta) = I + \Delta + \frac{1}{2!} \Delta^2 + \frac{1}{3!}\Delta^3 + \dots.
+	\]
+	In other words, the claim is that $\exp \from T_I\U(d) \to \U(d)$.
+	
+	To see that $\exp(\Delta) \in \U(d)$, we need to show that $\exp(\Delta)\exp(\Delta)^\ast = I$, or equivalently ${\exp(\Delta)^\ast = \exp(\Delta)^{-1}}$. Now
+	\begin{align*}
+		\exp(\Delta)^\ast & = \left( I + \Delta + \frac{1}{2!} \Delta^2 + \frac{1}{3!}\Delta^3 + \dots \right)^\ast \\
+		& = I + \Delta^\ast + \frac{1}{2!} \left(\Delta^2\right)^\ast + \frac{1}{3!}\left(\Delta^3\right)^\ast+ \dots \\
+		& = I + \Delta^\ast + \frac{1}{2!} \left(\Delta^\ast\right)^2 + \frac{1}{3!}\left(\Delta^\ast\right)^3 + \dots \\
+		& = I + \left(-\Delta\right) + \frac{1}{2!} \left(-\Delta\right)^2 + \frac{1}{3!}\left(-\Delta\right)^3+ \dots \\
+		& = \exp(-\Delta),
+	\end{align*}
+and by expanding the product of power series one can show that
+\[
+	\exp(\Delta)\exp(\Delta)^\ast = \exp(\Delta)\exp(-\Delta) = \exp(\Delta - \Delta) = I.
+\]
+(It is absolutely essential in the argument for $\exp(\Delta)\exp(-\Delta) = \exp(\Delta - \Delta)$ that $\Delta$ and $-\Delta$ commute. When $A$ and $B$ are matrices with $AB \neq BA$, it is not necessarily true that $\exp(A)\exp(B) = \exp(A+B)$; see the Baker--Campbell--Hausdorff formula in general~\cite[Chapter~5]{hallLieGroupsLie2015}.)
+
+\begin{claim}
+	$\exp \from T_I \U(d) \to \U(d)$ is surjective.
+\end{claim}
+
+\begin{proof}
+	If $U \in \U(d)$, then the eigenvalues of $U$ are all unit complex numbers $e^{i \theta_1}, \dots , e^{i \theta_d}$, so $U$ has the spectral decomposition
+	\[
+		U = V \Theta V^\ast,
+	\]
+	where
+	\begin{align*}
+		\Theta & = \operatorname{diag}\left(e^{i \theta_1}, \dots , e^{i \theta_d}\right) \\
+		& = \operatorname{diag}\left(1 + i \theta_1 + \frac{1}{2!} \left(i\theta_1\right)^2 + \dots , \dots , 1 + i \theta_d + \frac{1}{2!} \left(i\theta_d\right)^2 + \dots \right) \\
+		& = \exp(\operatorname{diag}(i\theta_1, \dots , i \theta_d)).
+	\end{align*}
+	(Note that the set of all such $\Theta$ forms a torus; this turns out to be a \emph{maximal torus} inside $\U(d)$).
+
+	But then $H = V \operatorname{diag}(i\theta_1, \dots , i \theta_d)V^\ast$ is skew-Hermitian, and hence in $T_I\U(d)$, and I claim that
+	\[
+		U = \exp(H).
+	\]
+	This follows from the more general fact about exponentiating matrix conjugates stated below in \cref{lem:exponentiating conjugates}.
+
+	Just to verify, let's check this on a random example. Here's a random element of $\U(3)$ (generated in \emph{Mathematica} with {\tt RandomVariate[CircularUnitaryMatrixDistribution[3]]}):
+	\[
+		U = \begin{bmatrix} -0.392089+0.77069 i & -0.175305-0.0691595 i & 0.460085\, -0.0714797 i \\
+ -0.359804+0.151554 i & 0.618136\, +0.524479 i & -0.295949-0.32065 i \\
+ 0.103894\, +0.298465 i & -0.226492+0.505981 i & -0.312325+0.703749 i \end{bmatrix}.
+	\]
+	Computing the spectral decomposition yields
+	\[
+		V = \begin{bmatrix} -0.452698+0.477605 i & 0.724632\, +0. i & -0.203482+0.021487 i \\
+ 0.0746037\, +0.313061 i & 0.0936111\, +0.271501 i & 0.902192\, +0. i \\
+ 0.680724\, +0. i & 0.346776\, +0.521707 i & -0.249272+0.286437 i \end{bmatrix}
+ \]
+ and
+ \[
+ 	 \Theta = \begin{bmatrix} e^{2.58364 i} & 0 & 0 \\
+ 0 & e^{1.68825 i} & 0 \\
+ 0 & 0 & e^{0.496512 i} \end{bmatrix}.
+	\]
+	Therefore,
+	\[
+		H = \begin{bmatrix} 2.0261 i & -0.135698+0.322419 i & -0.228031-0.343709 i \\
+ 0.135698\, +0.322419 i & 0.810972 i & -0.498786+0.313484 i \\
+ 0.228031\, -0.343709 i & 0.498786\, +0.313484 i & 1.93134 i \end{bmatrix},
+	\]
+	and a calculation shows that $\exp(H) = U$, as desired.
+\end{proof}
+
+\begin{lemma}\label{lem:exponentiating conjugates}
+	Suppose $A,B \in \Mat_{d \times d}(\C)$. Then
+	\[
+		\exp(ABA^{-1}) = A \exp(B) A^{-1}.
+	\]
+\end{lemma}
+
+\begin{proof}
+	By definition,
+	\begin{multline*}
+		\exp(ABA^{-1}) = I + ABA^{-1} + \frac{1}{2!} (ABA^{-1})^2 + \dots  = I + ABA^{-1} + \frac{1}{2!} A B^2 A^{-1} + \dots \\
+		= A \left(I + B + \frac{1}{2!} B^2 + \dots \right) A^{-1} = A \exp(B)A^{-1}.
+	\end{multline*}
+\end{proof}
+
+To recap, we have a surjective map $\exp \from T_I \U(d) \to \U(d)$. Moreover, the non-injectivity of $\exp$ is due to the periodicity of the complex exponential: $e^{i \theta} = e^{i(\theta + 2\pi)}$. So $\exp$ maps the neighborhood of the origin in $T_I \U(d)$ consisting of skew-Hermitian matrices with spectral norm $< \pi$ bijectively onto the neighborhood of $I$ in $\U(d)$ consisting of unitary matrices whose eigenvalues all have argument strictly between $-\pi$ and $\pi$; in other words, this only excludes those unitary matrices with $i$ as an eigenvalue, which is some positive codimension subset of $\U(d)$. So then $\exp$ provides a local coordinate chart in the complement of this subset.
