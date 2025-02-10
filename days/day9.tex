@@ -1,0 +1,103 @@
+% !TEX root = ../dg.tex
+
+\section{Extended Example on $S^3$}
+
+Let $S^3$ be the unit sphere in $\R^4 \cong \C^2 \cong \quat$, where 
+\[
+	\quat = \{ a + bi + cj + dk : a,b,c,d\in \R\}
+\]
+is the division ring of quaternions. We have the defining conditions
+\[
+	i^2=j^2=k^2 = -1, \qquad ijk = -1,
+\]
+which for example imply that 
+\[
+	-ij = ijk^2 = (ijk)k = -k \Rightarrow ij=k
+\]
+and
+\[
+	-ji = ji(ijk) = ji^2jk = -j^2k = k \Rightarrow ji = -k,
+\]
+so $\quat$ is noncommutative. $\quat$ also has a conjugation operation defined by 
+\[
+	\overline{a+bi+cj+dk} = a-bi-cj-dk
+\]
+and an inner product given by,
+\[
+	\langle p,q \rangle = \operatorname{Re}(p\overline{q}).
+\]
+When $p = a+bi+cj+dk$ and $q = t + xi + yj + zk$, we see that
+\[
+	\langle p , q \rangle = \operatorname{Re}(p\overline{q}) = \operatorname{Re}((a+bi+cj+dk)(t-xi-yj-zk)) = a+bx+cy+dz,
+\]
+so this agrees with the usual dot product on $\R^4$. Moreover, the induced norm
+\[
+	\|p\|^2 = \langle p, p\rangle = \operatorname{Re}(p \overline{p}) = \operatorname{Re}((a+bi+cj+dk) (a-bi-cj_dk)) = a^2 + b^2 + c^2 + d^2
+\]
+is the standard one.
+
+Thought of as the unit quaternions $\{q \in \quat : \|q\| = 1\}$, it becomes clear that $S^3$ is a group: if $p = a+bi+cj+dk , q = t + xi + yj + zk \in \quat$ are both unit quaternions, meaning that
+\[
+	a^2 + b^2 + c^2 + d^2 = p \overline{p} = \|p\|^2 = 1 = \|q\|^2 = q \overline{q} = t^2 + x^2 + y^2 + z^2,
+\]
+then their product is also a unit quaternion:
+\[
+	\|pq\| = (pq)(\overline{pq}) = p q \overline{q} \overline{p} = p 1 \overline{p} = p \overline{p} = 1.
+\]
+
+To give some other terminology, $S^3$ is the \emph{symplectic group} $\Sp(1)$; that is, the quaternionic analog of the unitary group for $\quat^1$. (We will eventually see that this group is also isomorphic to $\SU(2)$ and $\Spin(3)$).
+
+Geometrically, it is clear that, for any $p \in S^3$, the tangent space $T_pS^3$ can be thought of as the quaternions which are orthogonal to $p$. So for example the tangent space to the identity $1 \in S^3$ is
+\[
+	T_1 S^3 = \{xi + yj + zk : x,y,z \in \R^3\},
+\]
+the purely imaginary quaternions. Using the same idea as in \cref{ex:left invariant vector field}, we can push any tangent vector at the identity around to get a left-invariant vector field on all of $S^3$. In particular, we get three mutually perpendicular vector fields $X,Y,Z \in \mathfrak{X}(S^3)$ given by
+\[
+	X(p) = pi, \quad Y(p) = pj, \quad Z(p) = pk
+\]
+for all $p \in S^3$. (Strictly speaking, $X(p) = (d L_p)_1 i$, where $L_p$ is left-multiplication by $p$, and $i$ is intepreted as an element of $T_1S^3$ [and similarly for $Y$ and $Z$], but $L_p$ being linear implies that $(dL_p)_1 i = pi$.)
+
+To check that, say, $X(p)$ is really a tangent vector at $p$, notice that
+\[
+	\langle p, X(p)\rangle = \langle p, pi\rangle = \langle a + bi + cj + dk, -b + ai+dj-ck\rangle = -ab+ab-cd+cd = 0,
+\]
+so $X(p) \bot p$ and hence $X(p) \in T_pS^3$. Similar calculations show that $Y(p),Z(p) \in T_p S^3$.
+
+Moreover $X$, $Y$, and $Z$ are mutually perpendicular everywhere: for example
+\[
+	\langle X(p) , Y(p) \rangle = \langle pi, pj\rangle = \langle -b+ai+dj-ck, -c-di+aj+bk\rangle = bc-ad+ad-bc = 0.
+\]
+(A better argument: multiplication by a unit quaternion is an isometry of $\quat = \R^4$, so orthogonality of $X(1) = i$ and $Y(1) = j$ carries over to $T_pS^3$.)
+
+Now, the corresponding local flows are
+\[
+	\xi_t(p) = p(\cos t + i \sin t), \quad \psi_t(p) = p(\cos t + j \sin t), \quad \zeta_t(p) = p(\cos t + k \sin t),
+\]
+as we can see by differentiating; for example,
+\[
+	\left. \frac{d}{dt}\right|_{t=0} \xi_t(p) = \left. \frac{d}{dt}\right|_{t=0}p (\cos t + i \sin t) = -p \sin(0) + p i \cos(0) = pi = X(p).
+\]
+
+Now we compute some Lie brackets. For example,
+\begin{align*}
+	[X,Y](p) = (\mathcal{L}_XY)(p) & = \lim_{t \to 0} \frac{(d\xi_{-t})_{\xi_t(p)}Y(\xi_t(p))-Y(p)}{t} \\
+	& = \left. \frac{d}{dt}\right|_{t=0} (d\xi_{-t})(Y(\xi_t(p))) \\
+	& = \left. \frac{d}{dt}\right|_{t=0} (d\xi_{-t})(\xi_t(p)j) \\
+	& = \left. \frac{d}{dt}\right|_{t=0} (d\xi_{-t})(p(\cos t + i \sin t)j) \\
+	& = \left. \frac{d}{dt}\right|_{t=0} (d\xi_{-t})(p(j\cos t + k \sin t)).
+\end{align*}
+
+The differential $(d\xi_{-t})_{\xi_t(p)}\from T_{\xi_t(p)}S^3 \to T_p S^3$, but we can interpret both of these as subspaces of the ambient space $\R^4$, so the differential can be represented by a $4 \times 4$ matrix, namely
+\[
+	(d \xi_{-t})_{\xi_t(p)} = \begin{bmatrix} \cos t& \sin t & 0 & 0 \\ -\sin t & \cos t & 0 & 0 \\ 0 & 0 & \cos t & -\sin t \\ 0 & 0 & \sin t & \cos t \end{bmatrix},
+\]
+so
+\[
+	(d\xi_{-t})(p(j\cos t + k \sin t)) = \begin{bmatrix} \cos t& \sin t & 0 & 0 \\ -\sin t & \cos t & 0 & 0 \\ 0 & 0 & \cos t & -\sin t \\ 0 & 0 & \sin t & \cos t \end{bmatrix} \begin{bmatrix} -c \cos t - d \sin t \\ c \sin t - d \cos t \\ a \cos t - b \sin t \\ a \sin t + b \cos t \end{bmatrix} = \begin{bmatrix} -c \cos 2t - d \sin 2t \\ c \sin 2t - d \cos 2t \\ a \cos 2t - b \sin 2t \\ a \sin 2t + b \cos 2t \end{bmatrix}.
+\]
+
+Putting this all together, then
+\[
+	[X,Y](p) =\left. \frac{d}{dt}\right|_{t=0} (d\xi_{-t})(p(j\cos t + k \sin t)) = \begin{bmatrix} -2d \\ 2c \\ -2b \\ 2a \end{bmatrix} = 2pk = 2Z(p).
+\]
+In other words, $[X,Y] = 2Z$ and, by similar arguments, $[Y,Z] = 2X$ and $[Z,X] = 2Y$.

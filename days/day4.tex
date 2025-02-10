@@ -31,6 +31,23 @@ In other words, given a differentiable map $f \from \R^m \to \R^n$ and a point $
 	Prove \cref{lem:differential is well defined}.
 \end{exercise}
 
+In the special case that $f\from M \to \R$ is a smooth function, the differential of $f$ applied to a tangent vector $v$ is the same thing as computing the derivative of $f$ in the direction of $v$:
+
+\begin{lemma}\label{lem:vector fields and differentials}
+	Suppose $M$ is a manifold, $p \in M$, $v \in T_pM$, and that $f\from M \to \R$ is differentiable in a neighborhood of $p$. Then
+	\[
+		vf = df_p v.
+	\]
+\end{lemma}
+
+\begin{proof}
+	This is just a matter of unwinding definitions. Let $\alpha\from (-\epsilon, \epsilon) \to M$ be a smooth curve so that $\alpha(0) = p$ and $\alpha'(0) = v$. Then by definition the left hand side is
+	\[
+		(Xf)(p) = (\alpha'(0)f)(p) = (f \circ \alpha)'(0).
+	\]
+	But this is exactly the definition of $df_p v$.
+\end{proof}
+
 Let's see what this means in local coordinates, which is how we'll actually compute in practice. Suppose $p \in M$ and $(V, \psi)$ is a local coordinate chart on $N$ containing $f(p)$. By \cref{def:differentiable}, there exists some compatible chart $(U, \phi)$ on $M$ containing $p$ so that $f(\phi(U)) \subseteq \psi(V)$. Then the curve $\alpha$ on $M$ (or, really, its restriction to $\phi(U)$) gives a corresponding curve
 \[
 	(x_1(t), \dots , x_m(t)) = \phi^{-1} \circ \alpha(t)

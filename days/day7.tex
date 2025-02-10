@@ -2,19 +2,17 @@
 
 \section{The Lie Bracket on Vector Fields}
 
-As we've defined it, $\mathfrak{X}(M)$ is a $C^\infty(M)$-module:\footnote{If you haven't seen modules before, they're basically like vector fields where the ring of scalars isn't necessarily a field. In this case of $\mathfrak{X}(M)$ the smooth functions $C^\infty(M)$ serve as the scalars, but $C^\infty(M)$ is only a ring, not a field.}  we can certainly add two vector fields or multiply a vector field by a smooth function and get a new vector field.
+As we've defined it, $\mathfrak{X}(M)$ is a $C^\infty(M)$-module:\footnote{If you haven't seen modules before, they're basically like vector fields where the ring of scalars isn't necessarily a field. In the case of $\mathfrak{X}(M)$, the smooth functions $C^\infty(M)$ serve as the scalars, but $C^\infty(M)$ is only a ring, not a field: only nowhere-vanishing functions have well-defined inverses.}  we can certainly add two vector fields or multiply a vector field by a smooth function and get a new vector field.
 
-In fact, there is even more algebraic structure on $\mathfrak{X}(M)$: it is something called a \emph{Lie algebra}, which means it admits a binary operation (called a \emph{Lie bracket}) satisfying certain axioms.
+In fact, there is even more algebraic structure on $\mathfrak{X}(M)$: it is something called a \emph{Lie algebra}, which means it is a (real) vector space which admits a binary operation (called a \emph{Lie bracket}) satisfying certain axioms.\footnote{Pronunciation note: The Norwegian surname ``Lie'' is typically pronounced the same as the common English or Korean surname ``Lee,'' rather than like the English word ``lie.''}
 
-In order to define the Lie bracket of vector fields, it is instructive to think about how we could possibly define a binary operation on vector fields. 
-
-First, we could try to generalize binary operations on vector fields we already know in certain special cases. For example:
+In order to define the Lie bracket of vector fields, it is instructive to think about how we could possibly define a binary operation on vector fields. For example, we could try to generalize binary operations on vector fields we already know in certain special cases. For example:
 \begin{itemize}
 	\item Since $T\R \cong \R \times \R$, we can interpret a vector field on $\R$ as a real-valued function by just recording the second entry: $X(p) = (p,v)$, and the corresponding function is $p \mapsto v$. Since functions form an algebra by pointwise multiplication, this defines a binary operation on vector fields on $\R$.
 	
-	\item More generally, every smooth 1-manifold has a trivial tangent bundle, so we can treat any vector field on any 1-manifold as a smooth, real-valued function and get an algebra structure on vector fields. (Note: this correpondence between sections of trivial line bundles and functions gives you some reason to believe that the appropriate notion of ``function'' in algebraic geometry is often a section of a line bundle.)
+	\item More generally, every smooth 1-manifold has a trivial tangent bundle, so we can treat any vector field on any 1-manifold as a smooth, real-valued function and get an algebra structure on vector fields.\footnote{This correpondence between sections of trivial line bundles and functions gives you some reason to believe that the appropriate notion of ``function'' in algebraic geometry is often a section of a line bundle.}
 	
-	\item Since $T \R^2 \cong \R^2 \times \R^2$ and since we can define an equivalence $\R^2 \leftrightarrow \C$ by $(x,y) \leftrightarrow x + iy$, we can interpret a vector field on $\R^2$ (or, more generally, any surface with trivial tangent bundle) as a complex-valued function. Again, functions form an algebra by pointwise multiplication, so this defined a binary operation on vector fields on $\R^2$.\footnote{Interpreting vector fields on the plane as complex-valued functions turns out to be quite useful in 2-dimensional fluid mechanics; look up \emph{stream function} and \emph{complex potential} for more.}
+	\item Since $T \R^2 \cong \R^2 \times \R^2$ and since we can define an equivalence $\R^2 \leftrightarrow \C$ by $(x,y) \leftrightarrow x + iy$, we can interpret a vector field on $\R^2$ (or, more generally, any surface with trivial tangent bundle) as a complex-valued function. Again, functions form an algebra by pointwise multiplication, so this defines a binary operation on vector fields on $\R^2$.\footnote{Interpreting vector fields on the plane as complex-valued functions turns out to be quite useful in 2-dimensional fluid mechanics; look up \emph{stream function} and \emph{complex potential} for more.}
 	
 	\item Since $T\R^3 \cong \R^3 \times \R^3$, we can interpret a vector field on $\R^3$ as a vector-valued function on $\R^3$. Then the (pointwise) cross product $\times$ gives a binary operation on vector fields on $\R^3$.
 	
@@ -24,7 +22,7 @@ First, we could try to generalize binary operations on vector fields we already 
 	\[
 		pq = -p \cdot q + p \times q,
 	\]
-	where $p \cdot q$ is the dot product of the two vectors in $\R^3$, and $p \times q$ is the cross product (interpreted as a purerly imaginary quaternion). 
+	where $p \cdot q$ is the dot product of the two vectors in $\R^3$, and $p \times q$ is the cross product (interpreted as a purerly imaginary quaternion).\footnote{Look up \emph{Clifford algebras} for a vast generalization of this kind of product operation that splits into a scalar part (the $-p \cdot q$) and a vector part (the $p \times q$).}
 \end{itemize}
 
 So the natural question is: can we generalize these examples to higher-dimensional Euclidean spaces, and more generally to arbitrary manifolds?
@@ -82,7 +80,7 @@ The problem with \eqref{eq:product of vector fields} is the second term, which i
 \begin{equation}\label{eq:product of vector fields 2}
 	(YX)f = \left[ \sum_{j=1}^n \left(b_j \left( \sum_{i=1}^n \frac{\partial a_i}{\partial x_j} \frac{\partial}{\partial x_i}\right)\right) + \sum_{j=1}^n \left(b_j \left(\sum_{i=1}^n a_i \frac{\partial^2}{\partial x_j \partial x_i}\right)\right)\right]f.
 \end{equation}
-This doesn't just have the same type of problem as before, it has literally the same problem: because mixed partials commute the second terms in \eqref{eq:product of vector fields} and \eqref{eq:product of vector fields 2} agree. So, by subtracting, we can cancel them and get
+This doesn't just have the same type of problem as before, it has literally the same problem: because mixed partials commute, the second terms in \eqref{eq:product of vector fields} and \eqref{eq:product of vector fields 2} agree. So, by subtracting, we can cancel them and get
 \begin{equation}\label{eq:Lie bracket in local coords}
 	(XY - YX)f = \left[\sum_{i,j=1}^n \left(\left( a_j \frac{\partial b_i}{\partial x_j} - b_j \frac{\partial a_i}{\partial x_j}\right)\frac{\partial}{\partial x_i}\right)\right]f,
 \end{equation}
@@ -118,7 +116,7 @@ The key feature of this operation is that it satisfies the axioms of a Lie brack
 	\]
 	and hence
 	\[
-		[X,Y] = r \frac{\partial f}{\partial \theta}.
+		[X,Y] = r \frac{\partial}{\partial \theta}.
 	\]
 \end{example}
 
@@ -132,7 +130,7 @@ The key feature of this operation is that it satisfies the axioms of a Lie brack
 		\label{fig:dtheta and dz}
 	\end{figure}
 	
-	In other words, we have the local coordinate chart $\phi: (0,2\pi) \times (-1,1) \to S^2$ given by
+	In other words, we have the local coordinate chart $\phi\from (0,2\pi) \times (-1,1) \to S^2$ given by
 	\[
 		\phi(\theta,z) = (\sqrt{1-z^2} \cos\theta, \sqrt{1-z^2} \sin \theta, z),
 	\]
@@ -204,10 +202,10 @@ More generally, the Jacobi identity records the failure of associativity of the 
 	\]
 	(The reason for the funny ordering and sign choices will shortly become apparent.)
 	
-	Now, $\mathfrak{so}(3)$ is a 3-dimensional vector space, and we have a vector space isomorphism $F: \R^3 \to \mathfrak{so}(3)$ given by
-	\[
-		(x,y,z) \mapsto \begin{bmatrix} 0 & -z & y \\ z & 0 & -x \\ -y & x & 0 \end{bmatrix}.
-	\]
+	Now, $\mathfrak{so}(3)$ is a 3-dimensional vector space, and we have a vector space isomorphism $F\from \R^3 \to \mathfrak{so}(3)$ given by
+	\begin{equation}\label{eq:r3 so3 isomorphism}
+		F \from (x,y,z) \mapsto \begin{bmatrix} 0 & -z & y \\ z & 0 & -x \\ -y & x & 0 \end{bmatrix}.
+	\end{equation}
 	
 	Let $\Delta_1,\Delta_2 \in \mathfrak{so}(3)$ with 
 	\[
@@ -226,5 +224,9 @@ More generally, the Jacobi identity records the failure of associativity of the 
 	\]
 	In other words, $F(v_1 \times v_2) = [F(v_1), F(v_2)]$, so $F$ is a Lie algebra homomorphism. Since it's also a bijective linear map, it's a Lie algebra isomorphism, so we've just proved that $(\R^3, \times) \cong \mathfrak{so}(3)$ as Lie algebras.
 	
-	Thus, the Lie bracket on vector fields on manifolds is some sort of vast generalization of the cross product on $\R^3$. (In this interpretation, $\R^3 \cong \mathfrak{so}(3)$ is the collection of infinitesimal rotations of 3-space, where $v \in \R^3$ corresponds to an infinitesimal rotation around the axis spanned by $v$, and the correspondence between cross products and commutators reflects the fact that, for very small $\epsilon > 0$ and unit vectors $u$ and $v$, the composition of an $\epsilon$-rotation around $u$ with an $\epsilon$-rotation around $v$ is, to first order, a rotation around $u + v + \frac{\epsilon}{2} u \times v$; see the Baker--Campbell--Hausdorff formula~\cite[Chapter~5]{hallLieGroupsLie2015}.)
+	Thus, the Lie bracket on vector fields on manifolds is some sort of vast generalization of the cross product on $\R^3$. In this interpretation, $\R^3 \cong \mathfrak{so}(3)$ is the collection of infinitesimal rotations of 3-space, where $v \in \R^3$ corresponds to an infinitesimal rotation around the axis spanned by $v$, and the correspondence between cross products and commutators reflects the fact that, for very small $\epsilon > 0$ and unit vectors $u$ and $v$, the composition of an $\epsilon$-rotation around $u$ with an $\epsilon$-rotation around $v$ is, to first order, a rotation around $u + v + \frac{\epsilon}{2} u \times v$; see the Baker--Campbell--Hausdorff formula~\cite[Chapter~5]{hallLieGroupsLie2015}.
 \end{example}
+
+\begin{exercise}
+	Convince yourself that, for $v \in \R^3$ a unit vector and $F$ as defined in \eqref{eq:r3 so3 isomorphism}, $\exp (F(\theta v))$ gives the one-parameter subgroup of rotations by angle $\theta$ around the axis spanned by $v$. (A full proof is kind of annoying to write down, but at least convince yourself this is true when $v$ is a coordinate vector.)
+\end{exercise}
