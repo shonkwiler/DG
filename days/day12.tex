@@ -1,0 +1,113 @@
+% !TEX root = ../dg.tex
+
+\section{Tensor Algebras and Tensor Fields}
+
+In order to give a more rigorous definition of differential forms (and in particular to get them to form a graded algebra), as well as more general tensor fields, we need to do some (multilinear) algebra and talk about tensor algebras and exterior algebras.
+
+Before diving in, let me just give you my perspective on tensors. Basically, the point is that tensors are the right tool for turning multilinear algebra into linear algebra. More precisely, suppose we have three vector spaces $U$, $V$, and $W$, and a map $F: U \times V \to W$ which is multilinear (or, really, bilinear in this case). Again, this just means that $F$ is linear in each factor:
+\[
+	F(au_1 + bu_2, v) = aF(u_1,v) + b F(u_2,v) \qquad \text{and} \qquad F(u,cv_1 + dv_2) = cF(u,v_1) + dF(u,v_2).
+\]
+
+\begin{example}
+	Any choice of inner product on $\R^n$ defines a bilinear map $\R^n \times \R^n \to \R$ by $(u,v) \mapsto \langle u, v \rangle$. Here $U = V = \R^n$ and $W = \R$.
+\end{example}
+
+\begin{example}
+	Let $U = \R^n$, $V = \left(\R^n\right)^{n-1}$ and define a map $\R^n \times \left(\R^n\right)^{n-1} \cong \left(\R^n\right)^n \to \R$ by
+	\[
+		(u, (v_1, \dots , v_{n-1})) \mapsto \det \begin{bmatrix} u & v_1 & \dots & v_{n-1} \end{bmatrix}.
+	\]
+	This is also bilinear.
+\end{example}
+
+\begin{example}\label{ex:cross product as bilinear map}
+	Let $U = V = W = \R^3$ and define the map $\R^3 \times \R^3 \to \R^3$ by $(u,v) \mapsto u \times v$, which is again bilinear.
+\end{example}
+
+Returning to the general setting, we have vector space $U$, $V$, and $W$ and a multilinear map $F: U \times V \to W$. Now suppose $w_0 \in W$ and we want to solve a problem of the form $F(u,v) = w_0$. Since $F$ is multilinear, you might hope that this is somehow just a linear algebra problem, which would be solvable, at least in principle. But, at least as stated, this is very much \emph{not} a linear problem…
+
+\begin{example}\label{ex:cross product as bilinear map 2}
+	Continuing with \cref{ex:cross product as bilinear map}, where $F \from \R^3 \times \R^3 \to \R^3$ is given by $F(u,v) = u \times v$, suppose we want to solve $F(u,v) = (x_0,y_0,z_0)$. Since $\R^3 \times \R^3 \cong \R^6$, we can think of $F$ as a map $\R^6 \to \R^3$ given by
+	\[
+		(u_1,u_2,u_3,v_1,v_2,v_3) \mapsto u \times v = (u_2 v_3 - u_3 v_2, u_3 v_1 - u_1 v_3, u_1 v_2 - u_2 v_1).
+	\]
+	So our problem is to solve
+	\[
+		(u_2 v_3 - u_3 v_2, u_3 v_1 - u_1 v_3, u_1 v_2 - u_2 v_1) = (x_0,y_0,z_0)
+	\]
+	for $(u_1,u_2,u_3,v_1,v_2,v_3)$, which is obviously a \emph{quadratic} system of equations, not a linear system.
+\end{example}
+
+To me\footnote{I want to emphasize here that this is just my perspective: I'm not claiming that everybody would agree with this characterization} the point of tensor products is to turn multilinear maps and problems into linear maps and problems.
+
+\begin{definition}\label{def:tensor product}
+	Given vector spaces $U$ and $V$, define the \emph{tensor product} $U \otimes V$ to be the vector space whose elements are of the form $u \times v$ for $u \in U$ and $v \in V$ so that 
+	\begin{enumerate}
+		\item $(u_1 + u_2) \otimes v = u_1 \otimes v + u_2 \otimes v$
+		\item $u \otimes (v_1 + v_2) = u \otimes v_1 + u \otimes v_2$
+		\item $a(u \otimes v) = (au) \otimes v = u \otimes (av)$
+	\end{enumerate}
+	for any $u,u_1,u_2 \in U$, $v,v_1,v_2 \in V$ and $a \in \R$.
+\end{definition}
+
+\begin{example}\label{ex:tensor product and outer product}
+	If $U = \R^m$ and $V = \R^n$, then we can represent $u \otimes v$ by the $m \times n$ matrix 
+	\[
+		uv^T = \begin{bmatrix} u_1 \\ \vdots \\ u_m \end{bmatrix} \begin{bmatrix} v_1 & \dots & v_n \end{bmatrix} = \begin{bmatrix} u_i v_j \end{bmatrix}_{i,j}.
+	\]
+\end{example}
+
+Here's the key theorem (or, if you start form a different perspective, the below theorem is the definition):
+
+\begin{theorem}[Universal Property of the Tensor Product]\label{thm:tensor product universal property}
+	If $\phi\from U \times V \to U \otimes V$ is the map given by $(u,v) \mapsto u \otimes v$ and $F \from U \times V \to W$ is bilinear, then there exists a unique \emph{linear} map $\widetilde{F} \from U \otimes V \to W$ making the following diagram commute:
+	\begin{center}
+	\begin{tikzcd}
+		U \times V \arrow[r,"F"] \arrow[d,"\phi"'] & W \\
+		U \otimes V \arrow[ur,"\widetilde{F}"',dashed]
+	\end{tikzcd}
+	\end{center}
+	Moreover, this uniquely characterizes $U \otimes V$: any vector space satisfying this property must be isomorphic to $U \otimes V$.
+\end{theorem}
+
+\begin{example}
+	Continuing \cref{ex:cross product as bilinear map,ex:cross product as bilinear map 2}, recall that $F\from \R^3 \times \R^3 \to \R^3$ is given by $F(u,v) = u \times v$, and \cref{thm:tensor product universal property} tells us there must be a linear map $\widetilde{F}\from \R^3 \otimes \R^3 \to \R^3$ so that
+	\[
+		(\widetilde{F} \circ \phi)(u,v) = F(u,v) = u \times v.
+	\]
+	Representing $u \otimes v$ by $u v^T$ as in \cref{ex:tensor product and outer product}, we see that $u \otimes v$ corresponds to the $3 \times 3$ matrix 
+	\[
+		\begin{bmatrix}  u_1 v_1 & u_1 v_2 & u_1 v_3 \\
+ u_2 v_1 & u_2 v_2 & u_2 v_3 \\
+ u_3 v_1 & u_3 v_2 & u_3 v_3 \end{bmatrix}.
+	\]
+	In general, $\R^3 \otimes \R^3 \cong \Mat_{3 \times 3}(\R) \cong \R^9$, so we can flatten this matrix to get a representation by a 9-dimensional vector, namely
+	\[
+		\begin{bmatrix}u_1 v_1 \\
+ u_1 v_2 \\
+ u_1 v_3 \\
+ u_2 v_1 \\
+ u_2 v_2 \\
+ u_2 v_3 \\
+ u_3 v_1 \\
+ u_3 v_2 \\
+ u_3 v_3\end{bmatrix}.
+	\]
+	So then $\widetilde{F}\from \R^9 \to \R^3$ is supposed to be linear, and hence must be represented by a $3 \times 9$ matrix $A$ so that
+	\[
+		A \begin{bmatrix}u_1 v_1 \\
+ u_1 v_2 \\
+ u_1 v_3 \\
+ u_2 v_1 \\
+ u_2 v_2 \\
+ u_2 v_3 \\
+ u_3 v_1 \\
+ u_3 v_2 \\
+ u_3 v_3\end{bmatrix}  = \begin{bmatrix} u_2 v_3 - u_3 v_2 \\ u_3 v_1 - u_1 v_3 \\ u_1 v_2 - u_2 v_1 \end{bmatrix}.
+	\]
+	Written out in this excruciating detail, it's now pretty obvious what $A$ has to be:
+	\[
+		A = \begin{bmatrix} 0 & 0 & 0 & 0 & 0 & 1 & 0 & -1 & 0 \\ 0 & 0 & -1 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
+	\]
+\end{example}
