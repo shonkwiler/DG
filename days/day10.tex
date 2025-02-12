@@ -1,0 +1,147 @@
+% !TEX root = ../dg.tex
+
+\section{Integration, Forms, and an Informal Definition}
+
+Now that we've defined vector fields and explored some special features (like the Lie bracket), the next objects to turn our attention to are \emph{differential forms}. Differential forms turn out to be the right tool with which to define integration on manifolds, and they also turn out to encode the cohomology ring of a manifold, which means they have both a natural binary operation (corresponding to the cup product in cohomology) and a natural derivative operation (corresponding to the coboundary map).
+
+To try to build up some intuition for differential forms, think back to vector calculus and computing integrals of the form
+\begin{equation}\label{eq:multivariable calculus integral}
+	\int_A f dx_1 \dots dx_n,
+\end{equation}
+where $A \subseteq \R^n$ is an open set (or maybe the closure of an open set), and $f: A \to \R$ is a (sufficiently nice) function.\footnote{For our purposes we'll just be dealing with the Riemann integral, but one can also generalize the Lebesgue integral to manifolds.} If you stare at \eqref{eq:multivariable calculus integral}, and in particular at expression $f dx_1 \dots dx_n$ being integrated, what exactly is this thing?
+
+To get a handle on what it is, it's helpful to see how it transforms. If $B \subseteq \R^n$ is open and $g: B \to A$ is a diffeomorphism,\footnote{In calculus terms, this is a change of variables, like a transition from Cartian to spherical coordinates or something} then
+\[
+	\int_A f dx_1 \dots dx_n = \int_B (f \circ g) |\det Jg| dy_1 \dots dy_n,
+\]
+where I'm using $y_1, \dots , y_n$ to indicate the coordinates on $B$ and $Jg$ is the Jacobian matrix of $g$. So now whatever kind of object $f dx_1 \dots dx_n$ is, it's the same type of object as $(f \circ g) |\det Jg| dy_1 \dots dy_n$, and this describes how it transforms under diffeomorphisms.
+
+Now, examining $(f \circ g) |\det Jg| dy_1 \dots dy_n$, it's clear that this is a more complicated object that just a function. In particular, the presence of the determinant tells you that this is some sort of \emph{alternating}, \emph{multilinear} object. Recall the definitions:
+
+\begin{definition}\label{def:multilinear}
+	Let $V_1, \dots , V_k, W$ be $R$-modules. A map
+	\[
+		f \from V_1 \times \dots \times V_k \to W
+	\]
+	is \emph{multilinear} if it is linear in each factor. That is, for any $j \in \{1, \dots , k\}$, if $v_i \in V_i$ for each $i=1, \dots , k$, $u_j \in V_j$, and $c \in \R$, then
+	\[
+		f(v_1, \dots , u_j + c v_j , \dots , v_k) = f(v_1, \dots , u_j, \dots , v_k) + c f(v_1, \dots , v_j, \dots , v_k).
+	\]
+\end{definition}
+
+\begin{definition}\label{def:alternating}
+	Let $V$ and $W$ be $R$-modules. A multilinear map $f\from V^k \to W$ is \emph{alternating} if, for any $i \neq j$, $v_i = v_j$ implies that $f(v_1, \dots , v_k) = 0$.
+\end{definition}
+
+Thinking of the determinant map as a function $\det\from V^n \to \R$ of the columns of the matrix fed into the determinant, $\det$ is multilinear and alternating. Indeed, these two properties uniquely characterize the determinant up to scale:
+
+\begin{theorem}\label{thm:determinant}
+	Suppose $V$ is an $n$-dimensional vector space. Up to scaling by a constant factor, $\det$ is the unique alternating, multilinear map $V^n \to \R$. 
+\end{theorem}
+
+The point of all of this is that the stuff we actually integrate in multivariable calculus are alternating, multilinear gadgets. Informally, this is how we should think about differential forms on manifolds:
+
+\begin{definition}[Informal Definition]\label{def:informal differential form}
+	A smooth \emph{differential $k$-form} on a manifold $M$ is a smooth, alternating, $C^\infty(M)$-multilinear map
+	\[
+		\omega \from \mathfrak{X}(M)^k \to C^\infty(M)
+	\]
+	(recall that $\mathfrak{X}(M)$ is a $C^\infty(M)$-module). The vector space of $k$-forms is denoted $\Omega^K(M)$.
+\end{definition}
+
+In other words, at each point $p \in M$ a $k$-form $\omega$ will input $k$ tangent vectors at $p$ and output a real number in an alternating, multilinear way. You might guess that this means that $\omega$ is \emph{really} a (smooth) section of some vector bundle over $M$, and indeed we will shortly define it in this way. 
+
+But before that, let's look at some examples of things that should be differential forms according to whatever formal definition we eventually give.
+
+\begin{example}\label{ex:0-forms and functions}
+	Let $k=0$. What is a $0$-form? Just from looking at \cref{def:informal differential form}, it's supposed to be something which inputs 0 vector fields on $M$ and outputs a smooth function on $M$. But then that means it has no input and a smooth function as output, so is really just that smooth function. So $C^\infty(M) = \Omega^0(M)$.
+\end{example}
+
+\begin{example}\label{ex:k-forms with k>n}
+	If $k > \dim(M)$, then the alternating condition implies that $\Omega^k(M) = \{0\}$.
+\end{example}
+
+\begin{example}\label{ex:differentials as 1-forms}
+	Suppose $f \in C^\infty(M)$; that is, $f\from M \to \R$ is smooth. Recall that, for each $p \in M$, the differential $df_p\from T_p M \to T_{f(p)}\R$. But $T_{f(p)}\R$ can be canonically identified with $\R$, so we can interpret $df_p$ as a linear map $T_pM \to \R$. 
+	
+	In plainer language, $df$ inputs a vector field on $M$ and outputs a number at each point---that is, a function on $M$. So in fact, since the alternating condition is vacuous with only one input, $df \in \Omega^1(M)$.
+	
+	(Foreshadowing: $f \in \Omega^0(M)$ and $df \in \Omega^1(M)$, so you might ask whether in general there's some operation $d$ which turns elements of $\Omega^k(M)$ into elements of $\Omega^{k+1}(M)$.)
+\end{example}
+
+\begin{example}\label{ex:1-forms as covectors}
+	Suppose $\alpha\in \Omega^1(M)$. Then at each point $\alpha$ inputs a tangent vector and outputs a number in a linear way. In other words, for each $p \in M$, $\alpha_p \in \left(T_pM\right)^\ast$, the dual space of $T_pM$, also called the cotangent space at $p$.
+	
+	Just as a vector field is a (smooth) choice of tangent vector at each point, this says that a 1-form is a (smooth) choice of a cotangent vector at each point. More formally, a vector field is a section of the tangent bundle $TM$ and so, as we'll see, a 1-form is a section of the cotangent bundle $T^\ast M$.
+\end{example}
+
+\begin{example}\label{ex:vector fields and 1-forms}
+	Suppose $M = \R^n$ endowed with its usual dot product. This induces an inner product on each tangent space $T_p \R^n$, which we will (confusingly, but in keeping with the usual practice in Riemannian geometry) denote by $g$. Specifically, we define $g_p$ to be an inner product on $T_p\R^n$ given by $g_p(u,v) = u \cdot v$ for any $u,v \in T_p\R^n$.
+	
+	Now, let $X \in \mathfrak{X}(\R^n)$. Then $X$ coresponds to a unique $\alpha \in \Omega^1(\R^n)$ defined as follows: for $Y \in \mathfrak{X}(\R^n)$ and $p \in \R^n$, $\alpha(Y) \in C^\infty(\R^n)$ is given by
+	\[
+		(\alpha(Y))(p) := g_p(X(p), Y(p))
+	\]
+	(again, this is just the dot product of the vector $X(p)$ with the vector $Y(p)$). Then $\alpha$ is certainly a map $\mathfrak{X}(\R^n) \to C^\infty(\R^n)$, and it's smooth because $X$ and $g_p$ are. It's trivially alternating, and it's linear since $g_p$ is. So $\alpha \in \Omega^1(\R^n)$.
+	
+	In fact, any $\beta \in \Omega^1(\R^n)$ can be written in this way: at each $p \in \R^n$, $\beta$ determines a linear functional $\beta_p \in \left(T_p\R^n\right)^\ast$. But then the Riesz Representation Theorem tells us that there exists $u_p \in T_p \R^n$ so that $\beta_p(v) = g_p(u_p,v)$ for all $v \in T_p\R^n$. In turn, we can define a vector field $U \in \mathfrak{X}(\R^n)$ by $U(p) := u_p$, and the smoothness of $\beta$ will turn out to imply the smoothness of $U$. 
+	
+	This all tells us that $g$ determines an isomorphism $\flat \from \mathfrak{X}(\R^n) \to \Omega^1(\R^n)$ given by
+	\[
+		X^\flat(Y) = g(X,Y).
+	\]
+	In fact, there's nothing special about $\R^n$ in the above. The same holds on any manifold $M$ when $g$ is a choice of \emph{Riemannian metric} on $M$.\footnote{More precise definition to come, but basically a smooth choice of inner product on each tangent space.} Since it will turn out that we can always put a Riemannian metric on any manifold, this will tell us that, for any $M$,
+	\[
+		\Omega^1(M) \cong \mathfrak{X}(M)
+	\]
+	either as vector spaces or as $C^\infty(M)$-modules. You should view this isomorphism as the differential geometry analog of the isomorphism between a finite-dimensional vector space and its dual.
+\end{example}
+
+\begin{example}\label{ex:area form on R^2}
+	We'll define $\omega \in \Omega^2(\R^2)$ as follows. Since we have global coordinates on $\R^2$, we can write any $v \in T_p\R^2$ as
+	\[
+		v = a \frac{\partial}{\partial x} + b \frac{\partial}{\partial y}
+	\]
+	where $\left\{ \frac{\partial}{\partial x}, \frac{\partial}{\partial y} \right\}$ is just the standard basis written in the style of our local coordinate bases,\footnote{Formally, $\frac{\partial}{\partial x}$ and $\frac{\partial}{\partial y}$ really depend on the base point $p$, but since they're all parallel, I'm omitting this dependence.} and so any vector field
+	\[
+		X(p) = a(p) \frac{\partial}{\partial x} + b(p) \frac{\partial}{\partial y}
+	\]
+	where now $a,b \in C^\infty(M)$. 
+	
+	If $X,Y \in \mathfrak{X}(\R^2)$ are given in coordinates by $X = a \frac{\partial}{\partial x} + b \frac{\partial}{\partial y}$ and $Y = c \frac{\partial}{\partial x} + d \frac{\partial}{\partial y}$, define
+	\[
+		\omega(X,Y) = \omega \left(a \frac{\partial}{\partial x} + b \frac{\partial}{\partial y}, c \frac{\partial}{\partial x} + d \frac{\partial}{\partial y} \right) := ad-bc = \begin{vmatrix} a & b \\ c & d \end{vmatrix}.
+	\]
+	Since I've written this as a determinant, it is obviously alternating and multilinear, though that can also be checked directly. 
+	
+	So this $\omega$ is really a 2-form on $\R^2$, which we're going to write as $\omega = dx \wedge dy$. The way to read this notation is as follows: $dx$ pairs with $\frac{\partial}{\partial x}$ to produce 1, and $dy$ pairs with $\frac{\partial}{\partial y}$ to produce 1; in other words, $\{dx, dy\}$ is the dual basis to $\left\{ \frac{\partial}{\partial x}, \frac{\partial}{\partial y} \right\}$. Moreover, the wedge symbol forces this to be alternating and multilinear, so that, for example 
+	\[
+		dx \wedge dy \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y} \right) = 1 \quad \text{but} \quad dx \wedge dy \left(\frac{\partial}{\partial y}, \frac{\partial}{\partial x} \right) = -1.
+	\]
+	
+	Notice that $dx \wedge dy$ simply returns the signed area of the quadrilateral spanned by whatever pair of vectors is fed into it.
+\end{example}
+
+\begin{example}\label{ex:volume form}
+	There was nothing special about dimension 2 in the above example. \Cref{thm:determinant} implies that determinants are essentially the only way to get $n$-forms on $n$-dimensional manifolds, which recall are supposed to be alternating, multilinear maps $\omega \from \mathfrak{X}(M)^n \to C^\infty(M)$: at each $p\in M$, such an $\omega$ is some scalar multiple of ``the determinant'' (whatever that precisely means in this general setting). This scalar is allowed to vary as we move around, so it turns out that 
+	\[
+		\omega = f \dVol_M,
+	\]
+	where $\dVol_M$ is the name we give to the $n$-form which is just the determinant (again, whatever that really means, and with the caveat that $\dVol_M$ does not always exist) on each $T_pM$, and $f$ is some smooth function. 
+	
+	While this is obviously far from a rigorous proof, this hopefully gives you some intuition to the fact that $\Omega^n(M) \cong C^\infty(M)$.\footnote{Strictly speaking, this argument only works when $M$ is orientable, as we will see.}
+	
+	Just as with the previous example, geometrically $\dVol_M$ is returning the signed $n$-dimensional volume of the parallelpiped spanned by any $n$ vectors fed into it. This explains the notation and the terminology: we call this form a \emph{volume form}
+\end{example}
+
+\begin{example}\label{ex:n-1 forms}
+	Let $\det$ be the determinant on $\R^n$, which I think of as an alternating, multilinear map $\det \from (\R^n)^n \to \R$. In fact, I'll use the same notation to indicate the induced map $\mathfrak{X}(\R^n)^n \to C^\infty(\R^n)$ by applying the determinant at each point. As in the previous example, I can think of $\det \in \Omega^n(\R^n)$.
+	
+	But now we're going to combine $\det$ with a vector field to define an $(n-1)$-form $\eta$. Specifically, suppose $X \in \mathfrak{X}(\R^n)$. We'll define $\eta$ pointwise, so let $p \in \R^n$. Since $\eta$ is going to be an $(n-1)$-form, it is supposed to input $n-1$ tangent vectors at $p$ and output a number. To do so, we'll just tack on $X(p)$ and plug into $\det$; that is, for $v_1, \dots , v_{n-1} \in T_p \R^n$, define
+	\[
+		\eta_p(v_1, \dots , v_{n-1}) := \det(X(p), v_1, \dots , v_{n-1}).
+	\]
+	This is alternating and multilinear, and the smoothness of $X$ will imply it is smooth, so $\eta \in \Omega^{n-1}(M)$. Moreover, every $(n-1)$-form can be written in this way, so this implies that $\mathfrak{X}(\R^n)$ is isomorphic to $\Omega^{n-1}(\R^n)$.
+	
+	Again, as in \cref{ex:vector fields and 1-forms}, this turns out to work on general manifolds when we have an analog of $\det$, which is our volume form from \cref{ex:volume form}. In general, then, this will imply that, for an orientable $n$-manifold $M$, $\Omega^1(M) \cong \Omega^{n-1}(M)$.
+\end{example}
