@@ -101,3 +101,26 @@ Putting this all together, then
 	[X,Y](p) =\left. \frac{d}{dt}\right|_{t=0} (d\xi_{-t})(p(j\cos t + k \sin t)) = \begin{bmatrix} -2d \\ 2c \\ -2b \\ 2a \end{bmatrix} = 2pk = 2Z(p).
 \]
 In other words, $[X,Y] = 2Z$ and, by similar arguments, $[Y,Z] = 2X$ and $[Z,X] = 2Y$.
+
+In our language from \cref{ex:left invariant vector field}, $X$, $Y$, and $Z$ are left-invariant vector fields on the Lie group $S^3$, and so you should expect that the Lie bracket on left-invariant vector fields on $S^3$ corresponds to a Lie algebra structure on $T_1 S^3$, which is a 3-dimensional vector space. We'll call this 3-dimensional Lie algebra $\mathfrak{sp}(1)$ since $S^3 = \Sp(1)$. 
+
+Thinking of $S^3$ and $\mathfrak{sp}(1)$ as living in the space of $1 \times 1$ quaternionic matrices (that is, inside $\quat$), we might expect that the matrix commutator on $\mathfrak{sp}(1) = \{xi + yj + zk\}$ should correspond to the above Lie bracket. Indeed, the commutator of the $1 \times 1$ matrices $i$ and $j$ is
+\[
+	ij - ji  = k - (-k) = 2k,
+\]
+which agrees with the above calculation that $[X,Y] = 2Z$.
+
+
+Since the only Lie algebra structure we've seen on a 3-dimensional vector space is that of $(\R^3,\times)$, or equivalently $(\mathfrak{so}(3),[\cdot,\cdot])$, you might guess that $\mathfrak{sp}(1)$ is just another iteration of the same Lie algebra.
+
+Indeed, if $e_1, e_2 , e_3$ is the standard basis for $\R^3$ and we define $F\from \R^3 \to \mathfrak{sp}(1)$ by
+\[
+	F(e_1) = \frac{1}{2} X, \qquad F(e_2) = \frac{1}{2} Y, \qquad F(e_3) = \frac{1}{2} Z,
+\]
+then we see that, e.g.,
+\[
+	 F(e_1 \times e_2) = F(e_3) =  \frac{1}{2}Z = \frac{1}{4}[X,Y] = \left[ \frac{1}{2}X, \frac{1}{2}Y\right] = [F(e_1),F(e_2)],
+\] 
+and more generally it's easy to check that $F(u\times v) = [F(u),F(v)]$ for any $u,v \in \R^3$, so $F$ is an isomorphism of Lie algebras. 
+
+This also implies that $\mathfrak{so}(3)$ and $\mathfrak{sp}(1)$ are isomorphic Lie algebras, even though the Lie groups $\SO(3)$ and $S^3$ are not even homotopy equivalent (for example, $\pi_1(\SO(3))\cong \Z/2\Z$ and $\pi_1(S^3) = \{1\}$), which is going to imply that they cannot be isomorphic as Lie groups.\footnote{That said, $\SO(3) \cong \RP^3$ has $S^3$ as its universal cover; indeed, this is really what the isomorphism of Lie algebras implies.}
