@@ -111,3 +111,88 @@ Here's the key theorem (or, if you start form a different perspective, the below
 		A = \begin{bmatrix} 0 & 0 & 0 & 0 & 0 & 1 & 0 & -1 & 0 \\ 0 & 0 & -1 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
 	\]
 \end{example}
+
+\begin{proposition}\label{prop:tensor basis}
+	If $u_1, \dots , u_m$ is a basis for $U$ and $v_1, \dots , v_n$ is a basis for $V$, then $\{e_i \otimes f_j\}_{i,j}$ is a basis for $U \otimes V$. In particular, $\dim U \otimes V = mn$.
+\end{proposition}
+
+\begin{notation}
+	We will use $V^{\otimes k}$ to denote the $k$-fold tensor product of a vector space $V$ with itself; that is
+	\[
+		\underbrace{V \otimes \cdots \otimes V}_k = V \otimes (V \otimes \cdots \otimes (V \otimes V))
+	\]
+\end{notation}
+
+\begin{definition}\label{def:tensor space}
+	The \emph{tensor space of type $(r,s)$} associated with a vector space $V$ is the vector space
+	\[
+		V_r^s := V^{\otimes r} \otimes (V^\ast)^{\otimes s}.
+	\]
+	Elements of $V_r^s$ are called \emph{$(r,s)$-tensors}.
+\end{definition}
+
+\begin{example}
+	An inner product $\langle \cdot , \cdot \rangle$ on $V$ is a symmetric $(0,2)$-tensor on $V$. Why? Well, $\langle \cdot , \cdot \rangle$ defines a bilinear map $V \times V \to \R$, and hence by \cref{thm:tensor product universal property} a (unique) linear map $V \otimes V \to \R$. In other words, an inner product determines an element of $(V \otimes V)^\ast \cong V^\ast \otimes V^\ast = V_0^2$.
+	\begin{exercise}
+		Prove that $(V \otimes V)^\ast \cong V^\ast \otimes V^\ast$
+	\end{exercise}
+\end{example}
+
+\begin{example}
+	A linear transformation $F\from V \to V$ (or, if you like, a square matrix) can be interpreted as a $(1,1)$-tensor. Why? $F$ induces a bilinear map $V^\ast \times V \to \R$ as follows: for $(\rho,v) \in V^\ast \times V$,
+	\[
+		(\rho, v ) \mapsto \rho(F(v)).
+	\]
+	Again, \cref{thm:tensor product universal property} implies that this bilinear map correponds to a linear map $V^\ast \otimes V \to \R$; that is, an element of the dual space $(V^\ast \otimes V)^\ast \cong V \otimes V^\ast = V_1^1$.
+\end{example}
+
+\begin{definition}\label{def:tensor algebra}
+	The direct sum $\mathcal{T}(V):= \oplus_{r,s \geq 0} V_r^s$, where $V_0^0$ is the ground field of $V$, is called the \emph{tensor algebra} of $V$.
+\end{definition}
+
+In general, $\mathcal{T}(V)$ is noncommutative, associative, and (bi-)graded.
+
+\begin{definition}\label{def:tensor bundle}
+	The \emph{tensor bundle of type $(r,s)$} over a manifold $M$ is
+	\[
+		\mathcal{T}_r^s(M) := \sqcup_{p \in M} \left(T_pM\right)_r^s,
+	\]
+	which has a projection map $\pi\from \mathcal{T}_r^s(M) \to M$ which sends a tensor at a point to the point. 
+	
+	$\mathcal{T}_r^s(M)$ is a smooth manifold. A \emph{tensor field} of type $(r,s)$ on $M$ is a smooth section of the tensor bundle $\mathcal{T}_r^s(M)$; i.e., a smooth map $\tau\from M \to \mathcal{T}_r^s(M)$ so that $\tau(p) \in \left(T_p M\right)_r^s$.
+\end{definition}
+
+\begin{example}
+	A vector field on $M$ is (by definition) a $(1,0)$-tensor field on $M$.
+\end{example}
+
+\begin{example}
+	A 1-form on $M$ is (again, by definition) a $(0,1)$-tensor field.
+\end{example}
+
+\begin{example}
+	A Riemannian metric (which we've informally defined to be a smooth choice of inner product on each tangent space) is a (symmetric) $(0,2)$-tensor field on $M$. More precisely, we can define a \emph{Riemannian metric} on a manifold $M$ to be a smooth $(0,2)$-tensor field $g$ on $M$ so that, for each $p \in M$, $g_p = g(p)$ satisfies the axioms of an inner product on $T_p(M)$; that is, in addition to being bilinear (which is guaranteed by the fact it is a $(0,2)$-tensor), it must be symmetric ($g_p(u,v) = g_p(v,u)$) and positive-definite ($g_p(v,v) \geq 0$ with equality if and only if $v=0$).
+	
+	Note: when I write something like $g_p(u,v)$ I'm technically thinking of $g_p$ as the associated bilinear map $T_pM \times T_pM \to \R$, but in coordinates we also often use notation like $g = \sum_{i,j} g_{ij} dx^i \otimes dx^j$, which more closely matches up with the idea of $g$ being a $(0,2)$-tensor field.
+\end{example}
+
+\begin{example}
+	Consider the Riemmannian metric $g = \frac{1}{y^2}(dx \otimes dx + dy \otimes dy)$ (also commonly written as $ds^2 = \frac{1}{y^2}(dx^2 + dy^2)$) on $H = \{(x,y) \in \R^2 : y > 0\}$. This is the Poincaré half-plane model of the hyperbolic plane. In general, we can compute the length of a curve $\gamma(t) = (\gamma_1(t),\gamma_2(t))$ by integrating the length of $\gamma'(t)$ along the curve. Since $\gamma'(t) \in T_{\gamma(t)}H$, its length is 
+	\[
+		\sqrt{g_{\gamma(t)}(\gamma'(t),\gamma'(t))} = \sqrt{\frac{\gamma'(t) \cdot \gamma'(t)}{\gamma_2(t)^2}} = \frac{\|\gamma'(t)\|_E}{|\gamma_2(t)|},
+	\] 
+	where $\cdot$ is the standard dot product on the plane and $\| \|_E$ is the Euclidean norm
+	
+	It will turn out that the geodesics in this metric are the vertical lines and semicircles centered at points on the $x$-axis. Let's compute distances between points on these geodesics.
+	
+	For the vertical lines, we can parametrize the line through $(x_0,0)$ by $\gamma(t) = (x_0,t)$. So then the distance between $(x_0,y_0)$ and $(x_0,y_1)$ is
+	\[
+		\int_{y_0}^{y_1} \sqrt{g_{\gamma(t)}(\gamma'(t),\gamma'(t))}dt = \int_{y_0}^{y_1} \sqrt{g_{(0,t)}\left(\frac{\partial}{\partial y},\frac{\partial}{\partial y}\right)} dt = \int_{y_0}^{y_1} \frac{1}{t}dt = \ln {y_1} - \ln {y_0} = \ln \left(\frac{y_1}{y_0}\right).
+	\]
+	
+	On the other hand, the semicircle of radius $r$ centered at $(x_0,0)$ can be parametrized by $\gamma(t) = (x_0 + r \cos t, r \sin t)$. So then the distance between $(x_0 + r \cos \theta_0, r \sin \theta_0)$ and $(x_0 + r \cos \theta_1, r \sin \theta_1)$ is
+	\begin{multline*}
+		\int_{\theta_0}^{\theta_1} \sqrt{g_{\gamma(t)}(\gamma'(t),\gamma'(t))}dt = \int_{\theta_0}^{\theta_1} \sqrt{g_{(x_0 + r \cos t, r \sin t)}\left(-r \sin t \frac{\partial}{\partial x} + r \cos t \frac{\partial}{\partial y},-r \sin t \frac{\partial}{\partial x} + r \cos t \frac{\partial}{\partial y}\right)}dt \\
+		= \int_{\theta_0}^{\theta_1} \sqrt{\frac{r^2}{r^2 \sin^2 t}} dt = \int_{\theta_0}^{\theta_1} \csc t\, dt = \operatorname{arctanh}(\cos\theta_0) - \operatorname{arctanh}(\cos \theta_1).
+	\end{multline*}
+\end{example}
