@@ -8,15 +8,15 @@ To try to build up some intuition for differential forms, think back to vector c
 \begin{equation}\label{eq:multivariable calculus integral}
 	\int_A f dx_1 \dots dx_n,
 \end{equation}
-where $A \subseteq \R^n$ is an open set (or maybe the closure of an open set), and $f: A \to \R$ is a (sufficiently nice) function.\footnote{For our purposes we'll just be dealing with the Riemann integral, but one can also generalize the Lebesgue integral to manifolds.} If you stare at \eqref{eq:multivariable calculus integral}, and in particular at expression $f dx_1 \dots dx_n$ being integrated, what exactly is this thing?
+where $A \subseteq \R^n$ is an open set (or maybe the closure of an open set), and $f: A \to \R$ is a (sufficiently nice) function.\footnote{For our purposes we'll just be dealing with the Riemann integral, but one can also generalize the Lebesgue integral to manifolds.} If you stare at \eqref{eq:multivariable calculus integral}, and in particular at the expression $f\, dx_1 \dots dx_n$ being integrated, what exactly is this thing?
 
-To get a handle on what it is, it's helpful to see how it transforms. If $B \subseteq \R^n$ is open and $g: B \to A$ is a diffeomorphism,\footnote{In calculus terms, this is a change of variables, like a transition from Cartian to spherical coordinates or something} then
+To get a handle on what it is, it's helpful to see how it transforms. If $B \subseteq \R^n$ is open and $g: B \to A$ is a diffeomorphism,\footnote{In calculus terms, this is a change of variables; e.g., a transition from Cartesian to spherical coordinates.} then
 \[
-	\int_A f dx_1 \dots dx_n = \int_B (f \circ g) |\det Jg| dy_1 \dots dy_n,
+	\int_A f\, dx_1 \dots dx_n = \int_B (f \circ g) \,|\!\det Jg|\, dy_1 \dots dy_n,
 \]
-where I'm using $y_1, \dots , y_n$ to indicate the coordinates on $B$ and $Jg$ is the Jacobian matrix of $g$. So now whatever kind of object $f dx_1 \dots dx_n$ is, it's the same type of object as $(f \circ g) |\det Jg| dy_1 \dots dy_n$, and this describes how it transforms under diffeomorphisms.
+where I'm using $y_1, \dots , y_n$ to indicate the coordinates on $B$ and $Jg$ is the Jacobian matrix of $g$. So now whatever kind of object $f\, dx_1 \dots dx_n$ is, it's the same type of object as $(f \circ g) \,|\!\det Jg|\, dy_1 \dots dy_n$, and this describes how it transforms under diffeomorphisms.
 
-Now, examining $(f \circ g) |\det Jg| dy_1 \dots dy_n$, it's clear that this is a more complicated object that just a function. In particular, the presence of the determinant tells you that this is some sort of \emph{alternating}, \emph{multilinear} object. Recall the definitions:
+Now, examining $(f \circ g)\, |\!\det Jg|\, dy_1 \dots dy_n$, it's clear that this is a more complicated object than just a function. In particular, the presence of the determinant tells you that this is some sort of \emph{alternating}, \emph{multilinear} object. Recall the definitions:
 
 \begin{definition}\label{def:multilinear}
 	Let $V_1, \dots , V_k, W$ be $R$-modules. A map
@@ -33,23 +33,23 @@ Now, examining $(f \circ g) |\det Jg| dy_1 \dots dy_n$, it's clear that this is 
 	Let $V$ and $W$ be $R$-modules. A multilinear map $f\from V^k \to W$ is \emph{alternating} if, for any $i \neq j$, $v_i = v_j$ implies that $f(v_1, \dots , v_k) = 0$.
 \end{definition}
 
-Thinking of the determinant map as a function $\det\from V^n \to \R$ of the columns of the matrix fed into the determinant, $\det$ is multilinear and alternating. Indeed, these two properties uniquely characterize the determinant up to scale:
+Thinking of the determinant map as a function $\det\from V^n \to \R$ where $(v_1, \dots , v_n) \in V^n$ are interpreted as the columns of a matrix whose determinant is then computed, $\det$ is multilinear and alternating. Indeed, these two properties uniquely characterize the determinant up to scale:
 
 \begin{theorem}\label{thm:determinant}
 	Suppose $V$ is an $n$-dimensional vector space. Up to scaling by a constant factor, $\det$ is the unique alternating, multilinear map $V^n \to \R$. 
 \end{theorem}
 
-The point of all of this is that the stuff we actually integrate in multivariable calculus are alternating, multilinear gadgets. Informally, this is how we should think about differential forms on manifolds:
+The point of all of this is that the things we actually integrate in multivariable calculus are alternating, multilinear gadgets. Informally, this is how we should think about differential forms on manifolds:
 
 \begin{definition}[Informal Definition]\label{def:informal differential form}
 	A smooth \emph{differential $k$-form} on a manifold $M$ is a smooth, alternating, $C^\infty(M)$-multilinear map
 	\[
 		\omega \from \mathfrak{X}(M)^k \to C^\infty(M)
 	\]
-	(recall that $\mathfrak{X}(M)$ is a $C^\infty(M)$-module). The vector space of $k$-forms is denoted $\Omega^K(M)$.
+	(recall that $\mathfrak{X}(M)$ is a $C^\infty(M)$-module). The vector space of $k$-forms is denoted $\Omega^k(M)$.
 \end{definition}
 
-In other words, at each point $p \in M$ a $k$-form $\omega$ will input $k$ tangent vectors at $p$ and output a real number in an alternating, multilinear way. You might guess that this means that $\omega$ is \emph{really} a (smooth) section of some vector bundle over $M$, and indeed we will shortly define it in this way. 
+In other words, at each point $p \in M$, a $k$-form $\omega$ will input $k$ tangent vectors at $p$ and output a real number in an alternating, multilinear way. You might guess that this means that $\omega$ is \emph{really} a (smooth) section of some vector bundle over $M$, and indeed we will shortly define it in this way. 
 
 But before that, let's look at some examples of things that should be differential forms according to whatever formal definition we eventually give.
 
@@ -94,7 +94,7 @@ But before that, let's look at some examples of things that should be differenti
 	\[
 		\Omega^1(M) \cong \mathfrak{X}(M)
 	\]
-	either as vector spaces or as $C^\infty(M)$-modules. You should view this isomorphism as the differential geometry analog of the isomorphism between a finite-dimensional vector space and its dual.
+	either as vector spaces or as $C^\infty(M)$-modules. You should view this isomorphism as the differential geometry analog of the isomorphism between a Hilbert space and its dual.
 \end{example}
 
 \begin{example}\label{ex:area form on R^2}
