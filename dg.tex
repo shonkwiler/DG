@@ -110,7 +110,12 @@
 \newcommand{\Sp}{\operatorname{Sp}}
 \newcommand{\Spin}{\operatorname{Spin}}
 \newcommand{\dVol}{\operatorname{dVol}}
-
+\newcommand{\sgn}{\operatorname{sgn}}
+% \newcommand{\ext}{\textstyle\bigwedge}
+\NewDocumentCommand\ext{o}
+  {\IfNoValueTF{#1}
+    {{\textstyle\bigwedge}}
+    {{\textstyle\bigwedge\!\!^{#1}}}}
 
 \newcommand{\from}{\co\!\!}
 \def\co{\colon\thinspace}
@@ -239,8 +244,9 @@
 \chapter{Differential Forms}
 
 \input{days/day10}
-% \input{days/day11}
+\input{days/day11}
 % \input{days/day12}
+% \input{days/day13}
 
 
 
