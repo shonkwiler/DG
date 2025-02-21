@@ -12,16 +12,19 @@
 \usepackage{geometry}
 \usepackage{amssymb}
 \usepackage{latexsym, amsmath, amscd,amsthm}
-\usepackage{thmtools}
-\usepackage{newtxtext,newtxmath}
+\usepackage{ifpdf}
+\ifpdf
+	\usepackage{thmtools}
+	\usepackage{newtxtext,newtxmath}
+\fi
 \usepackage{mathtools}
 \usepackage{graphicx}
-\usepackage[percent]{overpic}
+% \usepackage[percent]{overpic}
 %\usepackage{pdfsync}
-\usepackage{units}
+% \usepackage{units}
 \usepackage{tikz}
 \usetikzlibrary{cd}
-\usepackage{diagbox}
+% \usepackage{diagbox}
 \usepackage{xcolor}
 \definecolor{linkblue}{HTML}{003d73}
 \definecolor{linkgreen}{HTML}{006161}
@@ -39,37 +42,37 @@
 }
 \PassOptionsToPackage{caption=false,labelformat=empty}{subfig}
 \usepackage[lofdepth]{subfig}
-\usepackage[export]{adjustbox}
-\usepackage{algorithm}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
-\usepackage{booktabs}
-\usepackage{authblk}
+% \usepackage[export]{adjustbox}
+% \usepackage{algorithm}
+% \usepackage{algorithmicx}
+% \usepackage{algpseudocode}
+% \usepackage{booktabs}
+% \usepackage{authblk}
 \usepackage{enumitem}
 
-\usepackage{supertabular,multicol,ifthen,multirow}
-
-\usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \usepackage{supertabular,multicol,ifthen,multirow}
+%
+% \usepackage{array}
+% \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 % \usepackage{cite}
 \usepackage[nameinlink,capitalize]{cleveref}
 
-\makeatletter
-\let\mcnewpage=\newpage
-\newcommand{\TrickSupertabularIntoMulticols}{%
-\renewcommand\newpage{%
-    \if@firstcolumn%
-        \hrule width\linewidth height0pt%
-            \columnbreak%
-        \else%
-          \mcnewpage%
-        \fi%
-}%
-}
-\makeatother
+% \makeatletter
+% \let\mcnewpage=\newpage
+% \newcommand{\TrickSupertabularIntoMulticols}{%
+% \renewcommand\newpage{%
+%     \if@firstcolumn%
+%         \hrule width\linewidth height0pt%
+%             \columnbreak%
+%         \else%
+%           \mcnewpage%
+%         \fi%
+% }%
+% }
+% \makeatother
 
 \graphicspath{{./figs/}}
 
@@ -111,11 +114,13 @@
 \newcommand{\Spin}{\operatorname{Spin}}
 \newcommand{\dVol}{\operatorname{dVol}}
 \newcommand{\sgn}{\operatorname{sgn}}
-% \newcommand{\ext}{\textstyle\bigwedge}
-\NewDocumentCommand\ext{o}
-  {\IfNoValueTF{#1}
-    {{\textstyle\bigwedge}}
-    {{\textstyle\bigwedge\!\!^{#1}}}}
+\newcommand{\ext}[1]{%
+    {\def\tmp{#1}
+    \ifx\tmp\empty
+        {\textstyle\bigwedge}
+    \else
+        {\textstyle\bigwedge\!\!^{#1}}
+    \fi}}
 
 \newcommand{\from}{\co\!\!}
 \def\co{\colon\thinspace}
@@ -127,8 +132,8 @@
 \newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{#1}}
 \newcommand{\ent}[3]{E_{#1,#2}^{(#3)}}
 
-\let\oldReturn\Return
-\renewcommand{\Return}{\State\oldReturn}
+% \let\oldReturn\Return
+% \renewcommand{\Return}{\State\oldReturn}
 
 \newcommand{\crefrangeconjunction}{--}
 
@@ -204,23 +209,23 @@
 \setlength{\parskip}{3pt}
 
 
-\newenvironment{coordinates}[1]{
-	\nobreak\vfil\penalty0\vfilneg\vtop\bgroup
-	\begin{center} \begin{normalsize} #1 \end{normalsize} \end{center} 
-
-		\ttfamily \begin{tiny}\begin{center}
-	}{
-		\end{center}\end{tiny}\par
-		\xdef\tpd{\the\prevdepth}\egroup\prevdepth=\tpd
-	}
+% \newenvironment{coordinates}[1]{
+% 	\nobreak\vfil\penalty0\vfilneg\vtop\bgroup
+% 	\begin{center} \begin{normalsize} #1 \end{normalsize} \end{center}
+%
+% 		\ttfamily \begin{tiny}\begin{center}
+% 	}{
+% 		\end{center}\end{tiny}\par
+% 		\xdef\tpd{\the\prevdepth}\egroup\prevdepth=\tpd
+% 	}
 
 \title{Introduction to Differential Manifolds}
 \author{Clayton Shonkwiler}
-\affil{Department of Mathematics, Colorado State University, Fort Collins, CO, USA}
+% \affil{Department of Mathematics, Colorado State University, Fort Collins, CO, USA}
 
 \date{}
 
-\renewcommand\Affilfont{\itshape\small}
+% \renewcommand\Affilfont{\itshape\small}
 
 \setcounter{MaxMatrixCols}{20}
 
@@ -245,8 +250,9 @@
 
 \input{days/day10}
 \input{days/day11}
-% \input{days/day12}
-% \input{days/day13}
+\input{days/day12}
+\input{days/day13}
+\input{days/day14}
 
 
 
