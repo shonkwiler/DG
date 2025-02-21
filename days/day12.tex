@@ -39,10 +39,10 @@ Returning to the general setting, we have vector space $U$, $V$, and $W$ and a m
 	for $(u_1,u_2,u_3,v_1,v_2,v_3)$, which is obviously a \emph{quadratic} system of equations, not a linear system.
 \end{example}
 
-To me\footnote{I want to emphasize here that this is just my perspective: I'm not claiming that everybody would agree with this characterization} the point of tensor products is to turn multilinear maps and problems into linear maps and problems.
+To reiterate, for me\footnote{I want to emphasize here that this is just my perspective: I'm not claiming that everybody would agree with this characterization.} the point of tensor products is to turn multilinear maps and problems into linear maps and problems.
 
 \begin{definition}\label{def:tensor product}
-	Given vector spaces $U$ and $V$, define the \emph{tensor product} $U \otimes V$ to be the vector space whose elements are of the form $u \times v$ for $u \in U$ and $v \in V$ so that 
+	Given vector spaces $U$ and $V$, define the \emph{tensor product} $U \otimes V$ to be the vector space whose elements are linear combinations of terms of the form $u \otimes v$ for $u \in U$ and $v \in V$ so that 
 	\begin{enumerate}
 		\item $(u_1 + u_2) \otimes v = u_1 \otimes v + u_2 \otimes v$
 		\item $u \otimes (v_1 + v_2) = u \otimes v_1 + u \otimes v_2$
@@ -116,10 +116,12 @@ Here's the key theorem (or, if you start form a different perspective, the below
 	If $u_1, \dots , u_m$ is a basis for $U$ and $v_1, \dots , v_n$ is a basis for $V$, then $\{e_i \otimes f_j\}_{i,j}$ is a basis for $U \otimes V$. In particular, $\dim U \otimes V = mn$.
 \end{proposition}
 
+Clearly, we've paid a price for turning bilinear maps into linear maps: whereas $\dim(U \times V) = m+n$, we have $\dim(U \otimes V) = mn$, which is usually a lot bigger. So we turn multilinear algebra into linear algebra at the cost of having to work in much higher dimensions.
+
 \begin{notation}
 	We will use $V^{\otimes k}$ to denote the $k$-fold tensor product of a vector space $V$ with itself; that is
 	\[
-		\underbrace{V \otimes \cdots \otimes V}_k = V \otimes (V \otimes \cdots \otimes (V \otimes V))
+		\underbrace{V \otimes \cdots \otimes V}_k = V \otimes (V \otimes( \cdots \otimes (V \otimes V)))
 	\]
 \end{notation}
 
@@ -164,7 +166,7 @@ In general, $\mathcal{T}(V)$ is noncommutative, associative, and (bi-)graded.
 	which has a projection map $\pi\from \mathcal{T}_r^s(M) \to M$ sending a tensor based at a point to the point. 
 	
 \begin{exercise}
-	If $M$ is an $n$-dimensional manifold, show that $\mathcal{T}_r^s(M)$ is a smooth manifold of dimension~$n^{r+s}$. 
+	If $M$ is an $n$-dimensional manifold, show that $\mathcal{T}_r^s(M)$ is a smooth manifold of dimension~${n + n^{r+s}}$. 
 \end{exercise}
 	
 	A \emph{tensor field} of type $(r,s)$ on $M$ is a smooth section of the tensor bundle $\mathcal{T}_r^s(M)$; i.e., a smooth map $\tau\from M \to \mathcal{T}_r^s(M)$ so that $\tau(p) \in \left(T_p M\right)_r^s$.
@@ -179,7 +181,11 @@ In general, $\mathcal{T}(V)$ is noncommutative, associative, and (bi-)graded.
 \end{example}
 
 \begin{example}
-	A Riemannian metric (which we've informally defined to be a smooth choice of inner product on each tangent space) is a (symmetric) $(0,2)$-tensor field on $M$. More precisely, we can define a \emph{Riemannian metric} on a manifold $M$ to be a smooth $(0,2)$-tensor field $g$ on $M$ so that, for each $p \in M$, $g_p = g(p)$ satisfies the axioms of an inner product on $T_p(M)$; that is, in addition to being bilinear (which is guaranteed by the fact it is a $(0,2)$-tensor), it must be symmetric ($g_p(u,v) = g_p(v,u)$) and positive-definite ($g_p(v,v) \geq 0$ with equality if and only if $v=0$).
+	A Riemannian metric (which we've informally defined to be a smooth choice of inner product on each tangent space) is a (symmetric) $(0,2)$-tensor field on $M$. More precisely:
+	
+	\begin{definition}\label{def:Riemannian metric}
+		A \emph{Riemannian metric} on a manifold $M$ is a smooth $(0,2)$-tensor field $g$ on $M$ so that, for each $p \in M$, $g_p = g(p)$ satisfies the axioms of an inner product on $T_p(M)$; that is, in addition to being bilinear (which is guaranteed by the fact it is a $(0,2)$-tensor), it must be symmetric ($g_p(u,v) = g_p(v,u)$) and positive-definite ($g_p(v,v) \geq 0$ with equality if and only if $v=0$).
+	\end{definition} 
 	
 	Note: when I write something like $g_p(u,v)$ I'm technically thinking of $g_p$ as the associated bilinear map $T_pM \times T_pM \to \R$, but in coordinates we also often use notation like $g = \sum_{i,j} g_{ij} dx_i \otimes dx_j$, which more closely matches up with the idea of $g$ being a $(0,2)$-tensor field.
 \end{example}
