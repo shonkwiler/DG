@@ -4,11 +4,11 @@
 %% IF YOU HAVE FONTS INSTALLED
 %\usepackage{mtpro2}
 %\usepackage{mathtime}
-\usepackage[style=trad-plain,backref=true,url=false,isbn=false,alldates=year,sortcites=true,maxnames=9]{biblatex}
-\addbibresource{dg-special.bib}
-\addbibresource{dg.bib}
-\renewbibmacro{in:}{%
-  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+% \usepackage[style=trad-plain,backref=true,url=false,isbn=false,alldates=year,sortcites=true,maxnames=9]{biblatex}
+% \addbibresource{dg-special.bib}
+% \addbibresource{dg.bib}
+% \renewbibmacro{in:}{%
+%   \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
 \usepackage{geometry}
 \usepackage{amssymb}
 \usepackage{latexsym, amsmath, amscd,amsthm}
@@ -122,12 +122,18 @@
         {\textstyle\bigwedge\!\!^{#1}}
     \fi}}
 
-\newcommand{\from}{\co\!\!}
+\ifpdf
+	\newcommand{\from}{\co\!\!}
+\else
+	\newcommand{\from}{\co\!}
+\fi
 \def\co{\colon\thinspace}
 
 
-\renewcommand{\theenumi}{(\roman{enumi})}
-\renewcommand{\labelenumi}{(\roman{enumi})}
+\ifpdf
+	\renewcommand{\theenumi}{(\roman{enumi})}
+	\renewcommand{\labelenumi}{(\roman{enumi})}
+\fi
 
 \newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{#1}}
 \newcommand{\ent}[3]{E_{#1,#2}^{(#3)}}
@@ -138,66 +144,66 @@
 \newcommand{\crefrangeconjunction}{--}
 
 
-%% BibLaTeX junk
-%-----------------
-
-% Change backref style
-\DefineBibliographyStrings{english}{%
-  backrefpage = {$\uparrow$},% originally "cited on page"
-  backrefpages = {$\uparrow$},% originally "cited on pages"
-  page = {p\adddot},
-  pages = {pp\adddot},
-}
-
-% Drop fields from output
-\DeclareSourcemap{
-  \maps{
-    \map{
-      \step[fieldset=pagetotal, null]
-	  \step[fieldset=pubstate, null]
-    }
-  }
-}
-
-% New eprint types
-\DeclareFieldFormat{eprint:urn}{%
-  \mkbibacro{URN}\addcolon\space
-  \ifhyperref
-    {\href{https://nbn-resolving.org/urn:#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
-\DeclareFieldAlias{eprint:URN}{eprint:urn}
-\DeclareFieldFormat{eprint:hal}{%
-  \mkbibacro{HAL}\addcolon\space
-  \ifhyperref
-    {\href{https://hal.science/#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
-\DeclareFieldAlias{eprint:HAL}{eprint:hal}
-\DeclareFieldFormat{eprint:numdam}{%
-  Numdam\addcolon\space
-  \ifhyperref
-    {\href{http://www.numdam.org/item/#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
-\DeclareFieldAlias{eprint:Numdam}{eprint:numdam}
-\DeclareFieldFormat{eprint:ark}{%
-  \mkbibacro{ARK}\addcolon\space
-  \ifhyperref
-    {\href{https://n2t.net/ark:#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
-\DeclareFieldAlias{eprint:ARK}{eprint:ark}
-\DeclareFieldFormat{eprint:zbl}{%
-  Zbl\addcolon\space
-  \ifhyperref
-    {\href{https://zbmath.org/#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
-\DeclareFieldAlias{eprint:Zbl}{eprint:zbl}
-\DeclareFieldFormat{eprint:mr}{%
-  \mkbibacro{MR}\addcolon\space
-  \ifhyperref
-    {\href{https://mathscinet.ams.org/mathscinet-getitem?mr=#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
-\DeclareFieldAlias{eprint:MR}{eprint:mr}
-
-%-----------------
+% %% BibLaTeX junk
+% %-----------------
+%
+% % Change backref style
+% \DefineBibliographyStrings{english}{%
+%   backrefpage = {$\uparrow$},% originally "cited on page"
+%   backrefpages = {$\uparrow$},% originally "cited on pages"
+%   page = {p\adddot},
+%   pages = {pp\adddot},
+% }
+%
+% % Drop fields from output
+% \DeclareSourcemap{
+%   \maps{
+%     \map{
+%       \step[fieldset=pagetotal, null]
+% 	  \step[fieldset=pubstate, null]
+%     }
+%   }
+% }
+%
+% % New eprint types
+% \DeclareFieldFormat{eprint:urn}{%
+%   \mkbibacro{URN}\addcolon\space
+%   \ifhyperref
+%     {\href{https://nbn-resolving.org/urn:#1}{\nolinkurl{#1}}}
+%     {\nolinkurl{#1}}}
+% \DeclareFieldAlias{eprint:URN}{eprint:urn}
+% \DeclareFieldFormat{eprint:hal}{%
+%   \mkbibacro{HAL}\addcolon\space
+%   \ifhyperref
+%     {\href{https://hal.science/#1}{\nolinkurl{#1}}}
+%     {\nolinkurl{#1}}}
+% \DeclareFieldAlias{eprint:HAL}{eprint:hal}
+% \DeclareFieldFormat{eprint:numdam}{%
+%   Numdam\addcolon\space
+%   \ifhyperref
+%     {\href{http://www.numdam.org/item/#1}{\nolinkurl{#1}}}
+%     {\nolinkurl{#1}}}
+% \DeclareFieldAlias{eprint:Numdam}{eprint:numdam}
+% \DeclareFieldFormat{eprint:ark}{%
+%   \mkbibacro{ARK}\addcolon\space
+%   \ifhyperref
+%     {\href{https://n2t.net/ark:#1}{\nolinkurl{#1}}}
+%     {\nolinkurl{#1}}}
+% \DeclareFieldAlias{eprint:ARK}{eprint:ark}
+% \DeclareFieldFormat{eprint:zbl}{%
+%   Zbl\addcolon\space
+%   \ifhyperref
+%     {\href{https://zbmath.org/#1}{\nolinkurl{#1}}}
+%     {\nolinkurl{#1}}}
+% \DeclareFieldAlias{eprint:Zbl}{eprint:zbl}
+% \DeclareFieldFormat{eprint:mr}{%
+%   \mkbibacro{MR}\addcolon\space
+%   \ifhyperref
+%     {\href{https://mathscinet.ams.org/mathscinet-getitem?mr=#1}{\nolinkurl{#1}}}
+%     {\nolinkurl{#1}}}
+% \DeclareFieldAlias{eprint:MR}{eprint:mr}
+%
+% %-----------------
 
 
 
@@ -227,7 +233,9 @@
 
 % \renewcommand\Affilfont{\itshape\small}
 
-\setcounter{MaxMatrixCols}{20}
+% \setcounter{MaxMatrixCols}{20}
+
+\bibliographystyle{plain}
 
 \begin{document}
 
@@ -252,11 +260,11 @@
 \input{days/day11}
 \input{days/day12}
 \input{days/day13}
-\input{days/day14}
+% \input{days/day14}
 
 
 
 
-\printbibliography
+\bibliography{dg}
 
 \end{document}
