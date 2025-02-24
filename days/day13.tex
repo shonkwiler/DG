@@ -92,7 +92,7 @@ As you would expect, the exterior products satisfy a universal property analogou
 	for some $a \in \R$, which (re)proves \cref{thm:determinant}, which says that the determinant is, up to scale, the unique alternating multilinear map $(\R^n)^n \to \R$.
 \end{example}
 
-If we let $W = \R$ (or whatever the base field is) in \cref{thm:exterior product universal property}, then we see that alternating multilinear functionals on $V^k$ correspond precisely to linear functionals on $\ext{k}V$; that is, to elements of the dual space $\left(\ext{k}V\right)^\ast$. But of course this is essentially how we ``defined'' differential $k$-forms in \cref{def:informal differential form}: at each point a $k$-form should exactly be an alternating multilinear functional on the product of $k$-copies of the tangent space at that point.
+If we let $W = \R$ (or whatever the base field is) in \cref{thm:exterior product universal property}, then we see that alternating multilinear functionals on $V^k$ correspond precisely to linear functionals on $\ext{k}V$; that is, to elements of the dual space $\left(\ext{k}V\right)^\ast$. But of course this is essentially how we ``defined'' differential $k$-forms in \cref{def:informal differential form}: at each point a $k$-form should exactly be an alternating multilinear functional on the product of $k$ copies of the tangent space at that point.
 
 \begin{definition}\label{def:differential form}
 	The \emph{exterior $k$-bundle} on a manifold $M$ is
@@ -146,9 +146,9 @@ So the strategy for proving \cref{lem:exterior powers and duals} is to find a no
 
 \begin{proof}[Proof of \cref{lem:exterior powers and duals}]
 	To find the pairing $(\cdot , \cdot ) \from \ext{k}(V^\ast) \times \ext{k} (V) \to \R$, suppose first that $\alpha \in \ext{k}(V^\ast)$ and $b \in \ext{k}(V)$ are \emph{decomposable}, meaning that $\alpha = \alpha_1 \wedge \dots \wedge \alpha_k$ for $\alpha_1 , \dots , \alpha_k \in V^\ast$ and $b = b_1 \wedge \dots \wedge b_k$ for $b_1, \dots , b_k \in V$. Then define
-	\[
+	\begin{equation}\label{eq:pairing}
 		(\alpha, b) := \det \left( \begin{bmatrix} \alpha_i(b_j) \end{bmatrix}_{i,j}\right).
-	\]
+	\end{equation}
 	Since arbitrary elements of $\ext{k}(V^\ast)$ and $\ext{k}(V)$ are linear combinations of decomposable elements, we define $(\cdot , \cdot ) \from \ext{k}(V^\ast) \times \ext{k} (V) \to \R$ by extending the above linearly. 
 	
 	It is straightforward (but somewhat tedious) to check that $(\cdot , \cdot)$ is nondegenerate, and thus induces the desired isomorphism $\ext{k}(V^\ast) \overset{\cong}{\to} \left(\ext{k}(V)\right)^\ast$. Doing this for each $k$ shows that the exterior algebra
@@ -156,6 +156,8 @@ So the strategy for proving \cref{lem:exterior powers and duals} is to find a no
 		\ext{}(V^\ast) = \bigoplus_{k=0}^{\dim V} \ext{k}(V^\ast) \cong \bigoplus_{k=0}^{\dim V} \left(\ext{k}(V)\right)^\ast \cong \left( \bigoplus_{k=0}^{\dim V} \ext{k}(V)\right)^\ast = \left(\ext{}(V)\right)^\ast.
 	\]
 \end{proof}
+
+Notice that this argument---and especially \eqref{eq:pairing}---really validates the idea that all alternating multilinear maps are, in some sense, determinants. 
 
 \subsection{Differential Forms in Local Coordinates}
 \label{sub:differential_forms_in_local_coordinates}
