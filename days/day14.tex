@@ -5,11 +5,11 @@
 We've already seen some calculations of the exterior derivative in local coordinates in \cref{sec:vector calculus}, but to give a coordinate-free definition of the exterior derivative we need to talk about derivations.
 
 \begin{definition}\label{def:derivation}
-	If $V$ is a vector space, an endomorphism $D\from \ext(V) \to \ext(V)$ of the exterior algebra is
+	If $V$ is a vector space, an endomorphism $D\from \ext{}(V) \to \ext{}(V)$ of the exterior algebra is
 	\begin{itemize}
 		\item a \emph{derivation} if $D(u \wedge v) = (Du) \wedge v + u \wedge (Dv)$
-		\item an \emph{anti-derivation} if $D(u\wedge v) = (Du) \wedge v + (-1)^k u \wedge (Dv)$ for $u \in \ext[k](V)$ (notice that this implies that $D(v_1 \wedge \dots \wedge v_m) = \sum_{i=1}^m (-1)^{i-1} v_1 \wedge \dots \wedge v_{i-1} \wedge (D v_i) \wedge v_{i+1} \wedge \dots \wedge v_m$ for any $v_1, \dots , v_m \in V = \ext[1](V)$)
-		\item of \emph{degree} $k$ if $D: \ext[i](V) \to \ext[i+k](V)$ for all $i$.
+		\item an \emph{anti-derivation} if $D(u\wedge v) = (Du) \wedge v + (-1)^k u \wedge (Dv)$ for $u \in \ext{k}(V)$ (notice that this implies that $D(v_1 \wedge \dots \wedge v_m) = \sum_{i=1}^m (-1)^{i-1} v_1 \wedge \dots \wedge v_{i-1} \wedge (D v_i) \wedge v_{i+1} \wedge \dots \wedge v_m$ for any $v_1, \dots , v_m \in V = \ext{1}(V)$)
+		\item of \emph{degree} $k$ if $D: \ext{i}(V) \to \ext{i+k}(V)$ for all $i$.
 	\end{itemize}
 	(This definition extends to any (graded) algebra by substituting the product in the algebra for $\wedge$ in the above.)
 \end{definition}
@@ -64,13 +64,22 @@ since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condi
 
 \begin{proof}[Proof of \cref{prop:exterior derivative existence and uniqueness}]
 	Define $d$ in local coordinates as in \eqref{eq:exterior derivative local coords}. Independence of the choice of coordinates will follow from uniqueness, so it remains to show:
-	\begin{enumerate}[label=(\alph*)]
-		\item \label{it:local anti-derivation} This is an anti-derivation.
-		\item \label{it:local cocycle} It satisfies the cocycle condition \ref{it:d^2=0}.
-		\item \label{it:local uniqueness} Uniqueness.
-	\end{enumerate}
+	\ifpdf
+		\begin{enumerate}[label=(\alph*)]
+			\item \label{it:local anti-derivation} This is an anti-derivation.
+			\item \label{it:local cocycle} It satisfies the cocycle condition \ref{it:d^2=0}.
+			\item \label{it:local uniqueness} Uniqueness.
+		\end{enumerate}
+		
+	\else
+		\begin{description}
+			\item [(a)\label{it:local anti-derivation}] This is an anti-derivation.
+			\item [(b)\label{it:local cocycle}] It satisfies the cocycle condition \ref{it:d^2=0}.
+			\item [(c)\label{it:local uniqueness}] Uniqueness.
+		\end{enumerate}
+	\fi
 	
-	\ref{it:local anti-derivation} and \ref{it:local cocycle} are both computations. Here's the computation for \ref{it:local cocycle}: If $\omega_p = \sum_I f_I dx_I$, then 
+	\ifpdf\ref{it:local anti-derivation} \else (a) \fi and \ifpdf\ref{it:local cocycle} \else (b) \fi are both computations. Here's the computation for \ifpdf\ref{it:local cocycle}\else (b)\fi: If $\omega_p = \sum_I f_I dx_I$, then 
 	\[
 		(d\omega)_p = \sum_I df_I \wedge dx_I = \sum_I \left( \sum_{i=1}^n \frac{\partial f}{\partial x_i} dx_i\right) \wedge dx_I,
 	\]
@@ -80,11 +89,11 @@ since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condi
 	\]
 	since $\frac{\partial^2 f}{\partial x_j\partial x_i} = \frac{\partial^2 f}{\partial x_i\partial x_j}$ but $dx_j \wedge dx_i = - dx_i \wedge dx_j$.
 	
-	Turning to \ref{it:local uniqueness}, suppose there exists a degree $+1$ anti-derivation $D\from \Omega^\ast(M) \to \Omega^\ast(M)$ satisfying \ref{it:d_0 is differential} and \ref{it:d^2=0}. In particular, $Df = df$ for all $f \in C^\infty(M) = \Omega^0(M)$. Then
+	Turning to \ifpdf\ref{it:local uniqueness}\else (c)\fi, suppose there exists a degree $+1$ anti-derivation $D\from \Omega^\ast(M) \to \Omega^\ast(M)$ satisfying \ref{it:d_0 is differential} and \ref{it:d^2=0}. In particular, $Df = df$ for all $f \in C^\infty(M) = \Omega^0(M)$. Then
 	\[
 		D(dx_I) = D(dx_{i_1} \wedge dx_{i_k}) = \sum_{j=1}^k (-1)^{j-1} dx_{i_1} \wedge \dots \wedge dx_{i_{j-1}} \wedge D(dx_{i_j}) \wedge dx_{i_{j+1}} \wedge \dots \wedge dx_{i_k} = 0
 	\]
-	since $D(dx_{i_j}) \mathop{=}\limits^{\text{\ref{it:d_0 is differential}}} D(Dx_{i_j}) \mathop{=}\limits^{\text{\ref{it:d^2=0}}} 0$ by hypothesis.
+	since $\displaystyle D(dx_{i_j}) \mathop{=}\limits^{\ref{it:d_0 is differential}} D(Dx_{i_j}) \mathop{=}\limits^{\ref{it:d^2=0}} 0$ by hypothesis.
 	
 	Therefore, if $\omega_p = \sum_I f_I dx_I$, by linearity and the anti-derivation condition we have
 	\[
@@ -115,7 +124,7 @@ Suppose we have manifolds $M$ and $N$ and a smooth map $f \from M \to N$. Since 
 
 First of all, recall that if $v \in T_pM$, then $df_p v \in T_{f(p)}N$; that is, $df_p \from T_pM \to T_{f(p)}N$. More precisely, since $v = \alpha'(0)$ for some smooth curve $\alpha$ with $\alpha(0) = p$, we defined $df_pv = (f \circ \alpha)'(0)$. In words, $f$ gives a way of pushing tangent vectors forward using $df$,\footnote{In fact, many books and papers use the notation $f_\ast$ rather than $df$ since this is the standard notation for a pushforward operator.} and we could have guessed this in advance because $v$ is defined in terms of a map into $M$, which can then be composed with $f$ to get a map into $N$. In categorical terms, tangent vectors and vector fields are transformed \emph{covariantly}, meaning that tangent vectors or vector fields get sent in the same direction (from $M$ to $N$) as the original map $f\from M \to N$.
 
-Now let's think about how we could move differential forms around using $f$. At a point, a $k$-form $\omega \in \Omega^k(M)$ corresponds to $\omega_p \in \ext[k]\left(\left(T_pM\right)^\ast\right) \cong \left(\ext[k]\left(T_pM\right)\right)^\ast$, or equivalently an alternating multilinear functional $\left(T_pM\right)^k \to \R$. In other words, unlike a tangent vector which is defined by a map \emph{into} $M$, a differential form corresponds to a map \emph{out of} $\left(T_pM\right)^k$. That means there's really no way to compose $\omega_p \in \ext[k]\left(\left(T_pM\right)^\ast\right)$ with $f$ to get something on $N$.
+Now let's think about how we could move differential forms around using $f$. At a point, a $k$-form $\omega \in \Omega^k(M)$ corresponds to $\omega_p \in \ext{k}\left(\left(T_pM\right)^\ast\right) \cong \left(\ext{k}\left(T_pM\right)\right)^\ast$, or equivalently an alternating multilinear functional $\left(T_pM\right)^k \to \R$. In other words, unlike a tangent vector which is defined by a map \emph{into} $M$, a differential form corresponds to a map \emph{out of} $\left(T_pM\right)^k$. That means there's really no way to compose $\omega_p \in \ext{k}\left(\left(T_pM\right)^\ast\right)$ with $f$ to get something on $N$.
 
 However, if we start instead with $\eta \in \Omega^k(N)$, then, as above, at a point $q \in N$, $\eta_q$ corresponds to a map $\left(T_qN\right)^k \to \R$, so we \emph{should} be able to precompose with a map $\left(T_pM\right)^k \to \left(T_q N \right)^k$ to get a $k$-form on $M$. More precisely:
 
@@ -198,6 +207,8 @@ One nice thing about pullbacks is that they commute with the exterior derivative
 	\]
 \end{proposition}
 
+Before proving this, let's see it in an example:
+
 \begin{example}
 	Continuing \cref{ex:1-form in R^3}, recall that $\omega = z \, dy + xy \, dz$ and we computed 
 	\[
@@ -242,5 +253,29 @@ One nice thing about pullbacks is that they commute with the exterior derivative
 \end{example}
 
 \begin{proof}[Proof of \cref{prop:pullbacks commute with exterior derivative}]
+	 Let $p \in M$. If $\omega = g\in \Omega^0(N) = C^\infty(N)$, then $f^\ast g = g \circ f$, so $d(f^\ast g ) = d(g \circ f)$. On the other hand, for any $v \in T_pM$, 
+	 \[
+	 	(f^\ast dg)_pv = dg_{f(p)}(df_p v) = d(g \circ f)_p(v) = d(f^\ast g)_p(v),
+	 \]
+	 where we used \cref{def:pullback} for the first equality and the Chain Rule for the second. This completes the proof in the $k=0$ case.
 	 
+	 Now, suppose $k > 0$ and that $x_1, \dots , x_n$ are local coordinates in a neighborhood of $f(p) \in N$, meaning that $\omega \in \Omega^k(N)$ has the form $\omega_{f(p)} = \sum_I g_I dx_I$ at $f(p)$, so that
+	 \[
+	 	(d\omega)_{f(p)} = \sum_I dg_I \wedge dx_I.
+	 \]
+	 But then
+	 \[
+	 	(f^\ast d\omega)_p = \sum_I (f^\ast dg_I) \wedge (f^\ast dx_I) = \sum_I d(g_I \circ f) \wedge f^\ast dx_{i_1} \wedge \dots \wedge f^\ast dx_{i_k} = \sum_I d(g_I \circ f) \wedge d(x_{i_1} \circ f) \wedge \dots \wedge d(x_{i_k} \circ f),
+	 \]
+	 where we've repeatedly used both the $k=0$ case and the fact that $f^\ast(\alpha \wedge \beta) = (f^\ast \alpha) \wedge (f^\ast \beta)$ (which follows from HW \#2, Problem 1).
+	 
+	 On the other hand,
+	 \[
+	 	(f^\ast\omega)_p = \sum_I (g_I \circ f) f^\ast dx_I = \sum_I (g_I \circ f) f^\ast dx_{i_1} \wedge \dots \wedge f^\ast dx_{i_k} = \sum_I (g_I \circ f) d (x_{i_1} \circ f) \wedge \dots \wedge d(x_{i_k} \circ f),
+	 \]
+	 so
+	 \[
+	 	(df^\ast \omega)_p = \sum_I d(g_I \circ f) \wedge d (x_{i_1} \circ f) \wedge \dots \wedge d(x_{i_k} \circ f) = (f^\ast d\omega)_p,
+	 \]
+	 so the proposition is also true for $k>0$.
 \end{proof}
