@@ -34,7 +34,7 @@ We've already seen some calculations of the exterior derivative in local coordin
 
 The idea is that we kind of know what such an thing should look like in local coordinates around a point $p \in M$: any $k$-form $\omega \in \Omega^k(M)$ can be written in local coordinates as
 \[
-	\omega_p = \sum_I f_I dx_I.
+	\omega_p = \sum_I f_I\, dx_I.
 \]
 So then define
 \begin{equation}\label{eq:exterior derivative local coords}
@@ -55,7 +55,7 @@ I claim that \eqref{eq:exterior derivative local coords} is the only way to get 
 \]
 since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condition together with linearity,
 \[
-	(d\omega)_p = d\left(\sum_I f_I dx_I\right) = \sum_I \left[ (df_I) \wedge dx_I + f_I d(dx_I)\right] = \sum_I (df_I) \wedge dx_I.
+	(d\omega)_p = d\left(\sum_I f_I\, dx_I\right) = \sum_I \left[ (df_I) \wedge dx_I + f_I\, d(dx_I)\right] = \sum_I (df_I) \wedge dx_I.
 \]
 
 \begin{exercise}
@@ -79,27 +79,27 @@ since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condi
 		\end{enumerate}
 	\fi
 	
-	\ifpdf\ref{it:local anti-derivation} \else (a) \fi and \ifpdf\ref{it:local cocycle} \else (b) \fi are both computations. Here's the computation for \ifpdf\ref{it:local cocycle}\else (b)\fi: If $\omega_p = \sum_I f_I dx_I$, then 
+	\ifpdf\ref{it:local anti-derivation} \else (a) \fi and \ifpdf\ref{it:local cocycle} \else (b) \fi are both computations. Here's the computation for \ifpdf\ref{it:local cocycle}\else (b)\fi: If $\omega = \sum_I f_I\, dx_I$ in a neighborhood of $p \in M$, then 
 	\[
-		(d\omega)_p = \sum_I df_I \wedge dx_I = \sum_I \left( \sum_{i=1}^n \frac{\partial f}{\partial x_i} dx_i\right) \wedge dx_I,
+		d\omega = \sum_I df_I \wedge dx_I = \sum_I \left( \sum_{i=1}^n \frac{\partial f}{\partial x_i} dx_i\right) \wedge dx_I
 	\]
-	so
+	in that same neighborhood, so
 	\[
-		(d(d\omega))_p = \sum_I \left( \sum_{i=1}^n d\left(\frac{\partial f}{\partial x_i}\right) \wedge dx_i\right) \wedge dx_I = \sum_I \left( \sum_{i=1}^n \left(\sum_{j=1}^n\frac{\partial^2 f}{\partial x_j\partial x_i} dx_j\right) \wedge dx_i\right) \wedge dx_I = 0
+		d(d\omega) = \sum_I \left( \sum_{i=1}^n d\left(\frac{\partial f}{\partial x_i}\right) \wedge dx_i\right) \wedge dx_I = \sum_I \left( \sum_{i=1}^n \left(\sum_{j=1}^n\frac{\partial^2 f}{\partial x_j\partial x_i} dx_j\right) \wedge dx_i\right) \wedge dx_I = 0
 	\]
 	since $\frac{\partial^2 f}{\partial x_j\partial x_i} = \frac{\partial^2 f}{\partial x_i\partial x_j}$ but $dx_j \wedge dx_i = - dx_i \wedge dx_j$.
 	
 	Turning to \ifpdf\ref{it:local uniqueness}\else (c)\fi, suppose there exists a degree $+1$ anti-derivation $D\from \Omega^\ast(M) \to \Omega^\ast(M)$ satisfying \ref{it:d_0 is differential} and \ref{it:d^2=0}. In particular, $Df = df$ for all $f \in C^\infty(M) = \Omega^0(M)$. Then
 	\[
-		D(dx_I) = D(dx_{i_1} \wedge dx_{i_k}) = \sum_{j=1}^k (-1)^{j-1} dx_{i_1} \wedge \dots \wedge dx_{i_{j-1}} \wedge D(dx_{i_j}) \wedge dx_{i_{j+1}} \wedge \dots \wedge dx_{i_k} = 0
+		D(dx_I) = D(dx_{i_1} \wedge \dots \wedge dx_{i_k}) = \sum_{j=1}^k (-1)^{j-1} dx_{i_1} \wedge \dots \wedge dx_{i_{j-1}} \wedge D(dx_{i_j}) \wedge dx_{i_{j+1}} \wedge \dots \wedge dx_{i_k} = 0
 	\]
 	since $\displaystyle D(dx_{i_j}) \mathop{=}\limits^{\ref{it:d_0 is differential}} D(Dx_{i_j}) \mathop{=}\limits^{\ref{it:d^2=0}} 0$ by hypothesis.
 	
-	Therefore, if $\omega_p = \sum_I f_I dx_I$, by linearity and the anti-derivation condition we have
+	Therefore, if $\omega = \sum_I f_I dx_I$ in a neighborhood of $p$, by linearity and the anti-derivation condition we have
 	\[
-		(D\omega)_p = \sum_I (Df_I \wedge dx_I + f_I D(dx_I)) = \sum_I Df_I \wedge dx_I \mathop{=}^{\ref{it:d_0 is differential}} \sum_I df_I \wedge dx_I = (d\omega)_p.
+		D\omega = \sum_I (Df_I \wedge dx_I + f_I D(dx_I)) = \sum_I Df_I \wedge dx_I \mathop{=}^{\ref{it:d_0 is differential}} \sum_I df_I \wedge dx_I = d\omega
 	\]
-	Since this is true at all $p \in M$, it must be the case that $D\omega = d\omega$.
+	in that neighborhood. Since this is true for all $p \in M$, it must be the case that $D\omega = d\omega$.
 \end{proof}
 
 Notice that $d$ being degree $+1$ and satisfying the cocycle condition \ref{it:d^2=0} says exactly that we have a diagram
@@ -114,11 +114,12 @@ which is a cochain complex.
 	A differential form $\omega \in \Omega^k(M)$ is \emph{closed} if $d\omega = 0$ and it is \emph{exact} if $\omega = d\eta$ for some $\eta \in \Omega^{k-1}(M)$. Notice that, by the cocycle condition \ref{it:d^2=0}, all exact forms are closed.
 \end{definition}
 
-\begin{exercise}
+\begin{exercise}\label{ex:closed not exact}
 	Show that $\omega \in \Omega^1(\R^2 - \{0\})$ given by $\omega = \frac{x\, dy - y \, dx}{x^2 + y^2}$ is closed but not exact. (Using the correspondence between 1-forms and vector fields, this is equivalent to the fact that the vector field $\left(\frac{-y}{x^2 + y^2}, \frac{x}{x^2+y^2}\right)$ is curl-free but not a gradient field.)
 \end{exercise}
 
 \section{Pullbacks}
+\label{sec:pullbacks}
 
 Suppose we have manifolds $M$ and $N$ and a smooth map $f \from M \to N$. Since we have a change of variables formula for integrals, and differential forms are supposed to be the objects that we can integrate on manifolds, we should expect that $f$ gives a way of turning differential forms on one of $M$ or $N$ into forms on the other. If you think about how the change of variables formula works, you can figure out which direction this is supposed to go, but let's build up to this a bit more slowly.
 
@@ -143,7 +144,7 @@ In the paragraph before \cref{def:pullback} I said we could precompose $\eta$ wi
 	(f^\ast \eta)_p = \eta_{f(p)} \circ (df_p)^k.
 \]
 
-\begin{example}
+\begin{example}\label{ex:pullbacks of functions are compositions}
 	Suppose $g \in \Omega^0(N) = C^\infty(N)$. then 
 	\[
 		(f^\ast g)_p = g_{f(p)} = g(f(p)) = (g \circ f)(p),
@@ -154,7 +155,7 @@ In the paragraph before \cref{def:pullback} I said we could precompose $\eta$ wi
 \end{example}
 
 \begin{example}
-	Let $f \from S^1 \to \R^2$ be the inclusion of the unit circle into the plane; i.e., $f(\theta) = (\cos \theta , \sin \theta)$. Let $\omega = dx \in \Omega^1(\R^2)$, which at each point $p \in \R^2$ is computed by $dx\left(a \frac{\partial}{\partial x} + b \frac{\partial}{\partial y}\right)$; or, said another way, by taking the dot product of the input tangent vector with the first standard basis vector.
+	Let $f \from S^1 \to \R^2$ be the inclusion of the unit circle into the plane; i.e., $f(\theta) = (\cos \theta , \sin \theta)$. Let $\omega = dx \in \Omega^1(\R^2)$, which at each point $p \in \R^2$ is computed by $dx\left(a \frac{\partial}{\partial x} + b \frac{\partial}{\partial y}\right) = a$; or, said another way, by taking the dot product of the input tangent vector with the first standard basis vector.
 	
 	What is $f^\ast \omega = f^\ast dx$? At any point $\theta_0 \in S^1$, we have the local coordinate basis $\left\{ \frac{\partial}{\partial \theta}\right\}$ for $T_{\theta_0}S^1$, so we can completely specify $f^\ast dx$ by determining the value of
 	\[
@@ -188,12 +189,13 @@ In the paragraph before \cref{def:pullback} I said we could precompose $\eta$ wi
 	\[
 		f^\ast dx = -y \, d\theta.
 	\]
-	Geometrically, this makes sense: at the point $(x,y) = (\cos \theta, \sin \theta)$ this form is dual to the tangent vector $-y \frac{\partial}{\partial \theta}$, which is just the orthogonal projection of $\frac{\partial}{\partial x}$ onto the circle, and of course $\frac{\partial}{\partial x}$ is the tangent vector to $(x,y) \in \R^2$ dual to $dx$. See \cref{fig:pullback dx}.
+	Geometrically, this makes sense: at the point $(x,y) = (\cos \theta, \sin \theta)$ this form is dual to the tangent vector $-y \frac{\partial}{\partial \theta}$, which at each point is just the orthogonal projection of the first standard basis vector $\frac{\partial}{\partial x}$ onto the tangent space to the circle, and of course $\frac{\partial}{\partial x}$ is the tangent vector to $(x,y) \in \R^2$ dual to $dx$. See \cref{fig:pullback dx}.
 	
 	\begin{figure}[htbp]
 		\centering
 			\includegraphics[height=2in]{pullbackdx}
 		\caption{The vector field $\frac{\partial}{\partial x}$ (dual to $dx$) on $\R^2$ is shown in orange, and the vector field $-y \frac{\partial}{\partial \theta}$ (dual to $-y\, d\theta = f^\ast dx$) on the circle is shown in green.}
+		\alttext{A figure with a white background showing a black circle, a collection of thick orange arrows all of the same length and all pointing to the right, and a collection of thick green arrows of different lengths tangent to various points on the circle.}
 		\label{fig:pullback dx}
 	\end{figure}
 \end{example}
@@ -257,7 +259,7 @@ Before proving this, let's see it in an example:
 	 \[
 	 	(f^\ast dg)_pv = dg_{f(p)}(df_p v) = d(g \circ f)_p(v) = d(f^\ast g)_p(v),
 	 \]
-	 where we used \cref{def:pullback} for the first equality and the Chain Rule for the second. This completes the proof in the $k=0$ case.
+	 where we used \cref{def:pullback} for the first equality, the Chain Rule for the second, and \cref{ex:pullbacks of functions are compositions} for the third. This completes the proof in the $k=0$ case.
 	 
 	 Now, suppose $k > 0$ and that $x_1, \dots , x_n$ are local coordinates in a neighborhood of $f(p) \in N$, meaning that $\omega \in \Omega^k(N)$ has the form $\omega_{f(p)} = \sum_I g_I dx_I$ at $f(p)$, so that
 	 \[
@@ -277,5 +279,5 @@ Before proving this, let's see it in an example:
 	 \[
 	 	(df^\ast \omega)_p = \sum_I d(g_I \circ f) \wedge d (x_{i_1} \circ f) \wedge \dots \wedge d(x_{i_k} \circ f) = (f^\ast d\omega)_p,
 	 \]
-	 so the proposition is also true for $k>0$.
+	 and we conclude that the proposition is also true for $k>0$.
 \end{proof}
