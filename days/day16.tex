@@ -24,7 +24,7 @@ where the subscript $i$ indicates that $d_i$ is the restriction of $d$ to $\Omeg
 
 De Rham cohomology is a homotopy invariant of manifolds, meaning that homotopy equivalent manifolds have identical de Rham cohomology groups. 
 
-If $\omega \in \Omega^k(M)$ and $\eta \in \Omega^\ell(M)$ are closed (i.e., $d \omega = 0$ and $d\eta = 0$), meaning that they represent de Rahm cohomology classes in $\hdr^k(M)$ and  $\hdr^\ell(M)$, respectively, then
+If $\omega \in \Omega^k(M)$ and $\eta \in \Omega^\ell(M)$ are closed (i.e., $d \omega = 0$ and $d\eta = 0$), meaning that they represent de Rham cohomology classes in $\hdr^k(M)$ and  $\hdr^\ell(M)$, respectively, then
 \[
 	d(\omega \wedge \eta) = d\omega \wedge \eta + (-1)^k \omega \wedge d\eta = 0 \wedge \eta + (-1)^k \omega \wedge 0 = 0,
 \]
@@ -167,9 +167,10 @@ where $f$ is a smooth function on $A$. Define
 where the integral on the right is just the usual Riemann integral of the (smooth) function $f$ over $A$.
 
 By the previous discussion, if $g \from B \to A$ is an orientation-preserving diffeomorphism, then $\det Jg > 0$, so
-\[
-	\int_A \omega = \int_A f \, dx_1 \cdots dx_n = \int_B(f \circ g) |\det Jg| \, dy_1 \cdots dy_n = \int_B (f \circ g) (\det Jg) \, dy_1 \cdots dy_n = \int_B(f \circ g) (\det Jg) dy_1 \wedge \dots \wedge dy_n = \int_B g^\ast \omega.
-\]
+\begin{multline*}
+	\int_A \omega = \int_A f \, dx_1 \cdots dx_n = \int_B(f \circ g) |\det Jg| \, dy_1 \cdots dy_n = \int_B (f \circ g) (\det Jg) \, dy_1 \cdots dy_n \\
+	 = \int_B(f \circ g) (\det Jg) dy_1 \wedge \dots \wedge dy_n = \int_B g^\ast \omega.
+\end{multline*}
 In other words, our definition is actually coordinate-independent, as you would hope.
 
 If $g$ is orientation-reversing, then we get
@@ -179,7 +180,7 @@ If $g$ is orientation-reversing, then we get
 
 Since we have no standard coordinates on an arbitrary manifold, thse transformations are essential to defining integrals on manifolds.
 
-Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\omega \in \Omega^n(M)$ is contained in a single coordinate chart $(U,\phi)$. Then $\phi^\ast \omega \in \Omega^n(U)$, which we know how to integrate, so define
+Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\omega \in \Omega^n(M)$ is contained in a single coordinate chart $(U,\phi)$ so that $\phi \from U \to \phi(U)$ is orientation-preserving. Then $\phi^\ast \omega \in \Omega^n(U)$, which we know how to integrate, so define
 \[
 	\int_M\omega = \int_U \phi^\ast \omega.
 \]
@@ -189,11 +190,123 @@ Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\o
 \end{proposition}
 
 \begin{proof}
-	We need to check that, if the support of $\omega$ is also containd in some other coordinate chart $(V, \psi)$, then we get the same answer whether we compute $\int_M \omega = \int_U \phi^\ast \omega$ or $\int_M \omega = \int_V \psi^\ast \omega$.
+	We need to check that, if the support of $\omega$ is also containd in some other coordinate chart $(V, \psi)$ so that $\psi \from V \to \psi(V)$ is orientation-preserving, then we get the same answer whether we compute $\int_M \omega = \int_U \phi^\ast \omega$ or $\int_M \omega = \int_V \psi^\ast \omega$.
 	
-	We can move between $U$ and $V$ by way of the map $\psi^{-1} \circ \phi \from U \to V$, so
+	We can move between $U$ and $V$ by way of the map $\psi^{-1} \circ \phi \from U \to V$, which is orientation-preserving, so
 	\[
 		\int_V \psi^\ast \omega = \int_U(\psi^{-1} \circ \phi)^\ast \psi^\ast \omega = \int_U \phi^\ast (\psi^{-1})^\ast \psi^\ast \omega = \int_U \phi^\ast (\psi \circ \psi^{-1})\ast \omega = \int_U \phi^\ast \omega ,
 	\]
 	where I'm using the previously unstated fact that, for maps $f \from A \to B$ and $g \from B \to C$, $(g \circ f)^\ast = f^\ast g^\ast$, which follows from the chain rule.
 \end{proof}
+
+So we've now succeeded in defining the integral of a form contained entirely in a single local coordinate chart. But what about arbitrary forms?
+
+First of all, to avoid worrying about convergence issues, let's restrict to \emph{compactly supported} forms: that is, thos forms whose support (the set of points on which they are non-vanishing) is contained in some compact subset of $M$. Of course, if $M$ is itself compact, this is no restriction at all.
+
+So now suppose we have a compactly supported form $\omega \in \Omega^n(M)$. To define $\int_M \omega$, we will use a partition of unity argument.
+
+\begin{definition}\label{def:partition of unity}
+	Let $T$ be a topological space and let $\{W_\alpha\}_{\alpha \in \mathcal{I}}$ be an open cover of $T$, where $\mathcal{I}$ us some indexing set. A \emph{partition of unity} subordinate to $\{W_\alpha\}_{\alpha \in \mathcal{I}}$ is a collection $\{\rho_\alpha\}_{\alpha \in \mathcal{I}}$ of continuous functions $\rho_\alpha \from T \to [0,1]$ so that $\operatorname{supp}(\rho_\alpha) \subset W_\alpha$ (i.e., $\rho_\alpha(x) = 0$ for all $x \notin W_\alpha$) and, for all $x \in T$,
+	\begin{itemize}
+		\item there exists a neighborhood of $x$ on which all but finitely many of the $\rho_\alpha$ are identically zero and
+		\item $\sum_{\alpha \in \mathcal{I}} \rho_\alpha(x) = 1$ (note that the previous condition ensures this sum is finite and hence converges).
+	\end{itemize}
+\end{definition}
+
+These always exist in reasonable topological spaces:
+
+\begin{theorem}\label{thm:existence of partitions of unity}
+	Every open cover on a paracompact Hausdorff space has a subordinate partition of unity.
+\end{theorem}
+
+Since manifolds are second countable and Hausdorff, they are paracompact, so this implies (after modifying the proof to make the $\rho_\alpha$ smooth):
+
+\begin{corollary}\label{cor:existence of partitions of unity on manifolds}
+	Every manifold has a partition of unity subordinate to its coordinate atlas so that the functions are smooth.
+\end{corollary}
+
+Now, finally, we can define integration of compactly-supported forms on manifolds:
+
+\begin{definition}\label{def:integration}
+	Let $M$ be an $n$-dimensional manifold and let $\omega \in \Omega^n(M)$ be compactly supported. Let $\{\rho_\alpha\}$ be a partition of unity subordinate to the (maximal) atlas $\{(U_\alpha, \phi_\alpha)\}$ on $M$ and define
+	\[
+		\int_M \omega = \sum_{\alpha} \int_M \rho_\alpha \omega.
+	\]
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}
+		\item $\rho_\alpha \omega$ is only non-vanishing inside the support of $\rho_\alpha$, which is contained in some coordinate neighborhood $\phi_\alpha(U_\alpha)$, so the integrals inside the sum are well-defined.
+		\item The local finiteness of the partition of unity guarantees only finitely many terms are nonzero on the compact support of $\omega$, so the sum converges.
+		\item If $\omega$ is already contained in some coordinate chart $(\phi, U)$, then this definition agrees with the previous one: since $\sum_\alpha \rho_\alpha(p) = 1$ for each $p \in M$, we have that $\sum_\alpha \rho_\alpha \omega = \omega$, so using the previous definition
+		\[
+			\int_M \omega = \int_U \phi^\ast \omega = \int_U \phi^\ast(\sum_\alpha \rho_\alpha \omega) = \sum_\alpha \int_U \phi^\ast(\rho_\alpha \omega) = \sum_\alpha \int_M \rho_\alpha \omega
+		\]
+		by linearity of pullback and of integration on $\R^n$.
+		\item If $\{\sigma_\alpha\}$ were a different subordinate partition of unity, then the previous observation implies that, or each $\alpha$,
+		\[
+			\int_M \rho_\alpha \omega = \sum_\beta \int_M \sigma_\beta \rho_\alpha \omega
+		\]
+		and similarly for each $\beta$
+		\[
+			\int_M \sigma_\beta \omega = \sum_\alpha \int_M \rho_\alpha \sigma_\beta \omega,
+		\]
+		so
+		\[
+			\sum_\alpha \int_M \rho_\alpha \omega = \sum_\alpha \sum_\beta \int_M \sigma_\beta \rho_\alpha \omega = \sum_\beta \sum_\alpha \int_M \rho_\alpha \sigma_\beta \omega = \sum_\beta \int_M \sigma_\beta \omega,
+		\]
+		which means we get the same value for $\int_M \omega$ no matter which partition of unity we use.
+		\item Integration is a linear operator: for $a \in \R$ and $\omega, \eta \in \Omega^n(M)$, $\int_M (\omega + a \eta) = \int_M \omega + a \int_M \eta$.
+		\item If $\omega \in \Omega^n(M)$ and $g \from N \to M$ is an orientation-preserving diffeomorphism, then
+		\[
+			\int_M \omega = \int_N g^\ast \omega.
+		\]
+	\end{enumerate}
+\end{remark}
+
+\begin{example}\label{ex:integrating along a curve}
+	Let $\gamma \from [a,b] \to M$ be a smooth curve with $\gamma(a) = p$ and $\gamma(b) = q$. Assume $f \in C^\infty(M)$ and $\omega = df \in \Omega^1(M)$. Then I claim that
+	\[
+		\int_{[a,b]} \gamma^\ast \omega = f(q) - f(p).
+	\]
+	This is just a computation:
+	\begin{multline*}
+		\int_{[a,b]} \gamma^\ast \omega = \int_{[a,b]}\gamma^\ast(df) = \int_{[a,b]} d (\gamma^\ast f) = \int_{[a,b]} d(f \circ \gamma) = \int_{[a,b]}(f \circ \gamma)'(t)dt \\
+		= (f \circ \gamma)(b) - (f\circ \gamma)(a) = f(q)-f(p)
+	\end{multline*}
+	where the second equality follows from \cref{prop:pullbacks commute with exterior derivative}, the third from \cref{ex:pullbacks of functions are compositions}, and the fifth from the fundamental theorem of calculus.
+\end{example}
+
+\begin{example}\label{ex:line integral}
+	Suppose $\gamma \from S^1 \to M$ is smooth and $\omega \in \Omega^1(M)$. Then we define the \emph{line integral} of $\omega$ around $\gamma$ to be
+	\[
+		\oint_\gamma \omega := \int_{S^1} \gamma^\ast \omega.
+	\]
+	Now suppose $M = \R^n$, so that $\omega = a_1 \, dx_1 + \dots + a_n \, dx_n$. Letting $\left\{\frac{\partial}{\partial \theta}\right\}$ be the local coordinate basis for the tangent space $T_t S^1$ at a point $t \in S^1$ and writing $\gamma(t) = (\gamma_1(t), \dots , \gamma_n(t))$, we can compute
+	\[
+		(\gamma^\ast dx_i)_t \left(b \frac{\partial}{\partial \theta} \right) = (dx_i)_{\gamma(t)} \left(d\gamma_t\left(b \frac{\partial}{\partial \theta}\right)\right) = b (dx_i)_{\gamma(t)} \left(d\gamma_t\left(\frac{\partial}{\partial \theta}\right)\right) = b (dx_i)_{\gamma(t)} \left(\frac{\partial}{\partial \theta}(\gamma)(t)\right) 
+	\]
+	using \cref{lem:vector fields and differentials}. But then
+	\[
+		\frac{\partial}{\partial \theta}(\gamma)(t) = \gamma_1'(t) \frac{\partial}{\partial x_1} + \dots + \gamma_n'(t) \frac{\partial}{\partial x_n},
+	\]
+	so we see that 
+	\[
+		(\gamma^\ast dx_i)_t \left(b \frac{\partial}{\partial \theta} \right) = b \gamma_i'(t)
+	\]
+	or, in other words, $(\gamma^\ast dx_i)_t = \gamma_i'(t)d\theta$. Therefore,
+	\[
+		(\gamma^\ast \omega)_t = (\gamma^\ast a_1)_t (\gamma^\ast dx_1)_t + \dots + (\gamma^\ast a_n)_t (\gamma^\ast dx_n)_t = \left[a_1(\gamma(t)) \gamma_1'(t) + \dots + a_n(\gamma(t))\gamma_n'(t)\right] d\theta.
+	\]
+	Notice that the coefficient is just $A(\gamma(t))\cdot \gamma'(t)$, where the vector field $A = (a_1, \dots , a_n)$ is dual to $\omega$. Of course, this is the sort of expression you usually see in the Multivariable Calculus definition of a line integral.
+\end{example}
+
+Putting \cref{ex:integrating along a curve,ex:line integral} together, notice that if $\omega = df \in \Omega^1(M)$, then $\oint_\gamma \omega = 0$ for all closed curves $\gamma$ in $M$.
+
+\begin{proposition}\label{prop:integrate to 0 => exact}
+	The converse is true. That is, any $\omega \in \Omega^1(M)$ with the property that $\oint_\gamma \omega = 0$ for all closed curves $\gamma$ in $M$ is exact.
+\end{proposition}
+
+\begin{exercise}
+	Prove this.
+\end{exercise}
