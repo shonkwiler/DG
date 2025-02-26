@@ -1,0 +1,199 @@
+% !TEX root = ../dg.tex
+
+\section{De Rham Cohomology}
+\label{sec:de Rham}
+
+Recall that we have the cochain complex
+	\begin{center}
+	\begin{tikzcd}
+		\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] &  \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M) 
+	\end{tikzcd}
+	\end{center}
+where the subscript $i$ indicates that $d_i$ is the restriction of $d$ to $\Omega^i(M)$.
+
+\begin{definition}\label{def:de Rham cohomology}
+	The \emph{$k$th de Rham cohomology group} of $M$ is
+	\[
+		\hdr^k(M) := \frac{\ker d_k}{\im d_{k-1}}.
+	\]
+\end{definition}
+
+\begin{example}\label{ex:closed not exact 2}
+	We saw in \cref{ex:closed not exact} that the 1-form $\omega = \frac{x\, dy - y\, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ is \emph{closed} (in the kernel of $d$), but not \emph{exact} (in the image of $d$), so it represents a non-trivial element of $\hdr^1(\R^2 - \{0\})$.
+\end{example}
+
+De Rham cohomology is a homotopy invariant of manifolds, meaning that homotopy equivalent manifolds have identical de Rham cohomology groups. 
+
+If $\omega \in \Omega^k(M)$ and $\eta \in \Omega^\ell(M)$ are closed (i.e., $d \omega = 0$ and $d\eta = 0$), meaning that they represent de Rahm cohomology classes in $\hdr^k(M)$ and  $\hdr^\ell(M)$, respectively, then
+\[
+	d(\omega \wedge \eta) = d\omega \wedge \eta + (-1)^k \omega \wedge d\eta = 0 \wedge \eta + (-1)^k \omega \wedge 0 = 0,
+\]
+so $d(\omega \wedge \eta)$ is also closed, and hence represents a class in $\hdr^{k+\ell}(M)$. This means that
+\[
+	\hdr^\ast(M) := \bigoplus_k \hdr^k(M)
+\]
+forms a (graded) ring, the \emph{de Rham cohomology ring}, with the operation induced by $\wedge$.
+
+\begin{theorem}[de Rham theorem]\label{thm:de Rham}
+	There exists a vector space isomorphism
+	\[
+		\hdr^k(M) \to H_k(M;\R)^\ast \cong H^k(M;\R),
+	\]
+	where $H_k(M;\R)$ and $H^k(M;\R)$ are the singular (or simplicial) homology and cohomology groups.
+\end{theorem}
+
+In fact, even more is true: the de Rham cohomology ring is isomorphic to the singular cohomology ring with real coefficients.
+
+In \cref{ex:closed not exact 2}, $H^1(\R^2 -\{0\};\R) \cong H^1(S^1;\R) \cong \R$, so the 1-form $\omega = \frac{x\, dy - y\, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ is a generator of $\hdr^1(\R^2-\{0\})$.
+
+We won't give all the details of the proof of de Rham's theorem, but the basic idea is that a closed form defines a linear functional on homology classes by integration. More precisely, the mapping $I \from \hdr^k(M) \to H_k(M;\R)^\ast$ is defined as follows: if $[\omega] \in \hdr^k(M)$ is represented by the closed form $\omega \in \Omega^k(M)$, then $I([\omega]) \in H_k(M;\R)^\ast$ is given by
+\[
+	I([\omega])([C]) := \int_C \omega
+\]
+for any $[C] \in H_k(M;\R)$ which is represented by the cycle $C \subset M$. It's (hopefully!) clear that $I([\omega])$ is a linear functional (provided the integral here is anything sensible), but probably less obvious that $I$ is well-defined and an isomorphism. Of course, to even make sense of the definition of $I$, we need to talk about integration.
+
+\section{Integration on Manifolds}
+\label{sec:integration_on_manifolds}
+
+As suggested in \cref{sec:informal def of forms}, the point of defining differential forms as alternating, multilinear gadgets is because they transform in the right way. 
+
+\subsection{Digression on Differentials, Pullbacks, and Dual Maps} 
+\label{sub:digression_on_differentials_pullbacks_and_dual_maps}
+
+First, a quick refresher on \emph{dual maps} or \emph{algebraic adjoints}:
+
+Given vector spaces $U$ and $V$ and a linear map $h \from U \to V$, there is an associated dual map $h^\ast \from V^\ast \to U^\ast$ defined as follows: if $\alpha \in V^\ast$, then $h^\ast(\alpha)$ is supposed to be an element of $U^\ast$; that is, a linear functional on $U$, meaning that we can specify it by specifying what it does to an arbitrary element $u \in U$:
+\[
+	h^\ast(\alpha)(u) := \alpha(h(u)).
+\]
+In other words, $h^\ast \alpha = \alpha \circ h$. It's easy to check that $h^\ast$ is linear since $h$ is.
+
+Moreover, when $U$ and $V$ are finite-dimensional with chosen bases $u_1, \dots , u_m$ for $U$ and $v_1, \dots , v_n$ for $V$, then the matrix for $h^\ast$ with respect to the dual bases $u_1^\ast, \dots , u_m^\ast$ for $U^\ast$ and $v_1^\ast , \dots , v_n^\ast$ for $V^\ast$ is equal to the transpose (or conjugate transpose, for complex vector spaces) of the matrix for $h$ with respect to the given bases for $U$ and $V$. This explains the ``algebraic adjoint'' terminology, since the transpose (or conjugate transpose) is the usual adjoint, at least when the chosen bases are orthonormal. (And I claim it is occasionally useful to think about transpose in these terms, even though in applications we often think about the transpose as just a map $V \to U$.)
+
+Now, consider a smooth map $g \from M \to N$ and let $p \in M$. Then the differential $dg_p \from T_pM \to T_{g(p)}N$ must have an associated dual map $(dg_p)^\ast \from (T_{g(p)}N)^\ast \to (T_pM)^\ast$.
+
+First of all, notice that $\left(T_{g(p)}N\right)^\ast = \ext{1}\left(\left(T_{g(p)}N\right)^\ast\right)$ and $\left(T_pM\right)^\ast = \ext{1}\left(\left(T_pM\right)^\ast\right)$, so the pullback (at $p$)
+\[
+	g_p^\ast \from \ext{1}\left(\left(T_{g(p)}N\right)^\ast\right)\to \ext{1}\left(\left(T_pM\right)^\ast\right)
+\]
+has the same domain and range as $(dg_p)^\ast$.
+
+Moreover, by definition of the dual map, for a linear functional $\alpha \in (T_{g(p)}N)^\ast$ and a tangent vector $v \in T_pM$,
+\[
+	(dg_p)^\ast (\alpha)(v) = \alpha(dg_p(v)).
+\]
+But this is exactly how we defined the pullback, where we now think of $\alpha = \omega_{g(p)}$, the value of the 1-form $\omega$ at $g(p)$.
+
+In other words, $g^\ast$ as defined in \cref{sec:pullbacks} is the same as the dual map $(dg)^\ast$ associated to the differential $dg$.
+
+\subsection{How Differential Forms Transform} 
+\label{sub:how_differential_forms_transform}
+
+The goal is to see that transformations of differential forms under changes of coordinates are just like transformations of integrands under changes of coordinates.
+
+As in \cref{sec:informal def of forms}, let $g \from B \to A$ be a diffeomorphism of open subsets of $\R^n$ and let $f \from A \to \R$ be a smooth function. Define
+\[
+	\omega = f dx_1 \wedge \dots \wedge dx_n \in \Omega^n(A),
+\]
+which pulls back to
+\[
+	g^\ast \omega = (f \circ g) g^\ast (dx_1) \wedge \dots \wedge g^\ast(dx_n) = (f \circ g) (dg)^\ast (dx_1) \wedge \dots \wedge (dg)^\ast (dx_n),
+\]
+where here $(dg)^\ast$ means the dual of the differential $dg$. By Homework 2, Problem 1(c), the above is equal to 
+\[
+	(f \circ g) (\det (dg)^\ast) dy_1 \wedge \dots \wedge dy_n,
+\]
+where we recall that $y_1, \dots , y_n$ were just the names of the coordinates on $B$. Since determinants are invariant under taking transposes, $\det(dg)^\ast = \det dg = \det Jg$, so this parallels the usual vector calculus change of variables formula, at least when $f$ is smooth.
+
+In other words, differential forms transform in the right way to serve as integrands.
+
+\begin{example}
+	Let $M = (0, +\infty) \times (-\pi, \pi)$, $N = \R^2$, and the map $g\from M \to N$ given by
+	\[
+		g(r, \theta) := (r \cos \theta, r \sin \theta).
+	\]
+	In other words, this is the change of variables map between polar coordinates $(r, \theta)$ and Cartesian coordinates $(x,y)$ on the plane.
+	
+	Now, consider the standard area form $\omega = dx \wedge dy$ on $N$ and we want to work out $g^\ast \omega$ from the definition. 
+	
+	By definition of the differential (\cref{def:differential}), we have that, for $p = (\theta_0, r_0) \in M$, 
+	\begin{multline*}
+		dg_p\left(\frac{\partial}{\partial \theta} \right) = \left. \frac{d}{dt} \right|_{t=0} g(\theta_0+t,r_0) = \left. \frac{d}{dt} \right|_{t=0} r_0(\cos(\theta_0+t),\sin(\theta_0+t)) \\
+		= r_0(-\sin\theta_0,\cos\theta_0) = r_0\left(-\sin\theta_0 \frac{\partial}{\partial x} + \cos \theta_0 \frac{\partial}{\partial y}\right)
+	\end{multline*}
+	where I move back and forth between tuple representations and local coordinate basis representations.
+	\begin{multline*}
+		dg_p\left(\frac{\partial}{\partial r} \right) = \left. \frac{d}{dt} \right|_{t=0} g(\theta_0,r_0+t) = \left. \frac{d}{dt} \right|_{t=0} (r_0+t)(\cos\theta_0,\sin\theta_0) \\
+		= (\cos\theta_0,\sin\theta_0) = \cos\theta_0 \frac{\partial}{\partial x} + \sin \theta_0 \frac{\partial}{\partial y}.
+	\end{multline*}
+	
+	Therefore,
+	\begin{align*}
+		(g^\ast \omega)_p\left(a \frac{\partial}{\partial \theta} + b \frac{\partial}{\partial r}, c \frac{\partial}{\partial \theta} + d \frac{\partial}{\partial r}\right) & = \omega_{g(p)} \left(dg_p\left(a \frac{\partial}{\partial \theta} + b \frac{\partial}{\partial r}\right), dg_p\left(c \frac{\partial}{\partial \theta} + d \frac{\partial}{\partial r}\right)\right) \\
+		& = dx \wedge dy \left((b \cos\theta_0 - a r_0\sin\theta_0) \frac{\partial}{\partial x} + (b\sin \theta_0 +ar_0\cos \theta_0) \frac{\partial}{\partial y}, \right. \\
+		& \qquad \qquad \qquad \left. (d \cos\theta_0 - c r_0\sin\theta_0) \frac{\partial}{\partial x} + (d\sin \theta_0 +cr_0\cos \theta_0) \frac{\partial}{\partial y}\right) \\
+		& = (b \cos\theta_0 - a r_0\sin\theta_0)(d\sin \theta_0 +cr_0\cos \theta_0) \\
+		& \qquad \qquad - (b\sin \theta_0 +ar_0\cos \theta_0)(d \cos\theta_0 - c r_0\sin\theta_0) \\
+		& = r(bc-ad).
+	\end{align*}
+	On the other hand,
+	\[
+		dr \wedge d\theta \left(a \frac{\partial}{\partial \theta} + b \frac{\partial}{\partial r}, c \frac{\partial}{\partial \theta} + d \frac{\partial}{\partial r}\right) = bc-ad,
+	\]
+	so we can conclude that $g^\ast \omega = r\, dr \wedge d\theta$.
+	
+	Since the composition of the constant function 1 (on $N$) with $g$ is just the constant function 1 (on $M$), the above discussion implies that
+	\[
+		g^\ast \omega = g^\ast(dx \wedge dy) = (\det Jg) dr \wedge d\theta,
+	\]
+	where $\det Jg$ is the Jacobian determinant
+	\[
+		\begin{vmatrix} \frac{\partial g_1}{\partial r} & \frac{\partial g_1}{\partial \theta} \\ \frac{\partial g_2}{\partial r} & \frac{\partial g_2}{\partial \theta} \end{vmatrix} = \begin{vmatrix}\cos\theta & -r \sin \theta  \\ \sin \theta  & r \cos \theta\end{vmatrix} = r \cos^2\theta+r\sin^2\theta  = r.
+	\]
+	So the above discussion of how differential forms transform matches up to the standard vector calculus fact that the Cartesian area element $dx\, dy$ transforms to the polar area element $r\, dr \, d\theta$.
+\end{example}
+
+\subsection{Definition of the Integral}
+\label{sub:definition_of_the_integral}
+
+First, we define integration of forms on open sets in $\R^n$: if $A \subset \R^n$ is open, then any $\omega \in \Omega^n(A)$ can be written as
+\[
+	\omega = f\, dx_1 \wedge \dots \wedge dx_n,
+\]
+where $f$ is a smooth function on $A$. Define
+\[
+	\int_A \omega = \int_A f \, dx_1 \cdots dx_n,
+\]
+where the integral on the right is just the usual Riemann integral of the (smooth) function $f$ over $A$.
+
+By the previous discussion, if $g \from B \to A$ is an orientation-preserving diffeomorphism, then $\det Jg > 0$, so
+\[
+	\int_A \omega = \int_A f \, dx_1 \cdots dx_n = \int_B(f \circ g) |\det Jg| \, dy_1 \cdots dy_n = \int_B (f \circ g) (\det Jg) \, dy_1 \cdots dy_n = \int_B(f \circ g) (\det Jg) dy_1 \wedge \dots \wedge dy_n = \int_B g^\ast \omega.
+\]
+In other words, our definition is actually coordinate-independent, as you would hope.
+
+If $g$ is orientation-reversing, then we get
+\[
+	\int_A \omega = -\int_B g^\ast \omega.
+\]
+
+Since we have no standard coordinates on an arbitrary manifold, thse transformations are essential to defining integrals on manifolds.
+
+Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\omega \in \Omega^n(M)$ is contained in a single coordinate chart $(U,\phi)$. Then $\phi^\ast \omega \in \Omega^n(U)$, which we know how to integrate, so define
+\[
+	\int_M\omega = \int_U \phi^\ast \omega.
+\]
+
+\begin{proposition}\label{prop:local integral well-defined}
+	The above is well-defined.
+\end{proposition}
+
+\begin{proof}
+	We need to check that, if the support of $\omega$ is also containd in some other coordinate chart $(V, \psi)$, then we get the same answer whether we compute $\int_M \omega = \int_U \phi^\ast \omega$ or $\int_M \omega = \int_V \psi^\ast \omega$.
+	
+	We can move between $U$ and $V$ by way of the map $\psi^{-1} \circ \phi \from U \to V$, so
+	\[
+		\int_V \psi^\ast \omega = \int_U(\psi^{-1} \circ \phi)^\ast \psi^\ast \omega = \int_U \phi^\ast (\psi^{-1})^\ast \psi^\ast \omega = \int_U \phi^\ast (\psi \circ \psi^{-1})\ast \omega = \int_U \phi^\ast \omega ,
+	\]
+	where I'm using the previously unstated fact that, for maps $f \from A \to B$ and $g \from B \to C$, $(g \circ f)^\ast = f^\ast g^\ast$, which follows from the chain rule.
+\end{proof}
