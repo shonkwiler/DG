@@ -58,6 +58,15 @@ Even more generally, we can combine pushforwards and pullbacks to get Lie deriva
 	\[
 		\left. \frac{\partial}{\partial z}\right|_p = \left. \frac{d}{dt} \right|_{t=0} \phi(\theta_0,z_0+t) = \left(-\frac{z_0 \cos \theta_0}{\sqrt{1-z_0^2}},-\frac{z_0 \sin \theta_0}{\sqrt{1-z_0^2}},1\right).
 	\]
+	See \cref{fig:dtheta and dz 2} (which is the same as \cref{fig:dtheta and dz}).
+	\begin{figure}[htbp]
+		\centering
+			\includegraphics[height=2in]{dtheta} \qquad \includegraphics[height=2in]{dz}
+		\caption{The vector fields $X = \frac{\partial}{\partial \theta}$ and $Y = \frac{\partial}{\partial z}$ on $S^2$.}
+		\alttext{Two computer-generated semi-transparent gray spheres. On the left, a collection of orange arrows or shown on the sphere: the arrows point along circles of latitude: the lengths get shorter as they move away from the equator. On the right, there is a collection of green arrows on the sphere which point towards the north pole. The green arrows get longer as they get further from the equator.}
+		\label{fig:dtheta and dz 2}
+	\end{figure}
+	
 	In turn, this implies that the Riemannian metric $g$ is given by
 	\begin{align*}
 		g_p\left(a \frac{\partial}{\partial \theta} + b \frac{\partial}{\partial z}, c \frac{\partial}{\partial \theta} + d \frac{\partial}{\partial z}\right) & = \left[a\left(-\sqrt{1-z_0^2}\sin\theta_0, \sqrt{1-z_0^2}\cos \theta_0,z_0\right)+ b\left(-\frac{z_0 \cos \theta_0}{\sqrt{1-z_0^2}},-\frac{z_0 \sin \theta_0}{\sqrt{1-z_0^2}},1\right)\right) \\
