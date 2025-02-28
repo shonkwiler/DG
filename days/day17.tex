@@ -1,0 +1,101 @@
+% !TEX root = ../dg.tex
+
+\section{Integration on Submanifolds}
+\label{sec:integration on submanifolds}
+
+So far, we've only defined integrating an $n$-form over an $n$-dimensional manifold. However, notice that any open subset of an $n$-dimensional manifold is also an $n$-manifold, so we can actually integrate over arbitrary open subsets.
+
+Indeed, given an $n$-manifold $M$ and any $\omega \in \Omega^n(M)$, we get a (signed) measure $m$ on open subsets of $M$ defined by
+\[
+	m(A):=\int_A \omega.
+\]
+When $\omega $ is a volume form (meaning it is nowhere-vanishing), then $m(A)$ will have the same sign for all open $A$, and if the sign is positive then $m$ will satisfy the axioms of a measure on the $\sigma$-algebra of Borel sets on $M$; that is, it is a Borel measure. Moreover, if $M$ is compact then $\int_M \omega$ is finite, so $m$ can be normalized to give a probability measure. Indeed, starting with a volume form is by far the most common way of defining probability measures on (orientable) manifolds.
+
+However, this is not so useful for the integrals mentioned in \cref{sec:de Rham} that show up in de Rham cohomology. After all, if $N$ is a $k$-dimensional submanifold of the $n$-dimensional manifold $M$  with $k < n$ and $\omega \in \Omega^n(M)$, then $\int_N \omega = 0$.\footnote{As written, this doesn't quite make sense given our definitions, but one way to formalize it would be to realize $N$ as the intersection of a decreasing nested sequence of open sets and then taking the limit of the integral of $\omega$ over those open sets. The measures of these sets will go to zero.}
+
+Rather, for de Rham cohomology purposes, we need a way of defining $\int_N \eta$ where $\eta \in \Omega^k(M)$. Intuitively, we want to ``restrict'' $\eta$ to $N$ here, but trying to write this intuition out directly leads to something quite complicated. But this is a place where all our effort in defining things in such a relatively abstract way pays off by giving us a simple and natural (though seemingly slightly indirect) way of defining our integral:
+
+\begin{definition}\label{def:integration on submanifold}
+	Suppose $N$ is a $k$-dimensional submanifold of the manifold $M$ and let $i \from N \hookrightarrow M$ be the inclusion map. Then define
+	\[
+		\int_N \eta := \int_N i^\ast \eta.
+	\]
+\end{definition}
+
+The point here is that $i^\ast \eta \in \Omega^k(N)$, and \cref{def:integration} applies.
+
+\begin{example}
+	Let $M = \R^3$ and let $S$ be a surface which is the graph of a function; i.e.,
+	\[
+		S = \{(u,v,g(u,v)) : u,v \in \R\},
+	\]
+	for some smooth function $g \from \R^2 \to \R$ (this is not really a restrictive assumption: the implicit function theorem implies that locally every surface looks like this, possibly after permuting coordinates). We can parametrize $S$ by the map $h \from \R^2 \to \R^3$ given by $h(u,v) = (u,v,g(u,v))$.
+	
+	Suppose $\omega \in \Omega^2(\R^3)$ is compactly supported. We can write
+	\[
+		\omega = f_1 \, dy\wedge dz + f_2 \, dz \wedge dx + f_3 \, dx \wedge dy.
+	\]
+	Then
+	\[
+		\int_S \omega = \int_{\R^2} h^\ast \omega,
+	\]
+	so we can compute
+	\begin{align*}
+		h^\ast dx & = d(x \circ h) = du \\
+		h^\ast dy & = d(y \circ h) = dv \\
+		h^\ast dz & = d(z \circ h) = d(g(u,v)) = \frac{\partial g}{\partial u} du + \frac{\partial g}{\partial v} dv,
+	\end{align*}
+	and hence
+	\begin{align*}
+		h^\ast (dx \wedge dy) & = h^\ast dx \wedge h^\ast dy = du \wedge dv \\
+		h^\ast (dy \wedge dz) & = h^\ast dy \wedge h^\ast dz = dv \wedge \left(\frac{\partial g}{\partial u} du + \frac{\partial g}{\partial v} dv \right) = -\frac{\partial g}{\partial u} du  \wedge dv \\
+		h^\ast (dz \wedge dx) & = h^\ast dz \wedge h^\ast dx = \left( \frac{\partial g}{\partial u} du + \frac{\partial g}{\partial v} dv\right) \wedge du = -\frac{\partial g}{\partial v} du \wedge dv.
+	\end{align*}
+	Therefore,
+	\begin{equation}\label{eq:surface integral formula} 
+		\int_S \omega = \int_{\R^2} h^\ast \omega = \int_{\R^2} \left( -\frac{\partial g}{\partial u}f_1 -\frac{\partial g}{\partial v}f_2 + f_3\right) du \wedge dv.
+	\end{equation}
+	
+	Now, I claim this is a standard formula from vector calculus. To see this, let $\vec{F} = (f_1, f_2, f_3)$ be the vector field corresponding to $\omega$ (in the notation from \cref{sec:vector calculus}, $\omega = \star F^\flat$) and let $\vec{n} = \left( -\frac{\partial g}{\partial u}, -\frac{\partial g}{\partial v}, 1\right)$. Notice that, at $p = (u,v,g(u,v)) \in S$, the tangent space $T_pS$ is spanned by
+	\[
+		\left. \frac{d}{dt} \right|_{t=0} h(t,0) = \left. \frac{d}{dt} \right|_{t=0} (t,0,g(t,0)) = \left( 1, 0 , \frac{\partial g}{\partial u} \right)
+	\]
+	and
+	\[
+		\left. \frac{d}{dt} \right|_{t=0} h(0,t) = \left. \frac{d}{dt} \right|_{t=0} (0,t,g(0,t)) = \left( 0,1 , \frac{\partial g}{\partial v} \right).
+	\]
+	Since
+	\[
+		\vec{n} \cdot \left( 1, 0 , \frac{\partial g}{\partial u} \right) = \left( -\frac{\partial g}{\partial u}, -\frac{\partial g}{\partial v}, 1\right) \cdot \left( 1, 0 , \frac{\partial g}{\partial u} \right) = -\frac{\partial g}{\partial u} + \frac{\partial g}{\partial u}  = 0
+	\]
+	and
+	\[
+		\vec{n} \cdot \left( 0,1 , \frac{\partial g}{\partial v} \right) = \left( -\frac{\partial g}{\partial u}, -\frac{\partial g}{\partial v}, 1\right) \cdot \left(0,1 , \frac{\partial g}{\partial v} \right) = -\frac{\partial g}{\partial v} + \frac{\partial g}{\partial v}  = 0,
+	\]
+	the vector $\vec{n}$ is normal to $S$ at all points of $S$. 
+	
+	Therefore, if $\vec{u} = \frac{\vec{n}}{\|\vec{n}\|}$ and $\dA = \|\vec{n}\| du \wedge dv$ (usually called the area form or area element for $S$), then our formula~\eqref{eq:surface integral formula} can be re-written as
+	\[
+		\int_S \omega = \int_{\R^2} \left(\vec{F} \cdot \vec{u}\right) \dA,
+	\]
+	which is the standard formula from vector calculus for computing the surface integral of a vector field.
+\end{example}
+
+\begin{example}
+	Recall the form $\omega = \frac{x \, dy - y \, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ defined in \cref{ex:closed not exact} and also considered in \cref{ex:closed not exact 2}. Let $f \from S^1 \to \R^2 -\{0\}$ defined by $f(\theta) = (\cos \theta , \sin \theta)$ be the standard parametrization of the unit circle. Then
+	\[
+		\int_{S^1} \omega = \int_{S^1} f^\ast \omega.
+	\]
+	We saw in \cref{ex:unit circle pullback dx} that $f^\ast dx = -\sin\theta\, d\theta$ and a similar computation shows that $f^\ast dy = \cos \theta\, d\theta$. Since
+	\[
+		\omega_{f(\theta_0)} = \frac{\cos(\theta_0) \, dy - \sin(\theta_0) \, dx}{\cos^2 \theta_0 + \sin^2\theta_0} = \cos(\theta_0) \, dy - \sin(\theta_0) \, dx,
+	\]
+	we see that
+	\[
+		(f^\ast \omega)_{\theta_0} = (\cos^2\theta_0 + \sin^2\theta_0)\, d\theta = d\theta,
+	\]
+	so
+	\[
+		\int_{S^1} \omega = \int_{S^1} f^\ast \omega = \int_{S^1} d\theta = 2\pi.
+	\]
+\end{example}
