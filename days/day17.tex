@@ -16,7 +16,7 @@ However, this is not so useful for the integrals mentioned in \cref{sec:de Rham}
 Rather, for de Rham cohomology purposes, we need a way of defining $\int_N \eta$ where $\eta \in \Omega^k(M)$. Intuitively, we want to ``restrict'' $\eta$ to $N$ here, but trying to write this intuition out directly leads to something quite complicated. But this is a place where all our effort in defining things in such a relatively abstract way pays off by giving us a simple and natural (though seemingly slightly indirect) way of defining our integral:
 
 \begin{definition}\label{def:integration on submanifold}
-	Suppose $N$ is a $k$-dimensional submanifold of the manifold $M$ and let $i \from N \hookrightarrow M$ be the inclusion map. Then define
+	Suppose $N$ is a $k$-dimensional submanifold of the manifold $M$ and let $i \from N \hookrightarrow M$ be the inclusion map. If $\eta \in \Omega^k(M)$, define
 	\[
 		\int_N \eta := \int_N i^\ast \eta.
 	\]
@@ -24,7 +24,7 @@ Rather, for de Rham cohomology purposes, we need a way of defining $\int_N \eta$
 
 The point here is that $i^\ast \eta \in \Omega^k(N)$, and \cref{def:integration} applies.
 
-\begin{example}
+\begin{example}\label{ex:surface integral}
 	Let $M = \R^3$ and let $S$ be a surface which is the graph of a function; i.e.,
 	\[
 		S = \{(u,v,g(u,v)) : u,v \in \R\},
@@ -99,3 +99,103 @@ The point here is that $i^\ast \eta \in \Omega^k(N)$, and \cref{def:integration}
 		\int_{S^1} \omega = \int_{S^1} f^\ast \omega = \int_{S^1} d\theta = 2\pi.
 	\]
 \end{example}
+
+\section{Stokes' Theorem} 
+\label{sec:stokes_theorem}
+
+At this point we have all the ingredients in place to prove (a version of) de Rham's theorem: for a $k$-dimensional homology class $[C] \in H_k(M;\R)$ represented by a submanifold $C$, and a de Rham cohomology class $[\omega]$ represented by a closed form $\omega \in \Omega^k(M)$, we at least know what
+\[
+	I([\omega])([C]) := \int_C\omega
+\]
+means.
+
+However, to see that this is well-defined, we need to know that, if $[\omega_1] = [\omega_2]$, then $\int_C \omega_1 = \int_C \omega_2$, and similarly that if $[C_1] = [C_2]$, then $\int_{C_1}\omega = \int_{C_2}\omega$.
+
+For the first, suppose $\omega_1, \omega_2 \in \Omega^k(M)$ represent the same de Rham cohomology class (i.e., the same element of $\hdr^k(M) = \frac{\ker d}{\im d}$), then $\omega_1 - \omega_2 = d\eta$ for some $\eta \in \Omega^{k-1}(M)$. So we need to show that
+\[
+	0 = \int_C d\eta = \int_C(\omega_1 - \omega_2) = \int_C \omega_1 - \int_C \omega_2.
+\]
+Since $C$ is a cycle, $\partial C = \emptyset$, so this will follow from:
+
+\begin{theorem}[Stokes' Theorem for Differential Forms]\label{thm:stokes}
+	If $M$ is a compact, oriented $n$-manifold with boundary and $\omega \in \Omega^{n-1}(M)$, then
+	\[
+		\int_M d\omega = \int_{\partial M} \omega.
+	\]
+\end{theorem}
+
+As for the second equality we need to show that the pairing $I$ is well, defined, suppose $[C_1] = [C_2]$. This means\footnote{If you haven't seen homology before, you might just need to trust me on this.} that $\partial E = C_2 - C_1$ for some $(k+1)$-chain $E$. But then for any closed $\omega \in \Omega^k(M)$,
+\[
+	\int_{C_2} \omega - \int_{C_1}\omega = \int_{C_2-C_1} \omega = \int_E d \omega = \int_E 0 = 0
+\]
+by \cref{thm:stokes}. 
+
+In other words, Stokes' Theorem is the key to showing that the pairing $I$ is well-defined. Of course, to really properly prove \cref{thm:de Rham} we would also need to argue that every homology clas can be represented by a submanifold (or at least a finite union of submanifolds), which we're not going to bother with.
+
+To give a complete proof of \cref{thm:stokes}, we would need to deveop the theory of manifolds with boundary. However, since we won't really be using that theory for anything else, I don't think it's worth the effort. Instead, I'll just give the part of the proof that doesn't interact with the boundary. See Guillemin and Pollack~\cite{guilleminDifferentialTopology2010} for details on manifolds with boundary and a complete proof of Stokes' Theorem.
+
+\begin{proof}[{First part of proof of \cref{thm:stokes}}]
+	Notice, first of all, that by linearity of the integral we can assume $\omega$ has compact support contained in the image of some local coordinate charte $(\phi,U)$, so that $\int_M d\omega = \int_U \phi^\ast d\omega = \int_U d\phi^\ast \omega$. If we assume $\phi(U) \cap \partial M = \emptyset$, then $\int_{\partial M} \omega = 0$, so the goal is to show that $\int_U d\phi^\ast \omega = 0$.
+	
+	We know that $\phi^\ast \omega \in \Omega^{n-1}(U) \subset \Omega^{n-1}(\R^n)$, so we can write
+	\[
+		\phi^\ast \omega = \sum_{i=1}^n (-1)^{i-1} f_i dx_1 \wedge \dots \wedge d\check{x}_i \wedge \dots \wedge dx_n
+	\]
+	for some compactly supported functions $f_i$, where $d\check{x}_i$ means that $dx_i$ is omitted and the signs are chosen so that
+	\[
+		d\phi^\ast \omega = \left(\sum_{i=1}^n \frac{\partial f_i}{\partial x_i} \right) dx_1 \wedge \dots \wedge dx_n.
+	\]
+	
+	Since the $f_i$ are compactly supported, we can extend their domain of definition to all of $\R^n$ be defining them to be zero outside $U$. Therefore,
+	\[
+		\int_U d\phi^\ast \omega = \int_U \left(\sum_{i=1}^n \frac{\partial f_i}{\partial x_i} \right) dx_1 \wedge \dots \wedge dx_n = \int_{\R^n} \left(\sum_{i=1}^n \frac{\partial f_i}{\partial x_i} \right) dx_1 \wedge \dots \wedge dx_n = \sum_{i=1}^n\int_{\R^n} \frac{\partial f_i}{\partial x_i}\,  dx_1 \cdots dx_n.
+	\]
+	
+	By Fubini's Theorem, we can interpret each term as an interated integral and do the integration in any order we like:
+	\[
+		\int_{\R^n} \frac{\partial f_i}{\partial x_i} \, dx_1 \cdots dx_n = \int_{\R^{n-1}} \left(\int_{-\infty}^\infty \frac{\partial f_i}{\partial x_i} \, dx_i\right) dx_1 \cdots d\check{x}_i \cdots dx_n.
+	\]
+	Now we're thinking of the integrand $\int_{-\infty}^\infty \frac{\partial f_i}{\partial x_i} \, dx_i$ as a function of $(x_1, \dots , \check{x}_i, \dots , x_n)$. Which function? Well, to any specific point $(a_1, \dots, \check{a}_i, \dots a_n)$ it assigns the number $\int_{-\infty}^\infty g'(t)dt$ where $g(t) = f_i(a_1, \dots , t, \dots , a_n)$. But since $f_i$ is compactly supported, we know there exists $T$ big enough that $g(t) = 0$ for all $t \geq T$. 
+	
+	Then the Fundamental Theorem of Calculus implies that
+	\[
+		\int_{-\infty}^\infty g'(t) dt = \int_{-T}^T g'(t)dt = g(T) - g(-T) = 0-0=0,
+	\]
+	so we have
+	\[
+		\int_M d\omega = \int_U \phi^\ast d\omega = \int_U d\phi^\ast \omega = 0
+	\]
+	as desired.
+\end{proof}
+
+To give the rest of the proof of \cref{thm:stokes}, one needs to deal with the case $\phi(U) \cap \partial M \neq \emptyset$. Again, see Guillemin and Pollack~\cite{guilleminDifferentialTopology2010} if you're interested.
+
+\begin{example}
+	Suppose $S$ is a smooth surface in $\R^3$ with connected boundary $\partial S = \Gamma$, which is parametrized by $\gamma \from S^1 \to \R^3$. Let $\omega \in \Omega^1(\R^3)$. Then \cref{thm:stokes} tells us that
+	\begin{equation}\label{eq:surface stokes}
+		\int_S d\omega = \int_\Gamma \omega.
+	\end{equation}
+	
+	Let's translate this into vector calculus language. Let $\vec{F} \in \mathfrak{X}(\R^3)$ be the vector field corresponding to $\omega$. That is, if $\omega = f \, dx + g \, dy + h\, dz$, then $\vec{F} = f\,\frac{\partial}{\partial x} + g\, \frac{\partial}{\partial y} + h \, \frac{\partial}{\partial z}$. 
+	
+	Following \cref{ex:line integral},
+	\[
+		\int_\Gamma \omega = \int_{S^1} \gamma^\ast \omega = \int_{S^1} \vec{F} \cdot \gamma'(t)\, dt
+	\]
+	which we often write as $\oint_\Gamma \vec{F} \cdot d\Gamma$.
+	
+	To translate the left-hand side of \eqref{eq:surface stokes}, recall that we saw in \cref{sec:vector calculus} that the vector field corresponding to $d \omega$ is $\nabla \times \vec{F}$. Then, following \cref{ex:surface integral} we have
+	\[
+		\int_S d\omega = \int_{\R^2} \left((\nabla \times \vec{F}) \cdot u\right) dA,
+	\]
+	which is what we mean in vector calculus by the notation $\iint_S (\nabla \times\vec{F}) \cdot dS$, where $dS$ is the area element on $S$. 
+	
+	In other words, translating the Stokes' theorem result \eqref{eq:surface stokes} into vector calculus language recovers the vector calculus Stokes' Theorem (or Curl Theorem)
+	\[
+		\iint_S (\nabla \times\vec{F}) \cdot dS = \oint_\Gamma \vec{F} \cdot d\Gamma.
+	\]
+\end{example}
+
+\begin{exercise}
+	Do the same sort of translation for the Divergence Theorem.
+\end{exercise}
