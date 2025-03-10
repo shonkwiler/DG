@@ -15,7 +15,7 @@ We can use the same idea to get a Lie derivative for differential forms, though 
 \begin{definition}\label{def:Lie derivative of differential form}
 	Let $X \in \mathfrak{X}(M)$ and $\omega \in \Omega^k(M)$. Then the \emph{Lie derivative} of $\omega$ with respect to $X$ is defined (at a point $p \in M$) by
 	\[
-		\left(\mathcal{L}_X\omega\right)_p := \lim_{t \to 0} \frac{\Phi_t^\ast(\omega_{\Phi_t(p)})-\omega_p}{t} = \left. \frac{d}{dt}\right|_{t=0} \Phi_t^\ast(\omega_{\Phi_t(p)}).
+		\left(\mathcal{L}_X\omega\right)_p := \lim_{t \to 0} \frac{\Phi_t^\ast(\omega_{\Phi_t(p)})-\omega_p}{t} = \left. \frac{d}{dt}\right|_{t=0} \left(\Phi_t^\ast\right)_p(\omega_{\Phi_t(p)}).
 	\]
 \end{definition}
 
@@ -24,7 +24,7 @@ Even more generally, we can combine pushforwards and pullbacks to get Lie deriva
 \begin{definition}\label{def:Lie derivative of tensor fields}
 	Let $X \in \mathfrak{X}(M)$, $a \in \mathcal{T}_r^0(M)$, and $\beta \in \mathcal{T}_0^s(M)$. Then the \emph{Lie derivative} of the $(r,s)$-tensor field $a \otimes \beta$ is defined (at a point $p \in M$) by
 	\[
-		\left( \mathcal{L}_X a \otimes \beta\right)_p := \left. \frac{d}{dt} \right|_{t=0} \left[ \left(d\Phi_{-t}\right)_{\Phi_t(p)} \left(a _{\Phi_t(p)} \right) \otimes \Phi_t^\ast\left(\beta_{\Phi_t(p)}\right)\right].
+		\left( \mathcal{L}_X a \otimes \beta\right)_p := \left. \frac{d}{dt} \right|_{t=0} \left[ \left(d\Phi_{-t}\right)_{\Phi_t(p)} \left(a _{\Phi_t(p)} \right) \otimes \left(\Phi_t^\ast\right)_p\left(\beta_{\Phi_t(p)}\right)\right].
 	\]
 	Extending linearly gives the Lie derivative with respect to $X$ for arbitrary elements of $\mathcal{T}_r^s(M)$.
 \end{definition}
