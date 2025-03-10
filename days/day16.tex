@@ -9,7 +9,7 @@ Recall that we have the cochain complex
 		\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] &  \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M) 
 	\end{tikzcd}
 	\end{center}
-where the subscript $i$ indicates that $d_i$ is the restriction of $d$ to $\Omega^i(M)$.
+where the subscript $k$ indicates that $d_k$ is the restriction of $d$ to $\Omega^k(M)$.
 
 \begin{definition}\label{def:de Rham cohomology}
 	The \emph{$k$th de Rham cohomology group} of $M$ is
@@ -121,7 +121,7 @@ In other words, differential forms transform in the right way to serve as integr
 		dg_p\left(\frac{\partial}{\partial \theta} \right) = \left. \frac{d}{dt} \right|_{t=0} g(\theta_0+t,r_0) = \left. \frac{d}{dt} \right|_{t=0} r_0(\cos(\theta_0+t),\sin(\theta_0+t)) \\
 		= r_0(-\sin\theta_0,\cos\theta_0) = r_0\left(-\sin\theta_0 \frac{\partial}{\partial x} + \cos \theta_0 \frac{\partial}{\partial y}\right)
 	\end{multline*}
-	where I move back and forth between tuple representations and local coordinate basis representations.
+	where I move back and forth between tuple representations and local coordinate basis representations. Similarly,
 	\begin{multline*}
 		dg_p\left(\frac{\partial}{\partial r} \right) = \left. \frac{d}{dt} \right|_{t=0} g(\theta_0,r_0+t) = \left. \frac{d}{dt} \right|_{t=0} (r_0+t)(\cos\theta_0,\sin\theta_0) \\
 		= (\cos\theta_0,\sin\theta_0) = \cos\theta_0 \frac{\partial}{\partial x} + \sin \theta_0 \frac{\partial}{\partial y}.
@@ -178,7 +178,7 @@ If $g$ is orientation-reversing, then we get
 	\int_A \omega = -\int_B g^\ast \omega.
 \]
 
-Since we have no standard coordinates on an arbitrary manifold, thse transformations are essential to defining integrals on manifolds.
+Since we have no standard coordinates on an arbitrary manifold, these transformations are essential to defining integrals on manifolds.
 
 Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\omega \in \Omega^n(M)$ is contained in a single coordinate chart $(U,\phi)$ so that $\phi \from U \to \phi(U)$ is orientation-preserving. Then $\phi^\ast \omega \in \Omega^n(U)$, which we know how to integrate, so define
 \[
@@ -190,7 +190,7 @@ Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\o
 \end{proposition}
 
 \begin{proof}
-	We need to check that, if the support of $\omega$ is also containd in some other coordinate chart $(V, \psi)$ so that $\psi \from V \to \psi(V)$ is orientation-preserving, then we get the same answer whether we compute $\int_M \omega = \int_U \phi^\ast \omega$ or $\int_M \omega = \int_V \psi^\ast \omega$.
+	We need to check that, if the support of $\omega$ is also contained in some other coordinate chart $(V, \psi)$ so that $\psi \from V \to \psi(V)$ is orientation-preserving, then we get the same answer whether we compute $\int_M \omega = \int_U \phi^\ast \omega$ or $\int_M \omega = \int_V \psi^\ast \omega$.
 	
 	We can move between $U$ and $V$ by way of the map $\psi^{-1} \circ \phi \from U \to V$, which is orientation-preserving, so
 	\[
@@ -201,7 +201,7 @@ Suppose next that we have an $n$-dimensional manifold $M$ and the support of $\o
 
 So we've now succeeded in defining the integral of a form contained entirely in a single local coordinate chart. But what about arbitrary forms?
 
-First of all, to avoid worrying about convergence issues, let's restrict to \emph{compactly supported} forms: that is, thos forms whose support (the set of points on which they are non-vanishing) is contained in some compact subset of $M$. Of course, if $M$ is itself compact, this is no restriction at all.
+First of all, to avoid worrying about convergence issues, let's restrict to \emph{compactly supported} forms: that is, those forms whose support (the set of points on which they are non-vanishing) is contained in some compact subset of $M$. Of course, if $M$ is itself compact, this is no restriction at all.
 
 So now suppose we have a compactly supported form $\omega \in \Omega^n(M)$. To define $\int_M \omega$, we will use a partition of unity argument.
 
