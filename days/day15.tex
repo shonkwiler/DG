@@ -2,15 +2,15 @@
 
 \section{Lie Derivatives and Cartan's Magic Formula}
 
-Recall \cref{def:Lie derivative}, the definition of the Lie derivative for vector fields:
+Recall \Cref{def:Lie derivative}, the definition of the Lie derivative for vector fields:
 \[
 	\mathcal{L}_XY := \lim_{t \to 0} \frac{(d\Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p))-Y(p)}{t},
 \]
-where $\Phi_t$ is the local flow for $X \in \mathfrak{X}(M)$. We saw in \cref{prop:Lie bracket = Lie derivative} that the Lie derivative is equal to the Lie bracket $[X,Y]$.
+where $\Phi_t$ is the local flow for $X \in \mathfrak{X}(M)$. We saw in \Cref{prop:Lie bracket = Lie derivative} that the Lie derivative is equal to the Lie bracket $[X,Y]$.
 
 The key idea in this derivative was to compare $Y$ at $\Phi_t(p)$ to $Y$ at $p$, and to do so we needed to move $Y(\Phi_t(p))$ from $T_{\Phi_t(p)}M$ to $T_pM$, which we did with the differential of the \emph{negative} flow $d\Phi_{-t}$.
 
-We can use the same idea to get a Lie derivative for differential forms, though we have to be careful about how we move a form $\omega \in \Omega^k(M)$ at a point $\Phi_t(p)$ to $p$: whereas vector fields push forward, differential forms pull back (as we've just seen in \cref{sec:pullbacks}). So rather than pushing forward with $d\Phi_{-t}$, we will pull back by $\Phi_t^\ast$:
+We can use the same idea to get a Lie derivative for differential forms, though we have to be careful about how we move a form $\omega \in \Omega^k(M)$ at a point $\Phi_t(p)$ to $p$: whereas vector fields push forward, differential forms pull back (as we've just seen in \Cref{sec:pullbacks}). So rather than pushing forward with $d\Phi_{-t}$, we will pull back by $\Phi_t^\ast$:
 
 \begin{definition}\label{def:Lie derivative of differential form}
 	Let $X \in \mathfrak{X}(M)$ and $\omega \in \Omega^k(M)$. Then the \emph{Lie derivative} of $\omega$ with respect to $X$ is defined (at a point $p \in M$) by
@@ -37,7 +37,7 @@ Even more generally, we can combine pushforwards and pullbacks to get Lie deriva
 \end{lemma}
 
 \begin{proof}
-	By \cref{def:Lie derivative of differential form} (first equality), \cref{ex:pullbacks of functions are compositions} (second), and \cref{def:tangent vector} (third), 
+	By \Cref{def:Lie derivative of differential form} (first equality), \Cref{ex:pullbacks of functions are compositions} (second), and \Cref{def:tangent vector} (third), 
 	\[
 		\mathcal{L}_Xf = \left. \frac{d}{dt}\right|_{t=0} \Phi_t^\ast(f) = \left. \frac{d}{dt}\right|_{t=0} f \circ \Phi_t = X(f).
 	\]
@@ -58,7 +58,7 @@ Even more generally, we can combine pushforwards and pullbacks to get Lie deriva
 	\[
 		\left. \frac{\partial}{\partial z}\right|_p = \left. \frac{d}{dt} \right|_{t=0} \phi(\theta_0,z_0+t) = \left(-\frac{z_0 \cos \theta_0}{\sqrt{1-z_0^2}},-\frac{z_0 \sin \theta_0}{\sqrt{1-z_0^2}},1\right).
 	\]
-	See \cref{fig:dtheta and dz 2} (which is the same as \cref{fig:dtheta and dz}).
+	See \Cref{fig:dtheta and dz 2} (which is the same as \Cref{fig:dtheta and dz}).
 	\begin{figure}[htbp]
 		\centering
 			\includegraphics[height=2in]{dtheta} \qquad \includegraphics[height=2in]{dz}
@@ -178,7 +178,7 @@ for any $v_1, \dots , v_{k-1} \in T_pM$. This is sometimes also denoted by $X \l
 The reason Cartan's magic formula is so important is that it is one of the most useful tools out there for computing exterior derivatives.
 
 \begin{example}\label{ex:cartan and S^3}
-	Remember \cref{sec:S^3 example}, where we computed Lie brackets on $S^3$. As a reminder, we had mutually perpendicular vector fields $X,Y,Z \in \mathfrak{X}(S^3)$ defined by
+	Remember \Cref{sec:S^3 example}, where we computed Lie brackets on $S^3$. As a reminder, we had mutually perpendicular vector fields $X,Y,Z \in \mathfrak{X}(S^3)$ defined by
 	\[
 		X(p) = pi, \qquad Y(p) = pj, \qquad Z(p) = pk
 	\]
@@ -213,26 +213,26 @@ The reason Cartan's magic formula is so important is that it is one of the most 
 	This implies, in particular, that $\alpha \wedge d\alpha = -2 \alpha \wedge \beta \wedge \gamma$ is never zero, so $\alpha$ is an example of what is called a \emph{contact form} on $S^3$.
 \end{example}
 
-Notice, in particular, that we never had to work in local coordinates in \cref{ex:cartan and S^3}, which is one of the great virtues of Cartan's magic formula: it is one of the few tools that allows one to compute without using coordinates.
+Notice, in particular, that we never had to work in local coordinates in \Cref{ex:cartan and S^3}, which is one of the great virtues of Cartan's magic formula: it is one of the few tools that allows one to compute without using coordinates.
 
 Hopefully this gives you some reason to believe that Cartan's magic formula is useful, so let's try to prove it:
 
-\begin{proof}[Proof of \cref{thm:cartan}]
-	If $u \in \Omega^0(M) = C^\infty(M)$, then $\mathcal{L}_Xu = X(u)$ by \cref{lem:Lie derivative of function} and
+\begin{proof}[Proof of \Cref{thm:cartan}]
+	If $u \in \Omega^0(M) = C^\infty(M)$, then $\mathcal{L}_Xu = X(u)$ by \Cref{lem:Lie derivative of function} and
 	\[
 		\iota_X du + d\iota_Xu = du(X) + 0 = du(X) = X(u) = \mathcal{L}_Xu ,
 	\]
 	so the formula holds for 0-forms.
 	
-	Now consider a 1-form $\omega$ which is the differential of a 0-form: $\omega = du$. If $Y \in \mathfrak{X}(M)$, then, by \cref{def:Lie derivative of differential form},
+	Now consider a 1-form $\omega$ which is the differential of a 0-form: $\omega = du$. If $Y \in \mathfrak{X}(M)$, then, by \Cref{def:Lie derivative of differential form},
 	\[
 		(\mathcal{L}_X\omega)_p(Y) = (\mathcal{L}_xdu)_p(Y) = \left. \frac{d}{dt} \right|_{t=0} \Phi_t^\ast(du_{\Phi_t(p)})(Y) = (\mathcal{L}_xdu)_p(Y) = \left. \frac{d}{dt} \right|_{t=0} du_{\Phi_t(p)}((d\Phi_t)_p(Y))
 	\]
-	using the definition of pullback (\cref{def:pullback}). In turn, the chain rule tells us that the right hand side is equal to
+	using the definition of pullback (\Cref{def:pullback}). In turn, the chain rule tells us that the right hand side is equal to
 	\[
 		\left. \frac{d}{dt} \right|_{t=0} d(u \circ\Phi_t)_p(Y) = \left. \frac{d}{dt} \right|_{t=0} Y(u \circ\Phi_t)(p)
 	\]
-	by \cref{lem:vector fields and differentials}. Since $Y$ is independent of $t$, the (1-dimensional) chain rule tell us that this is equal to
+	by \Cref{lem:vector fields and differentials}. Since $Y$ is independent of $t$, the (1-dimensional) chain rule tell us that this is equal to
 	\[
 		Y \left( \left. \frac{d(u \circ \Phi_t)}{dt} \right|_{t=0}\right)(p) = Y(X(u))(p).
 	\]
@@ -243,7 +243,7 @@ Hopefully this gives you some reason to believe that Cartan's magic formula is u
 	\[
 		d(\iota_X\omega)(Y) = d(\iota_X du)(Y) = d(du(X))(Y) = d(X(U))(Y) = Y(X(U)) = (\mathcal{L}_X\omega)_p(Y)
 	\]
-	by repeatedly using \cref{lem:vector fields and differentials}. Hence, the formula holds for differentials.
+	by repeatedly using \Cref{lem:vector fields and differentials}. Hence, the formula holds for differentials.
 	
 	Finally, then, if $\omega \in \Omega^k(M)$ and we write $\omega = \sum_I a_I dx_I$ in local coordinates, then
 	\begin{equation}\label{eq:cartan in local coords1}

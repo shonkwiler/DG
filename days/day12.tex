@@ -28,7 +28,7 @@ Before diving in, let me just give you my perspective on tensors. Basically, the
 Returning to the general setting, we have vector space $U$, $V$, and $W$ and a multilinear map $F: U \times V \to W$. Now suppose $w_0 \in W$ and we want to solve a problem of the form $F(u,v) = w_0$. Since $F$ is multilinear, you might hope that this is somehow just a linear algebra problem, which would be solvable, at least in principle. But, at least as stated, this is very much \emph{not} a linear problem…
 
 \begin{example}\label{ex:cross product as bilinear map 2}
-	Continuing with \cref{ex:cross product as bilinear map}, where $F \from \R^3 \times \R^3 \to \R^3$ is given by $F(u,v) = u \times v$, suppose we want to solve $F(u,v) = (x_0,y_0,z_0)$. Since $\R^3 \times \R^3 \cong \R^6$, we can think of $F$ as a map $\R^6 \to \R^3$ given by
+	Continuing with \Cref{ex:cross product as bilinear map}, where $F \from \R^3 \times \R^3 \to \R^3$ is given by $F(u,v) = u \times v$, suppose we want to solve $F(u,v) = (x_0,y_0,z_0)$. Since $\R^3 \times \R^3 \cong \R^6$, we can think of $F$ as a map $\R^6 \to \R^3$ given by
 	\[
 		(u_1,u_2,u_3,v_1,v_2,v_3) \mapsto u \times v = (u_2 v_3 - u_3 v_2, u_3 v_1 - u_1 v_3, u_1 v_2 - u_2 v_1).
 	\]
@@ -72,11 +72,11 @@ Here's the key theorem (or, if you start form a different perspective, the below
 \end{theorem}
 
 \begin{example}
-	Continuing \cref{ex:cross product as bilinear map,ex:cross product as bilinear map 2}, recall that $F\from \R^3 \times \R^3 \to \R^3$ is given by $F(u,v) = u \times v$, and \cref{thm:tensor product universal property} tells us there must be a linear map $\widetilde{F}\from \R^3 \otimes \R^3 \to \R^3$ so that
+	Continuing \Cref{ex:cross product as bilinear map,ex:cross product as bilinear map 2}, recall that $F\from \R^3 \times \R^3 \to \R^3$ is given by $F(u,v) = u \times v$, and \Cref{thm:tensor product universal property} tells us there must be a linear map $\widetilde{F}\from \R^3 \otimes \R^3 \to \R^3$ so that
 	\[
 		(\widetilde{F} \circ \phi)(u,v) = F(u,v) = u \times v.
 	\]
-	Representing $u \otimes v$ by $u v^T$ as in \cref{ex:tensor product and outer product}, we see that $u \otimes v$ corresponds to the $3 \times 3$ matrix 
+	Representing $u \otimes v$ by $u v^T$ as in \Cref{ex:tensor product and outer product}, we see that $u \otimes v$ corresponds to the $3 \times 3$ matrix 
 	\[
 		\begin{bmatrix}  u_1 v_1 & u_1 v_2 & u_1 v_3 \\
  u_2 v_1 & u_2 v_2 & u_2 v_3 \\
@@ -134,7 +134,7 @@ Clearly, we've paid a price for turning bilinear maps into linear maps: whereas 
 \end{definition}
 
 \begin{example}
-	An inner product $\langle \cdot , \cdot \rangle$ on $V$ is a symmetric $(0,2)$-tensor on $V$. Why? Well, $\langle \cdot , \cdot \rangle$ defines a bilinear map $V \times V \to \R$, and hence by \cref{thm:tensor product universal property} a (unique) linear map $V \otimes V \to \R$. In other words, an inner product determines an element of $(V \otimes V)^\ast \cong V^\ast \otimes V^\ast = V_0^2$.
+	An inner product $\langle \cdot , \cdot \rangle$ on $V$ is a symmetric $(0,2)$-tensor on $V$. Why? Well, $\langle \cdot , \cdot \rangle$ defines a bilinear map $V \times V \to \R$, and hence by \Cref{thm:tensor product universal property} a (unique) linear map $V \otimes V \to \R$. In other words, an inner product determines an element of $(V \otimes V)^\ast \cong V^\ast \otimes V^\ast = V_0^2$.
 	\begin{exercise}
 		Prove that $(V \otimes V)^\ast \cong V^\ast \otimes V^\ast$
 	\end{exercise}
@@ -145,7 +145,7 @@ Clearly, we've paid a price for turning bilinear maps into linear maps: whereas 
 	\[
 		(\rho, v ) \mapsto \rho(F(v)).
 	\]
-	Again, \cref{thm:tensor product universal property} implies that this bilinear map correponds to a linear map $V^\ast \otimes V \to \R$; that is, an element of the dual space $(V^\ast \otimes V)^\ast \cong V \otimes V^\ast = V_1^1$.
+	Again, \Cref{thm:tensor product universal property} implies that this bilinear map correponds to a linear map $V^\ast \otimes V \to \R$; that is, an element of the dual space $(V^\ast \otimes V)^\ast \cong V \otimes V^\ast = V_1^1$.
 \end{example}
 
 \begin{definition}\label{def:tensor algebra}
@@ -197,7 +197,7 @@ In general, $\mathcal{T}(V)$ is noncommutative, associative, and (bi-)graded.
 	\] 
 	where $\cdot$ is the standard dot product on the plane and $\| \, \|_E$ is the Euclidean norm (I can just use $\gamma_2(t)$ in the denominator, rather than $|\gamma_2(t)|$, because the second coordinate is always positive in $H$).
 	
-	It will turn out that the geodesics in this metric are the vertical lines and semicircles centered at points on the $x$-axis; see \cref{fig:hyperbolicgeodesics}. Let's compute distances between points on these geodesics.
+	It will turn out that the geodesics in this metric are the vertical lines and semicircles centered at points on the $x$-axis; see \Cref{fig:hyperbolicgeodesics}. Let's compute distances between points on these geodesics.
 	
 	\begin{figure}[htbp]
 		\centering

@@ -19,7 +19,7 @@ where the subscript $k$ indicates that $d_k$ is the restriction of $d$ to $\Omeg
 \end{definition}
 
 \begin{example}\label{ex:closed not exact 2}
-	We saw in \cref{ex:closed not exact} that the 1-form $\omega = \frac{x\, dy - y\, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ is \emph{closed} (in the kernel of $d$), but not \emph{exact} (in the image of $d$), so it represents a non-trivial element of $\hdr^1(\R^2 - \{0\})$.
+	We saw in \Cref{ex:closed not exact} that the 1-form $\omega = \frac{x\, dy - y\, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ is \emph{closed} (in the kernel of $d$), but not \emph{exact} (in the image of $d$), so it represents a non-trivial element of $\hdr^1(\R^2 - \{0\})$.
 \end{example}
 
 De Rham cohomology is a homotopy invariant of manifolds, meaning that homotopy equivalent manifolds have identical de Rham cohomology groups. 
@@ -44,7 +44,7 @@ forms a (graded) ring, the \emph{de Rham cohomology ring}, with the operation in
 
 In fact, even more is true: the de Rham cohomology ring is isomorphic to the singular cohomology ring with real coefficients.
 
-In \cref{ex:closed not exact 2}, $H^1(\R^2 -\{0\};\R) \cong H^1(S^1;\R) \cong \R$, so the 1-form $\omega = \frac{x\, dy - y\, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ is a generator of $\hdr^1(\R^2-\{0\})$.
+In \Cref{ex:closed not exact 2}, $H^1(\R^2 -\{0\};\R) \cong H^1(S^1;\R) \cong \R$, so the 1-form $\omega = \frac{x\, dy - y\, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ is a generator of $\hdr^1(\R^2-\{0\})$.
 
 We won't give all the details of the proof of de Rham's theorem, but the basic idea is that a closed form defines a linear functional on homology classes by integration. More precisely, the mapping $I \from \hdr^k(M) \to H_k(M;\R)^\ast$ is defined as follows: if $[\omega] \in \hdr^k(M)$ is represented by the closed form $\omega \in \Omega^k(M)$, then $I([\omega]) \in H_k(M;\R)^\ast$ is given by
 \[
@@ -55,7 +55,7 @@ for any $[C] \in H_k(M;\R)$ which is represented by the cycle $C \subset M$. It'
 \section{Integration on Manifolds}
 \label{sec:integration_on_manifolds}
 
-As suggested in \cref{sec:informal def of forms}, the point of defining differential forms as alternating, multilinear gadgets is because they transform in the right way. 
+As suggested in \Cref{sec:informal def of forms}, the point of defining differential forms as alternating, multilinear gadgets is because they transform in the right way. 
 
 \subsection{Digression on Differentials, Pullbacks, and Dual Maps} 
 \label{sub:digression_on_differentials_pullbacks_and_dual_maps}
@@ -84,14 +84,14 @@ Moreover, by definition of the dual map, for a linear functional $\alpha \in (T_
 \]
 But this is exactly how we defined the pullback, where we now think of $\alpha = \omega_{g(p)}$, the value of the 1-form $\omega$ at $g(p)$.
 
-In other words, $g^\ast$ as defined in \cref{sec:pullbacks} is the same as the dual map $(dg)^\ast$ associated to the differential $dg$.
+In other words, $g^\ast$ as defined in \Cref{sec:pullbacks} is the same as the dual map $(dg)^\ast$ associated to the differential $dg$.
 
 \subsection{How Differential Forms Transform} 
 \label{sub:how_differential_forms_transform}
 
 The goal is to see that transformations of differential forms under changes of coordinates are just like transformations of integrands under changes of coordinates.
 
-As in \cref{sec:informal def of forms}, let $g \from B \to A$ be a diffeomorphism of open subsets of $\R^n$ and let $f \from A \to \R$ be a smooth function. Define
+As in \Cref{sec:informal def of forms}, let $g \from B \to A$ be a diffeomorphism of open subsets of $\R^n$ and let $f \from A \to \R$ be a smooth function. Define
 \[
 	\omega = f dx_1 \wedge \dots \wedge dx_n \in \Omega^n(A),
 \]
@@ -116,7 +116,7 @@ In other words, differential forms transform in the right way to serve as integr
 	
 	Now, consider the standard area form $\omega = dx \wedge dy$ on $N$ and we want to work out $g^\ast \omega$ from the definition. 
 	
-	By definition of the differential (\cref{def:differential}), we have that, for $p = (\theta_0, r_0) \in M$, 
+	By definition of the differential (\Cref{def:differential}), we have that, for $p = (\theta_0, r_0) \in M$, 
 	\begin{multline*}
 		dg_p\left(\frac{\partial}{\partial \theta} \right) = \left. \frac{d}{dt} \right|_{t=0} g(\theta_0+t,r_0) = \left. \frac{d}{dt} \right|_{t=0} r_0(\cos(\theta_0+t),\sin(\theta_0+t)) \\
 		= r_0(-\sin\theta_0,\cos\theta_0) = r_0\left(-\sin\theta_0 \frac{\partial}{\partial x} + \cos \theta_0 \frac{\partial}{\partial y}\right)
@@ -274,7 +274,7 @@ Now, finally, we can define integration of compactly-supported forms on manifold
 		\int_{[a,b]} \gamma^\ast \omega = \int_{[a,b]}\gamma^\ast(df) = \int_{[a,b]} d (\gamma^\ast f) = \int_{[a,b]} d(f \circ \gamma) = \int_{[a,b]}(f \circ \gamma)'(t)dt \\
 		= (f \circ \gamma)(b) - (f\circ \gamma)(a) = f(q)-f(p)
 	\end{multline*}
-	where the second equality follows from \cref{prop:pullbacks commute with exterior derivative}, the third from \cref{ex:pullbacks of functions are compositions}, and the fifth from the fundamental theorem of calculus.
+	where the second equality follows from \Cref{prop:pullbacks commute with exterior derivative}, the third from \Cref{ex:pullbacks of functions are compositions}, and the fifth from the fundamental theorem of calculus.
 \end{example}
 
 \begin{example}\label{ex:line integral}
@@ -286,7 +286,7 @@ Now, finally, we can define integration of compactly-supported forms on manifold
 	\[
 		(\gamma^\ast dx_i)_t \left(b \frac{\partial}{\partial \theta} \right) = (dx_i)_{\gamma(t)} \left(d\gamma_t\left(b \frac{\partial}{\partial \theta}\right)\right) = b (dx_i)_{\gamma(t)} \left(d\gamma_t\left(\frac{\partial}{\partial \theta}\right)\right) = b (dx_i)_{\gamma(t)} \left(\frac{\partial}{\partial \theta}(\gamma)(t)\right) 
 	\]
-	using \cref{lem:vector fields and differentials}. But then
+	using \Cref{lem:vector fields and differentials}. But then
 	\[
 		\frac{\partial}{\partial \theta}(\gamma)(t) = \gamma_1'(t) \frac{\partial}{\partial x_1} + \dots + \gamma_n'(t) \frac{\partial}{\partial x_n},
 	\]
@@ -301,7 +301,7 @@ Now, finally, we can define integration of compactly-supported forms on manifold
 	Notice that the coefficient is just $A(\gamma(t))\cdot \gamma'(t)$, where the vector field $A = (a_1, \dots , a_n)$ is dual to $\omega$. Of course, this is the sort of expression you usually see in the Multivariable Calculus definition of a line integral.
 \end{example}
 
-Putting \cref{ex:integrating along a curve,ex:line integral} together, notice that if $\omega = df \in \Omega^1(M)$, then $\oint_\gamma \omega = 0$ for all closed curves $\gamma$ in $M$.
+Putting \Cref{ex:integrating along a curve,ex:line integral} together, notice that if $\omega = df \in \Omega^1(M)$, then $\oint_\gamma \omega = 0$ for all closed curves $\gamma$ in $M$.
 
 \begin{proposition}\label{prop:integrate to 0 => exact}
 	The converse is true. That is, any $\omega \in \Omega^1(M)$ with the property that $\oint_\gamma \omega = 0$ for all closed curves $\gamma$ in $M$ is exact.

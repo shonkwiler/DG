@@ -2,7 +2,7 @@
 
 \section{Immersions and Embeddings}
 
-Let's work up to proving \cref{thm:level set theorem}, including defining some more terminology.
+Let's work up to proving \Cref{thm:level set theorem}, including defining some more terminology.
 
 \begin{definition}\label{def:immersion and embedding}
 	Suppose $f \from M \to N$ is smooth. Then $f$ is an \emph{immersion} if $df_p$ is injective for all $p \in M$ (note that this implies $\dim(M) \leq \dim(N)$). 
@@ -15,12 +15,12 @@ Let's work up to proving \cref{thm:level set theorem}, including defining some m
 \end{definition}
 
 \begin{example}\label{ex:cusp}
-	Define $\alpha \from \R \to \R^2$ by $\alpha(t) = (t^3, t^2)$ (see \cref{fig:cusp}).
+	Define $\alpha \from \R \to \R^2$ by $\alpha(t) = (t^3, t^2)$ (see \Cref{fig:cusp}).
 	
 	\begin{figure}[htbp]
 		\centering
 			\includegraphics[height=1.5in]{cusp}
-		\caption{The image of the map $\alpha$ from \cref{ex:cusp}. The fact that it has a cusp suggests that it will fail to be an immersion, despite being injective and smooth.}
+		\caption{The image of the map $\alpha$ from \Cref{ex:cusp}. The fact that it has a cusp suggests that it will fail to be an immersion, despite being injective and smooth.}
 		\label{fig:cusp}
 	\end{figure}
 	
@@ -28,12 +28,12 @@ Let's work up to proving \cref{thm:level set theorem}, including defining some m
 \end{example}
 
 \begin{example}\label{ex:conic}
-	Define $\beta \from \R \to \R^2$ by $\beta(t) = (t^3 - 4t, t^2 - 4)$, which is a deformation of the previous example (see \cref{fig:conic}).
+	Define $\beta \from \R \to \R^2$ by $\beta(t) = (t^3 - 4t, t^2 - 4)$, which is a deformation of the previous example (see \Cref{fig:conic}).
 	
 	\begin{figure}[htbp]
 		\centering
 			\includegraphics[height=1.5in]{conic}
-		\caption{The image of the map $\beta$ from \cref{ex:conic}. This map is an immersion, but not an embedding.}
+		\caption{The image of the map $\beta$ from \Cref{ex:conic}. This map is an immersion, but not an embedding.}
 		\label{fig:conic}
 	\end{figure}
 	
@@ -47,7 +47,7 @@ Let's work up to proving \cref{thm:level set theorem}, including defining some m
 \end{example}
 
 \begin{example}\label{ex:coordinate charts are local diffeomorphisms}
-	Suppose $(U,\phi)$ is a local coordinate chart on a manifold $M$ containing a point $p \in M$. Then $\phi \from U \subset \R^n \to M$ is a local diffeomorphism at $\phi^{-1}(p) \in U$. This just follows from the definition of a coordinate chart (\cref{def:manifold}): $\phi$ maps $U$ bijectively onto $\phi(U)$, which is an open neighborhood of $p$, and both $\phi$ and $\phi^{-1}$ are smooth. (To be really pedantic, $(U, \operatorname{id})$ gives a global coordinate chart for the $n$-manifold $U$, and then, following \cref{def:differentiable}, $\phi \from U \to \phi(U)$ is smooth because $\phi^{-1} \circ \phi \circ \operatorname{id} = \operatorname{id}$ is smooth everywhere on $U$. Similarly, $\phi^{-1} \from \phi(U) \to U$ is smooth because $\operatorname{id} \circ \phi^{-1} \circ \phi = \operatorname{id}$ is smooth everywhere on $U$.)
+	Suppose $(U,\phi)$ is a local coordinate chart on a manifold $M$ containing a point $p \in M$. Then $\phi \from U \subset \R^n \to M$ is a local diffeomorphism at $\phi^{-1}(p) \in U$. This just follows from the definition of a coordinate chart (\Cref{def:manifold}): $\phi$ maps $U$ bijectively onto $\phi(U)$, which is an open neighborhood of $p$, and both $\phi$ and $\phi^{-1}$ are smooth. (To be really pedantic, $(U, \operatorname{id})$ gives a global coordinate chart for the $n$-manifold $U$, and then, following \Cref{def:differentiable}, $\phi \from U \to \phi(U)$ is smooth because $\phi^{-1} \circ \phi \circ \operatorname{id} = \operatorname{id}$ is smooth everywhere on $U$. Similarly, $\phi^{-1} \from \phi(U) \to U$ is smooth because $\operatorname{id} \circ \phi^{-1} \circ \phi = \operatorname{id}$ is smooth everywhere on $U$.)
 \end{example}
 
 If $f \from M \to N$ is a local diffeomorphism at $p \in M$, then $df_p \from T_pM \to T_{f(p)}N$ is a linear isomorphism (i.e., invertible linear map). Perhaps somewhat surprisingly, the converse is also true. This is the appropriate generalization of the Inverse Function Theorem to the manifold setting, and the proof essentially involves applying the Inverse Function Theorem in local coordinates:
@@ -57,15 +57,15 @@ If $f \from M \to N$ is a local diffeomorphism at $p \in M$, then $df_p \from T_
 \end{proposition}
 
 \begin{proof}
-	We are going to apply the Inverse Function Theorem (\cref{thm:inverse function theorem} below) to $\psi^{-1} \circ f \circ \phi \from \phi(U) \to \psi(V)$, where $(U,\phi)$ and $(V, \psi)$ are the coordinate charts guaranteed to exist by the definition of smoothness (\cref{def:differentiable}).
+	We are going to apply the Inverse Function Theorem (\Cref{thm:inverse function theorem} below) to $\psi^{-1} \circ f \circ \phi \from \phi(U) \to \psi(V)$, where $(U,\phi)$ and $(V, \psi)$ are the coordinate charts guaranteed to exist by the definition of smoothness (\Cref{def:differentiable}).
 	
 	Notice that, by the Chain Rule,
 	\[
 		d(\psi^{-1} \circ f \circ \phi)_{\phi^{-1}(p)} = d\psi^{-1}_{f(p)} \circ df_p \circ d\phi_{\phi^{-1}(p)}.
 	\]
-	But then we already know that $d\phi$ and $d\psi^{-1}$ are isomorphisms (since coordinate charts are local diffeomorphisms [\cref{ex:coordinate charts are local diffeomorphisms}]), so $df_p$ being an isomorphism implies that $d(\psi^{-1} \circ f \circ \phi)_{\phi^{-1}(p)}$ is also an isomorphism.
+	But then we already know that $d\phi$ and $d\psi^{-1}$ are isomorphisms (since coordinate charts are local diffeomorphisms [\Cref{ex:coordinate charts are local diffeomorphisms}]), so $df_p$ being an isomorphism implies that $d(\psi^{-1} \circ f \circ \phi)_{\phi^{-1}(p)}$ is also an isomorphism.
 	
-	But then the Inverse Function Theorem implies $\psi^{-1} \circ f \circ \phi$ is a local diffeomorphism at $\phi^{-1}(p)$. Since $\psi$ and $\phi^{-1}$ are local diffeomorphisms (again, \cref{ex:coordinate charts are local diffeomorphisms}) and compositions of local diffeomorphisms are local diffeomorphisms, it follows that
+	But then the Inverse Function Theorem implies $\psi^{-1} \circ f \circ \phi$ is a local diffeomorphism at $\phi^{-1}(p)$. Since $\psi$ and $\phi^{-1}$ are local diffeomorphisms (again, \Cref{ex:coordinate charts are local diffeomorphisms}) and compositions of local diffeomorphisms are local diffeomorphisms, it follows that
 	\[
 		\psi \circ (\psi^{-1} \circ f \circ \phi) \circ \phi^{-1} = (\psi \circ \psi^{-1}) \circ f \circ (\phi \circ \phi^{-1}) = f
 	\]
@@ -82,12 +82,12 @@ Here's a statement of the Inverse Function Theorem in the language of differenti
 	If $F \from U \subseteq \R^n \to \R^n$ is given by $(x_1, \dots , x_n) \mapsto (y_1, \dots , y_n)$, then $dF_p = \begin{bmatrix} \left.\frac{\partial y_i}{\partial x_j}\right|_p\end{bmatrix}_{i,j}$ being nonsingular at $p \in U$ implies that $F$ is a local diffeomorphism at $p$.
 \end{theorem}
 
-We're now ready to prove the Level Set Theorem (\cref{thm:level set theorem}):
+We're now ready to prove the Level Set Theorem (\Cref{thm:level set theorem}):
 
-\begin{proof}[Proof of \cref{thm:level set theorem}]
+\begin{proof}[Proof of \Cref{thm:level set theorem}]
 	Recall that, in the statement, we're assuming that $f\from M \to N$ is smooth and that $q \in N$ is a regular value of $f$, and the goal is to show that $f^{-1}(q)$ is a smooth submanifold of $M$ of dimension $m-n$.
 	
-	Suppose $(U,\phi)$ is a coordinate chart centered at $p \in f^{-1}(q)$\footnote{Meaning that $p = \phi(\vec{0})$.} and $(V, \psi)$ is a chart at $q$. See \cref{fig:level set theorem}. Then define the map
+	Suppose $(U,\phi)$ is a coordinate chart centered at $p \in f^{-1}(q)$\footnote{Meaning that $p = \phi(\vec{0})$.} and $(V, \psi)$ is a chart at $q$. See \Cref{fig:level set theorem}. Then define the map
 	\[
 		g := \psi^{-1} \circ f \circ \phi: U \to \R^n.
 	\]
@@ -100,7 +100,7 @@ We're now ready to prove the Level Set Theorem (\cref{thm:level set theorem}):
 	\begin{figure}[htbp]
 		\centering
 			\includegraphics[height=2.5in]{level-set-theorem}
-		\caption{A sketch of the key neighborhoods and maps in the proof of \cref{thm:level set theorem}.}
+		\caption{A sketch of the key neighborhoods and maps in the proof of \Cref{thm:level set theorem}.}
 		\label{fig:level set theorem}
 	\end{figure}
 	

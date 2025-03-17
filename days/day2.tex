@@ -22,13 +22,13 @@ So what does ``locally like $\R^n$'' actually mean? Here's a standard definition
 	The pairs $(U_\alpha, \phi_\alpha)$ are called \emph{coordinate charts} and the (maximal) collection $\{(U_\alpha, \phi_\alpha)\}$ is called an \emph{atlas}.	
 \end{definition}
 
-See \cref{fig:chart} for a visualization of \ref{it:manifold def overlap}, showing the map $\phi_\beta^{-1} \circ \phi_\alpha$ from $\phi_\alpha^{-1}(W) \subseteq \R^n$ to $\phi_\beta^{-1}(W) \subseteq \R^n$.
+See \Cref{fig:chart} for a visualization of \ref{it:manifold def overlap}, showing the map $\phi_\beta^{-1} \circ \phi_\alpha$ from $\phi_\alpha^{-1}(W) \subseteq \R^n$ to $\phi_\beta^{-1}(W) \subseteq \R^n$.
 
 \begin{figure}[htbp]
 	\centering
 		\includegraphics[height=3in]{chart}
 	\caption{Transition maps.}
-	\alttext{A hand-drawn diagram on a white background showing a piece of curved surface labeled $M$, with overlapping red and blue sets. The intersection is shaded green and labeled $W$. Below and to the left is a set of axes indicating the plane labeled $\R^n$ with a red set labeled $U_\alpha$ and a region inside shaded green and labeled $\phi_\alpha^{-1}(W)$. There is a red arrow labeled $\phi_\alpha$ pointing from the axes to the curved surface. Below the surface to the right is another set of axes, also labeled $\R^n$ with a blue set labeled $U_\beta$ and a green-shaded subset labeled $\phi_\beta^{-1}(W)$. There is a blue arrow labeled $\phi_\beta$ from the axes to the surface. Finally, between the two sets of axes is a black arrow pointing to the right (i.e., from the first set of axes to the second) labeled $\phi_\beta^{-01} \circ \phi_\alpha$.}
+	\alttext{A hand-drawn diagram on a white background showing a piece of curved surface labeled $M$, with overlapping red and blue sets. The intersection is shaded green and labeled $W$. Below and to the left is a set of axes indicating the plane labeled $\R^n$ with a red set labeled $U_\alpha$ and a region inside shaded green and labeled $\phi_\alpha^{-1}(W)$. There is a red arrow labeled $\phi_\alpha$ pointing from the axes to the curved surface. Below the surface to the right is another set of axes, also labeled $\R^n$ with a blue set labeled $U_\beta$ and a green-shaded subset labeled $\phi_\beta^{-1}(W)$. There is a blue arrow labeled $\phi_\beta$ from the axes to the surface. Finally, between the two sets of axes is a black arrow pointing to the right (i.e., from the first set of axes to the second) labeled $\phi_\beta^{-1} \circ \phi_\alpha$.}
 	\label{fig:chart}
 \end{figure}
 
@@ -40,7 +40,7 @@ See \cref{fig:chart} for a visualization of \ref{it:manifold def overlap}, showi
 	The maximal family containing $(\R^n, \operatorname{id})$ makes $\R^n$ into a smooth manifold.
 \end{example}
 
-Of course, most interesting manifolds are not $\R^n$, but the idea of \ref{it:manifold def cover} from \cref{def:manifold} is that you can cover any manifold by a bunch of little open sets (namely, the $\phi_\alpha(U_\alpha)$) that are essentially identical to open sets in $\R^n$ (namely, the $U_\alpha$),\footnote{In topological terms, $U_\alpha$ and $\phi_\alpha(U_\alpha)$ are homeomorphic.} so you can essentially do any local calculation in $\R^n$. It's also very important that the $n$ is always the same here: if $m \neq n$, we're not allowed to have some points with neighborhoods that look like $\R^m$ and some other points whose neighborhoods look like $\R^n$.
+Of course, most interesting manifolds are not $\R^n$, but the idea of \ref{it:manifold def cover} from \Cref{def:manifold} is that you can cover any manifold by a bunch of little open sets (namely, the $\phi_\alpha(U_\alpha)$) that are essentially identical to open sets in $\R^n$ (namely, the $U_\alpha$),\footnote{In topological terms, $U_\alpha$ and $\phi_\alpha(U_\alpha)$ are homeomorphic.} so you can essentially do any local calculation in $\R^n$. It's also very important that the $n$ is always the same here: if $m \neq n$, we're not allowed to have some points with neighborhoods that look like $\R^m$ and some other points whose neighborhoods look like $\R^n$.
 
 If the idea is to use the coordinate charts to transport calculations from the manifold to $\R^n$, then a thing you should be very worried about is that, if a point lies in two different charts, then there are two different ways to do this and they might not be compatible. This is the point of \ref{it:manifold def overlap}: whether you do your calculations in $U_\alpha$ or $U_\beta$, the two are related by a smooth map, so you can easily translate between the two calculations using the change-of-variables formula. Indeed, the usual English-language gloss of \ref{it:manifold def overlap} is that ``transition functions are smooth.''
 
@@ -66,7 +66,7 @@ However, it is certainly possible to have distinct maximal collections on the sa
 		\phi_S(\vec{x}) := \frac{1}{1+\|\vec{x}\|^2}\left(2x_1, \dots , 2x_n, 1-\|\vec{x}\|^2\right).
 	\]
 	
-	Then $\phi_N$ is the map that sends $\vec{x} \in \R^n$ to the point on the sphere which lies on the line segment connecting $(x_1,\dots , x_n, 0) \in \R^{n+1}$ to the north pole $(0, \dots , 0, 1) \in S^n \subset \R^{n+1}$; see \cref{fig:stereo}. 
+	Then $\phi_N$ is the map that sends $\vec{x} \in \R^n$ to the point on the sphere which lies on the line segment connecting $(x_1,\dots , x_n, 0) \in \R^{n+1}$ to the north pole $(0, \dots , 0, 1) \in S^n \subset \R^{n+1}$; see \Cref{fig:stereo}. 
 	
 	\begin{figure}[htbp]
 		\centering
@@ -76,7 +76,7 @@ However, it is certainly possible to have distinct maximal collections on the sa
 		\label{fig:stereo}
 	\end{figure}
 
-To prove the claim, we need to show that \ref{it:manifold def cover} and \ref{it:manifold def overlap} from \cref{def:manifold} are satisfied (\ref{it:manifold def maximal} is automatically satisfied, since we're taking the maximal family containing $\{(\R^n, \phi_N), (\R^n, \phi_S)\}$). 
+To prove the claim, we need to show that \ref{it:manifold def cover} and \ref{it:manifold def overlap} from \Cref{def:manifold} are satisfied (\ref{it:manifold def maximal} is automatically satisfied, since we're taking the maximal family containing $\{(\R^n, \phi_N), (\R^n, \phi_S)\}$). 
 
 If we let $N = (0,\dots , 0, 1)$ be the north pole and $S = (0,\dots , 0, -1)$ the south pole, then $\phi_N(\R^n) = S^n \backslash\{N\}$ and $\phi_S(\R^n) = S^n \backslash\{S\}$ and the union is all of $S^n$, so \ref{it:manifold def cover} is satisfied.
 
@@ -108,7 +108,7 @@ As already mentioned, the point of manifolds is that they are spaces in which we
 	\[
 		\psi^{-1} \circ f \circ \phi\from U \subseteq \R^m \to \R^n
 	\]
-	is differentiable at $\phi^{-1}(p)$ (see \cref{fig:differentiable}). The map $f$ is differentiable on an open set in $M$ if it is differentiable at every point in that set.
+	is differentiable at $\phi^{-1}(p)$ (see \Cref{fig:differentiable}). The map $f$ is differentiable on an open set in $M$ if it is differentiable at every point in that set.
 \end{definition}
 
 \begin{figure}[htbp]

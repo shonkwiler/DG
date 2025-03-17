@@ -18,7 +18,7 @@ In other words, we want to integrate $X$ to get a curve $\alpha: (-\epsilon, \ep
 \[
 	\lim_{t\to 0} \frac{Y(\alpha(t))-Y(\alpha(0))}{t}.
 \]
-See \cref{fig:lie-derivative}.
+See \Cref{fig:lie-derivative}.
 
 \begin{figure}[htbp]
 	\centering
@@ -34,7 +34,7 @@ In other words, we look at the rate of change of $Y$ as we flow in the direction
 \end{definition}
 
 \begin{proposition}\label{prop:local flow}
-	Let $X \in \mathfrak{X}(M)$ and let $p \in M$. Then there exists a neighborhood $U$ of $p$, a $\delta > 0$, and a smooth map $\Phi\from (-\delta, \delta) \times U \to M$ so that, for each $q \in U$, the map $t \mapsto \Phi(t,q)$ is the unique smooth curve satisfying the ODE $\frac{\partial \Phi}{\partial t} = X(\Phi(t,q))$ with initial condition $\Phi(0,q) = q$. See \cref{fig:local-flow}.
+	Let $X \in \mathfrak{X}(M)$ and let $p \in M$. Then there exists a neighborhood $U$ of $p$, a $\delta > 0$, and a smooth map $\Phi\from (-\delta, \delta) \times U \to M$ so that, for each $q \in U$, the map $t \mapsto \Phi(t,q)$ is the unique smooth curve satisfying the ODE $\frac{\partial \Phi}{\partial t} = X(\Phi(t,q))$ with initial condition $\Phi(0,q) = q$. See \Cref{fig:local-flow}.
 \end{proposition}
 
 \begin{figure}[htbp]
@@ -51,7 +51,7 @@ In other words, we look at the rate of change of $Y$ as we flow in the direction
 We often use the notation $\Phi_t(q):=\Phi(t,q)$ and call $\Phi_t$ the \emph{local flow} of $X$.
 
 \begin{example} 
-	Let $M = S^2$ and consider the vector field $X(x,y,z) = zx \frac{\partial}{\partial x} + zy \frac{\partial}{\partial y} +\left(z^2-1\right) \frac{\partial}{\partial z}$ (of course, this is written in extrinsic $\R^3$ coordinates rather than intrinsic coordinates). See \cref{fig:flowfield}.
+	Let $M = S^2$ and consider the vector field $X(x,y,z) = zx \frac{\partial}{\partial x} + zy \frac{\partial}{\partial y} +\left(z^2-1\right) \frac{\partial}{\partial z}$ (of course, this is written in extrinsic $\R^3$ coordinates rather than intrinsic coordinates). See \Cref{fig:flowfield}.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -66,7 +66,7 @@ We often use the notation $\Phi_t(q):=\Phi(t,q)$ and call $\Phi_t$ the \emph{loc
 	\[
 		\Phi_t(x,y,z) = \frac{1}{1+2e^{2t} + \left(1-e^{2t}\right)z}\left(2e^t x, 2e^t y, 1-e^{2t} + \left(1+e^{2t}\right)z\right).
 	\]
-	See \cref{fig:conformalflow}.
+	See \Cref{fig:conformalflow}.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -106,7 +106,7 @@ This is a lot of obnoxious notation, but let's try to unpack it. First of all, n
 \[
 	(d\Phi_{-t})_{\Phi_t(p)}\from T_{\Phi_t(p)}M \to T_p M.
 \]
-Hence, plugging in $Y(\Phi_t(p))$ gives $(d\Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p)) \in T_pM$, and the difference quotient and the limit make sense as happening entirely in $T_pM$. A (somewhat messy) picture is shown in \cref{fig:lie-derivative2}.
+Hence, plugging in $Y(\Phi_t(p))$ gives $(d\Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p)) \in T_pM$, and the difference quotient and the limit make sense as happening entirely in $T_pM$. A (somewhat messy) picture is shown in \Cref{fig:lie-derivative2}.
 
 \begin{figure}[htbp]
 	\centering
@@ -115,7 +115,7 @@ Hence, plugging in $Y(\Phi_t(p))$ gives $(d\Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p)) \i
 	\label{fig:lie-derivative2}
 \end{figure}
 
-In looking at \cref{fig:lie-derivative2}, recall that the point was that we wanted to see how $Y$ varied as we moved in the direction of $X$. So at a point $p \in M$, we follow the local flow of $X$ for a small time $t$. $Y$ determines a tangent vector at the resulting point $\Phi_t(p)$. Now we push this vector $Y(\Phi_t(p))$ to $T_pM$ by the negative local flow of $X$ and compare to $Y(p)$.
+In looking at \Cref{fig:lie-derivative2}, recall that the point was that we wanted to see how $Y$ varied as we moved in the direction of $X$. So at a point $p \in M$, we follow the local flow of $X$ for a small time $t$. $Y$ determines a tangent vector at the resulting point $\Phi_t(p)$. Now we push this vector $Y(\Phi_t(p))$ to $T_pM$ by the negative local flow of $X$ and compare to $Y(p)$.
 
 You can imagine that if $Y$ had a constant magnitude and made a constant angle with $X$, then pushing $Y$ forward by the negative local flow (which is exactly $(d\Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p))$) would just give you the same vector you started with, namely $Y(p)$. But this makes sense: if $Y$ has a constant magnitude and makes a constant angle with $X$, then it's not changing at all with respect to $X$, and this derivative should really be 0.\footnote{You should take this paragraph figuratively and not literally: we don't have any notion of magnitude or angle for tangent vectors, because we don't yet have inner products on the tangent spaces. That will come when we start talking about Riemannian metrics!}
 
@@ -134,7 +134,7 @@ Notice, in particular, that this shows that the Lie derivative is antisymmetric:
 \]
 by the antisymmetry of the Lie bracket, which you might not have guessed from the definition of the Lie derivative.
 
-\begin{proof}[Proof of \cref{prop:Lie bracket = Lie derivative}]
+\begin{proof}[Proof of \Cref{prop:Lie bracket = Lie derivative}]
 	Both expressions are tangent vectors at $p$, so formally they're differential operators evaluated on functions that are differentiable in a neighborhood of $p$. So we'll choose a test function $f$ which is differentiable in a neighborhood of $p$, and the goal is to show that
 	\[
 		\lim_{t \to 0} \frac{(d\Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p))-Y(p)}{t}(f)(p) = ((XY-YX)f)(p).
@@ -143,7 +143,7 @@ by the antisymmetry of the Lie bracket, which you might not have guessed from th
 	\[
 		\left((d\Phi_{-t})_{\Phi_t(p)}Y)f\right)(p) = (df_p)(((d\Phi_{-t})_{\Phi_t(p)}Y)(p)) = (d(f \circ \Phi_{-t})_{\Phi_t(p)}Y(\Phi_t(p))) = (Y(f\circ \Phi_{-t}))(\Phi_t(p)),
 	\]
-	where we used \cref{lem:vector fields and differentials} for the first and last equalities\footnote{Note: I added this lemma after the initial draft, so it was not there when you previously read that section.} and the chain rule for the middle equality. Therefore,
+	where we used \Cref{lem:vector fields and differentials} for the first and last equalities\footnote{Note: I added this lemma after the initial draft, so it was not there when you previously read that section.} and the chain rule for the middle equality. Therefore,
 	\[
 		(\mathcal{L}_XY)(p) = \lim_{t \to 0} \frac{(Y(f \circ \Phi_{-t}))(\Phi_t(p))-(Yf)(p)}{t}.
 	\]

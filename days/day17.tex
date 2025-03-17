@@ -11,7 +11,7 @@ Indeed, given an $n$-manifold $M$ and any $\omega \in \Omega^n(M)$, we get a (si
 \]
 When $\omega $ is a volume form (meaning it is nowhere-vanishing), then $m(A)$ will have the same sign for all open $A$, and if the sign is positive then $m$ will satisfy the axioms of a measure on the $\sigma$-algebra of Borel sets on $M$; that is, it is a Borel measure. Moreover, if $M$ is compact then $\int_M \omega$ is finite, so $m$ can be normalized to give a probability measure. Indeed, starting with a volume form is by far the most common way of defining probability measures on (orientable) manifolds.
 
-However, this is not so useful for the integrals mentioned in \cref{sec:de Rham} that show up in de Rham cohomology. After all, if $N$ is a $k$-dimensional submanifold of the $n$-dimensional manifold $M$  with $k < n$ and $\omega \in \Omega^n(M)$, then $\int_N \omega = 0$.\footnote{As written, this doesn't quite make sense given our definitions, but one way to formalize it would be to realize $N$ as the intersection of a decreasing nested sequence of open sets and then taking the limit of the integral of $\omega$ over those open sets. The measures of these sets will go to zero.}
+However, this is not so useful for the integrals mentioned in \Cref{sec:de Rham} that show up in de Rham cohomology. After all, if $N$ is a $k$-dimensional submanifold of the $n$-dimensional manifold $M$  with $k < n$ and $\omega \in \Omega^n(M)$, then $\int_N \omega = 0$.\footnote{As written, this doesn't quite make sense given our definitions, but one way to formalize it would be to realize $N$ as the intersection of a decreasing nested sequence of open sets and then taking the limit of the integral of $\omega$ over those open sets. The measures of these sets will go to zero.}
 
 Rather, for de Rham cohomology purposes, we need a way of defining $\int_N \eta$ where $\eta \in \Omega^k(M)$. Intuitively, we want to ``restrict'' $\eta$ to $N$ here, but trying to write this intuition out directly leads to something quite complicated. But this is a place where all our effort in defining things in such a relatively abstract way pays off by giving us a simple and natural (though seemingly slightly indirect) way of defining our integral:
 
@@ -22,7 +22,7 @@ Rather, for de Rham cohomology purposes, we need a way of defining $\int_N \eta$
 	\]
 \end{definition}
 
-The point here is that $i^\ast \eta \in \Omega^k(N)$, and \cref{def:integration} applies.
+The point here is that $i^\ast \eta \in \Omega^k(N)$, and \Cref{def:integration} applies.
 
 \begin{example}\label{ex:surface integral}
 	Let $M = \R^3$ and let $S$ be a surface which is the graph of a function; i.e.,
@@ -56,7 +56,7 @@ The point here is that $i^\ast \eta \in \Omega^k(N)$, and \cref{def:integration}
 		\int_S \omega = \int_{\R^2} h^\ast \omega = \int_{\R^2} \left( -\frac{\partial g}{\partial u}f_1 -\frac{\partial g}{\partial v}f_2 + f_3\right) du \wedge dv.
 	\end{equation}
 	
-	Now, I claim this is a standard formula from vector calculus. To see this, let $\vec{F} = (f_1, f_2, f_3)$ be the vector field corresponding to $\omega$ (in the notation from \cref{sec:vector calculus}, $\omega = \star F^\flat$) and let $\vec{n} = \left( -\frac{\partial g}{\partial u}, -\frac{\partial g}{\partial v}, 1\right)$. Notice that, at $p = (u,v,g(u,v)) \in S$, the tangent space $T_pS$ is spanned by
+	Now, I claim this is a standard formula from vector calculus. To see this, let $\vec{F} = (f_1, f_2, f_3)$ be the vector field corresponding to $\omega$ (in the notation from \Cref{sec:vector calculus}, $\omega = \star F^\flat$) and let $\vec{n} = \left( -\frac{\partial g}{\partial u}, -\frac{\partial g}{\partial v}, 1\right)$. Notice that, at $p = (u,v,g(u,v)) \in S$, the tangent space $T_pS$ is spanned by
 	\[
 		\left. \frac{d}{dt} \right|_{t=0} h(t,0) = \left. \frac{d}{dt} \right|_{t=0} (t,0,g(t,0)) = \left( 1, 0 , \frac{\partial g}{\partial u} \right)
 	\]
@@ -82,11 +82,11 @@ The point here is that $i^\ast \eta \in \Omega^k(N)$, and \cref{def:integration}
 \end{example}
 
 \begin{example}
-	Recall the form $\omega = \frac{x \, dy - y \, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ defined in \cref{ex:closed not exact} and also considered in \cref{ex:closed not exact 2}. Let $f \from S^1 \to \R^2 -\{0\}$ defined by $f(\theta) = (\cos \theta , \sin \theta)$ be the standard parametrization of the unit circle. Then
+	Recall the form $\omega = \frac{x \, dy - y \, dx}{x^2 + y^2} \in \Omega^1(\R^2 -\{0\})$ defined in \Cref{ex:closed not exact} and also considered in \Cref{ex:closed not exact 2}. Let $f \from S^1 \to \R^2 -\{0\}$ defined by $f(\theta) = (\cos \theta , \sin \theta)$ be the standard parametrization of the unit circle. Then
 	\[
 		\int_{S^1} \omega = \int_{S^1} f^\ast \omega.
 	\]
-	We saw in \cref{ex:unit circle pullback dx} that $f^\ast dx = -\sin\theta\, d\theta$ and a similar computation shows that $f^\ast dy = \cos \theta\, d\theta$. Since
+	We saw in \Cref{ex:unit circle pullback dx} that $f^\ast dx = -\sin\theta\, d\theta$ and a similar computation shows that $f^\ast dy = \cos \theta\, d\theta$. Since
 	\[
 		\omega_{f(\theta_0)} = \frac{\cos(\theta_0) \, dy - \sin(\theta_0) \, dx}{\cos^2 \theta_0 + \sin^2\theta_0} = \cos(\theta_0) \, dy - \sin(\theta_0) \, dx,
 	\]
@@ -128,13 +128,13 @@ As for the second equality we need to show that the pairing $I$ is well, defined
 \[
 	\int_{C_2} \omega - \int_{C_1}\omega = \int_{C_2-C_1} \omega = \int_E d \omega = \int_E 0 = 0
 \]
-by \cref{thm:stokes}. 
+by \Cref{thm:stokes}. 
 
-In other words, Stokes' Theorem is the key to showing that the pairing $I$ is well-defined. Of course, to really properly prove \cref{thm:de Rham} we would also need to argue that every homology clas can be represented by a submanifold (or at least a finite union of submanifolds), which we're not going to bother with.
+In other words, Stokes' Theorem is the key to showing that the pairing $I$ is well-defined. Of course, to really properly prove \Cref{thm:de Rham} we would also need to argue that every homology clas can be represented by a submanifold (or at least a finite union of submanifolds), which we're not going to bother with.
 
-To give a complete proof of \cref{thm:stokes}, we would need to deveop the theory of manifolds with boundary. However, since we won't really be using that theory for anything else, I don't think it's worth the effort. Instead, I'll just give the part of the proof that doesn't interact with the boundary. See Guillemin and Pollack~\cite{guilleminDifferentialTopology2010} for details on manifolds with boundary and a complete proof of Stokes' Theorem.
+To give a complete proof of \Cref{thm:stokes}, we would need to deveop the theory of manifolds with boundary. However, since we won't really be using that theory for anything else, I don't think it's worth the effort. Instead, I'll just give the part of the proof that doesn't interact with the boundary. See Guillemin and Pollack~\cite{guilleminDifferentialTopology2010} for details on manifolds with boundary and a complete proof of Stokes' Theorem.
 
-\begin{proof}[{First part of proof of \cref{thm:stokes}}]
+\begin{proof}[{First part of proof of \Cref{thm:stokes}}]
 	Notice, first of all, that by linearity of the integral we can assume $\omega$ has compact support contained in the image of some local coordinate charte $(\phi,U)$, so that $\int_M d\omega = \int_U \phi^\ast d\omega = \int_U d\phi^\ast \omega$. If we assume $\phi(U) \cap \partial M = \emptyset$, then $\int_{\partial M} \omega = 0$, so the goal is to show that $\int_U d\phi^\ast \omega = 0$.
 	
 	We know that $\phi^\ast \omega \in \Omega^{n-1}(U) \subset \Omega^{n-1}(\R^n)$, so we can write
@@ -168,23 +168,23 @@ To give a complete proof of \cref{thm:stokes}, we would need to deveop the theor
 	as desired.
 \end{proof}
 
-To give the rest of the proof of \cref{thm:stokes}, one needs to deal with the case $\phi(U) \cap \partial M \neq \emptyset$. Again, see Guillemin and Pollack~\cite{guilleminDifferentialTopology2010} if you're interested.
+To give the rest of the proof of \Cref{thm:stokes}, one needs to deal with the case $\phi(U) \cap \partial M \neq \emptyset$. Again, see Guillemin and Pollack~\cite{guilleminDifferentialTopology2010} if you're interested.
 
 \begin{example}
-	Suppose $S$ is a smooth surface in $\R^3$ with connected boundary $\partial S = \Gamma$, which is parametrized by $\gamma \from S^1 \to \R^3$. Let $\omega \in \Omega^1(\R^3)$. Then \cref{thm:stokes} tells us that
+	Suppose $S$ is a smooth surface in $\R^3$ with connected boundary $\partial S = \Gamma$, which is parametrized by $\gamma \from S^1 \to \R^3$. Let $\omega \in \Omega^1(\R^3)$. Then \Cref{thm:stokes} tells us that
 	\begin{equation}\label{eq:surface stokes}
 		\int_S d\omega = \int_\Gamma \omega.
 	\end{equation}
 	
 	Let's translate this into vector calculus language. Let $\vec{F} \in \mathfrak{X}(\R^3)$ be the vector field corresponding to $\omega$. That is, if $\omega = f \, dx + g \, dy + h\, dz$, then $\vec{F} = f\,\frac{\partial}{\partial x} + g\, \frac{\partial}{\partial y} + h \, \frac{\partial}{\partial z}$. 
 	
-	Following \cref{ex:line integral},
+	Following \Cref{ex:line integral},
 	\[
 		\int_\Gamma \omega = \int_{S^1} \gamma^\ast \omega = \int_{S^1} \vec{F} \cdot \gamma'(t)\, dt
 	\]
 	which we often write as $\oint_\Gamma \vec{F} \cdot d\Gamma$.
 	
-	To translate the left-hand side of \eqref{eq:surface stokes}, recall that we saw in \cref{sec:vector calculus} that the vector field corresponding to $d \omega$ is $\nabla \times \vec{F}$. Then, following \cref{ex:surface integral} we have
+	To translate the left-hand side of \eqref{eq:surface stokes}, recall that we saw in \Cref{sec:vector calculus} that the vector field corresponding to $d \omega$ is $\nabla \times \vec{F}$. Then, following \Cref{ex:surface integral} we have
 	\[
 		\int_S d\omega = \int_{\R^2} \left((\nabla \times \vec{F}) \cdot u\right) dA,
 	\]

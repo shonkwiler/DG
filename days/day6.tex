@@ -18,7 +18,7 @@ Since we know how to compare tangent spaces in Euclidean space (by parallel tran
 
 This requires some unpacking, especially since there's at least one term in this definition which has not been defined yet.
 
-First, recall (\cref{thm:tangent bundles are manifolds}) that $TM$ is a smooth manifold, so it makes sense to talk about smoothness of a map $X\from M \to TM$. So the first part of \cref{def:vector field} is that a vector field is such a smooth map.
+First, recall (\Cref{thm:tangent bundles are manifolds}) that $TM$ is a smooth manifold, so it makes sense to talk about smoothness of a map $X\from M \to TM$. So the first part of \Cref{def:vector field} is that a vector field is such a smooth map.
 
 This makes sense: such a map takes as input a point in the manifold and outputs a tangent vector. But it would be nonsensical to output a tangent vector at $q$ if the input is $p$: the word ``section'' is how we rule this out.
 
@@ -79,7 +79,7 @@ So when we say that $X$ is a smooth section of the tangent bundle, we mean that 
 	\end{lemma}
 	
 	\begin{exercise}
-		Prove \cref{lem:differential of left multiplication}. The key observation here is that matrix multiplication is linear.
+		Prove \Cref{lem:differential of left multiplication}. The key observation here is that matrix multiplication is linear.
 	\end{exercise}
 	
 	Since $(d L_U)_I \from T_I \U(d) \to T_U \U(d)$ is full rank, it's surjective, so $T_U \U(d)$ consists of matrices of the form $U \Delta$ where $\Delta$ is skew-Hermitian.
@@ -103,7 +103,7 @@ So when we say that $X$ is a smooth section of the tangent bundle, we mean that 
 
 \begin{remark}
 	\begin{enumerate}
-		\item There was nothing special about $\U(d)$ in \cref{ex:left invariant vector field}: we could have used any group $G$ which was a manifold (such groups are called \emph{Lie groups}; more on them later!) and gotten the same correspondence between the tangent space at the identity and left-invariant vector fields. This is important because these are the two standard ways differential geometers think about \emph{Lie algebras}, and this construction shows that they are equivalent.
+		\item There was nothing special about $\U(d)$ in \Cref{ex:left invariant vector field}: we could have used any group $G$ which was a manifold (such groups are called \emph{Lie groups}; more on them later!) and gotten the same correspondence between the tangent space at the identity and left-invariant vector fields. This is important because these are the two standard ways differential geometers think about \emph{Lie algebras}, and this construction shows that they are equivalent.
 		
 		\item More generally, the fact that $T_U \U(d)$ consists of matrices of the form $U \Delta$ where $\Delta$ is skew-Hermitian means that \emph{every} vector field $X \in \mathfrak{X}(\U(d))$ can be written as
 		\[
@@ -161,7 +161,7 @@ and by expanding the product of power series one can show that
 	\[
 		U = \exp(H).
 	\]
-	This follows from the more general fact about exponentiating matrix conjugates stated below in \cref{lem:exponentiating conjugates}.
+	This follows from the more general fact about exponentiating matrix conjugates stated below in \Cref{lem:exponentiating conjugates}.
 
 	Just to verify, let's check this on a random example. Here's a random element of $\U(3)$ (generated in \emph{Mathematica} with {\tt RandomVariate[CircularUnitaryMatrixDistribution[3]]}):
 	\[

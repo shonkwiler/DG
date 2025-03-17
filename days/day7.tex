@@ -1,6 +1,7 @@
 % !TEX root = ../dg.tex
 
 \section{The Lie Bracket on Vector Fields}
+\label{sec:Lie bracket of vector fields}
 
 As we've defined it, $\mathfrak{X}(M)$ is a $C^\infty(M)$-module:\footnote{If you haven't seen modules before, they're basically like vector fields where the ring of scalars isn't necessarily a field. In the case of $\mathfrak{X}(M)$, the smooth functions $C^\infty(M)$ serve as the scalars, but $C^\infty(M)$ is only a ring, not a field: only nowhere-vanishing functions have well-defined inverses.}  we can certainly add two vector fields or multiply a vector field by a smooth function and get a new vector field.
 
@@ -93,7 +94,7 @@ which \emph{is} written in terms of the $\left\{ \frac{\partial}{\partial x_1}, 
 	\]
 \end{definition}
 
-The key feature of this operation is that it satisfies the axioms of a Lie bracket (\ref{it:Lie bracket anticommutativity}--\ref{it:Lie bracket Jacobi identity} in \cref{prop:Lie bracket}), and hence makes $\mathfrak{X}(M)$ into a \emph{Lie algebra}.
+The key feature of this operation is that it satisfies the axioms of a Lie bracket (\ref{it:Lie bracket anticommutativity}--\ref{it:Lie bracket Jacobi identity} in \Cref{prop:Lie bracket}), and hence makes $\mathfrak{X}(M)$ into a \emph{Lie algebra}.
 
 \begin{proposition}\label{prop:Lie bracket}
 	If $X,Y,Z \in \mathfrak{X}(M)$ and $a,b \in \R$, $f, g \in C^\infty(M)$, then
@@ -110,7 +111,7 @@ The key feature of this operation is that it satisfies the axioms of a Lie brack
 \end{proof}
 
 \begin{example}
-	Continuing with \cref{ex:radial and rotational fields}, we already computed $XY$, so we can also compute 
+	Continuing with \Cref{ex:radial and rotational fields}, we already computed $XY$, so we can also compute 
 	\[
 		YX = r \frac{\partial}{\partial \theta} \left( r \frac{\partial}{\partial r}\right) = r^2 \frac{\partial^2}{\partial \theta \partial r},
 	\]
@@ -121,7 +122,7 @@ The key feature of this operation is that it satisfies the axioms of a Lie brack
 \end{example}
 
 \begin{example}
-	Consider $M = S^2$ and the vector fields $X = \frac{\partial}{\partial \theta}$ and $Y = \frac{\partial}{\partial z}$ where $(\theta,z)$ are cylindrical coordinates on $S^2$; see \cref{fig:dtheta and dz}. 
+	Consider $M = S^2$ and the vector fields $X = \frac{\partial}{\partial \theta}$ and $Y = \frac{\partial}{\partial z}$ where $(\theta,z)$ are cylindrical coordinates on $S^2$; see \Cref{fig:dtheta and dz}. 
 	
 	\begin{figure}[htbp]
 		\centering
@@ -159,7 +160,7 @@ The key feature of this operation is that it satisfies the axioms of a Lie brack
 
 Now we look at some examples of Lie algebras not coming from vector fields.
 
-\begin{example}
+\begin{example}\label{ex:R^3 Lie algebra}
 	$\R^3$ forms a Lie algebra with the bracket operation given by the cross product: for $u,v \in \R^3$, define $[u,v] := u \times v$. Then it is straightforward to check that this bracket satisfies \ref{it:Lie bracket anticommutativity}--\ref{it:Lie bracket Jacobi identity} above. Written in terms of cross products, \ref{it:Lie bracket Jacobi identity} says
 	\[
 		0 = (u \times v) \times w + (v \times w) \times u + (w \times u) \times v = (u \times v) \times w - u \times (v \times w) + v \times (u \times w),
@@ -176,10 +177,10 @@ More generally, the Jacobi identity records the failure of associativity of the 
 	[[X,Y],Z] = [X,[Y,Z]] - [Y,[X,Z]].
 \]
 
-\begin{example}
-	Recall \cref{ex:left invariant vector field}, in which we showed that left-invariant vector fields on $\U(d)$ are of the form $X(U) = U \Delta_X$, for $\Delta_X \in T_I\U(d)$, which is the collection of skew-Hermitian $d \times d$ matrices. In particular, $X(I) = \Delta_X$.
+\begin{example}\label{ex:Lie algebra U(d)}
+	Recall \Cref{ex:left invariant vector field}, in which we showed that left-invariant vector fields on $\U(d)$ are of the form $X(U) = U \Delta_X$, for $\Delta_X \in T_I\U(d)$, which is the collection of skew-Hermitian $d \times d$ matrices. In particular, $X(I) = \Delta_X$.
 	
-	As we will see in more detail later, it will turn out that the Lie bracket on left-invariant vector fields on a matrix group like $\U(d)$ just corresponds to the matrix commutator operation in the tangent space to the identity. 
+	As we will see in more detail later (\Cref{prop:matrix group commutator}), it will turn out that the Lie bracket on left-invariant vector fields on a matrix group like $\U(d)$ just corresponds to the matrix commutator operation in the tangent space to the identity. 
 	
 	In this case, that means that, if $X,Y \in \mathfrak{X}(U(d))$ are left-invariant, then $[X,Y]$ is also left-invariant and, for each $U \in \U(d)$,
 	\[
@@ -194,7 +195,7 @@ More generally, the Jacobi identity records the failure of associativity of the 
 	This all tells you that the correspondence between left-invariant vector fields and elements of $T_I\U(d)$ turns the Lie bracket of left-invariant vector fields into the matrix commutator in $T_I \U(d)$. These are two different realizations of the same Lie algebra, usually called $\mathfrak{u}(d)$.
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:so3 Lie algebra}
 	If we play the same game with $\SO(d)$, it turns out that the tangent space to the identity consists of $d \times d$ skew-symmetric matrices, and the Lie algebra on left-invariant vector fields on $\SO(d)$ corresponds to the matrix commutator on skew-symmetric matrices; we'll write the collection of skew-symmetric $d \times d$ matrices as $\mathfrak{so}(d)$.
 	
 	Consider the case $d = 3$. Then we can write elements of $\mathfrak{so}(3)$ as 

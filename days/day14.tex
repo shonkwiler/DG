@@ -2,7 +2,7 @@
 
 \section{The Exterior Derivative}
 
-We've already seen some calculations of the exterior derivative in local coordinates in \cref{sec:vector calculus}, but to give a coordinate-free definition of the exterior derivative we need to talk about derivations.
+We've already seen some calculations of the exterior derivative in local coordinates in \Cref{sec:vector calculus}, but to give a coordinate-free definition of the exterior derivative we need to talk about derivations.
 
 \begin{definition}\label{def:derivation}
 	If $V$ is a vector space, an endomorphism $D\from \ext{}(V) \to \ext{}(V)$ of the exterior algebra is
@@ -59,10 +59,10 @@ since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condi
 \]
 
 \begin{exercise}
-	Go back to \cref{sec:vector calculus} and verify the various exterior derivative calculations we did there.
+	Go back to \Cref{sec:vector calculus} and verify the various exterior derivative calculations we did there.
 \end{exercise}
 
-\begin{proof}[Proof of \cref{prop:exterior derivative existence and uniqueness}]
+\begin{proof}[Proof of \Cref{prop:exterior derivative existence and uniqueness}]
 	Define $d$ in local coordinates as in \eqref{eq:exterior derivative local coords}. Independence of the choice of coordinates will follow from uniqueness, so it remains to show:
 	\ifpdf
 		\begin{enumerate}[label=(\alph*)]
@@ -76,7 +76,7 @@ since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condi
 			\item [(a)\label{it:local anti-derivation}] This is an anti-derivation.
 			\item [(b)\label{it:local cocycle}] It satisfies the cocycle condition \ref{it:d^2=0}.
 			\item [(c)\label{it:local uniqueness}] Uniqueness.
-		\end{enumerate}
+		\end{description}
 	\fi
 	
 	\ifpdf\ref{it:local anti-derivation} \else (a) \fi and \ifpdf\ref{it:local cocycle} \else (b) \fi are both computations. Here's the computation for \ifpdf\ref{it:local cocycle}\else (b)\fi: If $\omega = \sum_I f_I\, dx_I$ in a neighborhood of $p \in M$, then 
@@ -139,7 +139,7 @@ However, if we start instead with $\eta \in \Omega^k(N)$, then, as above, at a p
 
 Notice, first of all, that this definition makes sense because $df_p\from T_pM \to T_{f(p)}N$, so each $df_p v_i \in T_{f(p)}N$, and hence can be fed into $\eta_{f(p)}$. 
 
-In the paragraph before \cref{def:pullback} I said we could precompose $\eta$ with a map $\left(T_pM\right)^k \to \left(T_q N \right)^k$, but then didn't write down such a map. What's going on here? The differential $df_p \from T_p M \to T_{f(p)}N$ induces a map $\left(df_p\right)^k \from \left(T_p M\right)^k \to \left(T_{f(p)}N\right)^k$ by just applying $df_p$ separately in each factor. So then another way of stating \cref{def:pullback} is that 
+In the paragraph before \Cref{def:pullback} I said we could precompose $\eta$ with a map $\left(T_pM\right)^k \to \left(T_q N \right)^k$, but then didn't write down such a map. What's going on here? The differential $df_p \from T_p M \to T_{f(p)}N$ induces a map $\left(df_p\right)^k \from \left(T_p M\right)^k \to \left(T_{f(p)}N\right)^k$ by just applying $df_p$ separately in each factor. So then another way of stating \Cref{def:pullback} is that 
 \[ 
 	(f^\ast \eta)_p = \eta_{f(p)} \circ (df_p)^k.
 \]
@@ -161,11 +161,11 @@ In the paragraph before \cref{def:pullback} I said we could precompose $\eta$ wi
 	\[
 		(f^\ast dx)_{\theta_0}\left( a \frac{\partial}{\partial \theta}\right)
 	\]
-	for any $a \in \R$. By \cref{def:pullback},
+	for any $a \in \R$. By \Cref{def:pullback},
 	\[
 		(f^\ast dx)_{\theta_0}\left( a \frac{\partial}{\partial \theta}\right) = (dx)_{f(\theta_0)}\left(df_{\theta_0}\left( a \frac{\partial}{\partial \theta}\right)\right).
 	\]
-	So first we'll need to compute $df_{\theta_0}\left( a \frac{\partial}{\partial \theta}\right)$. We can write $a \frac{\partial}{\partial \theta} = \alpha'(0)$, where $\alpha(t) = \theta_0 + a t$, so \cref{def:differential} tells us that
+	So first we'll need to compute $df_{\theta_0}\left( a \frac{\partial}{\partial \theta}\right)$. We can write $a \frac{\partial}{\partial \theta} = \alpha'(0)$, where $\alpha(t) = \theta_0 + a t$, so \Cref{def:differential} tells us that
 	\begin{multline*}
 		df_{\theta_0}\left( a \frac{\partial}{\partial \theta}\right) = (f \circ \alpha)'(0) = \left. \frac{d}{dt} \right|_{t=0} f(\alpha(t)) = \left. \frac{d}{dt} \right|_{t=0} f(\theta_0 + at) = \left. \frac{d}{dt} \right|_{t=0} (\cos(\theta_0 + at), \sin(\theta_0 + at)) \\
 		= \left. (-a\sin(\theta_0 + at),a \cos(\theta_0 + at))\right|_{t=0} = (-a \sin(\theta_0), a \cos(\theta_0)) = -a \sin(\theta_0) \frac{\partial}{\partial x} + a \cos(\theta_0) \frac{\partial}{\partial y}
@@ -189,7 +189,7 @@ In the paragraph before \cref{def:pullback} I said we could precompose $\eta$ wi
 	\[
 		f^\ast dx = -y \, d\theta.
 	\]
-	Geometrically, this makes sense: at the point $(x,y) = (\cos \theta, \sin \theta)$ this form is dual to the tangent vector $-y \frac{\partial}{\partial \theta}$, which at each point is just the orthogonal projection of the first standard basis vector $\frac{\partial}{\partial x}$ onto the tangent space to the circle, and of course $\frac{\partial}{\partial x}$ is the tangent vector to $(x,y) \in \R^2$ dual to $dx$. See \cref{fig:pullback dx}.
+	Geometrically, this makes sense: at the point $(x,y) = (\cos \theta, \sin \theta)$ this form is dual to the tangent vector $-y \frac{\partial}{\partial \theta}$, which at each point is just the orthogonal projection of the first standard basis vector $\frac{\partial}{\partial x}$ onto the tangent space to the circle, and of course $\frac{\partial}{\partial x}$ is the tangent vector to $(x,y) \in \R^2$ dual to $dx$. See \Cref{fig:pullback dx}.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -212,7 +212,7 @@ One nice thing about pullbacks is that they commute with the exterior derivative
 Before proving this, let's see it in an example:
 
 \begin{example}
-	Continuing \cref{ex:1-form in R^3}, recall that $\omega = z \, dy + xy \, dz$ and we computed 
+	Continuing \Cref{ex:1-form in R^3}, recall that $\omega = z \, dy + xy \, dz$ and we computed 
 	\[
 		d\omega = y\, dx \wedge dz + (x-1) dy \wedge dz.
 	\]
@@ -251,15 +251,15 @@ Before proving this, let's see it in an example:
 	\[
 		f^\ast d\omega = (3u^3-u)du \wedge dv = d(f^\ast \omega),
 	\]
-	as predicted by \cref{prop:pullbacks commute with exterior derivative}.
+	as predicted by \Cref{prop:pullbacks commute with exterior derivative}.
 \end{example}
 
-\begin{proof}[Proof of \cref{prop:pullbacks commute with exterior derivative}]
+\begin{proof}[Proof of \Cref{prop:pullbacks commute with exterior derivative}]
 	 Let $p \in M$. If $\omega = g\in \Omega^0(N) = C^\infty(N)$, then $f^\ast g = g \circ f$, so $d(f^\ast g ) = d(g \circ f)$. On the other hand, for any $v \in T_pM$, 
 	 \[
 	 	(f^\ast dg)_pv = dg_{f(p)}(df_p v) = d(g \circ f)_p(v) = d(f^\ast g)_p(v),
 	 \]
-	 where we used \cref{def:pullback} for the first equality, the Chain Rule for the second, and \cref{ex:pullbacks of functions are compositions} for the third. This completes the proof in the $k=0$ case.
+	 where we used \Cref{def:pullback} for the first equality, the Chain Rule for the second, and \Cref{ex:pullbacks of functions are compositions} for the third. This completes the proof in the $k=0$ case.
 	 
 	 Now, suppose $k > 0$ and that $x_1, \dots , x_n$ are local coordinates in a neighborhood of $f(p) \in N$, meaning that $\omega \in \Omega^k(N)$ has the form $\omega_{f(p)} = \sum_I g_I dx_I$ at $f(p)$, so that
 	 \[

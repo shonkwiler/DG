@@ -28,7 +28,7 @@ In other words, given a differentiable map $f \from \R^m \to \R^n$ and a point $
 \end{lemma}
 
 \begin{exercise}
-	Prove \cref{lem:differential is well defined}.
+	Prove \Cref{lem:differential is well defined}.
 \end{exercise}
 
 In the special case that $f\from M \to \R$ is a smooth function, the differential of $f$ applied to a tangent vector $v$ is the same thing as computing the derivative of $f$ in the direction of $v$:
@@ -48,7 +48,7 @@ In the special case that $f\from M \to \R$ is a smooth function, the differentia
 	But this is exactly the definition of $df_p v$.
 \end{proof}
 
-Let's see what this means in local coordinates, which is how we'll actually compute in practice. Suppose $p \in M$ and $(V, \psi)$ is a local coordinate chart on $N$ containing $f(p)$. By \cref{def:differentiable}, there exists some compatible chart $(U, \phi)$ on $M$ containing $p$ so that $f(\phi(U)) \subseteq \psi(V)$. Then the curve $\alpha$ on $M$ (or, really, its restriction to $\phi(U)$) gives a corresponding curve
+Let's see what this means in local coordinates, which is how we'll actually compute in practice. Suppose $p \in M$ and $(V, \psi)$ is a local coordinate chart on $N$ containing $f(p)$. By \Cref{def:differentiable}, there exists some compatible chart $(U, \phi)$ on $M$ containing $p$ so that $f(\phi(U)) \subseteq \psi(V)$. Then the curve $\alpha$ on $M$ (or, really, its restriction to $\phi(U)$) gives a corresponding curve
 \[
 	(x_1(t), \dots , x_m(t)) = \phi^{-1} \circ \alpha(t)
 \]
@@ -56,7 +56,7 @@ in $U \subseteq \R^m$, and similarly the curve $\beta$ on $N$ has a correspondin
 \[
 	(y_1(t), \dots , y_n(t)) = \psi^{-1} \circ \beta(t).
 \]
-See \cref{fig:differential}.
+See \Cref{fig:differential}.
 
 \begin{figure}[htbp]
 	\centering
@@ -100,7 +100,7 @@ Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, 
 \end{definition}
 
 \begin{example}[Cliché Example]
-	Consider the function $f$ on the torus depicted in \cref{fig:morse-torus}. In words, $f$ is the height function on this upright torus that just records the $z$-coordinate. I've shown the critical values in red, as well as a couple of regular values in green. Also, back on the torus I've shown the inverse images of the critical and regular values, as well as some tangent vectors to regular points and their images under the differential (in blue and purple), to hopefully convince you the differential really is surjective at these points.
+	Consider the function $f$ on the torus depicted in \Cref{fig:morse-torus}. In words, $f$ is the height function on this upright torus that just records the $z$-coordinate. I've shown the critical values in red, as well as a couple of regular values in green. Also, back on the torus I've shown the inverse images of the critical and regular values, as well as some tangent vectors to regular points and their images under the differential (in blue and purple), to hopefully convince you the differential really is surjective at these points.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -124,7 +124,7 @@ Just as in multivariable calculus, when we have a smooth map $f \from M \to N$, 
 \end{remark}
 
 \begin{example}
-	Consider the function $f(x,y,z) = z^2$ on the sphere (see \cref{fig:sphere}). Again, I've shown critical values in red and orange and a regular value in green, and the corresponding level sets on the domain, as well as some tangent vectors to regular points and their images under the differential.
+	Consider the function $f(x,y,z) = z^2$ on the sphere (see \Cref{fig:sphere}). Again, I've shown critical values in red and orange and a regular value in green, and the corresponding level sets on the domain, as well as some tangent vectors to regular points and their images under the differential.
 	
 		\begin{figure}[htbp]
 			\centering

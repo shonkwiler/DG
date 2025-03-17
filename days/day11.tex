@@ -5,7 +5,7 @@
 
 Suppose we restrict to the case of a (Riemannian) 3-manifold; that is, a 3-dimensional manifold $M$ endowed with a Riemannian metric $g$ (again, a Riemannian metric is a [smooth] choice of inner product $g_p$ on each tangent space; if this makes you uncomfortable, just assume $M = \R^3$ and we just have the standard dot product on each tangent space). This section is a bit weird and definitely very informal: I'm using a bunch of stuff that I haven't actually defined yet. But the point is to try to say that concepts like \emph{differential forms} and \emph{exterior derivatives} that we will eventually define carefully are just generalizations of things you already understand very well.
 
-From \crefrange{ex:0-forms and functions}{ex:n-1 forms}, we know that
+From \Crefrange{ex:0-forms and functions}{ex:n-1 forms}, we know that
 \[
 	\Omega^0(M) = C^\infty(M) \cong \Omega^3(M), \qquad \Omega^1(M) \cong \mathfrak{X}(M) \cong \Omega^2(M), \qquad \text{and} \qquad \Omega^k(M) = \{0\} \text{ for } k > 3.
 \]
@@ -39,9 +39,9 @@ If we were able to arrange it so that the local coordinate basis $\left\{ \frac{
 \[
 	(\nabla f)_p^\flat(Y) = \sum_{i=1}^3 f_{x_i}(p) b_i(p) = \sum_{i=1}^3  b_i(p) \frac{\partial f}{\partial x_i}(p) = \left(\left(\sum_{i=1}^3  b_i \frac{\partial}{\partial x_i}\right)f\right)(p) = (Yf)(p) = df_p(Y)
 \]
-by \cref{lem:vector fields and differentials}. In other words, $(\nabla f)^\flat = df$.
+by \Cref{lem:vector fields and differentials}. In other words, $(\nabla f)^\flat = df$.
 
-Recall (\cref{ex:1-forms as covectors}) that at each point a 1-form corresponds to a cotangent vector, so the local coordinate basis $\left\{ \frac{\partial }{\partial x_1},\frac{\partial }{\partial x_2},\frac{\partial }{\partial x_3}\right\}$ induces a dual basis which we call $\{dx_1, dx_2, dx_3\}$ for $\left(T_pM\right)^\ast$ defined by 
+Recall (\Cref{ex:1-forms as covectors}) that at each point a 1-form corresponds to a cotangent vector, so the local coordinate basis $\left\{ \frac{\partial }{\partial x_1},\frac{\partial }{\partial x_2},\frac{\partial }{\partial x_3}\right\}$ induces a dual basis which we call $\{dx_1, dx_2, dx_3\}$ for $\left(T_pM\right)^\ast$ defined by 
 \[
 	dx_i\left(\frac{\partial}{\partial x_j}\right) = \delta_{ij}.
 \]
@@ -56,7 +56,7 @@ Turning to curl, recall that, if $X \in \mathfrak{X}(M)$ is written in local coo
 	\nabla \times X = \left(\frac{\partial a_3}{\partial x_2} - \frac{\partial a_2}{\partial x_3} \right)\frac{\partial }{\partial x_1} + \left( \frac{\partial a_1}{\partial x_3} - \frac{\partial a_3}{\partial x_1} \right) \frac{\partial }{\partial x_2} + \left( \frac{\partial a_2}{\partial x_1} - \frac{\partial a_1}{\partial x_2} \right) \frac{\partial }{\partial x_3}.
 \]
 
-As discussed in \cref{ex:n-1 forms}, this corresponds to an element of $\omega^{3-1}(M) = \Omega^2(M)$ given by
+As discussed in \Cref{ex:n-1 forms}, this corresponds to an element of $\omega^{3-1}(M) = \Omega^2(M)$ given by
 \[
 	\left(\frac{\partial a_3}{\partial x_2} - \frac{\partial a_2}{\partial x_3} \right)dx_2 \wedge dx_3 + \left( \frac{\partial a_1}{\partial x_3} - \frac{\partial a_3}{\partial x_1} \right) dx_3 \wedge dx_1 + \left( \frac{\partial a_2}{\partial x_1} - \frac{\partial a_1}{\partial x_2} \right) dx_1 \wedge dx_2.
 \]
@@ -78,7 +78,7 @@ Finally, if $X \in \mathfrak{X}(M)$ is written in local coordinates as $X = a_1 
 \[
 	\nabla \cdot X = \frac{\partial a_1}{\partial x_1} + \frac{\partial a_2}{\partial x_2} + \frac{\partial a_3}{\partial x_3},
 \]
-which is a function. But the isomorphism $C^\infty(M) \cong \Omega^3(M)$ described in \cref{ex:volume form} says that this function corresponds to some 3-form
+which is a function. But the isomorphism $C^\infty(M) \cong \Omega^3(M)$ described in \Cref{ex:volume form} says that this function corresponds to some 3-form
 \[
 	\left(\frac{\partial a_1}{\partial x_1} + \frac{\partial a_2}{\partial x_2} + \frac{\partial a_3}{\partial x_3}\right) \dVol_M = \left(\frac{\partial a_1}{\partial x_1} + \frac{\partial a_2}{\partial x_2} + \frac{\partial a_3}{\partial x_3}\right)dx_1 \wedge dx_2 \wedge dx_3
 \]

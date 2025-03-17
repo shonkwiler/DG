@@ -27,7 +27,7 @@ where $\ext{k}(V) = V_k^0/\mathcal{I}_k$, and $\mathcal{I}_k = \mathcal{I}(V) \c
 \end{proposition}
 
 \begin{exercise}
-	Prove \cref{prop:wedge product graded commutative}.
+	Prove \Cref{prop:wedge product graded commutative}.
 \end{exercise}
 
 \begin{corollary}\label{cor:wedge product alternating}
@@ -52,7 +52,7 @@ In particular, this says that we can always rearrange any wedge product to have 
 \end{proposition}
 
 \begin{exercise}
-	Prove \cref{prop:exterior power basis}.
+	Prove \Cref{prop:exterior power basis}.
 \end{exercise}
 
 This is exactly the finite-dimensionality described above. Even if we're just interested in alternating, bilinear maps $V \times V \to W$, $\dim \ext{2}(V) = \binom{n}{2}$ is less than half of $\dim V^{\otimes 2} = n^2$, so working with the exterior power rather than the tensor power means we're doing linear algebra in half the dimensions, which is almost always worthwhile computationally.
@@ -73,7 +73,7 @@ As you would expect, the exterior products satisfy a universal property analogou
 \begin{example}
 	Suppose $V = \R^n$, and suppose $F \from \R^n \to \R$ is alternating and multilinear. We know that this factors through a linear map $\ext{n}(\R^n) \to \R$; since $\dim \ext{n}\R^n = \binom{n}{n} = 1$, we know that $\ext{n}\R^n \cong \R$, and so (once we've chosen a basis for $\ext{n}\R^n$, which witnesses the isomorphism $\ext{n}\R^n \cong \R$), $\widetilde{F}$ has to be of the form $x \mapsto ax$ for some scalar $a$. We can already see that this is going to imply that $F$ is unique up to the choice of the scalar $a$.
 	
-	Let's work out what $\phi \from (\R^n)^n \to \ext{n}\R^n$ is. Let $e_1, \dots , e_n$ be the standard basis for $\R^n$, so that each $v_i = \sum_{j_i=1}^n a_{ij_i} e_{j_i}$. Then repeatedly applying \cref{cor:wedge product alternating} and the alternating property of the wedge product yields
+	Let's work out what $\phi \from (\R^n)^n \to \ext{n}\R^n$ is. Let $e_1, \dots , e_n$ be the standard basis for $\R^n$, so that each $v_i = \sum_{j_i=1}^n a_{ij_i} e_{j_i}$. Then repeatedly applying \Cref{cor:wedge product alternating} and the alternating property of the wedge product yields
 	\begin{align*}
 		\phi(v_1, \dots , v_n) & = \phi\left(\sum_{j_1=1}^n a_{1j_1}e_{j_1}, \dots , \sum_{j_n=1}^n a_{nj_n}e_{j_n}\right)  \\
 		& = \left(\sum_{j_1=1}^n a_{1j_1}e_{j_1}\right) \wedge \dots \wedge \left(\sum_{j_n=1}^n a_{nj_n} e_{j_n}\right) \\
@@ -89,10 +89,10 @@ As you would expect, the exterior products satisfy a universal property analogou
 	\[
 		F(v_1, \dots , v_n) = (\widetilde{F} \circ \phi)(v_1, \dots , v_n) = \widetilde{F}(\phi(v_1, \dots , v_n)) = \widetilde{F}(\det \begin{bmatrix} v_1 & \cdots & v_n \end{bmatrix} e_1 \wedge \dots \wedge e_n) = a \det \begin{bmatrix} v_1 & \cdots & v_n \end{bmatrix}
 	\]
-	for some $a \in \R$, which (re)proves \cref{thm:determinant}, which says that the determinant is, up to scale, the unique alternating multilinear map $(\R^n)^n \to \R$.
+	for some $a \in \R$, which (re)proves \Cref{thm:determinant}, which says that the determinant is, up to scale, the unique alternating multilinear map $(\R^n)^n \to \R$.
 \end{example}
 
-If we let $W = \R$ (or whatever the base field is) in \cref{thm:exterior product universal property}, then we see that alternating multilinear functionals on $V^k$ correspond precisely to linear functionals on $\ext{k}V$; that is, to elements of the dual space $\left(\ext{k}V\right)^\ast$. But of course this is essentially how we ``defined'' differential $k$-forms in \cref{def:informal differential form}: at each point a $k$-form should exactly be an alternating multilinear functional on the product of $k$ copies of the tangent space at that point.
+If we let $W = \R$ (or whatever the base field is) in \Cref{thm:exterior product universal property}, then we see that alternating multilinear functionals on $V^k$ correspond precisely to linear functionals on $\ext{k}V$; that is, to elements of the dual space $\left(\ext{k}V\right)^\ast$. But of course this is essentially how we ``defined'' differential $k$-forms in \Cref{def:informal differential form}: at each point a $k$-form should exactly be an alternating multilinear functional on the product of $k$ copies of the tangent space at that point.
 
 \begin{definition}\label{def:differential form}
 	The \emph{exterior $k$-bundle} on a manifold $M$ is
@@ -108,7 +108,7 @@ If we let $W = \R$ (or whatever the base field is) in \cref{thm:exterior product
 	A \emph{differential $k$-form} on $M$ is a smooth section of $\ext{k}(M)$; that is, a smooth map $\omega\from M \to \ext{k}(M)$ so that $\omega(p) \in \ext{k}\left(\left(T_pM\right)^\ast\right)$. The space of $k$-forms on $M$ is denoted $\Omega^k(M)$, and we let $\Omega^\ast(M) := \displaystyle \bigoplus_{k=0}^n \Omega^k(M)$, which is the algebra of differential forms on $M$.
 \end{definition}
 
-If you've been reading very closely, you might have noticed that I played fast and loose with parentheses and stars above. The discussion in the paragraph before \cref{def:differential form} suggests that, if $\omega$ is a $k$-form (that is, an alternating, multilinear map $\mathfrak{X}(M)^k \to C^\infty(M)$ according to our informal definition), then at a point $p \in M$ we should expect that $\omega(p) \in \left(\ext{k}\left(T_pM\right)\right)^\ast$. But I've just defined $\omega(p)$ as an element of $\ext{k}\left(\left(T_pM\right)^\ast \right)$! So what's going on?
+If you've been reading very closely, you might have noticed that I played fast and loose with parentheses and stars above. The discussion in the paragraph before \Cref{def:differential form} suggests that, if $\omega$ is a $k$-form (that is, an alternating, multilinear map $\mathfrak{X}(M)^k \to C^\infty(M)$ according to our informal definition), then at a point $p \in M$ we should expect that $\omega(p) \in \left(\ext{k}\left(T_pM\right)\right)^\ast$. But I've just defined $\omega(p)$ as an element of $\ext{k}\left(\left(T_pM\right)^\ast \right)$! So what's going on?
 
 First of all, $\ext{k}\left(\left(T_pM\right)^\ast \right)$ is (at least to me) conceptually nicer than $\left(\ext{k}\left(T_pM\right)\right)^\ast$: it's an exterior power itself, rather than being the dual of an exterior power, and so it obviously fits into an exterior algebra, namely $\ext{}\left(\left(T_pM\right)^\ast\right)$. So that's the reason for wanting to define exterior bundles in terms of $\ext{k}\left(\left(T_pM\right)^\ast\right)$ rather than $\left(\ext{k}\left(T_pM\right)\right)^\ast$.
 
@@ -142,9 +142,9 @@ If there is a nondegenerate pairing of $V$ and $W$, then it induces injective ma
 
 In finite dimensions, we know that $V \cong V^\ast$ and $W \cong W^\ast$, so the composition $V \overset{\phi}{\hookrightarrow} W^\ast \cong W \overset{\psi}{\hookrightarrow} V^\ast$ gives an injective (and therefore also surjective) map $V \to V^\ast$, which implies that $\phi$ and $\psi$ had to be bijective, and therefore isomorphisms. In particular, this implies that $V \cong W^\ast$ (and therefore also $W \cong V^\ast$ and indeed $V \cong W$).
 
-So the strategy for proving \cref{lem:exterior powers and duals} is to find a nondegenerate pairing of $\ext{k}(V^\ast)$ and $\ext{k}(V)$, which will imply the result.\footnote{At a more basic level, it's not hard to see that these vector spaces have the same dimension, and hence must be abstractly isomorphic, but it's helpful to make this isomorphism more concrete with the pairing.}
+So the strategy for proving \Cref{lem:exterior powers and duals} is to find a nondegenerate pairing of $\ext{k}(V^\ast)$ and $\ext{k}(V)$, which will imply the result.\footnote{At a more basic level, it's not hard to see that these vector spaces have the same dimension, and hence must be abstractly isomorphic, but it's helpful to make this isomorphism more concrete with the pairing.}
 
-\begin{proof}[Proof of \cref{lem:exterior powers and duals}]
+\begin{proof}[Proof of \Cref{lem:exterior powers and duals}]
 	To find the pairing $(\cdot , \cdot ) \from \ext{k}(V^\ast) \times \ext{k} (V) \to \R$, suppose first that $\alpha \in \ext{k}(V^\ast)$ and $b \in \ext{k}(V)$ are \emph{decomposable}, meaning that $\alpha = \alpha_1 \wedge \dots \wedge \alpha_k$ for $\alpha_1 , \dots , \alpha_k \in V^\ast$ and $b = b_1 \wedge \dots \wedge b_k$ for $b_1, \dots , b_k \in V$. Then define
 	\begin{equation}\label{eq:pairing}
 		(\alpha, b) := \det \left( \begin{bmatrix} \alpha_i(b_j) \end{bmatrix}_{i,j}\right).
@@ -164,14 +164,14 @@ Notice that this argument---and especially \eqref{eq:pairing}---really validates
 
 \Cref{def:differential form} is not the easiest thing to compute with, so let's try to understand what differential forms look like in local coordinates. Suppose $M$ is an $n$-manifold, $\omega \in \Omega^k(M)$ is a $k$-form, and $p \in M$. Let $(U,\phi)$ be a local coordinate chart in a neighborhood of $p$, and define the functions $x_i \from \phi(U) \to \R$ by $x_i(\phi(a_1, \dots , a_n)) = a_i$. In other words, the function $x_i$ reports the $i$th local coordinate of a point in this coordinate chart.
 
-Now, each function $x_i$ has a differential $dx_i$ which (as in \cref{ex:differentials as 1-forms}) is a 1-form on $\phi(U) \subset M$. In particular, at $p$ the differential $(dx_i)_p \from T_p M \to T_{x_i(p)}\R \cong \R$ is a linear functional on $T_pM$; that is, an element of the dual space $\left(T_pM\right)^\ast$.
+Now, each function $x_i$ has a differential $dx_i$ which (as in \Cref{ex:differentials as 1-forms}) is a 1-form on $\phi(U) \subset M$. In particular, at $p$ the differential $(dx_i)_p \from T_p M \to T_{x_i(p)}\R \cong \R$ is a linear functional on $T_pM$; that is, an element of the dual space $\left(T_pM\right)^\ast$.
 
-If $\left\{\frac{\partial}{\partial x_1}, \dots , \frac{\partial}{\partial x_n}\right\}$ is the local coordinate basis for $T_pM$ associated to our chart, I claim that $\{(dx_1)_p, \dots , (dx_n)_p\}$ gives the corresponding dual basis for $\left(T_pM\right)^\ast$: by \cref{lem:vector fields and differentials},
+If $\left\{\frac{\partial}{\partial x_1}, \dots , \frac{\partial}{\partial x_n}\right\}$ is the local coordinate basis for $T_pM$ associated to our chart, I claim that $\{(dx_1)_p, \dots , (dx_n)_p\}$ gives the corresponding dual basis for $\left(T_pM\right)^\ast$: by \Cref{lem:vector fields and differentials},
 \[
 	(dx_i)_p \left(\frac{\partial}{\partial x_j}\right) = \frac{\partial}{\partial x_j}(x_i) = \delta_{ij}.
 \]
 
-In what follows I'm going to drop the subscript $p$ and just say $\{dx_1, \dots, dx_n\}$ is a basis for $\left(T_pM\right)^\ast = \ext{1}\left(\left(T_pM\right)^\ast\right)$. More generally, as in \cref{prop:exterior power basis}, $\{dx_{i_1} \wedge \dots \wedge dx_{i_k}: 1 \leq i_1 < \dots < i_k \leq n\}$ gives a basis for $\ext{k}\left(\left(T_pM\right)^\ast \right)$, and hence at the point $p$ our $k$-form $\omega$ can be written as
+In what follows I'm going to drop the subscript $p$ and just say $\{dx_1, \dots, dx_n\}$ is a basis for $\left(T_pM\right)^\ast = \ext{1}\left(\left(T_pM\right)^\ast\right)$. More generally, as in \Cref{prop:exterior power basis}, $\{dx_{i_1} \wedge \dots \wedge dx_{i_k}: 1 \leq i_1 < \dots < i_k \leq n\}$ gives a basis for $\ext{k}\left(\left(T_pM\right)^\ast \right)$, and hence at the point $p$ our $k$-form $\omega$ can be written as
 \[
 	\omega_p = \sum_I a_I dx_I,
 \]
