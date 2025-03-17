@@ -1,0 +1,118 @@
+% !TEX root = ../dg.tex
+
+\section{Some Motivation from de Rham Cohomology}
+\label{sec:Lie group motivation}
+
+Recall that we have the de Rham cohomology group $\hdr^k(M)$, which tells us a lot about the topology of the manifold, but can in general be quite challenging to compute. After all, the $\Omega^k(M)$ are $C^\infty(M)$-modules, and hence infinite-dimensional as real vector spaces. If $M$ is, e.g., compact then $\hdr^k(M)$ will be a finite-dimensional real vector space, but it appears as the quotient of two infinite-dimensional vector spaces, so it can be somewhat challenging to compute.
+
+However, when the manifold has lots of symmetry, computing the de Rham cohomology groups can actually become a finite-dimensional problem. In this case, a reasonable interpretation of ``lots of symmetry'' is ``admits a transitive action of a Lie group,'' resulting in a class of manifolds called \emph{homogeneous spaces}. We haven't defined Lie groups yet (though we will shortly), but the idea is that it's a group which is also a manifold in a sensible way. At a more conceptual level, it's a just a continuous family of symmetries of the manifold, where here ``continuous'' means they form a continuum.
+
+The following statement says more precisely how de Rham cohomology becomes finite-dimensional in this setting, though don't worry too much about terms in the statement that we haven't defined yet.
+
+\begin{theorem}\label{thm:de Rham for homogeneous}
+	Let $M$ be a homogeneous space where the transitive action is by a compact, connected Lie group.  Then:
+	\begin{itemize}
+		\item Each closed $k$-form on $M$ is in the same de Rham cohomology class as a $G$-invariant closed $k$-form.
+		\item If a $G$-invariant closed $k$-form is exact, then it is also the exterior derivative of some $G$-invariant $(k-1)$-form.
+	\end{itemize}
+\end{theorem}
+
+\begin{corollary}\label{cor:invariant de Rham}
+	The cohomology of $G$-invariant forms on $M$ is isomorphic to its de Rham cohomology.
+\end{corollary}
+
+Since, as we will see, $G$-invariant forms are determined by their behavior at a single point, this means that the space of $G$-invariant forms will be finite-dimensional (it can't be bigger than $\ext{k} (T_pM)^\ast$), and hence computing de Rham cohomology becomes a finite-dimensional linear algebra problem.
+
+Of course, the simplest possible example of a homogeneous space is a manifold that is itself a group, which acts by itself by (e.g. left) multiplication.
+
+\begin{example}
+	$S^3$ is a group: it's just the unit quaternions, and hence it has agroup operation given by multiplication of quaternions. Moreover, the vector fields $X,Y,Z \in \mathfrak{X}(S^3)$ from \Cref{sec:S^3 example} given by
+	\[
+		X(p) = pi, \quad Y(p) = pj, \quad Z(p) = pk
+	\]
+	are invariant under left-multiplication, and hence the dual 1-forms $\alpha, \beta, \gamma \in \Omega^1(S^3)$ from \Cref{ex:cartan and S^3} are also invariant under left-multiplication. Moreover, it is easy to show that \emph{all} left-invariant 1-forms must be of the form $a \alpha + b \beta + c \gamma$ for constants $a,b,c \in \R$, so the space of left-invariant 1-forms is 3-dimensional.
+	
+	Likewise, $\alpha \wedge \beta$, $\beta \wedge \gamma$, $\gamma \wedge \alpha$ form a basis for the space of left-invariant 2-forms on $S^3$, which is therefore also 3-dimensional.
+	
+	We saw in \Cref{ex:cartan and S^3} that 
+	\[
+		d\alpha = -2 \beta \wedge \gamma, \quad d \beta = -2\gamma \wedge \alpha, \quad d\gamma = -2 \alpha \wedge \beta,
+	\]
+	so there are \emph{no} closed left-invariant 1-forms, and \Cref{cor:invariant de Rham} implies $\hdr^1(S^3) = \{0\}$.
+	
+	On the other hand,
+	\[
+		d(\beta \wedge \gamma) = d\beta \wedge \gamma - \beta \wedge d\gamma = (-2 \gamma \wedge \alpha) \wedge \gamma - \beta \wedge (-2\alpha \wedge \beta) = 0-0=0
+	\]
+	and likewise for the other left-invariant 2-forms, so the left-invariant 2-forms are all closed…but they're also all exact: for example, $\beta \wedge \gamma = d\left(-\frac{1}{2}\alpha\right)$. So this tells us that $\hdr^2(S^3) = \{0\}$.
+	
+	Therefore, the cohomology of left-invariant forms on $S^3$ is simply
+	\begin{align*}
+		\hdr^0(S^3) & \cong \R \\
+		\hdr^1(S^3) & =\{0\} \\
+		\hdr^2(S^3) & =\{0\} \\
+		\hdr^3(S^3) & \cong \R ,
+	\end{align*}
+	which agrees with the usual (simplicial/singular/de Rham/sheaf/whatever) cohomology of $S^3$.
+\end{example}
+
+The point here is that de Rham cohomology simplies in the presence of symmetry. 
+
+Of course, this is a general principle: typically we expect lots of computations to simplify in the presence of symmetry. Lie groups provide the proper notion of (continuous) symmetries of manifolds, so if we want to understand symmetries and use them to simplify problems, we should probably care at least a little bit about Lie groups.
+
+\section{Lie groups} 
+\label{sec:Lie groups}
+
+The basic idea of a Lie group is that it is a group which is also a manifold, and that the group structure and the manifold structure are compatible. In this setting, compatibility is going to mean that, appropriately interpreted, the group operations are smooth maps.
+
+Before actually stating the definition, the examples to have in mind are matrix groups: $\GL_n(\R)$, $\GL_n(\C)$, $\GL_n(\quat)$, $\SL_n(\R)$, $\SL_n(\C)$, $\orthog(n)$, $\SO(n)$, $\U(n)$, $\SU(n)$, $\Sp(n)$, the Heisenberg group $\left\{\begin{bmatrix} 1 & a & c \\ 0 & 1 & b \\ 0 & 0 & 1 \end{bmatrix} : a,b,c \in \R\right\}$, etc.
+
+For example, $\GL_n(\C)$ is an open subset of $\Mat_{n \times n}(\C) \cong \C^{n^2} \cong \R^{2n^2}$, so it is certainly a $2n^2$-dimensional manifold, and the entries of the product of two matrices can be written as (quadratic) polynomials in the entries of the terms, so this is smooth. Moreover, by the adjugate formula $A^{-1} = \frac{1}{\det A} \operatorname{adj}(A)$, the entries of $A^{-1}$ are rational functions of the entries of $A$ with non-vanishing denominators, so taking the inverse of a matrix is also a smooth map. 
+
+Moreover, as we saw in \Cref{ex:U(d) manifold}, the unitary group $\U(n)$ is the level set over a regular value of a smooth map defined on $\Mat_{n \times n}(\C)$, so this is also a manifold, and the same argument shows that the group operation and taking inverses are smooth.
+
+\begin{definition}\label{def:Lie group}
+	A \emph{Lie group} $G$ is a group which is also a differentiable manifold so that the map $G \times G \to G$ given by $(g,h) \mapsto gh^{-1}$ is smooth.
+\end{definition}
+
+The map that shows up in this definition is a slightly funny one; it's maybe more common to require that the maps
+\begin{itemize}
+	\item $G \times G \to G$ given by $(g,h) \mapsto gh$ and
+	\item $G \to G$ given by $g \mapsto g^{-1}$
+\end{itemize}
+are smooth. 
+
+\begin{exercise}
+	Show that the above two maps being smooth is equivalent to the single map $(g,h) \mapsto gh^{-1}$ being smooth. 
+\end{exercise}
+
+\begin{example}\label{ex:affine group}
+	Consider the collection of \emph{affine maps} $\varphi_{a,b} \from \R \to \R$ of the real line, given by $\varphi_{a,b}(t) = at + b$. 
+	
+	The composition of two affine maps is affine:
+	\begin{equation}\label{eq:composition of affine}
+		(\varphi_{c,d} \circ \varphi_{a,b})(t) = \varphi_{c,d}(at+b) = c(at+b)+d = act + bc+d.
+	\end{equation}
+	Also, if $a \neq 0$ then $\varphi_{a,b}$ is invertible, with inverse $\varphi_{a,b}^{-1} = \varphi_{1/a,-b/a}$. For example,
+	\[
+		(\varphi_{1/a,-b/a}\circ\varphi_{a,b})(t) = \varphi_{1/a,-b/a}(at+b) = \frac{1}{a}(at+b) - \frac{b}{a} = t + \frac{b}{a} - \frac{b}{a} = t.
+	\]
+	
+	Notice that, in \eqref{eq:composition of affine}, if the two maps being composed are invertible (i.e., $a \neq 0$ and $c \neq 0$) then their composition is also invertible ($ac \neq 0$). Therefore, the collection of invertible affine maps forms a group $\Aff(\R)$. To see that it is a Lie group, we just need to check that
+	\[
+		(\phi_{a,b}, \phi_{c,d}) \mapsto \phi_{a,b} \circ \phi_{c,d}^{-1} = \phi_{a,b} \circ \phi_{1/c,-d/c} = \phi_{a/c,-ad/c+b}
+	\]
+	is smooth, which it is since $a/c$ and $-ad/c+b$ are smooth functions of $a,b,c,d$.
+	
+	Thinking projectively, we can identify $\R$ with the affine subspace $\left\{ \begin{bmatrix} t \\ 1 \end{bmatrix} : t \in \R\right\} \subset \R^2$ and, since
+	\[
+		\begin{bmatrix} a & b \\ 0 & 1 \end{bmatrix} \begin{bmatrix} t \\ 1 \end{bmatrix} = \begin{bmatrix} at+b \\ 1 \end{bmatrix},
+	\]
+	we can represent $\Aff(\R)$ as the subgroup of $\GL_2(\R)$ given by $\left\{\begin{bmatrix} a & b \\ 0 & 1 \end{bmatrix} : a \neq 0 \right\}$. We can also see that $\Aff(\R)$ is a Lie group from this perspective since it is a closed subgroup of the Lie group $\GL_2(\R)$.
+\end{example}
+
+\begin{definition}\label{def:left and right translation}
+	Define \emph{left} and \emph{right translation} by $g \in G$ to be the maps $L_g \from G \to G$ and $R_g \from G \to G$ defined by $L_g(h) = gh$ and $R_g(h) = hg$.
+\end{definition}
+
+Notice that smoothness of $L_g$ and $R_g$ follows from smoothness of $(g,h) \mapsto gh^{-1}$.

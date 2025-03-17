@@ -1,0 +1,301 @@
+% !TEX root = ../dg.tex
+
+\section{Lie Algebras}
+\label{sec:Lie algebras}
+
+One of the beautiful things about Lie groups is that the algebraic structure of the group and the geometric structure of the underlying manifold are closely related, so we can often learn things about the geometry by studying the algebra, or \emph{vice versa}.
+
+For example, the left multiplication map $L_g \from G \to G$ is a diffeomorphism: we already know it's smooth, and its inverse is clearly $L_{g^{-1}}$, which is also smooth. Moreover, of $e \in G$ is the identity element, then $L_g(e) = g$, so the family of $L_g$ diffeomorphisms will map the identity element of $G$ to any other element of $G$ that we like (equivalently, the action of $G$ on itself by left multiplication is transitive). So even though from the algebraic perspective $G$ has a distinguished point $e$, from the geometric perspective all points look like all other points (since they all look like the identity).
+
+Importantly, $\left(dL_g\right)_e \from T_eG \to T_g G$ is a linear isomorphism, so we can explicitly identify every tangent space with the tangent space to the identity. Note, first of all, that this implies the tangent bundle is trivial: $TG \cong G \times T_e G \cong G \times \R^n$, where $n$ is the dimension of the group. Moreover, it tells us that it might be important to understand the tangent space to the identity.
+
+Indeed, as we will shortly see, the tangent space to the identity has extra algebraic structure, and simply-connected Lie groups are completely determined by this algebraic structure.
+
+The specific algebraic structure is that of a \emph{Lie algebra}, which we've encountered before in \Cref{sec:Lie bracket of vector fields} when talking about Lie brackets of vector fields, but now we give the formal definition:
+
+\begin{definition}\label{def:Lie algebra}
+	A real vector space $\mathfrak{g}$ is a \emph{Lie algebra} if it has a bilinear operator $[ \cdot , \cdot ] \from \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$ (the \emph{bracket}) such that, for all $x,y,z \in \mathfrak{g}$,
+	\begin{itemize}
+		\item $[x,x] = 0$ (alternativity)
+		\item $[[x,y],z] + [[y,z],x]+ [[z,x],y]=0$ (Jacobi identity).
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	As we saw in \Cref{ex:R^3 Lie algebra}, $\R^3$ forms a Lie algebra with the bracket operation $[v,w] = v \times w$.
+\end{example}
+
+\begin{example}
+	As we saw in \Cref{ex:so3 Lie algebra}, the space $\mathfrak{so}(3)$ of skew-symmetric $3 \times 3$ matrices is a Lie algebra with bracket $[A,B] = AB-BA$.
+\end{example}
+
+\begin{example}
+	More generally $\Mat_{n \times n} (\R)$ (usually called $\mathfrak{gl}_n(\R)$ in this context) is a Lie algebra with the bracket given by the matrix commutator: $[A,B] = AB-BA$. Notice that, by the previous example, $\mathfrak{so}(3)$ is a sub-Lie algebra of $\mathfrak{gl}_n(\R)$.
+\end{example}
+
+\begin{example}
+	As you showed in HW 1 \#4, for any manifold $M$, $\mathfrak{X}(M)$ is a Lie algebra, where the bracket is the Lie bracket.
+\end{example}
+
+By the last example, we know that for any Lie group $G$ the collection of all vector fields $\mathfrak{X}(G)$ is a Lie algebra. However, this is not the Lie algebra we're after when we say \emph{the} Lie algebra of $G$: first, because Lie groups aren't special in this regard ($\mathfrak{X}(M)$ is a Lie algebra for any manifold), and second because $\mathfrak{X}(M)$ is a (non-trivial) $C^\infty(M)$-module, and hence infinite-dimensional as a real vector space. 
+
+Building on \Cref{ex:left invariant vector field,ex:Lie algebra U(d),ex:so3 Lie algebra}, we can get a \emph{finite-dimensional} sub-Lie algebra of $\mathfrak{X}(G)$ by focusing on the left-invariant vector fields:
+
+\begin{definition}\label{def:left-invariant}
+	A vector field $X$ on $G$ (by assumption not necessarily smooth) is \emph{left-invariant} if, for all $g \in G$, $dL_gX = X$. More precisely, this means that for each $h \in G$,
+	\[
+		\left(dL_g\right)_h (X(h)) = X(gh).
+	\]
+\end{definition}
+
+\begin{theorem}\label{thm:Lie algebra of Lie group}
+	Suppose $G$ is a Lie group and $\mathfrak{g}$ is the set of left-invariant vector fields on $G$. Then
+	\begin{enumerate}
+		\item \label{it:Lie algebra tangent space} $\mathfrak{g}$ is a real vector space and the evaluation map $\ev_e \from  \mathfrak{g} \to T_eG$ given by $\ev_e(X) = X(e)$ is a vector space isomorphism. In particular, this implies that $\dim \mathfrak{g} = \dim T_eG = \dim G$.
+		\item \label{it:Lie algebra smooth} Elements of $\mathfrak{g}$ are smooth vector fields.
+		\item \label{it:Lie algebra closed} For $X,Y \in \mathfrak{g}$, $[X,Y] \in \mathfrak{g}$, where $[ \cdot , \cdot]$ is the usual Lie bracket of vector fields on manifolds.
+		\item \label{it:Lie algebra is Lie algebra} $(\mathfrak{g}, [ \cdot , \cdot])$ is a Lie algebra.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\ref{it:Lie algebra tangent space} The map $\ev_e$ is certainly linear. It's surjective since, if $v \in T_eG$, we can define a vector field $X$ on $G$ by $X(g):= \left(dL_g\right)_e v$. Then $X$ is left-invariant (and hence in $\mathfrak{g}$) since
+	\[
+		\left(dL_g\right)_h(X(h)) = \left(dL_g\right)_h \left(\left(dL_h\right)_ev\right) = \left(d\left(L_g \circ L_h\right)\right)_e(v) = \left(d L_{gh}\right)_e(v) = X(gh).
+	\]
+	But then $\ev_e(X) = v$, so $\ev_e$ is surjective.
+	
+	On the other hand, $\ev_e$ is also injective: if $\ev_e(X) = \ev_e(Y)$ for $X,Y \in \mathfrak{g}$, then for all $g \in G$ we have
+	\[
+		X(g) = \left(dL_g\right)_e (X(e)) = \left(dL_g\right)_e (\ev_e(X)) = \left(dL_g\right)_e (\ev_e(Y)) = \left(dL_g\right)_e (Y(e)) = Y(g)
+	\]
+	by left-invariance of $X$ and $Y$, so we conclude that $\ev_e(X) = \ev_e(Y)$ implies $X=Y$.
+	
+	\ref{it:Lie algebra smooth} is straightforward but annoying, so we skip it.
+	
+	\ref{it:Lie algebra closed} is a consequence of \ref{lem:differential of bracket} stated below, and then \ref{it:Lie algebra is Lie algebra} is immediate given that the Lie bracket of vector fields is alternating and satisfies the Jacobi identity (which you proved in HW 1 \#4).
+\end{proof}
+
+\begin{lemma}\label{lem:differential of bracket}
+	Suppose $f \from M \to N$ is smooth and $X_M, Y_M \in \mathfrak{X}(M)$, $X_N, Y_N \in \mathfrak{X}(N)$ so that $df_pX_M(p) = X_N(f(p))$ and $df_p Y_M(p) = Y_N(f(p))$ for all $p \in M$. Then
+	\[
+		df_p([X_M,Y_M](p)) = [X_N,Y_N](f(p)).
+	\]
+\end{lemma}
+
+In the proof of \Cref{thm:Lie algebra of Lie group} \ref{it:Lie algebra closed}, we apply this lemma with $M=N=G$ and $f = L_g$.
+
+\begin{proof}[Proof of \Cref{lem:differential of bracket}]
+	Using the notation $Z_q = Z(q)$ to indicate the tangent vector determined by the vector field $Z$ at a point $q$, it suffices to show that $\left(df_p[X_M,Y_M]_p\right)(\psi) = [X_N,Y_N]_{f(p)}(\psi)$ for any $\psi \in C^\infty(N)$. This is a computation:
+	\begin{align*}
+		\left(df_p[X_M,Y_M]_p\right)(\psi) = [X_M,Y_M]_p(\psi \circ f) & = (X_M)_p((Y_M)_p(\psi \circ f)) - (Y_M)_p((X_M)_p(\psi \circ f)) \\
+		& = (X_M)_p((df_p (Y_M)_p)(\psi)) - (Y_M)_p((df_p (X_M)_p)(\psi)) \\
+		& = (X_M)_p((Y_N)_{f(p)}(\psi)) - (Y_M)_p((X_N)_{f(p)}(\psi)) \\
+		& = (X_M)_p(Y_N(\psi) \circ f) - (Y_M)_p(X_N(\psi) \circ f) \\
+		& = (df_p X_M)(Y_N(\psi)) - (df_p Y_M)(X_N(\psi)) \\
+		& = (X_N)_{f(p)}(Y_N(\psi)) - (Y_N)_{f(p)}(X_N(\psi)) \\
+		& = [X_N,Y_N]_{f(p)}(\psi).
+	\end{align*}
+\end{proof}
+
+\Cref{thm:Lie algebra of Lie group} tells us that any Lie group $G$ has an associated finite-dimensional Lie algebra $\mathfrak{g}$ of left-invariant vector fields; this is usually called \emph{the Lie algebra of $G$}, typically denoted with a lowercase fraktur version of the name of the group, but sometimes also $\operatorname{Lie}(G)$.
+
+Notice, in particular, that we can also identify $\mathfrak{g}$ with $T_eG$ using the evaluation map, so we could also interpret the Lie bracket as being an operation on this tangent space.
+
+\begin{example}\label{ex:Lie algebra of affine group}
+	Recall the group $\Aff(\R)$ of invertible affine transformations of $\R$ from \Cref{ex:affine group}, where we showed that we can represent $\Aff(\R)$ as the subgroup $\left\{ \begin{bmatrix} a & b \\ 0 & 1 \end{bmatrix} : a \neq 0 \right\} \subset \GL_2(\R)$.
+	
+	In this representation, $\mathfrak{aff}(\R) \cong T_I \Aff(\R)$ has vector space basis $A := \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$, $B := \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$; by abuse of notation we can either think of $A$ and $B$ as these specific matrices, or as the left-invariant vector fields on $\Aff(\R)$ that they determine.
+	
+	\begin{exercise}
+		There is an obvious global coordinate chart $\phi \from P \to \Aff(\R)$, where $P = \{(u,v) \in \R^2 : u \neq 0\}$ is the plane minus the $y$-axis, given by $\phi(u,v) = \begin{bmatrix}u & v \\ 0 & 1 \end{bmatrix}$, and associated local coordinate basis $\frac{\partial}{\partial u}, \frac{\partial}{\partial v}$ for each tangent space. The left-invariant vector fields $A,B$ can be written in this basis as
+		\begin{equation}\label{eq:affine coords}
+			A_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = u \frac{\partial}{\partial u} \qquad \text{and} \qquad B_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = u \frac{\partial }{\partial v}.
+		\end{equation}
+	\end{exercise}
+	
+	Continuing the example, we will shortly see (\Cref{prop:matrix group commutator}) that the Lie bracket in the Lie algebra of any matrix group (where we interpret the Lie algebra as the tangent space to the identity, which is just some space of matrices) can be computed as the matrix commutator. Therefore,
+	\[
+		[A,B] = AB-BA = \begin{bmatrix}1 & 0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix}0 & 1 \\ 0 & 0 \end{bmatrix} - \begin{bmatrix}0 & 1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix}1 & 0 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix}0 & 1 \\ 0 & 0 \end{bmatrix} - \begin{bmatrix}0 & 0 \\ 0 & 0 \end{bmatrix} = B.
+	\]
+	Anti-commutativity implies $[A,A] = 0$ and $[B,B]=0$, so $[A,B]=B$ completely determines the Lie algebra structure on $\mathfrak{aff}(\R)$. In fact, this turns out to be the \emph{only} non-abelian 2-dimensional Lie algebra.\footnote{That is, the only other 2-dimensional Lie algebra has basis $X,Y$ and trivial bracket $[X,Y]=0$; for example, this is the Lie algebra of the torus $\U(1)^2$, which can be represented by the group of diagonal unitary $2 \times 2 $ matrices $\left\{ \begin{bmatrix} e^{i \theta_1} & 0 \\ 0 & e^{i \theta_2} \end{bmatrix} \right\} \subset \U(2)$.}
+	
+	This Lie algebra is \emph{solvable}, since the derived series terminates:
+	\[
+		\mathfrak{aff}(\R)^{(1)} := [\mathfrak{aff}(\R),\mathfrak{aff}(\R)] = \langle B \rangle \quad \text{and}\quad \mathfrak{aff}(\R)^{(2)} := [\mathfrak{aff}(\R)^{(1)},\mathfrak{aff}(\R)^{(1)}] = [\langle B \rangle, \langle B \rangle] = \{0\}.
+	\]
+	It is not \emph{nilpotent} since the lower central series continues forever:
+	\[
+		\mathfrak{aff}(\R)_{(1)} := [\mathfrak{aff}(\R),\mathfrak{aff}(\R)] = \langle B \rangle, \quad  \mathfrak{aff}(\R)_{(2)} := [\mathfrak{aff}(\R),\mathfrak{aff}(\R)_{(1)}] = [\mathfrak{aff}(\R), \langle B \rangle] = \langle B \rangle, \quad \text{etc.}
+	\]
+	If $\alpha$ and $\beta$ are the dual left-invariant 1-forms on $\Aff(\R)$, then using \Cref{thm:cartan} (Cartan's Magic Formula),
+	\begin{multline*}
+		d\alpha(A,B) = (\iota_A d\alpha)(B) = (\mathcal{L}_A \alpha)(B) - (d(\iota_A\alpha))(B) = \mathcal{L}_A(\alpha(B)) - \alpha(\mathcal{L}_AB) - (d(1))(B) \\
+		= \mathcal{L}_A(0) - \alpha([A,B]) - 0 = -\alpha(B) = 0
+	\end{multline*}
+	and
+	\begin{multline*}
+		d\beta(A,B) = (\iota_A d\beta)(B) = (\mathcal{L}_A \beta)(B) - (d(\iota_A\beta))(B) = \mathcal{L}_A(\beta(B)) - \beta(\mathcal{L}_AB) - (d(0))(B) \\
+		= \mathcal{L}_A(1) - \beta([A,B]) - 0 = -\beta(B) = 1,
+	\end{multline*}
+	so $d\alpha = 0$ and $d\beta = -\alpha \wedge \beta$.
+	
+	Just by looking at the coordinate expressions \eqref{eq:affine coords} for $A$ and $B$, we could pretty easily have written down the formulas
+	\[
+		\alpha_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = \frac{1}{u} \, du \qquad \text{and} \qquad \beta{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = \frac{1}{u} \, dv, 
+	\]
+	from which we could have directly computed
+	\begin{align*}
+		d\alpha & = d\left(\frac{1}{u} \, du\right) = 0 \\
+		d\beta & = d\left(\frac{1}{u} \, dv\right) = -\frac{1}{u^2} \, du \wedge dv = -\left(\frac{1}{u} \, du \right) \wedge \left(\frac{1}{u} \, dv \right) = -\alpha \wedge \beta.
+	\end{align*}
+	
+	From this perspective, it's clear that $\alpha = d(\log |u|)$.\footnote{Because the base-10 logarithm is pretty useless and I'm not a computer scientist, I use $\log$ to denote the natural logarithm (a.k.a. $\ln$).}
+\end{example}
+
+\section{Matrix Groups} 
+\label{sec:matrix groups}
+
+\begin{definition}\label{def:matrix group}
+	A \emph{matrix group} is a closed subgroup of $\GL_n(\R)$ for some $n$.
+\end{definition}
+
+You might worry that this excludes groups consisting of complex or quaternionic matrices, but all such groups can be represented as subgroups of some real general linear group. Specifically, define the map $\rho_1 \from \C \to \Mat_{2 \times 2} (\R)$ by
+\[
+	\rho_1(x+yi) = \begin{bmatrix} x & -y \\ y & x \end{bmatrix}.
+\]
+This is the right definition to turn multiplication of complex numbers into linear transformations of $\R$. After all, if $z= x+iy$, then for $w = u + i v$ we have
+\[
+	zw = (x+yi)(u+vi) = xu-yv + i(xv+yu)
+\]
+and
+\[
+	\rho_1(z)\begin{bmatrix} u \\ v \end{bmatrix} = \begin{bmatrix} x & -y \\ y & x \end{bmatrix}\begin{bmatrix} u \\ v \end{bmatrix} = \begin{bmatrix} xu-yv \\ xv+yu \end{bmatrix}.
+\]
+
+In turn, we can get a map $\rho_n \from \Mat_{n \times n}(\C) \to \Mat_{2n \times 2n}(\R)$ by just applying $\rho_1$ to each entry, resulting in a real matrix built out of $2 \times 2$ blocks of the form $\begin{bmatrix} x & -y \\ y & x \end{bmatrix}$. For example
+\[
+   	\rho_3\left(\begin{bmatrix} x_{11}+ y_{11}i & x_{12}+ y_{12}i & x_{13}+ y_{13}i \\
+    x_{21}+ y_{21}i & x_{22}+ y_{22}i & x_{23}+ y_{23}i \\
+    x_{31}+ y_{31}i & x_{32}+ y_{32}i & x_{33}+ y_{33}i \end{bmatrix}\right) = \begin{bmatrix} x_{11} & -y_{11} & x_{12} & -y_{12} & x_{13} & -y_{13} \\
+    y_{11} & x_{11} & y_{12} & x_{12} & y_{13} & x_{13} \\
+    x_{21} & -y_{21} & x_{22} & -y_{22} & x_{23} & -y_{23} \\
+    y_{21} & x_{21} & y_{22} & x_{22} & y_{23} & x_{23} \\
+    x_{31} & -y_{31} & x_{32} & -y_{32} & x_{33} & -y_{33} \\
+    y_{31} & x_{31} & y_{32} & x_{32} & y_{33} & x_{33} \end{bmatrix}.
+\]
+
+It's not hard to show that $\rho_n$ preserves invertibility, so $\rho_n(\GL_n(\C)) \subset \GL_{2n}(\R)$, showing that $\GL_n(\C)$ and all of its closed subgroups are matrix groups.
+
+Similarly, we can define $\psi_1 \from \quat \to \Mat_{2 \times 2}(\C)$ by
+\[
+	\psi_1(z + wj) = \begin{bmatrix} z & w \\ -\overline{w} & \overline{z} \end{bmatrix}
+\]
+or, written out more completely,
+\[
+	\psi_1(a+bi+cj+dk) = \begin{bmatrix} a + bi & c + di \\ -c+di & a-bi \end{bmatrix}.
+\]
+And then we can extend to a map $\psi_n \from \Mat_{n \times n}(\quat) \to \Mat_{2n \times 2n}(\C)$ as you'd expect. For example,
+\begin{multline*}
+	\psi_2\left( \begin{bmatrix} a_{11} + b_{11}i + c_{11}j + d_{11}k & a_{12} + b_{12}i + c_{12}j + d_{12}k \\ a_{21} + b_{21}i + c_{21}j + d_{21}k  & a_{22} + b_{22}i + c_{22}j + d_{22}k  \end{bmatrix}\right) \\
+	= \begin{bmatrix} a_{11}+i b_{11} & c_{11}+i d_{11} & a_{12}+i b_{12} & c_{12}+i d_{12} \\
+ -c_{11}+i d_{11} & a_{11}-i b_{11} & -c_{12}+i d_{12} & a_{12}-i b_{12} \\
+ a_{21}+i b_{21} & c_{21}+i d_{21} & a_{22}+i b_{22} & c_{22}+i d_{22} \\
+ -c_{21}+i d_{21} & a_{21}-i b_{21} & -c_{22}+i d_{22} & a_{22}-i b_{22} \end{bmatrix}
+\end{multline*}
+
+Again, $\psi_n(\GL_n(\quat)) \subset \GL_{2n}(\C)$, and of course by composing $\psi_n$ with $\rho_{2n}$ we can represent any quaternionic matrix group as a subgroup of $\GL_{4n}(\R)$.
+
+The nice thing about matrix groups is that the bracket operations on their Lie algebras are particularly simple.
+
+\begin{proposition}\label{prop:matrix group commutator}
+	Let $G \leq \GL_n(\R)$ be a matrix group, so that $T_IG \subset T_I \GL_n(\R) \cong \Mat_{n \times n}(\R)$. Then the bracket operation on $\mathfrak{g}$, interpreted as an operation on $T_IG$, is just the matrix commutator: for $X,Y \in T_IG \cong \mathfrak{g}$, the bracket $[X,Y] = XY-YX$ where $XY$ just means the product of matrices.
+\end{proposition}
+
+\begin{proof}
+	We prove this for $G = \GL_n(\R)$ and then it follows for subgroups.
+	
+	We're going to prove this by writing out the matrix multiplication in terms of coordinates; i.e., if $A,B \in \Mat_{n \times n}(\R)$, then
+	\[
+		(AB)_{ij} = \sum_{k=1}^n A_{ik}B_{kj}.
+	\]
+	
+	But now, if we're thinking of our matrices as tangent vectors at the identity, then they're really differential operators, so we need a way of interpreting these coordinates in that language.
+	
+	To that end, by analogy with what we did in \Cref{sub:differential_forms_in_local_coordinates}, define $x_{ij} \from \Mat_{n \times n}(\R) \to \R$ by $x_{ij}(A) = A_{ij}$, the $(i,j)$ entry of $A$. Then if $V \in T_I \GL_n(\R) \cong \Mat_{n \times n}(\R)$, we can write $V = \alpha'(0)$ where $\alpha(t) = I + tV$, which stays in $\GL_n(\R)$ for small enough $t$. Therefore, using \Cref{def:tangent vector}
+	\begin{equation}\label{eq:V(x_{ij})}
+		V(x_{ij}) = (x_{ij} \circ \alpha)'(0) = \left. \frac{d}{dt}\right|_{t=0} x_{ij}(\alpha(t)) = \left. \frac{d}{dt}\right|_{t=0} \alpha(t)_{ij} = \alpha'(0)_{ij} = V_{ij}.
+	\end{equation}
+	So this gives a way of translating back and forth between elements of $T_I\GL_n(\R)$ as differential operators and as arrays of numbers.
+	
+	Next, recall the evaluation map $\ev_I \from \mathfrak{gl}_n(\R) \to T_I \GL_n(\R)$ given by $\ev_I(X) = X(I)$, the tangent vector at $I$ determined by the left-invariant vector field $X$. In what follows, to avoid a surplus of parenthesesm, we will sometimes write $X(I)$ as $X_I$.
+	
+	We saw in the proof of \Cref{thm:Lie algebra of Lie group} that $\ev_I$ is a vector space isomorphism, so all that remains to do is to show that it is a Lie algebra homomorphism; that is, for any left-invariant vector fields $X,Y$ on $\GL_n(\R)$ (i.e., elements of $\mathfrak{gl}_n(\R)$), we need to show that
+	\[
+		\ev_I([X,Y]) = \ev_I(X)\ev_I(Y) - \ev_I(Y)\ev_I(X) = X(I) Y(I) - Y(I) X(I),
+	\]
+	where on the right hand side we're just multiplying matrices.
+	
+	Notice, first of all, that for any $g,h \in \GL_n(\R)$,
+	\[
+		\left(x_{ij} \circ L_g\right)(h) = x_{ij}\left(L_g(h)\right) = x_{ij}(gh) = (gh)_{ij} = \sum_{k=1}^n g_{ik}h_{kj} = \sum_{k=1}^n x_{ik}(g) x_{kj}(h);
+	\]
+	in other words,
+	\begin{equation}\label{eq:x_{ij} circ L_g}
+		x_{ij} \circ L_g = \sum_{k=1}^n x_{ik}(g) x_{kj}.
+	\end{equation}
+	
+	We're going to look now at the function $Y(x_{ij})$, which we can specify by saying how it evaluates at each $g \in \GL_n(\R)$. By left-invariance of $Y$ together with \eqref{eq:V(x_{ij})} and \eqref{eq:x_{ij} circ L_g},
+	\[
+		\left(Y(x_{ij})\right)(g) = Y_g(x_{ij}) = \left((dL_g)_I Y_I\right)(x_{ij}) = Y_I(x_{ij} \circ L_g) = \sum_{k=1}^n x_{ik}(g)Y_I(x_{kj}) = \sum_{k=1}^n x_{ik}(g) Y(I)_{kj}.
+	\]
+	
+	This (and the corresponding statement for $X$) gives us the necessary tool to determine the $(i,j)$ component of $\ev_I([X,Y])$:
+	\begin{multline*}
+		\left(\ev_I([X,Y])\right)_{ij} = [X,Y]_I(x_{ij}) = X_I(Y(x_{ij})) - Y_I(X(x_{ij})) \\
+		= X_I\left(\sum_{k=1}^n x_{ik}Y(I)_{kj}\right) - Y_I \left(\sum_{k=1}^n x_{ik}X(I)_{kj}\right) = \sum_{k=1}^n \left(X_I(x_{ik} Y(I)_{kj}) - Y_I(x_{ik}X(I)_{kj})\right)
+	\end{multline*}
+	by linearity of the operators $X_I$ and $Y_I$. Of course, $Y(I)_{kj}$ and $X(I)_{kj}$ are constant, so the Leibniz rule gives us
+	\[
+		 \sum_{k=1}^n \left(X_I(x_{ik}) Y(I)_{kj} - Y_I(x_{ik})X(I)_{kj}\right) = \sum_{k=1}^n \left(X(I)_{ik} Y(I)_{kj} - Y(I)_{ik}X(I)_{kj}\right) = \left( X(I)Y(I)-Y(I)X(I)\right)_{ij},
+	\]
+	where, as a reminder, I'm freely switching between the notations $X(I)$ and $X_I$ for the tangent vector at $I$ determined by the vector field $X$. So this shows that the left and right sides of the equation in the statement of the theorem agree componentwise.
+\end{proof}
+
+This now justifies the computational simplifications we did in looking at the Lie algebras of $\U(d)$ (\Cref{ex:Lie algebra U(d)}), $\SO(d)$ (\Cref{ex:so3 Lie algebra}), and $\Aff(\R)$ (\Cref{ex:Lie algebra of affine group}).
+
+\begin{proposition}\label{prop:accidental isomorphisms}
+	$\mathfrak{so}(3) \cong \mathfrak{su}(2) \cong \mathfrak{sp}(1)$.
+\end{proposition}
+
+\begin{proof}
+	In each case this is the Lie algebra of a matrix group, so \Cref{prop:matrix group commutator} guarantees it is isomorphic to the tangent space at the identity with the bracket given by the matrix commutator. This is the interpretation we will use to prove the proposition.
+	
+	For example, $T_I\SO(3)$ consists of the $3 \times 3$ skew-symmetric matrices, which we saw in \Cref{ex:so3 Lie algebra} is isomorphic to $(\R^3,\times)$.
+	
+	We've seen in \Cref{ex:left invariant vector field} that $T_I\U(d)$ consists of the skew-Hermitian $d \times d$ matrices; I claim without proof that the determinant-1 condition translates to a trace-0 condition, so $T_I\SU(d)$ is the space of traceless skew-Hermitian matrices.
+	
+	Finally, thinking of $\Sp(1) \cong S^3$ as the $1 \times 1$ quaternionic matrices which preserve the symplectic inner product (i.e., the quaternionic analog of $\orthog(d)$ or $\U(d)$), the same sort of argument that gave the tangent spaces at the identity of $\orthog(d)$ and $\U(d)$ will imply that $T_I \Sp(1)$ consists of quaternionic skew-Hermitian $1 \times 1$ matrices; in other words, the single entry must be a purely imaginary quaternion $ai + bj + ck$.
+	
+	We can fairly easily write down bases for $\mathfrak{so}(3)$, $\mathfrak{su}(2)$, and $\mathfrak{sp}(1)$:
+	\begin{align*}
+		\mathfrak{so}(3) & = \spa \left\{ \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & -1\\ 0 & 1 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0\\ -1 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & -1 & 0 \\ 1 & 0 & 0\\ 0 & 0 & 0 \end{bmatrix} \right\} \\
+		\mathfrak{su}(2) & = \spa \left\{ \frac{1}{2} \begin{bmatrix} i & 0 \\ 0 & -i \end{bmatrix}, \frac{1}{2} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \frac{1}{2} \begin{bmatrix} 0 & i \\ i & 0 \end{bmatrix}   \right\} \\
+		\mathfrak{sp}(1) & = \spa \left\{ \frac{i}{2}, \frac{j}{2}, \frac{k}{2} \right\}.
+	\end{align*}
+	
+	If we use $\{A_{1,\mathfrak{g}},A_{2,\mathfrak{g}},A_{3,\mathfrak{g}}\}$ to denote the basis for $\mathfrak{g} \in \{ \mathfrak{so}(3), \mathfrak{su}(2),\mathfrak{sp}(1)\}$, then it is easy to check that
+	\[
+		[A_{1,\mathfrak{g}}, A_{2, \mathfrak{g}}] = A_{3, \mathfrak{g}}, \quad [A_{2,\mathfrak{g}}, A_{3, \mathfrak{g}}] = A_{1, \mathfrak{g}}, \quad [A_{3,\mathfrak{g}}, A_{1, \mathfrak{g}}] = A_{2, \mathfrak{g}}.
+	\]
+	For example,
+	\[
+		[A_{1,\mathfrak{so}(3)}, A_{2, \mathfrak{so}(3)}] = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & -1\\ 0 & 1 & 0 \end{bmatrix} \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0\\ -1 & 0 & 0 \end{bmatrix} -  \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0\\ -1 & 0 & 0 \end{bmatrix} \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & -1\\ 0 & 1 & 0 \end{bmatrix} =  \begin{bmatrix} 0 & -1 & 0 \\ 1 & 0 & 0\\ 0 & 0 & 0 \end{bmatrix} = A_{3, \mathfrak{so}(3)}
+	\]
+	and
+	\[
+		[A_{3,\mathfrak{sp}(1)}, A_{1, \mathfrak{sp}(1)}] = \frac{k}{2} \frac{i}{2} - \frac{i}{2} \frac{k}{2} = \frac{j}{4} + \frac{j}{4} =  \frac{j}{2} = A_{2, \mathfrak{sp}(1)}.
+	\]
+	
+	Therefore, for $\{\mathfrak{g}, \mathfrak{g}'\} \subset \{\mathfrak{so}(3), \mathfrak{su}(2),\mathfrak{sp}(1)\}$, linearly extending the identifications $A_{i,\mathfrak{g}} \mapsto A_{i,\mathfrak{g}'}$ defines a Lie algebra isomorphism.
+\end{proof}
