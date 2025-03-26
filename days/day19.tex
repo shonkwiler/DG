@@ -107,7 +107,7 @@ Notice, in particular, that we can also identify $\mathfrak{g}$ with $T_eG$ usin
 	
 	In this representation, $\mathfrak{aff}(\R) \cong T_I \Aff(\R)$ has vector space basis $A := \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$, $B := \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$; by abuse of notation we can either think of $A$ and $B$ as these specific matrices, or as the left-invariant vector fields on $\Aff(\R)$ that they determine.
 	
-	\begin{exercise}
+	\begin{exercise}\label{ex:coords on affine group}
 		There is an obvious global coordinate chart $\phi \from P \to \Aff(\R)$, where $P = \{(u,v) \in \R^2 : u \neq 0\}$ is the plane minus the $y$-axis, given by $\phi(u,v) = \begin{bmatrix}u & v \\ 0 & 1 \end{bmatrix}$, and associated local coordinate basis $\frac{\partial}{\partial u}, \frac{\partial}{\partial v}$ for each tangent space. The left-invariant vector fields $A,B$ can be written in this basis as
 		\begin{equation}\label{eq:affine coords}
 			A_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = u \frac{\partial}{\partial u} \qquad \text{and} \qquad B_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = u \frac{\partial }{\partial v}.
@@ -142,7 +142,7 @@ Notice, in particular, that we can also identify $\mathfrak{g}$ with $T_eG$ usin
 	
 	Just by looking at the coordinate expressions \eqref{eq:affine coords} for $A$ and $B$, we could pretty easily have written down the formulas
 	\[
-		\alpha_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = \frac{1}{u} \, du \qquad \text{and} \qquad \beta{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = \frac{1}{u} \, dv, 
+		\alpha_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = \frac{1}{u} \, du \qquad \text{and} \qquad \beta_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}} = \frac{1}{u} \, dv, 
 	\]
 	from which we could have directly computed
 	\begin{align*}
@@ -228,7 +228,7 @@ The nice thing about matrix groups is that the bracket operations on their Lie a
 	\end{equation}
 	So this gives a way of translating back and forth between elements of $T_I\GL_n(\R)$ as differential operators and as arrays of numbers.
 	
-	Next, recall the evaluation map $\ev_I \from \mathfrak{gl}_n(\R) \to T_I \GL_n(\R)$ given by $\ev_I(X) = X(I)$, the tangent vector at $I$ determined by the left-invariant vector field $X$. In what follows, to avoid a surplus of parenthesesm, we will sometimes write $X(I)$ as $X_I$.
+	Next, recall the evaluation map $\ev_I \from \mathfrak{gl}_n(\R) \to T_I \GL_n(\R)$ given by $\ev_I(X) = X(I)$, the tangent vector at $I$ determined by the left-invariant vector field $X$. In what follows, to avoid a surplus of parentheses, we will sometimes write $X(I)$ as $X_I$.
 	
 	We saw in the proof of \Cref{thm:Lie algebra of Lie group} that $\ev_I$ is a vector space isomorphism, so all that remains to do is to show that it is a Lie algebra homomorphism; that is, for any left-invariant vector fields $X,Y$ on $\GL_n(\R)$ (i.e., elements of $\mathfrak{gl}_n(\R)$), we need to show that
 	\[
