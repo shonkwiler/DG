@@ -1,0 +1,177 @@
+% !TEX root = ../dg.tex
+
+\section{Adjoint and Coadjoint Representations}
+\label{sec:adjoint representations}
+
+For each $g \in G$, let $C_g \from G \to G$ denote conjugation by $g$, namely $C_g(h) = ghg^{-1}$. Notice, in particular, that $C_g(e) = geg^{-1} = e$ for all $g \in G$, so these maps are all diffeomophisms fixing the identity, and hence $\left(dC_g\right)_e \from T_e G \to T_e G$ for all $g \in G$. 
+
+When $G$ is a matrix group it's easy to get a formula for $\left(dC_g\right)_e$: since $C_g = L_g \circ R_{g^{-1}}$, we know that $dC_g = d(L_g \circ R_{g^{-1}}) = dL_g \circ dR_{g^{-1}}$, so it suffices to find nice formulas for $dL_g$ and $dR_{g^{-1}}$. For example, if $v \in T_h G$ and $v = \alpha'(0)$ for some smooth curve $\alpha(t)$ with $\alpha(0)=h$, then
+\[
+	\left(dL_g\right)_h v = \left(L_g \circ \alpha\right)'(0) = \left. \frac{d}{dt} \right|_{t=0} L_g(\alpha(t)) = \left. \frac{d}{dt} \right|_{t=0} g\alpha(t) = g\alpha'(0) = gv,
+\]
+where the operation here is matrix multiplication, which makes sense when we intepret $T_hG \subset T_h \GL_n(\R) = \Mat_{n \times n}(\R)$.
+
+The analogous statement is true for $dR_{g^{-1}}$, so we see that, on matrix groups, $\left(dC_g\right)_ev = gvg^{-1}$; that is, this is just the conjugation action of the group on its tangent space at the identity.
+
+Of course, we can identify $T_eG$ with the Lie algebra $\mathfrak{g}$, so we can also think of $\left(dC_g\right)_e$ as a map $\mathfrak{g} \to \mathfrak{g}$, but in this guise we usually call the map $\Ad_g$ rather than $\left(dC_g\right)_e$; that is, we have $\Ad_g \from \mathfrak{g} \to \mathfrak{g}$, called the \emph{adjoint action} of $g \in G$ on $\mathfrak{g}$. Said yet another way, the following is well-defined, at least for matrix groups:
+
+\begin{definition}\label{def:adjoint representation}
+	Let $G$ be a Lie group with Lie algebra $\mathfrak{g}$. Let $\Aut(\mathfrak{g})$ be the group of invertible linear transformations of (the vector space) $\mathfrak{g}$ (sometimes instead called $\GL(\mathfrak{g})$). The map $\Ad \from G \to \Aut(\mathfrak{g})$ defined by $g \mapsto \Ad_g$ is called the \emph{adjoint representation} of $G$.
+\end{definition}
+
+Notice that $\Ad$ is a Lie group homomorphism: since 
+\[
+	C_{gh}(k) = (gh)k(gh)^{-1} = ghkh^{-1}g^{-1} = C_g(C_h(k)) = (C_g \circ C_h)(k),
+\]
+we see that $C_{gh} = C_g \circ C_h$, so
+\[
+	\Ad_{gh} = \left(dC_{gh}\right)_e = \left(d(C_g \circ C_h)\right)_e = \left(dC_g\right)_{C_h(e)} \left(dC_h\right)_e = \left(dC_g\right)_e \left(dC_h\right) = \Ad_g \Ad_h.
+\]
+One of the key virtues of the adjoint representation is that it defines a homomorphism from \emph{any} Lie group to a matrix group. Moreover, $\ker \Ad = Z(G)$, the center of $G$, so the first isomorphism theorem implies that $\Ad(G) \cong G/Z(G)$; in particular, this shows that any centerless Lie group can be realized as a matrix group.
+
+\begin{example}\label{ex:affine adjoint rep}
+	Recall again $\Aff(\R)$ from \Cref{ex:affine group} and its Lie algebra $\mathfrak{aff}(\R)$, which we saw in \Cref{ex:Lie algebra of affine group} has basis
+	\[
+		A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \quad B = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}
+	\]
+	and the Lie bracket satisfies $[A,B] = B$.
+	
+	Now, suppose $\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix} \in \Aff(\R)$. Then we can specify the adjoint action of $\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}$ on $\mathfrak{aff}(\R)$ by determining what it does to $A$ and $B$:
+	\begin{align*}
+		\Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}(A) & = \begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}^{-1} = \begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \frac{1}{u} & -\frac{v}{u} \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 1 & -v \\ 0 & 0 \end{bmatrix} = A - vB \\
+		\Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}(B) & = \begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}^{-1} = \begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \frac{1}{u} & -\frac{v}{u} \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 0 & u \\ 0 & 0 \end{bmatrix} = uB.
+	\end{align*}
+	In other words, the matrix for $\Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}$ with respect to the (ordered) basis $\{A,B\}$ is $\begin{bmatrix} 1 & 0 \\ -v & u \end{bmatrix}$, with eigenvalues $1$ and $u$ and corresponding eigenvectors $\begin{bmatrix} u-1 \\ v \end{bmatrix} = (u-1)A+vB$ and $\begin{bmatrix}0\\ 1 \end{bmatrix} = B$.
+\end{example}
+
+In various circumstances, some of which we may encounter later, it is more convenient to dualize, meaning we want to look at the induced action on $\mathfrak{g}^\ast$.
+
+Given $g \in G$, the map $\Ad_g \from \mathfrak{g} \to \mathfrak{g}$ has, in the spirit of \Cref{sub:digression_on_differentials_pullbacks_and_dual_maps}, an associated dual map $\left(\Ad_g\right)^\ast \from \mathfrak{g}^\ast \to \mathfrak{g}^\ast$ defined by
+\[
+	\left(\Ad_g\right)^\ast (\xi)(X) = \xi(\Ad_g(X))
+\]
+for any $\xi \in \mathfrak{g}^\ast$ and any $X \in \mathfrak{g}$, but this does not define a homomorphism $G \to \Aut(\mathfrak{g}^\ast)$: for any $g,h \in G$ and $\xi \in \mathfrak{g}^\ast$,
+\[
+	\left(\Ad_{gh}\right)^\ast(\xi)(X) = \xi\left(\Ad_{gh}(X)\right) = \xi\left(\Ad_g\left(\Ad_h(X)\right)\right) = \left(\Ad_g\right)^\ast(\xi)\left(\Ad_h(X)\right) = \left(\Ad_h\right)^\ast \left(\left(\Ad_g\right)^\ast(\xi)\right)(X)
+\]
+for any $X \in \mathfrak{g}$. In other words, $\left(\Ad_{gh}\right)^\ast = \left(\Ad_h\right)^\ast \circ \left(\Ad_g\right)^\ast$, which is not generally equal to $\left(\Ad_g\right)^\ast \circ \left(\Ad_h\right)^\ast$.
+
+To fix this and get an honest Lie group homomorphism, we need to twist by the involution $g \mapsto g^{-1}$ (in fancy categorical language, I believe this is the canonical isomorphism of $G$ with $G^{\text{op}}$ and the dual map really defines a homomorphism $G^{\text{op}} \to \Aut(\mathfrak{g}^\ast)$):
+
+\begin{definition}\label{def:coadjoint representation}
+	Let $G$ be a Lie group, $\mathfrak{g}$ its Lie algebra, and $g \in G$. The \emph{coadjoint action} of $g$ on $\mathfrak{g}^\ast$ is the map $\Ad_g^\ast \from \mathfrak{g}^\ast \to \mathfrak{g}^\ast$ defined on any $\xi \in \mathfrak{g}^\ast$ by
+	\[
+		\Ad_g^\ast(\xi)(X) := \xi\left(\Ad_{g^{-1}}(X)\right)
+	\]
+	for all $X \in \mathfrak{g}$. (In other words, $\Ad_g^\ast = \left(\Ad_{g^{-1}}\right)^\ast$, where the position of the parentheses is quite important.)
+	
+	In turn, this defines the \emph{coadjoint representation} $\Ad^\ast \from G \to \Aut(\mathfrak{g}^\ast)$ given by $g \mapsto \Ad_g^\ast$.
+\end{definition}
+
+One virtue of the coadjoint action is that each orbit (called a \emph{coadjoint orbit}) has a natural symplectic structure.
+
+\begin{example}[\Cref{ex:affine adjoint rep} continued]
+	The matrix of the coadjoint action 
+	\[
+		\Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}^\ast = \left( \Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}^{-1}}\right)^\ast \from \mathfrak{aff}(\R)^\ast \to \mathfrak{aff}(\R)^\ast
+	\]
+	with respect to the dual basis $\{\alpha, \beta\}$ from \Cref{ex:Lie algebra of affine group} is $\begin{bmatrix} 1 & 0 \\ \frac{v}{u} & \frac{1}{u} \end{bmatrix}^T = \begin{bmatrix} 1 & \frac{v}{u} \\ 0 & \frac{1}{u} \end{bmatrix}$ since $\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}^{-1} = \begin{bmatrix} \frac{1}{u} & -\frac{v}{u}\\ 0 & 1 \end{bmatrix}$; equivalently,
+	\[
+		\Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}^\ast(\alpha) = \alpha \quad \text{and}\quad \Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}^\ast(\beta) = \frac{v}{u} \alpha + \frac{1}{u} \beta.
+	\]
+	The eigenvalues of $\Ad_{\begin{bmatrix} u & v \\ 0 & 1 \end{bmatrix}}^\ast$ are $1$ and $\frac{1}{u}$ with corresponding eigenvectors $\begin{bmatrix}1 \\ 0 \end{bmatrix} = \alpha$ and $\begin{bmatrix}v \\ 1-u \end{bmatrix} = v \alpha + (1-u)\beta$.
+\end{example}
+
+\begin{example}
+	Let's understand the adjoint representation of $\SO(3)$. Recall from \Cref{ex:so3 Lie algebra} that $\mathfrak{so}(3)$ consists of skew-symmetric $3 \times 3$ matrices and is isomorphic as a Lie algebra to $\left(\R^3, \times \right)$ via the map $\phi \from (x,y,z) \mapsto \begin{bmatrix} 0 & -z & y \\ z & 0 & -x \\ -y & x & 0 \end{bmatrix}$.
+	
+	Under this identification of $\mathfrak{so}(3)$ with $\R^3$, the adjoint representation should give an action of $\SO(3)$ on $\R^3$. Perhaps surprisingly (and, then again, perhaps not), this action turns out to be the usual action of $\SO(3)$ by matrix-vector multiplication. More precisely, for $A \in \SO(3)$ and $v \in \R^3$,
+	\[
+		\Ad_A(\phi(v)) = \phi(Av).
+	\]
+	Rather than give a full proof, let's see that it works for a simple subgroup of $\SO(3)$. Specifically, let $A(t) = \begin{bmatrix} \cos t & -\sin t & 0 \\ \sin t & \cos t & 0 \\ 0 & 0 & 1 \end{bmatrix}$ and consider the subgroup $H = \left\{ A(t) : t \in \R\right\}$, which acts by rotation around the $z$-axis. Then, for $v = \begin{bmatrix}x \\ y \\ z \end{bmatrix}$, we have
+	\begin{multline*}
+		\Ad_{A(t)}(\phi(v)) = A(t) \phi(v) A(t)^{-1} = \begin{bmatrix} \cos t & -\sin t & 0 \\ \sin t & \cos t & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 0 & -z & y \\ z & 0 & -x \\ -y & x & 0 \end{bmatrix} \begin{bmatrix} \cos t & \sin t & 0 \\ -\sin t & \cos t & 0 \\ 0 & 0 & 1 \end{bmatrix} \\
+		= \begin{bmatrix} 0 & -z & x \sin t + y \cos t \\ z & 0 & -x \cos t + y \sin t \\ -x \sin t - y \cos t & x \cos t - y \sin t & 0 \end{bmatrix} = \phi \left( \begin{bmatrix} x \cos t - y \sin t \\ x \sin t + y \cos t\\ z \end{bmatrix}\right) = \phi(A(t)v).
+	\end{multline*}
+	
+	So we see that, at least when restricted to $H$, the adjoint representation of $\SO(3)$ agrees with the usual rotation representation.
+\end{example}
+
+\section{Lie Algebra Homomorphisms}
+\label{sec:Lie algebra homomorphisms}
+
+We've just seen that a Lie group always acts on its Lie algebra by the adjoint action. Now we start to develop another connection between Lie groups and Lie algebras, one already hinted at:
+
+\begin{theorem}\label{thm:Lie group Lie algebra correspondence}
+	Let $G$ and $H$ be Lie groups with Lie algebras $\mathfrak{g}$ and $\mathfrak{h}$, respectively, and with $G$ simply-connected. Let $\psi \from \mathfrak{g} \to \mathfrak{h}$ be a Lie algebra homomorphism. Then there exists a unique Lie group homomorphism $\phi \from G \to H$ so that $d\phi = \psi$.
+\end{theorem}
+
+One way to interpret this is that Lie group homomorphisms are (essentially) uniquely determined by their behavior in arbitrarily small neighborhoods of the identity (since they're determined by their linearizations at the identity). A more or less immediate corollary of the theorem is that simply-connected Lie groups are uniquely determined by their Lie algebras:
+
+\begin{corollary}\label{cor:sc Lie groups determined by Lie algebra}
+	If $G$ and $H$ are simply-connected and have isomorphic Lie algebras, then $G \cong H$.
+\end{corollary}
+
+A first step in the proof of \Cref{thm:Lie group Lie algebra correspondence} is to show that Lie group homomorphisms induce Lie algebra homomorphisms:
+
+\begin{proposition}\label{prop:Lie group hom implies Lie alg hom}
+	Let $G$ and $H$ be Lie groups, and let $\phi: G \to H$ be a Lie group homomorphism. Then $d\phi \from \mathfrak{g} \to \mathfrak{h}$ is a Lie algebra homomorphism.
+\end{proposition} 
+
+Before proving this, it's probably a good idea to pause for a moment and decipher notation. By definition, $\mathfrak{g}$ is the collection of left-invariant vector fields on $G$, so if $X$ is a left-invariant vector field on $G$, then $d\phi(X)$ is the vector field on $H$ given by $\left(d\phi\right)_gX(g)$ at each point $\phi(g)$ in the image of $\phi$, and then extended to a left-invariant vector field on all of $H$.
+
+\begin{exercise}
+	Prove that the map $d\phi \from \mathfrak{g} \to \mathfrak{h}$ described in the previous paragraph is well-defined; that is, if $\phi(g_1) = \phi(g_2)$, then $(d\phi)_{g_1}X(g_1) = (d\phi)_{g_2}X(g_2)$.
+\end{exercise}
+
+\begin{proof}[Proof of \Cref{prop:Lie group hom implies Lie alg hom}]
+	First, we want to show that $d\phi(X)$ is left-invariant on the image of $\phi$, and hence extends to an element of $\mathfrak{h}$. To that end, if $X \in \mathfrak{g}$, then for each $g_1,g_2 \in G$,
+	\begin{multline}\label{eq:Lie alg hom}
+		dL_{\phi(g_1)} d\phi_{g_2}X(g_2) = d\left(L_{\phi(g_1)} \circ \phi\right)_{g_2} X(g_2) = d\left(\phi \circ L_{g_1}\right)_{g_2}X(g_2) \\
+		= \left(d\phi\right)_{L_{g_1}(g_2)}\left(dL_{g_1}\right)_{g_2}X(g_2) = \left(d\phi\right)_{g_1 g_2}X(g_1 g_2),
+	\end{multline}
+	where we used the Chain Rule in the first and third equalities and the left-invariance of $X$ in the last equality. The second equality follows because $\phi$ is a Lie group homomorphism in the second; more explicitly, for any $g_1,g_2 \in G$,
+	\[
+		\left(L_{\phi(g_1)} \circ \phi\right)(g_2) = L_{\phi(g_1)}\left( \phi(g_2)\right) = \phi(g_1) \phi(g_2) = \phi(g_1 g_2) = \phi(L_{g_1}(g_2)) = \left(\phi \circ L_{g_1}\right)(g_2),
+	\]
+	so we see that $L_{\phi(g_1)} \circ \phi = \phi \circ L_{g_1}$ and the second equality in \eqref{eq:Lie alg hom} follows.
+	
+	Thus, we have shown that $d\phi$ really maps $\mathfrak{g}$ to $\mathfrak{h}$. To see that it is an Lie algebra homomorphism, recall from \Cref{lem:differential of bracket} that, for $X,Y \in \mathfrak{g}$ and $g \in G$,
+	\[
+		d\phi_g\left([X,Y](g)\right) = [d\phi_gX, d\phi_gY](\phi(g)),
+	\]
+	or, more poetically, $d\phi[X,Y] = [d\phi X, d\phi Y]$, which is what it means for $d\phi$ to be a Lie algebra homomorphism.
+\end{proof}
+
+\begin{example}
+	Consider the inclusion $i \from \SO(n) \to \SO(n+1)$ given by 
+	\[
+		i(A) = \begin{bmatrix} A & \mathbf{0} \\ \mathbf{0}^T & 1 \end{bmatrix},
+	\]
+	where the matrix on the right is an $(n+1) \times (n+1)$ block matrix, where $\mathbf{0}$ denotes the $n \times 1$ zero matrix.
+	
+	From \Cref{ex:so3 Lie algebra} we know that we can interpret elements of $\mathfrak{so}(n)$ as $n \times n$ skew-symmetric matrices. If $X$ is such a matrix so that $X = \alpha'(0)$ with $\alpha(0) = I_{d\times d}$, then
+	\[
+		di (X) = \left( di\right)_{I_{d \times d}}( X) = (i \circ \alpha)'(0) = \left. \frac{d}{dt} \right|_{t=0} i(\alpha(t)) = \left. \frac{d}{dt} \right|_{t=0} \begin{bmatrix} \alpha(t) & \mathbf{0} \\ \mathbf{0}^T & 1 \end{bmatrix} = \begin{bmatrix} \alpha'(0) & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix} = \begin{bmatrix} X & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix},
+	\]
+	which is indeed a skew-symmetric $(n +1) \times (n+1)$ matrix, and so can be interpreted as an element of $\mathfrak{so}(n+1)$. Moreover, for $X,Y \in \mathfrak{so}(n)$,
+	\[
+		di([X,Y]) = \begin{bmatrix} [X,Y] & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix} = \begin{bmatrix} X & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix}\begin{bmatrix} Y & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix} - \begin{bmatrix} Y & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix}\begin{bmatrix} X & \mathbf{0} \\ \mathbf{0}^T & 0 \end{bmatrix} = [di(X), di(Y)],
+	\]
+	so this really is a Lie algebra homomorphism.
+\end{example}
+
+\begin{example}
+	Consider the coordinate chart $f \from \Aff(\R) \to \GL_2(\R)$ given by $f(\varphi_{a,b}) := \begin{bmatrix} a & b \\ 0 & 1 \end{bmatrix}$ implicitly defined in \Cref{ex:affine group}. Using the coordinates from \Cref{ex:coords on affine group}, we have left-invariant vector fields on $\Aff(\R)$ given by $u \frac{\partial}{\partial u}$ and $u \frac{\partial}{\partial v}$. Therefore, for any smooth function $h \from \Aff(\R) \to \R$,
+	\[
+		\left[u \frac{\partial}{\partial u},u \frac{\partial}{\partial v}\right](h) = u \frac{\partial}{\partial u}\left(u \frac{\partial}{\partial v} h\right) - u \frac{\partial}{\partial v}\left(u \frac{\partial}{\partial u} h\right) = u \frac{\partial h}{\partial v} + u^2 \frac{\partial^2 h}{\partial u \partial v} - u^2 \frac{\partial^2 h}{\partial v \partial u} = u \frac{\partial}{\partial v}(h).
+	\]
+	That is, $\left[u \frac{\partial}{\partial u},u \frac{\partial}{\partial v}\right] =u \frac{\partial}{\partial v}$. On the other hand, $df\left(u \frac{\partial}{\partial u} \right)$ and $df\left(u \frac{\partial}{\partial v} \right)$ correspond to the matrices $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$ and $B = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$ from \Cref{ex:Lie algebra of affine group}, and we saw there that $[A,B] = B$. Writing things out in terms of $f$ we have
+	\[
+		\left[df\left(u \frac{\partial}{\partial u} \right), df\left(u \frac{\partial}{\partial v} \right)\right] = [A,B] = B =  df\left(u \frac{\partial}{\partial v} \right) = df \left( \left[ u \frac{\partial}{\partial u}, u \frac{\partial}{\partial v}\right]\right),
+	\]
+	so $df \from \mathfrak{aff}(\R)  \to \mathfrak{gl}_2(\R)$ is a Lie algebra homomorphism.
+\end{example}
+
+\Cref{prop:Lie group hom implies Lie alg hom} shows that Lie group homomorphisms induce Lie algebra homomorphisms, and so the expression $d\phi = \psi$ in \Cref{thm:Lie group Lie algebra correspondence} makes sense. In order to prove the rest of \Cref{thm:Lie group Lie algebra correspondence}, we'll need to make an extended detour into the theory of distributions (which are also useful for other things). 
