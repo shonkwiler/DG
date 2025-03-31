@@ -1,0 +1,36 @@
+author: Clayton Shonkwiler
+build_pdf: true
+build_zip: true
+code: MATH670
+format_version: 2
+institution: Colorado State University
+license: null
+locale: en
+mathjax_url: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+num_pdf_runs: 1
+root_url: /{base}/{code}/
+structure:
+- build_pdf: true
+  content: []
+  formats:
+  - filetype: html
+    format: default
+    url: index.html
+  - filetype: pdf
+    format: default
+    url: notes.pdf
+  is_hidden: false
+  pdf_url: notes.pdf
+  slug: notes
+  source: dg.tex
+  splitlevel: -2
+  title: Notes
+  type: standalone
+  url: index.html
+themes:
+- path: .
+  source: default
+  title: Default
+title: Introduction to Differential Manifolds
+year: 2025
+zipfile: introduction_to_diff.zip
