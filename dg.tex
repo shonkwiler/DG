@@ -54,6 +54,7 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
 \newtheorem{exercise}[theorem]{Exercise}
 \newtheorem*{notation}{Notation}
 \newtheorem*{claim}{Claim}
@@ -67,6 +68,7 @@
 \AddToHook{env/example/begin}{\crefalias{theorem}{example}}
 \AddToHook{env/conjecture/begin}{\crefalias{theorem}{conjecture}}
 \AddToHook{env/remark/begin}{\crefalias{theorem}{remark}}
+\AddToHook{env/problem/begin}{\crefalias{theorem}{problem}}
 \AddToHook{env/exercise/begin}{\crefalias{theorem}{exercise}}
 
 \crefname{lemma}{Lemma}{Lemmas}
@@ -76,6 +78,7 @@
 \crefname{example}{Example}{Examples}
 \crefname{conjecture}{Conjecture}{Conjectures}
 \crefname{remark}{Remark}{Remarks}
+\crefname{problem}{Problem}{Problems}
 \crefname{exercise}{Exercise}{Exercises}
 
 \newcommand{\R}{\mathbb{R}}
@@ -192,7 +195,7 @@
 \input{days/day19}
 \input{days/day20}
 \input{days/day21}
-% \input{days/day22}
+\input{days/day22}
 
 
 \bibliography{dg}
