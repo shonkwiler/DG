@@ -61,12 +61,18 @@ As you would expect, the exterior products satisfy a universal property analogou
 
 \begin{theorem}[Universal Property of the Exterior Product]\label{thm:exterior product universal property}
 	If $\phi\from V^k \to \ext{k}(V)$ is the map given by $(v_1, \dots , v_k) \mapsto v_1 \wedge \dots \wedge v_k$ and $F \from V^k \to W$ is an alternating multilinear map, then there exists a unique linear map $\widetilde{F} \from \ext{k}(V) \to W$ making the following diagram commute:
-	\[
-	\begin{tikzcd}
-		\underbrace{V \times \dots \times V}_k \arrow[r,"F"] \arrow[d,"\phi"'] & W \\
-		\ext{k}(V) \arrow[ur,"\widetilde{F}"',dashed]
-	\end{tikzcd}
-	\]
+	\ifplastex
+		\begin{center}
+			\includegraphics[height=1.5in]{cd4}
+		\end{center}
+	\else	
+		\[
+			\begin{tikzcd}
+				\underbrace{V \times \dots \times V}_k \arrow[r,"F"] \arrow[d,"\phi"'] & W \\
+				\ext{k}(V) \arrow[ur,"\widetilde{F}"',dashed]
+			\end{tikzcd}
+		\]
+	\fi
 	Again, this uniquely characterizes $\ext{k}(V)$ up to isomorphism.
 \end{theorem}
 

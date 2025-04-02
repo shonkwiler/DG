@@ -13,12 +13,19 @@ So anything we can say about differential forms on $M$ must be expressible just 
 
 Or, turning it around, are there operations on forms which fill in the squares in the following diagram and makes them commute?
 
-\[
-\begin{tikzcd}
-	\Omega^0(M) & \Omega^1(M) & \Omega^2(M) & \Omega^3(M) \\
-	C^\infty(M) \arrow[u, equal] \arrow[r,"\nabla"] & \mathfrak{X}(M) \arrow[u,"\cong","\flat"'] \arrow[r,"\nabla\times"] & \mathfrak{X}(M) \arrow[u,"\cong"] \arrow[r,"\nabla \cdot"] & C^\infty(M) \arrow[u,"\cong"]
-\end{tikzcd}
-\]
+\ifplastex
+	\begin{center}
+		\includegraphics[height=1in]{cd1}
+	\end{center}
+\else	
+	\[
+		\begin{tikzcd}
+			\Omega^0(M) & \Omega^1(M) & \Omega^2(M) & \Omega^3(M) \\
+			C^\infty(M) \arrow[u, equal] \arrow[r,"\nabla"] & \mathfrak{X}(M) \arrow[u,"\cong","\flat"'] \arrow[r,"\nabla\times"] & \mathfrak{X}(M) \arrow[u,"\cong"] \arrow[r,"\nabla \cdot"] & C^\infty(M) \arrow[u,"\cong"]
+		\end{tikzcd}
+	\]
+\fi
+
 
 First, we (hopefully) recall from vector calculus that the gradient of a function is a vector field, which can be computed in local coordinates as
 \[
@@ -97,12 +104,19 @@ Can we get to this 3-form by applying our generalized differential to the 2-form
 
 The upshot is that we've now filled in the diagram:
 
-\[
-\begin{tikzcd}
-	\Omega^0(M) \arrow[r,"d"] & \Omega^1(M) \arrow[r,"d"] & \Omega^2(M) \arrow[r,"d"] & \Omega^3(M) \\
-	C^\infty(M) \arrow[u, equal] \arrow[r,"\nabla"] & \mathfrak{X}(M) \arrow[u,"\cong","\flat"'] \arrow[r,"\nabla\times"] & \mathfrak{X}(M) \arrow[u,"\cong","\star^\flat"'] \arrow[r,"\nabla \cdot"] & C^\infty(M) \arrow[u,"\cong","\cdot \dVol_M"']
-\end{tikzcd}
-\]
+\ifplastex
+	\begin{center}
+		\includegraphics[height=1in]{cd2}
+	\end{center}
+\else	
+	\[
+		\begin{tikzcd}
+			\Omega^0(M) \arrow[r,"d"] & \Omega^1(M) \arrow[r,"d"] & \Omega^2(M) \arrow[r,"d"] & \Omega^3(M) \\
+			C^\infty(M) \arrow[u, equal] \arrow[r,"\nabla"] & \mathfrak{X}(M) \arrow[u,"\cong","\flat"'] \arrow[r,"\nabla\times"] & \mathfrak{X}(M) \arrow[u,"\cong","\star^\flat"'] \arrow[r,"\nabla \cdot"] & C^\infty(M) \arrow[u,"\cong","\cdot \dVol_M"']
+		\end{tikzcd}
+	\]
+\fi
+
 
 Of course, I haven't really given a rigorous definition of $d$ (which is called the \emph{exterior derivative}), nor of $\wedge$ (the \emph{wedge product}), but, as we will see, there is a natural, coordinate-free way of defining these things for arbitrary differential forms on arbitrary manifolds which specializes to the calculuations above in local coordinates (and hence corresponds to gradient and divergence on manifolds of arbitrary dimension).
 
