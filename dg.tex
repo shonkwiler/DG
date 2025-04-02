@@ -2,13 +2,10 @@
 
 \usepackage{geometry}
 \usepackage{amssymb}
-\usepackage{latexsym, amsmath, amscd,amsthm}
+\usepackage{latexsym, amsmath}
 \usepackage{ifpdf}
-\ifpdf
-	\usepackage{newtxtext,newtxmath}
-\fi
-\usepackage{graphicx}
 
+\usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{cd}
 \usepackage{xcolor}
@@ -31,6 +28,12 @@
 
 \usepackage{chirun}
 
+\ifplastex
+
+\else
+	\usepackage{amsthm}
+	\usepackage{newtxtext,newtxmath}
+\fi
 
 \usepackage[nameinlink]{cleveref}
 
