@@ -13,12 +13,12 @@ So anything we can say about differential forms on $M$ must be expressible just 
 
 Or, turning it around, are there operations on forms which fill in the squares in the following diagram and makes them commute?
 
-\begin{center}
+\[
 \begin{tikzcd}
 	\Omega^0(M) & \Omega^1(M) & \Omega^2(M) & \Omega^3(M) \\
 	C^\infty(M) \arrow[u, equal] \arrow[r,"\nabla"] & \mathfrak{X}(M) \arrow[u,"\cong","\flat"'] \arrow[r,"\nabla\times"] & \mathfrak{X}(M) \arrow[u,"\cong"] \arrow[r,"\nabla \cdot"] & C^\infty(M) \arrow[u,"\cong"]
 \end{tikzcd}
-\end{center}
+\]
 
 First, we (hopefully) recall from vector calculus that the gradient of a function is a vector field, which can be computed in local coordinates as
 \[
@@ -97,12 +97,12 @@ Can we get to this 3-form by applying our generalized differential to the 2-form
 
 The upshot is that we've now filled in the diagram:
 
-\begin{center}
+\[
 \begin{tikzcd}
 	\Omega^0(M) \arrow[r,"d"] & \Omega^1(M) \arrow[r,"d"] & \Omega^2(M) \arrow[r,"d"] & \Omega^3(M) \\
 	C^\infty(M) \arrow[u, equal] \arrow[r,"\nabla"] & \mathfrak{X}(M) \arrow[u,"\cong","\flat"'] \arrow[r,"\nabla\times"] & \mathfrak{X}(M) \arrow[u,"\cong","\star^\flat"'] \arrow[r,"\nabla \cdot"] & C^\infty(M) \arrow[u,"\cong","\cdot \dVol_M"']
 \end{tikzcd}
-\end{center}
+\]
 
 Of course, I haven't really given a rigorous definition of $d$ (which is called the \emph{exterior derivative}), nor of $\wedge$ (the \emph{wedge product}), but, as we will see, there is a natural, coordinate-free way of defining these things for arbitrary differential forms on arbitrary manifolds which specializes to the calculuations above in local coordinates (and hence corresponds to gradient and divergence on manifolds of arbitrary dimension).
 
@@ -111,17 +111,25 @@ Hopefully the fact that div, grad, and curl are all essentially the same operato
 More than just generalizing essentially all of vector calculus, differential forms also encode topological information (in the form of cohomology). To see this, look again at the diagram above:
 \begin{enumerate}
 	\item We know from vector calculus that $\nabla \times (\nabla f) = 0$ for any $f \in C^\infty(M)$ and $\nabla \cdot(\nabla \times X) = 0$ for any $X \in \mathfrak{X}(M)$. Since the diagram commutes, this implies that $d \circ d = 0$ regardless of whether you start in $\Omega^0(M)$ or $\Omega^1(M)$ (and in fact this is still true if you start in $\Omega^2(M)$ or $\Omega^3(M)$ since $\Omega^4(M) = \{0\}$). In other words,
-	\begin{center}
-	\begin{tikzcd}
-		\Omega^0(M) \arrow[r,"d"] & \Omega^1(M) \arrow[r,"d"] & \Omega^2(M) \arrow[r,"d"] & \Omega^3(M)
-	\end{tikzcd}
-	\end{center}
+	\[
+	\ifplastex
+		\Omega^0(M) \longrightarrow  \Omega^1(M) \longrightarrow \Omega^2(M) \longrightarrow \Omega^3(M)
+	\else
+		\begin{tikzcd}
+			\Omega^0(M) \arrow[r,"d"] & \Omega^1(M) \arrow[r,"d"] & \Omega^2(M) \arrow[r,"d"] & \Omega^3(M)
+		\end{tikzcd}
+	\fi
+	\]
 	is a (co)chain complex. More generally, if we add indices to the exterior derivatives to indicate where they start and end,
-	\begin{center}
-	\begin{tikzcd}
-		\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] & \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M)
-	\end{tikzcd}
-	\end{center}
+	\[
+	\ifplastex
+		\Omega^0(M) \stackrel{d_0}{\longrightarrow}  \Omega^1(M) \stackrel{d_1}{\longrightarrow}  \dots \stackrel{d_{n-2}}{\longrightarrow} \Omega^{n-1}(M) \stackrel{d_{n-1}}{\longrightarrow} \Omega^n(M) 
+	\else
+		\begin{tikzcd}
+			\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] &  \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M) 
+		\end{tikzcd}
+	\fi
+	\]
 	is always a cochain complex on any $n$-manifold (i.e., $d_k \circ d_{k-1} = 0$ for all $k$). The usual thing you do when you have a (co)chain complex is to take the (co)homology, and that's also useful in this case. Doing so yields the \emph{de Rham cohomology groups}
 	\[
 		H_{\text{dR}}^k(M) := \frac{\ker d_k}{\operatorname{im} d_{k-1}}.

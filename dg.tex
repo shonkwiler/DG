@@ -2,9 +2,10 @@
 
 \usepackage{geometry}
 \usepackage{amssymb}
-\usepackage{latexsym, amsmath, amscd,amsthm}
+\usepackage{latexsym, amsmath, amscd}
 \usepackage{ifpdf}
 \ifpdf
+	\usepackage{amsthm}
 	\usepackage{newtxtext,newtxmath}
 \fi
 \usepackage{graphicx}
@@ -128,8 +129,6 @@
 	\renewcommand{\labelenumi}{(\roman{enumi})}
 \fi
 
-\newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{#1}}
-\newcommand{\ent}[3]{E_{#1,#2}^{(#3)}}
 
 
 \newcommand{\crefrangeconjunction}{--}
@@ -140,9 +139,6 @@
 
 
 
-\hyphenation{pa-ram-e-tri-za-tion}
-
-\tikzset{my node/.style = {shape=circle, fill=black, inner sep = 1.5pt, outer sep = 0pt}}
 
 
 \setlength{\parskip}{3pt}

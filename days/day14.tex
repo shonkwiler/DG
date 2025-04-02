@@ -103,11 +103,15 @@ since each $d(dx_{i_j}) = 0$. But then, again applying the anti-derivation condi
 \end{proof}
 
 Notice that $d$ being degree $+1$ and satisfying the cocycle condition \ref{it:d^2=0} says exactly that we have a diagram
-	\begin{center}
-	\begin{tikzcd}
-		\Omega^0(M) \arrow[r,"d"] & \Omega^1(M) \arrow[r,"d"] &  \dots \arrow[r,"d"] & \Omega^{n-1}(M) \arrow[r,"d"] & \Omega^n(M) 
-	\end{tikzcd}
-	\end{center}
+	\[
+	\ifplastex
+		\Omega^0(M) \stackrel{d_0}{\longrightarrow}  \Omega^1(M) \stackrel{d_1}{\longrightarrow}  \dots \stackrel{d_{n-2}}{\longrightarrow} \Omega^{n-1}(M) \stackrel{d_{n-1}}{\longrightarrow} \Omega^n(M) 
+	\else
+		\begin{tikzcd}
+			\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] &  \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M) 
+		\end{tikzcd}
+	\fi
+	\]
 which is a cochain complex.
 	
 \begin{definition}\label{def:closed and exact}

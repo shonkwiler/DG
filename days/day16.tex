@@ -4,11 +4,15 @@
 \label{sec:de Rham}
 
 Recall that we have the cochain complex
-	\begin{center}
-	\begin{tikzcd}
-		\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] &  \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M) 
-	\end{tikzcd}
-	\end{center}
+	\[
+	\ifplastex
+		\Omega^0(M) \stackrel{d_0}{\longrightarrow}  \Omega^1(M) \stackrel{d_1}{\longrightarrow}  \dots \stackrel{d_{n-2}}{\longrightarrow} \Omega^{n-1}(M) \stackrel{d_{n-1}}{\longrightarrow} \Omega^n(M) 
+	\else
+		\begin{tikzcd}
+			\Omega^0(M) \arrow[r,"d_0"] & \Omega^1(M) \arrow[r,"d_1"] &  \dots \arrow[r,"d_{n-2}"] & \Omega^{n-1}(M) \arrow[r,"d_{n-1}"] & \Omega^n(M) 
+		\end{tikzcd}
+	\fi
+	\]
 where the subscript $k$ indicates that $d_k$ is the restriction of $d$ to $\Omega^k(M)$.
 
 \begin{definition}\label{def:de Rham cohomology}

@@ -62,12 +62,12 @@ Here's the key theorem (or, if you start form a different perspective, the below
 
 \begin{theorem}[Universal Property of the Tensor Product]\label{thm:tensor product universal property}
 	If $\phi\from U \times V \to U \otimes V$ is the map given by $(u,v) \mapsto u \otimes v$ and $F \from U \times V \to W$ is bilinear, then there exists a unique \emph{linear} map $\widetilde{F} \from U \otimes V \to W$ making the following diagram commute:
-	\begin{center}
+	\[
 	\begin{tikzcd}
 		U \times V \arrow[r,"F"] \arrow[d,"\phi"'] & W \\
 		U \otimes V \arrow[ur,"\widetilde{F}"',dashed]
 	\end{tikzcd}
-	\end{center}
+	\]
 	Moreover, this uniquely characterizes $U \otimes V$: any vector space satisfying this property must be isomorphic to $U \otimes V$.
 \end{theorem}
 
