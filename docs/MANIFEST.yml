@@ -2,6 +2,8 @@ author: Clayton Shonkwiler
 build_pdf: true
 build_zip: true
 code: MATH670
+css:
+- custom.css
 format_version: 2
 institution: Colorado State University
 license: null

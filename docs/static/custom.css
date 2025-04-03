@@ -1,0 +1,14 @@
+.thmcontent {
+    background-color: var(--bg-colour-accent-1);
+	padding: var(--spacing) var(--spacing) calc(0.01 * var(--spacing)) var(--spacing);
+}
+
+.example_thmcontent {
+    background-color: var(--bg-colour-accent-2);
+	padding: var(--spacing) var(--spacing) calc(0.01 * var(--spacing)) var(--spacing);
+}
+
+/*.proof_content {
+    background-color: var(--bg-colour-accent-4);
+	padding: var(--spacing) var(--spacing) calc(0.01 * var(--spacing)) var(--spacing);
+}*/

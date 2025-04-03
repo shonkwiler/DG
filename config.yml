@@ -8,3 +8,5 @@ structure:
       title: Notes
       source: dg.tex
 build_pdf: true
+css:
+    - custom.css
