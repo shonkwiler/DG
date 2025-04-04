@@ -125,6 +125,15 @@ So a restatement of \Cref{thm:Frobenius v2} is that a distribution is involutive
 	\end{align*}
 	since $\omega(X)$ and $\omega(Y)$ are functions.
 	
+	We record this as a lemma:
+	
+	\begin{lemma}\label{lem:d 1-form Cartan}
+		Suppose $\omega \in \Omega^1(M)$ and $X,Y \in \mathfrak{X}(M)$. Then
+		\[
+			d \omega(X,Y) = X(\omega(Y))- Y(\omega(X))-\omega([X,Y]).
+		\]
+	\end{lemma}
+	
 	This implies that, if $1 \leq i, j \leq d$ and $d+1 \leq k \leq n$,
 	\[
 		d\xi_k(X_i,X_j) = X_i(\xi_x(X_j)) - X_j(\xi_k(X_i)) - \xi_k([X_i,X_j]) = X_i(0) - X_j(0) - \xi_k([X_i,X_j]) = - \xi_k([X_i,X_j]).
