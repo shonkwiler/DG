@@ -196,7 +196,7 @@ In general, $\mathcal{T}(V)$ is noncommutative, associative, and (bi-)graded.
 	Note: when I write something like $g_p(u,v)$ I'm technically thinking of $g_p$ as the associated bilinear map $T_pM \times T_pM \to \R$, but in coordinates we also often use notation like $g = \sum_{i,j} g_{ij} dx_i \otimes dx_j$, which more closely matches up with the idea of $g$ being a $(0,2)$-tensor field.
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:hyperbolic plane}
 	Consider the Riemmannian metric $g = \frac{1}{y^2}(dx \otimes dx + dy \otimes dy)$ (also commonly written as $ds^2 = \frac{1}{y^2}(dx^2 + dy^2)$) on $H = \{(x,y) \in \R^2 : y > 0\}$.\footnote{In undergraduate differential geometry courses like MATH 474, the Riemannian metric is more often called the First Fundamental Form.} This is the Poincaré half-plane model of the hyperbolic plane. In general, we can compute the length of a curve $\gamma(t) = (\gamma_1(t),\gamma_2(t))$ by integrating the length of $\gamma'(t)$ along the curve. Since $\gamma'(t) \in T_{\gamma(t)}H$, its length is 
 	\[
 		\sqrt{g_{\gamma(t)}(\gamma'(t),\gamma'(t))} = \sqrt{\frac{\gamma'(t) \cdot \gamma'(t)}{\gamma_2(t)^2}} = \frac{\|\gamma'(t)\|_E}{\gamma_2(t)},

@@ -1,0 +1,167 @@
+% !TEX root = ../dg.tex
+
+\section{Riemannian Metrics}
+\label{sec:Riemannian metrics}
+
+Thus far, almost all of what we've talked about is, strictly speaking, in the realm of \emph{differential topology} rather than differential geometry. The exceptions include \Cref{sec:vector calculus}, \Cref{ex:hyperbolic plane}, and some of the distribution theory (including contact geometry) from \Cref{sec:distributions} and \Cref{sec:distributions and differential ideals}. The point is that, to have geometry we need some notion of size, whether that's in the form of length, area, volume, or something else.
+
+A weak form of this is provided by volume forms, and a somewhat stronger form by symplectic forms, which encode a notion of area (and hence volume), but not of length. In this section we introduce Riemannian metrics, which induce a notion of length (and hence also of area, volume, etc.). We've already given a definition in \Cref{def:Riemannian metric}, which we repeat:
+
+\begin{definition*}[\Cref{def:Riemannian metric}]
+	A \emph{Riemannian metric} on a manifold $M$ is a smooth $(0,2)$-tensor field $g$ on $M$ so that, for each $p \in M$, $g_p = g(p)$ satisfies the axioms of an inner product on $T_p(M)$; that is, in addition to being bilinear (which is guaranteed by the fact it is a $(0,2)$-tensor), it must be symmetric ($g_p(u,v) = g_p(v,u)$) and positive-definite ($g_p(v,v) \geq 0$ with equality if and only if $v=0$).
+\end{definition*} 
+
+\begin{definition}\label{def:Riemannian manifold}
+	A pair $(M,g)$ where $M$ is a manifold and $g$ is a Riemannian metric is called a \emph{Riemannian manifold}.
+\end{definition}
+
+Let $(U,\phi)$ be some local coordinate chart on $M$ and let $\frac{\partial}{\partial x_1}, \dots , \frac{\partial}{\partial x_n}$ be the induced local coordinate basis on the tangent spaces of points in the image of $\phi$. Then we can represent $g$ by the symmetric matrix $\begin{bmatrix} g_{ij} \end{bmatrix}_{i,j}$ where
+\[
+	g_{ij}(p) = g_p\left(\frac{\partial}{\partial x_i}(p) , \frac{\partial}{\partial x_j}(p)\right).
+\]
+In the above I've written $g_{ij}$ as a function on $\phi(U) \subset M$, but it is also common to think of $g_{ij}$ as a function on $U \subset \R^n$: $g_{ij}(x_1, \dots , x_n) = g_{ij}(\phi(x_1, \dots , x_n))$. Of course, the fact that $g$ is a smooth tensor field implies that, in this interpretation, $g_{ij}$ is a smooth function on $U$.\footnote{For those who have taken an undergraduate differential geometry course like MATH 474, the matrix $\begin{bmatrix} g_{ij} \end{bmatrix}_{i,j}$ is the same thing as the matrix usually called the \emph{first fundamental form} in that course.}
+
+Before giving examples, let's define the appropriate notion of isomorphism of Riemannian metrics.
+
+\begin{definition}\label{def:isometry}
+	Let $(M,g_M)$ and $(N,g_N)$ be Riemannian manifolds. If $f \from M \to N$ is a diffeomorphism so that
+	\[
+		(g_M)_p(u,v) = (g_N)_{f(p)}(df_p u, df_p v)
+	\]
+	for all $p \in M$ and all $u,v \in T_pM$, then $f$ is an \emph{isometry}.
+	
+	A smooth map $f \from M \to N$ is a \emph{local isometry} at $p \in M$ if there exists a neighborhood $U$ of $p$ so that $f \from U \to f(U)$ is an isometry. $M$ and $N$ are \emph{locally isometric} if for every $p \in M$ there exists a neighborhood $U$ of $p$ and a local isometry $f \from U \to f(U)$.
+\end{definition}
+
+\begin{example}
+	The simplest possible example is $M = \R^n$, where we identify each tangent space $T_pM$ with $\R^n$ so that $\frac{\partial}{\partial x_i}$ gets identified with $e_i = (0, \dots , 0, 1, 0, \dots , 0)$, the $i$th standard basis vector. Then $g\left(\frac{\partial}{\partial x_i} , \frac{\partial}{\partial x_j} \right) = \delta_{ij}$ (i.e., just the standard dot product on each tangent space) is a Riemannian metric on $\R^n$, called the \emph{Euclidean metric}.
+\end{example}
+
+\begin{example}
+	Suppose $f \from M^m \to N^n$ is an immersion (so $m \leq n$). If $N$ is a Riemannian manifold with Riemannian metric $g_N$, then $f$ induces a Riemannian metric on $M$ by
+	\[
+		(g_M)_p(u,v) := (g_N)_{f(p)}(df_p u, df_p v)
+	\]
+	for all $p \in M$ and all $u,v \in T_pM$. Since $f$ is an immersion, $df_p$ is injective for all $p \in M$, which ensures that $g$ is positive definite. The metric on $M$ is sometimes called the metric \emph{induced} by $f$ and it turns $f$ into an isometry (and therefore an \emph{isometric immersion}).
+\end{example}
+
+\begin{example}
+	Let $h \from M^m \to N^n$ be smooth and suppose $q \in N$ is a regular value of $h$ (which necessarily implies that $m \geq n$). We know from \Cref{thm:level set theorem} that $h^{-1}(q) \subset M$ is a smooth submanifold. Hence, if $M$ is Riemannian, then by the previous example we get a metric on $h^{-1}(q)$ induced by the inclusion map $i \from h^{-1}(q) \hookrightarrow M$. 
+	
+	For example, if $h \from \R^n \to \R$ is given by $h(x_1, \dots , x_n) := x_1^2 + \dots + x_n^2$ then, as we saw in \Cref{ex:sphere as level set}, $1$ is a regular value and of course $h^{-1}(1)$ is the unit sphere in $\R^n$. The metric on the sphere induced by the Euclidean metric is the \emph{standard round metric} on $S^{n-1}$.
+\end{example}
+
+\begin{example}
+	Suppose $G$ is a Lie group with Lie algebra $\mathfrak{g}$. Choose any inner product $\langle  \cdot , \cdot \rangle_e$ on $T_e G \cong \mathfrak{g}$. Then we can define a (left-invariant) metric on $G$ by, for each $h \in G$ and $u,v \in T_hG$,
+	\[
+		g_h(u,v) := \langle \left(dL_{h^{-1}}\right)_h u, \left(dL_{h^{-1}}\right)_h v \rangle_e.
+	\]
+	Of course, we could just as well have produced a right-invariant metric instead by pushing forward by $dR_{h^{-1}}$.
+\end{example}
+
+\begin{example}
+	Recall the affine group $\Aff(\R)$ from \Cref{ex:affine group}, where $\Aff(\R)$ consisted of invertible affine transformations $\phi_{a,b}(t) = at + b$, where $a \neq 0$. 
+	
+	For this example, I'm going to change notation and think of affine transformations $\phi_{x,y}(t) := yt + x$, which is invertible if $y \neq 0$. Let $\Aff^+(\R)$ be the subgroup of orientation-preserving affine transformations, meaning that $y > 0$. Then we can identify $\phi_{x,y}$ with the point $(x,y) \in H$, where $H = \{(x,y) \in \R^2 : y > 0\}$ is the upper half-plane. Under this identification, the identity element $e \in \Aff^+(\R)$ corresponds to the point $(0,1) \in H$. Of course, $T_e \Aff^+(\R) \cong T_{(0,1)} \R^2 \cong \R^2$, so we can define an inner product on $T_e \Aff^+(\R)$ by simply taking the standard dot product on $\R^2$; i.e.
+	\[
+		\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial x} \rangle_e = 1, \quad \langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y} \rangle_e = 0, \quad \langle \frac{\partial}{\partial y}, \frac{\partial}{\partial y} \rangle_e = 1,
+	\]
+	or, in $g_{ij}$ notation, $g_{11}(e) = g_{22}(e) = 1$ and $g_{12}(e) = g_{21}(e) = 0$.
+	
+	So what is the corresponding left-invariant Riemannian metric on $\Aff^+(\R)$? Translating the results of \Cref{ex:coords on affine group} to the present notation tells us that
+	\[
+		(dL_{\phi_{x,y}})_e \frac{\partial}{\partial x} = y \frac{\partial}{\partial x} \qquad \text{and} \qquad (dL_{\phi_{x,y}})_e \frac{\partial}{\partial y} = y \frac{\partial}{\partial y},
+	\]
+	or equivalently
+	\[
+		(dL_{\phi_{x,y}^{-1}})_{\phi_{x,y}} \frac{\partial}{\partial x} = \frac{1}{y} \frac{\partial}{\partial x} \qquad \text{and} \qquad (dL_{\phi_{x,y}^{-1}})_{\phi_{x,y}} \frac{\partial}{\partial y} = \frac{1}{y} \frac{\partial}{\partial y}.
+	\]
+	
+	Therefore, by the previous example, the left-invariant metric on $\Aff^+(\R)$ is given by
+	\begin{align*}
+		g_{11}(x,y) & = \left\langle \frac{1}{y} \frac{\partial}{\partial x}, \frac{1}{y} \frac{\partial}{\partial x} \right\rangle_e = \frac{1}{y^2} \\
+		g_{12}(x,y) & = \left\langle \frac{1}{y} \frac{\partial}{\partial x}, \frac{1}{y} \frac{\partial}{\partial y} \right\rangle_e = 0 \\
+		g_{22}(x,y) & = \left\langle \frac{1}{y} \frac{\partial}{\partial y}, \frac{1}{y} \frac{\partial}{\partial y} \right\rangle_e = \frac{1}{y^2}.
+	\end{align*}
+	This is the same as the hyperbolic metric on $H$ discussed in \Cref{ex:hyperbolic plane}!
+	
+	\begin{exercise}
+		Write $(x,y) = x+iy = z$ for each $(x,y) \in H$. Show that, if $a,b,c,d \in \R$ with $ad-bc = 1$, then
+		\[
+			z \mapsto \frac{az+b}{cz+d}
+		\]
+		is an isometry with respect to the metric just defined on $H$.
+	\end{exercise}
+\end{example}
+
+I promised above that Riemannian metrics give a notion of length on manifolds. Of course, given a Riemannian metric, I get a notion of lengths of tangent vectors by just taking the norm associated to the inner product: for $v \in T_p M$, its norm/length is just $\sqrt{g_p(v,v)}$.
+
+But a Riemannian metric also gives a notion of lengths of curves by integrating the norm of the tangent vector to the curve:
+
+\begin{definition}\label{def:lengths of curves}
+	Let $(M,g)$ be a Riemannian manifold and let $\alpha \from [a,b] \to M$ be a smooth curve in $M$. Define the \emph{length} of $\alpha$ in $M$ to be
+	\[
+		\int_a^b \sqrt{g_{\alpha(t)}(\alpha'(t),\alpha'(t))}\, dt.
+	\]
+\end{definition}
+
+Given a notion of length, we also get a notion of volume. First, if we choose some orthonormal basis $e_1, \dots , e_n$ for $T_p M$ and consider the coordinate vectors $X_i(p) := \frac{\partial}{\partial x_i}(p)$, then there exist $a_{ij}$ so that
+\[
+	X_i(p) = \sum_{i,j} a_{ij} e_j.
+\]
+The volume $\vol(X_1(p), \dots , X_n(p))$ of the parallelpiped spanned by the $X_i$ in $T_pM$ is equal to $\vol(e_1, \dots , e_n) = 1$ times the determinant of the change-of-basis matrix $A := \begin{bmatrix}a_{ij} \end{bmatrix}_{i,j}$:
+\begin{equation}\label{eq:vol1}
+	\vol(X_1(p), \dots , X_n(p)) = (\det A) 1 = \det A.
+\end{equation}
+To relate this to the metric, observe that
+\[
+	g_{ij}(p) = g_p(X_i(p),X_j(p)) = g_p \left(\sum_{k=1}^n a_{ik}e_k, \sum_{\ell=1}^n a_{j\ell}e_\ell\right) = \sum_{k,\ell} a_{ik}a_{j\ell} g_p(e_k,e_\ell) = \sum_{k=1}^n a_{ik}a_{jk},
+\]
+which is just the $(i,j)$ entry of $AA^T$. Since 
+\begin{equation}\label{eq:vol2}
+	\det A = \sqrt{\det AA^T} = \sqrt{\det \begin{bmatrix} g_{ij} \end{bmatrix}_{i,j}},
+\end{equation}
+we can combine \eqref{eq:vol1} and \eqref{eq:vol2} to see that
+\[
+	\vol(X_1(p), \dots , X_n(p)) = \sqrt{\det g_{ij}}(p),
+\]
+where $\sqrt{\det g_{ij}}$ is the standard shorthand for $\sqrt{\det \begin{bmatrix} g_{ij} \end{bmatrix}_{i,j}}$.
+
+Notice that, if $p$ lies in another local coordinate chart $(V,\psi)$ with coordinate basis $Y_i(p) = \frac{\partial}{\partial y_i}(p)$, then in those coordinates the Riemannian metric looks like $\begin{bmatrix} h_{ij} \end{bmatrix}_{i,j}$ with $h_{ij}(p) := g_p(Y_i(p), Y_j(p))$ and
+\begin{equation}\label{eq:volume transformation}
+	\sqrt{\det g_{ij}}(p) = \vol(X_1(p), \dots , X_n(p)) = (\det J) \vol(Y_1(p), \dots , Y_n(p)) = (\det J) \sqrt{\det h_{ij}}(p),
+\end{equation}
+where $J = \begin{bmatrix} \frac{\partial x_i}{\partial y_j}\end{bmatrix}_{i,j}$ is the Jacobian of the change of coordinates map $\psi^{-1} \circ \phi \from U \to V$.
+
+\begin{definition}\label{def:Riemannian volume}
+	Let $(U,\phi)$ be a local coordinate chart on a Riemannian manifold $(M,g)$ and assume that $R \subset \phi(U)$ is an open subset with compact closure. Then the \emph{volume} of $R$ is
+	\[
+		\vol_g(R) := \int_{\phi^{-1}(R)} \sqrt{\det g_{ij}}\, dx_1 \dots dx_n.
+	\]
+\end{definition}
+
+This is well-defined: if $R \subset \psi(V)$ for some other local coordinate chart $(V,\phi)$, then
+\[
+	\int_{\psi^{-1}(R)} \sqrt{\det h_{ij}}\, dy_1 \dots dy_n = \int_{\phi^{-1}(R)} \sqrt{\det g_{ij}}\, dx_1 \dots dx_n = \vol_g(R)
+\]
+by \eqref{eq:volume transformation} and the change of variables formula.
+
+More generally, we can define the volume of a region not contained in a single coordinate chart using a partition of unity, as in \Cref{def:integration}. Indeed, the point is really that a Riemannian metric determines a volume form:
+
+\begin{definition}\label{def:Riemannian volume form}
+	Let $(M,g)$ be an orientable Riemannian manifold and define the \emph{Riemannian volume form} $\dVol_g \in \Omega^n(M)$, which in any oriented local coordinate chart has the form
+	\[
+		\dVol_g = \sqrt{\det g_{ij}}\, dx_1 \wedge \dots \wedge dx_n.
+	\]
+\end{definition}
+
+If $\vol_g(M) = \int_M \dVol_g$ is finite (e.g., if $M$ is compact), then the Riemannian volume form determines a (signed) measure, called the \emph{Riemannian volume measure}, on the Borel sets in $M$:
+\[
+	\vol_g(B) := \int_B \dVol_g.
+\]
+(If you don't want a signed measure, just take the absolute value of the right hand side.)
+
+So, for example, if $(M,g)$ is a compact Riemannian manifold, then we automatically get a probability measure on $M$ by normalizing the above measure:
+\[
+	P_g(B) := \left|\frac{\vol_g(B)}{\vol_g(M)}\right|.
+\]
