@@ -105,13 +105,17 @@ The $\Gamma_{ij}^k$ are called the \emph{Christoffel symbols} of the connection 
 	& = \sum_{i,j,k} \left( v_i \frac{\partial w_k}{\partial x_i} + v_i w_j \Gamma_{ij}^k \right)X_k .
 \end{align*}
 
-\begin{exercise}
+\begin{exercise}\label{ex:christoffel determines connection}
 	Show that, within a coordinate neighborhood, if we pick $n^3$ smooth functions $\Gamma_{ij}^k$ arbitrarily and define
 	\[
 		\nabla_V W := \sum_{i,j,k} \left( v_i \frac{\partial w_k}{\partial x_i} + v_i w_j \Gamma_{ij}^k \right)X_k,
 	\]
 	then $\nabla$ will satisfy the axioms of an affine connection in that coordinate neighborhood.
 \end{exercise}
+
+\begin{remark}
+	Despite the suggestive notation, the $\Gamma_{ij}^k$ are not the components of a tensor field on $M$: they do not transform like tensor components under general coordinate transformations.
+\end{remark}
 
 We can refine \Cref{lem:connection is local} a bit: we don't actually need to know $W$ on an entire neighborhood of $p$, but only along a curve within that neighborhood:
 
