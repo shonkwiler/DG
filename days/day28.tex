@@ -87,9 +87,9 @@ If you want to see more details on the above, see any standard textbook on curve
 	
 	In fact, we can show more. Let $(U,\phi)$ be a coordinate chart in a neighborhood of $p$ and let $X_1 = \frac{\partial}{\partial X_1}, \dots , X_n = \frac{\partial}{\partial x_n}$ be the coordinate vector fields. If $V = \sum_i v_i X_i$, then
 	\[
-		\nabla_V W = f_1 \nabla_{X_1} W + \dots + f_n \nabla_{X_n}W
+		\nabla_V W = v_1 \nabla_{X_1} W + \dots + v_n \nabla_{X_n}W
 	\]
-	by \ref{it:connection1}. If we evaluate the right hand side at $p$, the only dependence on $V$ come from the $f_i(p)$, so it only depends on $V(p)$ (and not on the behavior of $V$ in a neighborhood of $p$).
+	by \ref{it:connection1}. If we evaluate the right hand side at $p$, the only dependence on $V$ come from the $v_i(p)$, so it only depends on $V(p)$ (and not on the behavior of $V$ in a neighborhood of $p$).
 \end{proof}
 
 If $\nabla$ is an affine connection on $M$ and $X_1 = \frac{\partial}{\partial X_1}, \dots , X_n = \frac{\partial}{\partial x_n}$ in some coordinate neighborhood on $M$, define the smooth functions $\Gamma_{ij}^k$ on that coordinate neighborhood by
@@ -202,7 +202,7 @@ The idea of parallel translation is the same in general: the idea is that, as yo
 It turns out that, given any initial vector at a point and any curve through the point, we can always find a parallel field along the curve which agrees with the given vector at the point.
 
 \begin{proposition}\label{prop:parallel transport}
-	Let $M$ be a smooth manifold with an affine connection $\nabla$, let $\alpha \from I \to M$ be a smooth curve in $M$, and let $V_0 \in T_{\alpha(t_0)}M$ be some tangent vector to $M$ at $\alpha(t_0)$. Then there is a unique parallel vector field $V \from I \to M$ along $\alpha$ so that $V(t_0) = V_0$.
+	Let $M$ be a smooth manifold with an affine connection $\nabla$, let $\alpha \from I \to M$ be a smooth curve in $M$, and let $V_0 \in T_{\alpha(t_0)}M$ be some tangent vector to $M$ at $\alpha(t_0)$. Then there is a unique parallel vector field $V \from I \to TM$ along $\alpha$ so that $V(t) \in T_{\alpha(t)}M$ for all $t \in I$ and $V(t_0) = V_0$.
 \end{proposition}
 
 \begin{proof}
@@ -213,4 +213,4 @@ It turns out that, given any initial vector at a point and any curve through the
 	The vector field $V(t)$ guaranteed by \Cref{prop:parallel transport} is called the \emph{parallel transport} of $V_0 = V(t_0)$ along the curve $\alpha(t)$.
 \end{definition}
 
-From here, we could define geodesics, curvatures, etc. for arbitrary connections. Rather than develop this theory in full generality, we will specialize to the case of the \emph{Riemannian connection} or \emph{Levi-Civita} connection, which is uniquely determined by a Riemannian metric. So we turn to the task of defining this special connection.
+From here, we could define geodesics, curvatures, etc. for arbitrary connections. Rather than develop this theory in full generality, we will specialize to the case of the \emph{Riemannian connection} or \emph{Levi-Civita connection}, which is uniquely determined by a Riemannian metric. So we turn to the task of defining this special connection.
