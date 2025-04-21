@@ -129,7 +129,7 @@ This connection is usually called the \emph{Levi-Civita connection} or the \emph
 	To prove existence, we can simply define $\nabla$ by \Cref{eq:levi-civita formula}; it is straightforward to check that $\nabla$ defined in this way is a symmetric, compatible connection.
 \end{proof}
 
-\begin{example}
+\begin{example}\label{ex:hyperbolic plane connection}
 	Let's work out the Levi-Civita connection for the Riemannian metric on $\Aff^+(\R)$ that we defined in \Cref{ex:affine hyperbolic metric}. Recall that we can identify $\Aff^+(\R)$ with the upper half-plane $H = \{(x,y) \in \R^2 : y > 0\}$ and that the metric $g$ can be represented by the matrix
 	\begin{align*}
 		g_{(x,y)} \leftrightarrow \begin{bmatrix} g_{11}(x,y) & g_{12}(x,y) \\ g_{12}(x,y) & g_{22}(x,y) \end{bmatrix} = \begin{bmatrix} \frac{1}{y^2} & 0 \\ 0 & \frac{1}{y^2} \end{bmatrix}.
@@ -165,9 +165,9 @@ This connection is usually called the \emph{Levi-Civita connection} or the \emph
 	Equating \eqref{eq:affconn1} and \eqref{eq:affconn2}, we see that $\nabla_XX = \frac{1}{y}Y$.
 	
 	If we play the same game with $\nabla_YY$ and with $\nabla_XY = \nabla_YX$ (using the symmetry of $\nabla$ and the fact that $[X,Y] = 0$), we conclude that
-	\[
+	\begin{equation}\label{eq:hyperbolic plane Christoffel}
 		\nabla_XX = \frac{1}{y}Y , \quad \nabla_XY = \nabla_YX = -\frac{1}{y}X, \quad \nabla_YY = -\frac{1}{y}Y.
-	\]
+	\end{equation}
 	
 	Now, let's think about parallel transporting a vector along the curve $\alpha(t) = (t,1)$. Notice that $\alpha'(t) = X$ for all $t$, so by \Cref{prop:covariant derivative}\ref{it:cov der3}, we have that the covariant derivative along $\alpha$ is given by
 	\[
