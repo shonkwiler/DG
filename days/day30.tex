@@ -45,8 +45,8 @@ Then $\gamma$ is a geodesic if and only if the above is zero, which means all th
 \end{equation}
 which is a system of $n$ second-order ODEs on a coordinate neighborhood of $M$.
 
-\begin{example}
-	Let's figure out the geodesic equation on $\Aff^+(\R) \cong H = \{(x,y) \in \R^2 : y > 0\}$. We saw in \Cref{ex:affine hyperbolic metric} that the metric is given by $g_{11} = \frac{1}{y_2} = g_{22}$, $g_{12} = 0$, and we worked out the Levi-Civita connection in \Cref{ex:hyperbolic plane connection}. Specifically,~\eqref{eq:hyperbolic plane Christoffel} implies that
+\begin{example}\label{ex:affine geodesics}
+	Let's figure out the geodesic equation on $\Aff^+(\R) \cong H = \{(x,y) \in \R^2 : y > 0\}$. We saw in \Cref{ex:affine hyperbolic metric} that the metric is given by $g_{11} = \frac{1}{y^2} = g_{22}$, $g_{12} = 0$, and we worked out the Levi-Civita connection in \Cref{ex:hyperbolic plane connection}. Specifically,~\eqref{eq:hyperbolic plane Christoffel} implies that
 	\begin{align*}
 		\Gamma_{11}^1 & = 0 & \Gamma_{12}^1 = \Gamma_{21}^1 & = -\frac{1}{y} &  \Gamma_{22}^1 & = 0 \\
 		\Gamma_{11}^2 & = \frac{1}{y} & \Gamma_{12}^2 = \Gamma_{21}^2 & = 0 & \Gamma_{22}^2 & = -\frac{1}{y}.
@@ -168,7 +168,7 @@ Recall from \Cref{def:integral curve} that an integral curve of a vector field i
 		\phi' & = y \\
 		\theta' & = z \\
 		y' & = (\sin \phi) (\cos \phi) z^2 \\
-		z' & = - (\cot \phi) y z.
+		z' & = - 2(\cot \phi) y z.
 	\end{align*}
 	If we want the geodesic through $(\phi_0,\theta_0) \in S^2$ with initial velocity $v \in T_{(\phi_0,\theta_0)}S^2$, then this gives a well-defined initial value problem.
 	
@@ -187,13 +187,13 @@ Then applying \Cref{prop:local flow} to the geodesic field $G$ on $TM$ at the po
 Composing the local flow $\phi$ with the projection $\pi \from TM \to M$ yields the map $\gamma = \pi \circ \phi$ which satisfies:
 
 \begin{proposition}\label{prop:geodesic flow on M}
-	Let $M$ be a Riemannian manifold and let $p \in M$. There is an open set $U$ containing $p$, real numbers $\delta,\epsilon > 0$, and a smooth map $\gamma \from (-\delta, \delta) \times TU_\epsilon \to M$ so that $t \mapsto \gamma(t,q,v)$ is the unique geodesic in $M$ passing through $q$ at time 0 with instantaneous velocit $v$ for any $(q,v) \in TU_\epsilon$.
+	Let $M$ be a Riemannian manifold and let $p \in M$. There is an open set $U$ containing $p$, real numbers $\delta,\epsilon > 0$, and a smooth map $\gamma \from (-\delta, \delta) \times TU_\epsilon \to M$ so that $t \mapsto \gamma(t,q,v)$ is the unique geodesic in $M$ passing through $q$ at time 0 with instantaneous velocity $v$ for any $(q,v) \in TU_\epsilon$.
 \end{proposition}
 
 Notice that we can always make $\delta$ bigger by making $\epsilon$ smaller (or \emph{vice versa}), so we can get $\delta$ of uniform size if we want:
 
 \begin{corollary}\label{cor:geodesic flow fixed delta}
-	Let $M$ be a Riemannian manifold and let $p \in M$. There is an open set $U$ containing $p$, a real number $\epsilon > 0$, and a smooth map $\gamma \from (-2,2) \times TU_\epsilon \to M$ so that $t \mapsto \gamma(t,q,v)$ is the unique geodesic in $M$ passing through $q$ at time 0 with instantaneous velocit $v$ for any $(q,v) \in TU_\epsilon$.
+	Let $M$ be a Riemannian manifold and let $p \in M$. There is an open set $U$ containing $p$, a real number $\epsilon > 0$, and a smooth map $\gamma \from (-2,2) \times TU_\epsilon \to M$ so that $t \mapsto \gamma(t,q,v)$ is the unique geodesic in $M$ passing through $q$ at time 0 with instantaneous velocity $v$ for any $(q,v) \in TU_\epsilon$.
 \end{corollary}
 
 In particular, this means that, so long as $v$ is short enough, $\gamma(1,q,v)$ is well-defined. We should interpret $\gamma(1,q,v)$ as follows: we travel along the geodesic through $q$ in the direction of the unit vector $\frac{v}{\|v\|}$ for a distance of $\|v\|$. This idea of going out in the manifold in the direction indicated by $v$ for a distance $\|v\|$ is so useful that we give it a special name:
