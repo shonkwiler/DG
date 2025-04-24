@@ -51,7 +51,7 @@ Before giving examples, let's define the appropriate notion of isomorphism of Ri
 	For example, if $h \from \R^n \to \R$ is given by $h(x_1, \dots , x_n) := x_1^2 + \dots + x_n^2$ then, as we saw in \Cref{ex:sphere as level set}, $1$ is a regular value and of course $h^{-1}(1)$ is the unit sphere in $\R^n$. The metric on the sphere induced by the Euclidean metric is the \emph{standard round metric} on $S^{n-1}$.
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:left-invariant metrics}
 	Suppose $G$ is a Lie group with Lie algebra $\mathfrak{g}$. Choose any inner product $\langle  \cdot , \cdot \rangle_e$ on $T_e G \cong \mathfrak{g}$. Then we can define a (left-invariant) metric on $G$ by, for each $h \in G$ and $u,v \in T_hG$,
 	\[
 		g_h(u,v) := \langle \left(dL_{h^{-1}}\right)_h u, \left(dL_{h^{-1}}\right)_h v \rangle_e.
