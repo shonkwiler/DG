@@ -52,7 +52,7 @@ on $T_eG \cong \mathfrak{g}$; after all, any metric on $G$ determines such an in
 \begin{proposition}\label{prop:characterization of bi-invariant metric}
 	Suppose the Lie group $G$ admits a bi-invariant metric. Then the induced inner product on $\mathfrak{g}$ satisfies
 	\[
-		\langle [X,Y],Z\rangle_e = \langle Y, [X,Z]\rangle_e
+		\langle [X,Y],Z\rangle_e = \langle Y, [Z,X]\rangle_e
 	\]
 	for all $X,Y,Z \in \mathfrak{g}$.
 \end{proposition}
@@ -87,7 +87,7 @@ In fact, the converse of \Cref{prop:characterization of bi-invariant metric} is 
 \begin{theorem}\label{thm:bi-invariant metric condition}
 	A Riemannian metric on a Lie group $G$ is bi-invariant if and only if the induced inner product on $\mathfrak{g}$ satisfies
 	\[
-		\langle [X,Y],Z\rangle_e = \langle Y, [X,Z]\rangle_e
+		\langle [X,Y],Z\rangle_e = \langle Y, [Z,X]\rangle_e
 	\]
 	for all $X,Y,Z \in \mathfrak{g}$.
 \end{theorem}
@@ -183,7 +183,7 @@ Recall that we defined an exponential map $\exp \from \mathfrak{g} \cong T_e G \
 	\begin{figure}[htbp]
 		\centering
 			\includegraphics[height=1.5in]{affgeo.pdf}
-		\caption{The geodesics through the identity in $\Aff^+(\R) \cong \R$.}
+		\caption{The geodesics through the identity in $\Aff^+(\R) \cong H$.}
 		\alttext{Several geodesics in $H$ through $(0,1)$. One is the $y$-axis, the rest are semi-circles centered on the $x$-axis.}
 		\label{fig:identity geodesics in aff}
 	\end{figure}
@@ -231,7 +231,7 @@ Recall that we defined an exponential map $\exp \from \mathfrak{g} \cong T_e G \
 	\end{equation*}
 	Assume $V,W \in \mathfrak{aff}^+(\R)$ are left-invariant, and let $U=V$ in the above equation. Since the metric is bi-invariant, $g(V,W)$ and $g(V,V)$ are constant, so the first three terms all vanish. The last term also vanishes since $[V,V]=0$, so we're left with
 	\[
-		g(\nabla_VU,W) = \frac{1}{2}\left[- g([V,W],V) - g([V,W],V)\right] = -g([V,W],V) = g([W,V],V) = 0
+		g(\nabla_VV,W) = \frac{1}{2}\left[- g([V,W],V) - g([V,W],V)\right] = -g([V,W],V) = g([W,V],V) = 0
 	\]
 	by \Cref{cor:bracket orthogonal}.
 	
