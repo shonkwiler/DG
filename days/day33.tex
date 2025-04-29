@@ -1,0 +1,309 @@
+% !TEX root = ../dg.tex
+
+\section{The Curvature Tensor}
+\label{sec:curvature tensor}
+
+Given the name, you might expect that some of the key ideas in Riemannian geometry are due to Bernhard Riemann. Indeed, he explained a way of thinking about what eventually came to be called Riemannian manifolds and curvature in his \emph{Habilitationsschrift} from 1854~\cite{riemannHypothesesWhichLie2016}.
+
+His idea for how to define curvature in a manifold was something like the following. Let $p \in M$ and consider $\sigma \subset T_pM$, a 2-dimensional subspace. Each line through the origin in $\sigma$ exponentiates out to give a geodesic in $M$, and by taking all such geodesics we get a surface $S$ in $M$ containing $p$ and tangent to $\sigma$ at $p$. The Riemannian metric on $M$ induces a Riemannian metric on $S$.
+
+Gauss had showed in 1827~\cite{gaussGeneralInvestigationsCurved2005} that the Gaussian curvature of a surface depends only on its First Fundamental Form (a.k.a., Riemannian metric); Riemann called this the curvature at $p$, denoted $K(p,\sigma)$. These days we call this curvature the \emph{sectional curvature} at $p$ with respect to $\sigma$.
+
+That said, Riemann did not give any way to compute this curvature and it took quite a long time to get a rigorous, modern definition. Unfortunately, Riemann's intuition, which hopefully makes sense, is not really evident in the modern definition, which seems very abstract. 
+
+That said, I'm going to give you the modern definitions and try to connect it back to the geometric intuition as much as I can.
+
+\begin{definition}\label{def:curvature tensor}
+	The \emph{(Riemann) curvature tensor} $R$ on a Riemannian manifold $M$ is a map $R \from \mathfrak{X}(M) \times \mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M)$ given by
+	\begin{equation}\label{eq:curvature tensor}
+		R(X,Y)Z = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z,
+	\end{equation}
+	where $\nabla$ is the Levi-Civita connection associated with the Riemannian metric.
+\end{definition}
+
+\begin{remark}
+	Some books, including do Carmo~\cite{docarmoRiemannianGeometry1992}, define the curvature tensor to be
+	\[
+		\nabla_Y\nabla_X Z - \nabla_X\nabla_YZ + \nabla_{[X,Y]}Z;
+	\]
+	notice that this is $-R(X,Y)Z$ as we've defined it.
+\end{remark}
+
+\begin{remark}
+	We can see immediately that $R(Y,X)Z = -R(X,Y)Z$, so $R$ is skew-symmetric in the first two factors.
+\end{remark}
+
+\begin{remark}
+	Given $X,Y \in \mathfrak{X}(M)$, it is often convenient to think of $R(X,Y) \from \mathfrak{X}(M) \to \mathfrak{X}(M)$, sometimes called the \emph{curvature transformation}. Note that
+	\[
+		R(X,Y) = [\nabla_X,\nabla_Y] - \nabla_{[X,Y]}.
+	\]
+	If we tried to define a similar curvature transformation for the Lie derivative we would have
+	\[
+		[L_X,L_Y] - L_{[X,Y]} = 0
+	\]
+	since
+	\begin{multline*}
+		L_XL_YZ - L_YL_XZ - L_{[X,Y]}Z  = [X,[Y,Z]] - [Y,[X,Z]] - [[X,Y],Z] \\
+		= - [[Y,Z],X] - [[Z,X],Y] - [[X,Y],Z] = 0
+	\end{multline*}
+	by the Jacobi identity \Cref{prop:Lie bracket}\ref{it:Lie bracket Jacobi identity}.
+\end{remark}
+
+\begin{remark}
+	In local coordinates, $\left[\frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j} \right] = 0$, so
+	\[
+		R\left(\frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j}\right)\frac{\partial}{\partial x_k} = \left(\nabla_{\partial/\partial x_i} \nabla_{\partial/\partial x_j} - \nabla_{\partial/\partial x_j} \nabla_{\partial/\partial x_i}\right)\frac{\partial}{\partial x_k},
+	\]
+	so the curvature tensor is measuring the extent to which iterated covariant differentiation is non-commutative.
+\end{remark}
+
+\begin{example}
+	In $\R^n$ with the Euclidean metric, $R \equiv 0$. To see this, write $Z = (z_1, \dots , z_n)$ and recall from \Cref{ex:euclidean connection} that covariant differentiation works componentwise:
+	\begin{equation}\label{eq:componentwise covariant}
+		\nabla_XZ = \sum_k X(z_k)\frac{\partial}{\partial x_k}.
+	\end{equation}
+	Hence,
+	\[
+		\nabla_X\nabla_YZ = \sum_k X(Y(z_k))\frac{\partial}{\partial x_k}
+	\]
+	and similarly for $\nabla_Y\nabla_XZ$, so we get
+	\begin{align*}
+		R(X,Y)Z & = \nabla_X\nabla_YZ - \nabla_Y\nabla_XZ - \nabla_{[X,Y]}Z \\
+		& = \sum_k \left[X(Y(z_k)) - Y(X(z_k)) - [X,Y](z_k)\right]\frac{\partial}{\partial x_k} \\
+		& = 0,
+	\end{align*}
+	so Euclidean space is reassuringly as un-curved as it is possible to be, and suggests that this notion of curvature is some sort of measure of how much the metric on $M$ deviates from being Euclidean.
+\end{example}
+
+\begin{example}
+	Recall our vector fields $X, Y, Z$ on $S^3$ defined in \Cref{sec:S^3 example} as
+	\[
+		X(x) = xi, \quad Y(x) = xj, \quad Z(x) = xk
+	\]
+	at each $x \in S^3$.\footnote{I'm switching from $p$ to $x$ as the name of the point in $S^3$ because I'm going to think of points in $S^3$ as points in $\R^4$ and write them as $x = (x_1, x_2,x_3,x_4)$, where the $x_i$ are coordinate functions. This will make it more natural to write things like $\frac{\partial}{\partial x_i}(x_i) = 1$ rather than calling the coordinate functions $p_i$ and trying to remember that $\frac{\partial}{\partial x_i}(p_i) = 1$.} We showed in \Cref{sec:S^3 example} that
+	\begin{equation}\label{eq:Lie brackets on S^3}
+		[X,Y] = 2Z, \quad [Y,Z] = 2X, \quad [Z,X] = 2Y.
+	\end{equation}
+	
+	$S^3$ inherits its standard metric from the Euclidean metric on $\R^4$, and the corresponding Levi-Civita connection $\nabla$ on $S^3$ is just the restriction to $S^3$ (via orthogonal projection) of the Euclidean connection on $\R^4$, which I'll denote as $\nabla^{\R^4}$. In other words, for $U,V \in \mathfrak{X}(S^3)$, $(\nabla_UV)(p)$ is the orthogonal projection of $(\nabla_U^{\R^4}V)(p)$ to $T_xS^3 = x^\bot$.
+	
+	If I write out $X$ in Euclidean coordinates, I get
+	\[
+		X(x) = xi = (x_1 + x_2i + x_3j + x_4k)i = -x_2 + x_1i + x_4j - x_3k = -x_2 \frac{\partial}{\partial x_1} + x_1 \frac{\partial}{\partial x_2} + x_4 \frac{\partial}{\partial x_3} - x_3 \frac{\partial}{\partial x_4},
+	\]
+	and similarly
+	\begin{align*}
+		Y(x) & = -x_3\frac{\partial}{\partial x_1} -x_4 \frac{\partial}{\partial x_2}+ x_1\frac{\partial}{\partial x_3} + x_2\frac{\partial}{\partial x_4} \\
+		Z(x) & = -x_4\frac{\partial}{\partial x_1} +x_3\frac{\partial}{\partial x_2} - x_2\frac{\partial}{\partial x_3} + x_1\frac{\partial}{\partial x_4}.
+	\end{align*}
+	
+	So then, again using~\eqref{eq:componentwise covariant}, we have that
+	\begin{align*}
+		\nabla_X^{\R^4}Y & = \nabla_X^{\R^4}\left( -x_3\frac{\partial}{\partial x_1} -x_4 \frac{\partial}{\partial x_2}+ x_1\frac{\partial}{\partial x_3} + x_2\frac{\partial}{\partial x_4}\right) \\
+		& =  -X(x_3)\frac{\partial}{\partial x_1} -X(x_4) \frac{\partial}{\partial x_2}+ X(x_1)\frac{\partial}{\partial x_3} + X(x_2)\frac{\partial}{\partial x_4} \\
+		& = -x_4\frac{\partial}{\partial x_1} +x_3 \frac{\partial}{\partial x_2} - x_2\frac{\partial}{\partial x_3} + x_1\frac{\partial}{\partial x_4}\\
+		& = Z,
+	\end{align*}
+	which is already tangent to $S^3$, so orthogonal projection just gives $Z$ again, and we conclude that $\nabla_XY = Z$.
+	
+	By similar reasoning, we can compute
+	\begin{align}\label{eq:covariant derivatives on S^3}
+		\nabla_XX & = 0 & \nabla_XY & = Z  & \nabla_XZ & = -Y \nonumber\\
+		\nabla_YX & = -Z & \nabla_YY & = 0 &  \nabla_YZ & = X \\
+		\nabla_ZX & = Y & \nabla_ZY & = -X & \nabla_ZZ & = 0 \nonumber
+	\end{align}
+	
+	Therefore, we can use~\eqref{eq:Lie brackets on S^3} and~\eqref{eq:covariant derivatives on S^3} to see that
+	\begin{align*}
+		R(X,Y)X & = \nabla_X\nabla_YX - \nabla_Y\nabla_XX - \nabla_{[X,Y]}X \\
+		& = -\nabla_XZ - \nabla_Y 0 -\nabla_{2Z}X \\
+		& = Y-2Y \\
+		& = -Y,
+	\end{align*}
+	that
+	\begin{align*}
+		R(X,Y)Y & = \nabla_X\nabla_YY - \nabla_Y\nabla_XY - \nabla_{[X,Y]}Y \\
+		& = \nabla_X0 - \nabla_Y Z -\nabla_{2Z}Y \\
+		& = X+2X \\
+		& = X,
+	\end{align*}
+	and that
+	\begin{align*}
+		R(X,Y)Z & = \nabla_X\nabla_YZ - \nabla_Y\nabla_XZ - \nabla_{[X,Y]}Z \\
+		& = \nabla_XX + \nabla_Y Y -\nabla_{2Z}Z \\
+		& = 0+0-0 \\
+		& = 0.
+	\end{align*}
+	Therefore, for each $x \in S^3$ the transformation $R(X,Y) \from T_x S^3 \to T_xS^3$ can be interpreted as the composition of orthogonal projection to the 2-plane spanned by $X$ and $Y$ and a clockwise rotation of this plane by $90^\circ$.
+\end{example}
+
+\begin{exercise}
+	Work out similar interpretations of $R(X,Z)$ and $R(Y,Z)$ on $S^3$.
+\end{exercise}
+
+Despite having called it the \emph{curvature tensor}, I have not yet showed that $R$ is a tensor field. To be a proper tensor field, the value of $R(X,Y)Z$ at a point would need to depend \emph{only} on the values of $X,Y,Z$ at the point; given all the derivatives involved, you might expect that it would depend on the values of $X,Y,Z$ in a neighborhood of the point. 
+
+\begin{proposition}\label{prop:multilinearity of R}
+	The curvature tensor $R(X,Y)Z$ on a Riemannian manifold $M$ is multilinear in $X,Y,Z$ over the algebra $C^\infty(M)$ of smooth functions on $M$.
+\end{proposition}
+
+Of course, \eqref{eq:curvature tensor} shows that $R(X,Y)Z$ is multilinear over $\R$.
+
+\begin{exercise}\label{ex:R depends only on a point}
+	Show that multilinearity over $C^\infty(M)$ implies that the value of $R(X,Y)Z$ at $p \in M$ depends only on the values of $X,Y,Z$ at $p$, and not on their values in any neighborhood of $p$.
+\end{exercise}
+
+\begin{proof}[Proof of \Cref{prop:multilinearity of R}]
+	Suppose $f \in C^\infty(M)$. Then, repeatedly using the parts of \Cref{def:affine connection},
+	\begin{align*}
+		R(fX,Y)Z & = \nabla_{fX}\nabla_Y Z - \nabla_Y \nabla_{fX}Z - \nabla_{[fX,Y]}Z \\
+		& = f\nabla_X\nabla_YZ - \nabla_Y(f\nabla_X Z) - \nabla_{f[X,Y] - Y(f)X}Z \\
+		& = f\nabla_X\nabla_YZ - Y(f) \nabla_XZ - f\nabla_Y\nabla_XZ - f\nabla_{[X,Y]}Z + Y(f) \nabla_XZ \\
+		& = f(\nabla_X\nabla_YZ- \nabla_Y\nabla_XZ - \nabla_{[X,Y]}Z) \\
+		& = f R(X,Y)Z.
+	\end{align*}
+	Hence, $R(X,Y)Z$ is multilinear in $X$ over $C^\infty(M)$. Since $R(X,Y)Z = -R(Y,X)Z$, this shows that it is also multilinear in $Y$ over $C^\infty(M)$.
+	
+	Finally,
+	\begin{align*}
+		R(X,Y)(fZ) & = \nabla_X \nabla_Y fZ - \nabla_Y \nabla_X fZ - \nabla_{[X,Y]}fZ \\
+		& = \nabla_X(Y(f)Z + f \nabla_YZ) - \nabla_Y(X(f)Z + f \nabla_XZ) - [X,Y](f)Z - f \nabla_{[X,Y]}Z \\
+		& = X(Y(f))Z + Y(f) \nabla_XZ +  X(f) \nabla_Y Z + f \nabla_X \nabla_Y Z \\
+		& \qquad \qquad - Y(X(f))Z - X(f) \nabla_YZ - Y(f) \nabla_XZ - f \nabla_Y\nabla_XZ \\
+		& \qquad \qquad - X(Y(f))Z + Y(X(f))Z - f \nabla_{[X,Y]}Z \\
+		& = f(\nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z) \\
+		& = f R(X,Y)Z,
+	\end{align*}
+	showing the linearity of $R(X,Y)Z$ in $Z$ over $C^\infty(M)$ and completing the proof.
+\end{proof}
+
+\begin{proposition}[Bianchi Identity]\label{prop:Bianchi identity}
+	For $M$ a Riemannian manifold and $X,Y,Z \in \mathfrak{X}(M)$,
+	\[
+		R(X,Y)Z + R(Y,Z)X + R(Z,X)Y = 0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	Since $\nabla$ is symmetric, we know that $\nabla_AB - \nabla_B A = [A,B]$. Therefore, 
+	\[
+		\nabla_YZ = [Y,Z] + \nabla_ZY
+	\]
+	and
+	\[
+		\nabla_{[X,Y]}Z = [[X,Y],Z] + \nabla_Z[X,Y].
+	\]
+	Therefore,
+	\begin{align}\label{eq:R Bianchi 1}
+		R(X,Y)Z & = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z \nonumber\\
+		& = \nabla_X([Y,Z] + \nabla_ZY) - \nabla_Y \nabla_XZ - [[X,Y],Z] - \nabla_Z[X,Y],
+	\end{align}
+	and similarly
+	\begin{align}
+		R(Y,Z)X & = \nabla_Y([Z,X] + \nabla_XZ) - \nabla_Z \nabla_YX - [[Y,Z],X] - \nabla_X[Y,Z] \label{eq:R Bianchi 2} \\
+		R(Z,X)Y & = \nabla_Z([X,Y] + \nabla_YX) - \nabla_X \nabla_ZY - [[Z,X],Y] - \nabla_Y[Z,X]. \label{eq:R Bianchi 3}
+	\end{align}
+	If we add \eqref{eq:R Bianchi 1}, \eqref{eq:R Bianchi 2}, and \eqref{eq:R Bianchi 3}, all the connection terms cancel out and we're left with
+	\[
+		R(X,Y)Z + R(Y,Z)X + R(Z,X)Y = -([[X,Y],Z] + [[Y,Z],X] + [[Z,X],Y]) = 0
+	\]
+	by the Jacobi identity \Cref{prop:Lie bracket}\ref{it:Lie bracket Jacobi identity}.
+\end{proof}
+
+We've defined $R$ as a map $\mathfrak{X} \times \mathfrak{X} \times \mathfrak{X} \to \mathfrak{X}$; that is, $R(X,Y)Z \in \mathfrak{X}(M)$. We can interpret this as a $(1,3)$-tensor field as follows: at each $p \in M$ we get a map $(T_pM)^\ast \times T_pM \times T_pM \times T_pM \to \R$ given by
+\[
+	(\tau,X,Y,Z) = \tau(R(X,Y)Z).
+\]
+(Note that this being well-defined depends essentially on \Cref{ex:R depends only on a point}.)
+
+Of course, we've defined everything in the presence of a Riemannian metric $g$, and we can always convert vectors into linear functionals with inner products: $T \leftrightarrow g(\cdot, T)$ for any $T \in \mathfrak{X}(M)$, and so we can convert $R$ into a $(0,4)$-tensor field—that is, a $C^\infty(M)$-multilinear map $\mathfrak{X}(M) \times \mathfrak{X}(M) \times \mathfrak{X}(M) \times \mathfrak{X}(M) \to \R$ by mapping
+\[
+	(X,Y,Z,T) \mapsto g(R(X,Y)Z,T).
+\]
+
+\begin{proposition}[Symmetries of the Curvature Tensor]\label{prop:symmetries of curvature tensor}
+	For $X,Y,Z,T \in \mathfrak{X}(M)$,
+	\begin{enumerate}
+		\item \label{it:curvature symmetries 4}(Bianchi Identity) $g(R(X,Y)Z,T) + g(R(Y,Z)X,T) + g(R(Z,X)Y,T) = 0$.
+		\item \label{it:curvature symmetries 1}(Skew-Symmetry) $g(R(X,Y)Z,T) = -g(R(Y,X)Z,T)$
+		\item \label{it:curvature symmetries 2}(Skew-Symmetry) $g(R(X,Y)Z,T) = -g(R(X,Y)T,Z)$
+		\item \label{it:curvature symmetries 3}(Interchange Symmetry) $g(R(X,Y)Z,T) = g(R(Z,T)X,Y)$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\ref{it:curvature symmetries 4} follows immediately from \Cref{prop:Bianchi identity}.
+	
+	\ref{it:curvature symmetries 1} follows from the fact that $R(X,Y) = -R(Y,X)$, which we saw was a direct consequence of the definition.
+	
+	For \ref{it:curvature symmetries 2}, observe that
+	\[
+		(XY - YX - [X,Y])(g(Z,T) )= 0
+	\]
+	since $XY-YX = [X,Y]$. Now, if we repeatedly use \Cref{cor:compatibility equation} we see that
+	\begin{align*}
+		XY(g(Z,T)) & = X(g(\nabla_Y Z, T) + g(Z,\nabla_YT)) = g(\nabla_X \nabla_Y Z,T) + g(\nabla_YZ,\nabla_XT) + g(\nabla_XZ, \nabla_YT) + g(Z, \nabla_X\nabla_YT) \\
+		YX(g(Z,T)) & = Y(g(\nabla_XZ,T) + g(Z,\nabla_XT)) = g(\nabla_Y\nabla_XZ,T) + g(\nabla_XZ,\nabla_YT) + g(\nabla_YZ,\nabla_XT) + g(Z,\nabla_Y\nabla_XT) \\
+		{[X,Y](g(Z,T))} & = g(\nabla_{[X,Y]}Z,T) + g(Z,\nabla_{[X,Y]}T).
+	\end{align*}
+	Subtracting the second and third lines from the first yields
+	\begin{align*}
+		0 & = (XY - YX - [X,Y])(g(Z,T)) \\
+		& = g(\nabla_X\nabla_YZ - \nabla_Y\nabla_X Z - \nabla_{[X,Y]}Z,T) + g(Z,\nabla_X\nabla_YT - \nabla_Y\nabla_X T- \nabla_{[X,Y]}T) \\
+		& = g(R(X,Y)Z,T) + g(R(X,Y)T,Z),
+	\end{align*}
+	which implies \ref{it:curvature symmetries 2}.
+	
+	For \ref{it:curvature symmetries 3}, note that the Bianchi identity implies that
+	\begin{align*}
+		g(R(X,Y)Z,T) + g(R(Y,Z)X,T) + g(R(Z,X)Y,T) & = 0 \\
+		g(R(Y,Z)T,X) + g(R(Z,T)Y,X) + g(R(T,Y)Z,X) & = 0 \\
+		g(R(Z,T)X,Y) + g(R(T,X)Z,Y) + g(R(X,Z)T,Y) & = 0 \\
+		g(R(T,X)Y,Z) + g(R(X,Y)T,Z) + g(R(Y,T)X,Z) & = 0 .
+	\end{align*}
+	Adding the first two lines and subtracting the third and fourth and using \ref{it:curvature symmetries 1} and \ref{it:curvature symmetries 2} to cancel four pairs of terms and simplify the remaining terms yields
+	\[
+		2g(R(X,Y)Z,T) - 2g(R(Z,T)X,Y) = 0,
+	\]
+	which implies the result.
+\end{proof}
+
+In local coordinates, if we write $X_i = \frac{\partial}{\partial X_i}$, then there exist smooth functions $R_{ijk}^s$ so that
+\[
+	R(X_i,X_j)X_k = \sum_s R_{ijk}^s X_s.
+\]
+The functions $R_{ijk}^s$ are usually called the components of $R$ in the given local coordinates. If we have vector fields $U, V, W$ with local coordinate expressions
+\[
+	U = \sum_i u^i X_i, \quad V = \sum_j v^j X_j, \quad W = \sum_k w^kX_k
+\]
+(note that now I am being more careful about whether indices are superscripted or subscripted), then
+\[
+	R(U,V)W = \sum_{i,j,k,s} R_{ijk}^s u^i v^j w^k X_m.
+\]
+(In Einstein notation, this gets written as $R(U,V)W = R_{ijk}^s u^i v^j w^k X_m$, where summation always happens over repeated indices, and repeated indices should appear in up/down pairs.)
+
+\begin{exercise}
+	Show that
+	\[
+		R_{ijk}^s = \frac{\partial \Gamma_{ik}^s}{\partial x_j} - \frac{\partial \Gamma_{jk}^s}{\partial x_i} + \sum_m(\Gamma_{ik}^m \Gamma_{jm}^s - \Gamma_{jk}^m \Gamma_{im}^s).
+	\]
+\end{exercise}
+
+When we lower an index and think of $R$ as a $(0,4)$-tensor, then we get components
+\[
+	R_{ijks} := g(R(X_i,X_j)X_k,X_s) = \left\langle \sum_{m}R_{ijk}^m X_m, X_s \right\rangle = \sum_m R_{ijk}^m g_{ms}.
+\]
+
+Then \Cref{prop:symmetries of curvature tensor} implies the following symmetries for the $R_{ijks}$:
+
+\begin{corollary}\label{cor:symmetries of curvature components}
+	\begin{enumerate}
+		\item $R_{ijks} + R_{jkis} + R_{kijs} = 0$
+		\item $R_{ijks} = -R_{jiks}$
+		\item $R_{ijks} = -R_{ijsk}$
+		\item $R_{ijks} = R_{ksij}$.
+	\end{enumerate}
+\end{corollary}
+
+In particular, recall that we proved the interchange symmetry \ref{it:curvature symmetries 3} from the other three, and the first three turn out to be a complete list of symmetries of the curvature tensor, so $R$ is completely specified in local coordinates by the choice of $\frac{n^2(n-1)^2}{12}$ independent functions $R_{ijks}$.
