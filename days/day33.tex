@@ -7,7 +7,7 @@ Given the name, you might expect that some of the key ideas in Riemannian geomet
 
 His idea for how to define curvature in a manifold was something like the following. Let $p \in M$ and consider $\sigma \subset T_pM$, a 2-dimensional subspace. Each line through the origin in $\sigma$ exponentiates out to give a geodesic in $M$, and by taking all such geodesics we get a surface $S$ in $M$ containing $p$ and tangent to $\sigma$ at $p$. The Riemannian metric on $M$ induces a Riemannian metric on $S$.
 
-Gauss had showed in 1827~\cite{gaussGeneralInvestigationsCurved2005} that the Gaussian curvature of a surface depends only on its First Fundamental Form (a.k.a., Riemannian metric); Riemann called this the curvature at $p$, denoted $K(p,\sigma)$. These days we call this curvature the \emph{sectional curvature} at $p$ with respect to $\sigma$.
+Gauss had showed in 1827~\cite{gaussGeneralInvestigationsCurved2005} that the Gauss curvature of a surface depends only on its First Fundamental Form (a.k.a., Riemannian metric); Riemann called this the curvature at $p$, denoted $K(p,\sigma)$. These days we call this curvature the \emph{sectional curvature} at $p$ with respect to $\sigma$.
 
 That said, Riemann did not give any way to compute this curvature and it took quite a long time to get a rigorous, modern definition. Unfortunately, Riemann's intuition, which hopefully makes sense, is not really evident in the modern definition, which seems very abstract. 
 
@@ -76,13 +76,13 @@ That said, I'm going to give you the modern definitions and try to connect it ba
 	so Euclidean space is reassuringly as un-curved as it is possible to be, and suggests that this notion of curvature is some sort of measure of how much the metric on $M$ deviates from being Euclidean.
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:curvature tensor on S^3}
 	Recall our vector fields $X, Y, Z$ on $S^3$ defined in \Cref{sec:S^3 example} as
 	\[
 		X(x) = xi, \quad Y(x) = xj, \quad Z(x) = xk
 	\]
 	at each $x \in S^3$.\footnote{I'm switching from $p$ to $x$ as the name of the point in $S^3$ because I'm going to think of points in $S^3$ as points in $\R^4$ and write them as $x = (x_1, x_2,x_3,x_4)$, where the $x_i$ are coordinate functions. This will make it more natural to write things like $\frac{\partial}{\partial x_i}(x_i) = 1$ rather than calling the coordinate functions $p_i$ and trying to remember that $\frac{\partial}{\partial x_i}(p_i) = 1$.} We showed in \Cref{sec:S^3 example} that
-	\begin{equation}\label{eq:Lie brackets on S^3}
+	\begin{equation}\label{eq:Lie brackets on S3}
 		[X,Y] = 2Z, \quad [Y,Z] = 2X, \quad [Z,X] = 2Y.
 	\end{equation}
 	
@@ -108,13 +108,13 @@ That said, I'm going to give you the modern definitions and try to connect it ba
 	which is already tangent to $S^3$, so orthogonal projection just gives $Z$ again, and we conclude that $\nabla_XY = Z$.
 	
 	By similar reasoning, we can compute
-	\begin{align}\label{eq:covariant derivatives on S^3}
+	\begin{align}\label{eq:covariant derivatives on S3}
 		\nabla_XX & = 0 & \nabla_XY & = Z  & \nabla_XZ & = -Y \nonumber\\
 		\nabla_YX & = -Z & \nabla_YY & = 0 &  \nabla_YZ & = X \\
 		\nabla_ZX & = Y & \nabla_ZY & = -X & \nabla_ZZ & = 0 \nonumber
 	\end{align}
 	
-	Therefore, we can use~\eqref{eq:Lie brackets on S^3} and~\eqref{eq:covariant derivatives on S^3} to see that
+	Therefore, we can use~\eqref{eq:Lie brackets on S3} and~\eqref{eq:covariant derivatives on S3} to see that
 	\begin{align*}
 		R(X,Y)X & = \nabla_X\nabla_YX - \nabla_Y\nabla_XX - \nabla_{[X,Y]}X \\
 		& = -\nabla_XZ - \nabla_Y 0 -\nabla_{2Z}X \\
@@ -122,12 +122,12 @@ That said, I'm going to give you the modern definitions and try to connect it ba
 		& = -Y,
 	\end{align*}
 	that
-	\begin{align*}
-		R(X,Y)Y & = \nabla_X\nabla_YY - \nabla_Y\nabla_XY - \nabla_{[X,Y]}Y \\
+	\begin{align} \label{eq:RXYY on S3}
+		R(X,Y)Y & = \nabla_X\nabla_YY - \nabla_Y\nabla_XY - \nabla_{[X,Y]}Y \nonumber \\
 		& = \nabla_X0 - \nabla_Y Z -\nabla_{2Z}Y \\
-		& = X+2X \\
-		& = X,
-	\end{align*}
+		& = X+2X \nonumber\\
+		& = X, \nonumber
+	\end{align}
 	and that
 	\begin{align*}
 		R(X,Y)Z & = \nabla_X\nabla_YZ - \nabla_Y\nabla_XZ - \nabla_{[X,Y]}Z \\
@@ -138,7 +138,7 @@ That said, I'm going to give you the modern definitions and try to connect it ba
 	Therefore, for each $x \in S^3$ the transformation $R(X,Y) \from T_x S^3 \to T_xS^3$ can be interpreted as the composition of orthogonal projection to the 2-plane spanned by $X$ and $Y$ and a clockwise rotation of this plane by $90^\circ$.
 \end{example}
 
-\begin{exercise}
+\begin{exercise}\label{ex:curvature transformation on S^3}
 	Work out similar interpretations of $R(X,Z)$ and $R(Y,Z)$ on $S^3$.
 \end{exercise}
 
@@ -269,7 +269,7 @@ Of course, we've defined everything in the presence of a Riemannian metric $g$, 
 	which implies the result.
 \end{proof}
 
-In local coordinates, if we write $X_i = \frac{\partial}{\partial X_i}$, then there exist smooth functions $R_{ijk}^s$ so that
+In local coordinates, if we write $X_i = \frac{\partial}{\partial x_i}$, then there exist smooth functions $R_{ijk}^s$ so that
 \[
 	R(X_i,X_j)X_k = \sum_s R_{ijk}^s X_s.
 \]
