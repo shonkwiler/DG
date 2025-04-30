@@ -1,0 +1,306 @@
+% !TEX root = ../dg.tex
+
+\section{Sectional Curvature}
+\label{sec:sectional curvature}
+
+
+We are now in a position to define sectional curvature, which will agree with Riemann's original notion of curvature. To do so, we introduce one piece of notation: for $V$ an inner product space and $u,v \in V$, let $\|u \wedge v\|$ be the area of the parallelogram spanned by $u$ and $v$; that is,
+\begin{equation}\label{eq:parallelogram area}
+	\|u \wedge v\|^2 = \|u\|^2\|v\|^2 - \langle u, v \rangle^2.
+\end{equation}
+
+\begin{remark}
+	The reason for the notation is that $\|u \wedge v\|$ agrees with the norm on $\ext{2}(V)$ induced by the inner product defined in HW 2 Problem 4.
+\end{remark}
+
+\begin{remark}
+	When $(M,g)$ is a Riemannian manifold and $V = T_pM$, the corresponding inner product is $g_p$, so that
+	\[
+		\|u \wedge v\|^2 = \|u\|^2 \|v\|^2 -g_p(u,v)^2 = g_p(u,u) g_p(v,v) - g_p(u,v)^2.
+	\]
+\end{remark}
+
+\begin{definition}\label{def:sectional curvature}
+	Let $(M,g)$ be a Riemannian manifold, let $p \in M$ and let $\sigma \subset T_pM$ be a 2-dimensional subspace, and let $\{u,v\}$ be any basis for $\sigma$. Then the number
+	\[
+		K(\sigma):= \frac{g_p(R(u,v)v,u)}{\|u \wedge v\|^2}
+	\]
+	is the \emph{sectional curvature} of $\sigma$ at $p$.
+\end{definition}
+
+Since the right hand side involves a choice of basis for $\sigma$, it is not at all clear yet that $K(\sigma)$ is well-defined.
+
+\begin{proposition}\label{prop:sectional curvature well defined}
+	With the same setup as \Cref{def:sectional curvature}, $K(\sigma)$ does not depend on the choice of $u,v \in \sigma$.
+\end{proposition}
+
+\begin{proof}
+	Since we haven't shown independence from the choice of $u$ and $v$ yet, write
+	\[
+		K(u,v) = \frac{g_p(R(u,v)v,u)}{\|u \wedge v\|^2}.
+	\]
+	Then $K(u,v)$ has the following symmetries:
+	\begin{enumerate}
+		\item $K(u,v) = K(v,u)$ by skew-symmetry of $R$ (\Cref{prop:symmetries of curvature tensor}\ref{it:curvature symmetries 1} and~\ref{it:curvature symmetries 2}) and inspection of~\eqref{eq:parallelogram area}.
+		\item $K(u,v) = K(\lambda u, v)$ for any $\lambda \in \R$ by multilinearity of $R$ and homogeneity of $\|u \wedge v\|$.
+		\item $K(u,v) = K(u + \lambda v, v)$ by the multilinearity and skew-symmetry of $R$ and $\wedge$.
+	\end{enumerate}
+	
+	The transformations $(u,v) \mapsto (v,u)$, $(u,v) \mapsto (\lambda u, v)$, and $(u,v) \mapsto (u + \lambda v, v)$ correspond to the $2 \times 2$ matrices $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$, $\begin{bmatrix} \lambda & 0 \\ 0 & 1 \end{bmatrix}$, and $\begin{bmatrix} 1 & \lambda \\ 0 & 1 \end{bmatrix}$, respectively. These matrices generate $\GL_2(\R)$, so we've just shown that $K$ is invariant under the $GL_2(\R)$ action on $\sigma$. Of course, $\GL_2(\R)$ transforms any basis into any other basis, so this shows that $K$ is basis-independent.
+\end{proof}
+
+\begin{example}\label{ex:sectional curvature on S^3}
+	Continuing \Cref{ex:curvature tensor on S^3}, let $X,Y,Z \in \mathfrak{X}(S^3)$ be our familiar vector fields with $X(x) = xi$, $Y(x) = xj$, $Z(x) = xk$. At a point $x \in S^3$, let $\sigma \subset T_x S^3$ be the plane spanned by $X$ and $Y$. The parallelogram spanned by $X$ and $Y$ is a unit square, so $\|X \wedge Y\|^2 = 1$ and hence
+	\[
+		K(\sigma) = \frac{g_x(R(X,Y)Y,X)}{\|X \wedge Y\|^2} = g_x(X,X) = 1
+	\]
+	by \eqref{eq:RXYY on S3} and the fact that $X$ is a unit vector.
+	
+	More generally, let $\sigma \subset T_xS^3$ be any 2-dimensional subspace and let $U = aX+bY+cZ$ and $V = rX+sY+tZ$ be an orthonormal basis for $\sigma$. Then we can use~\eqref{eq:RXYY on S3} and analogous expressions from \Cref{ex:curvature tensor on S^3} and \Cref{ex:curvature transformation on S^3} to conclude that
+	\[
+		g(R(U,V)V,U) = a^2s^2+a^2t^2+b^2r^2+b^2t^2+c^2r^2+c^2s^2-2abrs-2acrt-2bcst.
+	\]
+	Since $U$ and $V$ are perpendicular, $0=g(U,V) = ar+bs+ct$, so we conclude that
+	\begin{align*}
+		abrs + acrt & = ar(bs+ct) = ar(-ar) = -a^2r^2 \\
+		abrs+bcst & = bs(ar+ct) = bs(-bs) = -b^2s^2 \\
+		acrt+bcst & = ct(ar+bs) = ct(-ct) = -c^2t^2,
+	\end{align*}
+	so
+	\[
+		2abrs+2acrt+2bcst = -a^2r^2-b^2s^2-c^2t^2
+	\]
+	and therefore
+	\[
+		g(R(U,V)V,U) = a^2(r^2+s^2+t^2)+ b^2(r^2+s^2+t^2) + c^2(r^2+s^2+t^2) = 1
+	\]
+	since $1 = \|U\|^2 = a^2+b^2+c^2$ and $1 = \|V\|^2 = r^2+s^2+t^2$. Moreover, the parallelogram spanned by $U$ and $V$ is again a unit square, so $\|U \wedge V\|^2 = 1$ and we conclude that
+	\[
+		K(\sigma) = g(R(U,V)V,U) = 1.
+	\]
+	Since $\sigma$ and $x$ were arbitrary, we see that $S^3$ has constant sectional curvature.
+\end{example}
+
+\begin{example}
+	Let's work out the sectional curvature for $\Aff^+(\R) \cong H$, building on \Cref{ex:hyperbolic plane connection}. In this case, $T_{(x,y)}H$ is already 2-dimensional, so the only 2-dimensional subspace is $T_{(x,y)}H$. Therefore, in this case (and, more generally, on any surface), we can interpret the sectional curvature as a function $K(x,y) = K(T_{(x,y)}H)$ on $H$, which will be the same thing as Gauss curvature. Of course, $X = \frac{\partial}{\partial x}$ and $Y = \frac{\partial}{\partial y}$ serve as a basis for $T_{(x,y)}H$ at each point. Moreover, 
+	\[
+		\|X \wedge Y \|^2 = g_{(x,y)}(X,X) g_{(x,y)}(Y,Y) - g_{(x,y)}(X,Y) = \frac{1}{y^2} \frac{1}{y^2} - 0 = \frac{1}{y^4},
+	\]
+	so 
+	\begin{equation}\label{eq:H curvature intermediate}
+		K(x,y) = \frac{g(R(X,Y)Y,X)}{\|X \wedge Y\|^2} = y^4 g(R(X,Y)Y,X).
+	\end{equation}
+	
+	By definition,
+	\begin{align*}
+		R(X,Y)Y & = \nabla_X \nabla_Y Y - \nabla_Y \nabla_X Y - \nabla_{[X,Y]}Y \\
+		& = - \nabla_X \frac{1}{y}Y + \nabla_Y \frac{1}{y}X - \nabla_0 Y \\
+		& = -X\left(\frac{1}{y}\right)Y - \frac{1}{y} \nabla_X Y + Y \left(\frac{1}{y}\right) X + \frac{1}{y} \nabla_Y X - 0 \\
+		& = 0 + \frac{1}{y^2} X - \frac{1}{y^2} X - \frac{1}{y^2}X \\
+		& = -\frac{1}{y^2}X.
+	\end{align*}
+	by repeatedly using~\eqref{eq:hyperbolic plane Christoffel} and recalling that $[X,Y] = 0$. Combining this with~\eqref{eq:H curvature intermediate} we see that
+	\[
+		K(x,y) = y^4 g(R(X,Y)Y,X) = -y^2g(X,X) = -y^2 \frac{1}{y^2} = -1
+	\]
+	by \Cref{ex:affine hyperbolic metric}. That is, $\Aff^+(\R) \cong H$ has constant sectional/Gauss curvature $-1$. Indeed, this is also called the Poincaré upper half-plane model of the hyperbolic plane, as stated in \Cref{ex:hyperbolic plane} but now much more fully justified.
+\end{example}
+
+\subsection{Sectional Curvature of Bi-Invariant Metrics} 
+\label{sub:sectional curvature bi-invariant}
+
+The last two examples have computed sectional curvatures of left-invariant metrics on Lie groups. In the case of $S^3$ (where the metric was actually bi-invariant), we got constant positive sectional curvatures; in the case of $\Aff^+(\R) \cong H$, we got constant negative sectional curvature. In general Lie groups won't have constant sectional curvature, but it turns out that bi-invariant metrics will always have non-negative sectional curvature. So the phenomenon of negative sectional curvature that we saw with $\Aff^+(\R)$ was only possible because this was not a bi-invariant metric (as we saw in \Cref{ex:no bi-invariant metric on aff}).
+
+Indeed, sectional curvatures for bi-invariant metrics take a particularly simple form:
+
+\begin{theorem}\label{thm:sectional curvature bi-invariant metric}
+	Let $G$ be a Lie group with a bi-invariant metric. Let $X$ and $Y$ be orthonormal left-invariant vector fields on $G$. Then the sectional curvature $K(\sigma)$ of $G$ with respect to the plane $\sigma$ spanned by $X$ and $Y$ is given by
+	\[
+		K(\sigma) = \frac{1}{4} \|[X,Y]\|^2.
+	\]
+\end{theorem}
+
+In other words, the sectional curvature of a Lie group with a bi-invariant metric satisfies $K(\sigma)\geq 0$, with equality if and only if $\sigma$ is spanned by vectors $X$ and $Y$ that commute in the sense that $[X,Y]=0$.
+
+Note that the restriction that $X$ and $Y$ be orthonormal and left-invariant is not restrictive: if $\sigma \subset T_hG$, then we can just take some orthonormal basis for $\sigma$ and then push it around all of $G$ by the differential of left-translation to get a pair of left-invariant vector fields; the left-invariance of the metric will ensure the vector fields are orthonormal everywhere.
+
+\begin{proof}
+	As we saw in the proof of \Cref{thm:bi-invariant exp}, $\nabla_VV = 0$ for any left-invariant vector field $V$. So if $X$ and $Y$ are left-invariant we have
+	\[
+		0 = \nabla_{X+Y}(X+Y) = \nabla_XX + \nabla_XY + \nabla_YX + \nabla_YY = \nabla_XY + \nabla_YX.
+	\]
+	On the other hand, since $\nabla$ is symmetric we know that
+	\[
+		\nabla_XY - \nabla_YX = [X,Y].
+	\]
+	
+	Adding the two previous equations yields
+	\begin{equation}\label{eq:nabla and bracket in bi-invariant}
+		\nabla_XY = \frac{1}{2}[X,Y]
+	\end{equation}
+	for any left-invariant vector fields $X,Y$ on a Lie group with a bi-invariant metric.
+	
+	Now, if $X, Y, Z$ are left-invariant vector fields on $G$, then we can repeatedly apply~\eqref{eq:nabla and bracket in bi-invariant} to see that
+	\[
+		R(X,Y)Z = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z = \frac{1}{4} [X,[Y,Z]] - \frac{1}{4} [Y,[X,Z]] - \frac{1}{2}[[X,Y],Z].
+	\]
+	After rearranging a bit, this implies
+	\begin{equation}\label{eq:sectional curvature bi-invariant intermediate}
+		4R(X,Y)Z = [X,[Y,Z]] + [Y,[Z,X]] + 2[Z,[X,Y]]
+	\end{equation}
+	On the other hand, the Jacobi identity (\Cref{prop:Lie bracket}\ref{it:Lie bracket Jacobi identity}) implies
+	\begin{equation}\label{eq:sectional curvature bi-invariant intermediate 2}
+		0 = - [X,[Y,Z]] - [Y,[Z,X]] -[Z,[X,Y]] 
+	\end{equation}
+	Adding \eqref{eq:sectional curvature bi-invariant intermediate} and \eqref{eq:sectional curvature bi-invariant intermediate 2} and dividing by 4 yields
+	\[
+		R(X,Y)Z = \frac{1}{4} [Z,[X,Y]]
+	\]
+	for any left-invariant vector fields $X,Y,Z$.
+	
+	Therefore, the full curvature tensor takes the form
+	\[
+		g(R(X,Y)Z,T) = \frac{1}{4} g([Z,[X,Y]],T) = \frac{1}{4} g([X,Y],[T,Z])
+	\]
+	for any left-invariant vector fields $X,Y,Z,T$ by \Cref{prop:characterization of bi-invariant metric}.
+	
+	Finally, then, if $X$ and $Y$ are orthonormal left-invariant vector fields spanning $\sigma$, then $\|X\wedge Y\|^2 = 1$ and hence
+	\[
+		K(\sigma) = g(R(X,Y)Y,X) = \frac{1}{4} g([X,Y],[X,Y]) = \frac{1}{4} \|[X,Y]\|^2,
+	\]
+	as claimed.
+\end{proof}
+
+\begin{example}
+	On $S^3$, we know that 
+	\[
+		[X,Y] = 2Z, \qquad [Y,Z] = 2X , \qquad [Z,X] = 2Y,
+	\]
+	so \Cref{thm:sectional curvature bi-invariant metric} implies that, e.g., the sectional curvature of the plane spanned by $X$ and $Y$ is
+	\[
+		K(\sigma) = \frac{1}{4}\|[X,Y]\|^2 = \frac{1}{4}\|2Z\|^2 = 1,
+	\]
+	agreeing with our calculuation in \Cref{ex:sectional curvature on S^3}.
+\end{example}
+
+One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is that it says that sectional curvature of bi-invariant metrics on Lie groups is entirely calculable in the Lie algebra and hence is essentially algebraic. Since $\SO(3)$ and $\SU(2)$ have the same Lie algebra as $S^3$ (\Cref{prop:accidental isomorphisms}), they must also have constant sectional curvature $+1$ everywhere.
+
+\begin{example}
+	Let's work out the sectional curvature of the bi-invariant metric on $\SO(4)$. If we take the left-invariant metric induced by $\frac{1}{2}$ times the Frobenius inner product on $T_I \SO(4)$, then this will be bi-invariant.\footnote{It is traditional to scale by the factor of $\frac{1}{2}$ for reasons that will shortly become apparent.} Indeed, for $X,Y,Z \in \mathfrak{so}(4)$,
+	\begin{multline*}
+		\frac{1}{2}\langle [X,Y],Z \rangle_{\text{Fr}} = \frac{1}{2}\tr([X,Y]^T Z) = -\frac{1}{2} \tr([X,Y]Z) = -\frac{1}{2}\tr(XYZ-YXZ) \\
+		= -\frac{1}{2}\tr(YZX-YXZ) = -\frac{1}{2}\tr(Y[Z,X]) = \frac{1}{2}\tr(Y^T [Z,X]) = \frac{1}{2}\langle Y,[Z,X]\rangle_{\text{Fr}}
+	\end{multline*}
+	using the cyclic-invariance of trace and the fact that $[X,Y]$ and $Y$ are skew-symmetric. Therefore, \Cref{thm:bi-invariant metric condition} implies that the induced left-invariant metric is bi-invariant.
+	
+	Now, I claim that the following gives a basis for $\mathfrak{so}(4)$:
+	\begin{align*}
+		H_1 & = \begin{bmatrix} 
+			0 & 1 & 0 & 0 \\
+			-1 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 \end{bmatrix} & 
+		E & = \begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+			-1 & 0 & 0 & 0 \\
+			0 & -1 & 0 & 0
+ 		\end{bmatrix} & 
+		X & = \begin{bmatrix}
+			0 & 0 & 0 & 1 \\
+			0 & 0 & 1 & 0 \\
+			0 & -1 & 0 & 0 \\
+			-1 & 0 & 0 & 0
+		\end{bmatrix} \\
+		H_2 & = \begin{bmatrix} 
+		   	0 & 0 & 0 & 0 \\
+		   	0 & 0 & 0 & 0 \\
+		   	0 & 0 & 0 & 1 \\
+		   	0 & 0 & -1 & 0 \end{bmatrix} & 
+		F & = \begin{bmatrix}
+			0 & 0 & 0 & 1 \\
+			0 & 0 & -1 & 0 \\
+			0 & 1 & 0 & 0 \\
+			-1 & 0 & 0 & 0
+ 		\end{bmatrix} & 
+		Y & = \begin{bmatrix}
+		    0 & 0 & 1 & 0 \\
+		    0 & 0 & 0 & -1 \\
+		    -1 & 0 & 0 & 0 \\
+		    0 & 1 & 0 & 0
+		\end{bmatrix}
+	\end{align*}
+	
+	Now,
+	\begin{multline*}
+		[E,F] = EF-FE = \begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+			-1 & 0 & 0 & 0 \\
+			0 & -1 & 0 & 0
+ 		\end{bmatrix} \begin{bmatrix}
+			0 & 0 & 0 & 1 \\
+			0 & 0 & -1 & 0 \\
+			0 & 1 & 0 & 0 \\
+			-1 & 0 & 0 & 0
+ 		\end{bmatrix} - \begin{bmatrix}
+			0 & 0 & 0 & 1 \\
+			0 & 0 & -1 & 0 \\
+			0 & 1 & 0 & 0 \\
+			-1 & 0 & 0 & 0
+ 		\end{bmatrix}\begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+			-1 & 0 & 0 & 0 \\
+			0 & -1 & 0 & 0
+ 		\end{bmatrix} \\
+		= \begin{bmatrix}
+			0 & 1 & 0 & 0 \\
+			-1 & 0 & 0 & 0 \\
+			0 & 0 & 0 & -1 \\
+			0 & 0 & 1 & 0
+ 		\end{bmatrix} - \begin{bmatrix}
+			0 & -1 & 0 & 0 \\
+			1 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 \\
+			0 & 0 & -1 & 0
+ 		\end{bmatrix} = 2(H_1 - H_2)
+	\end{multline*}
+	and similarly we can compute all the other brackets, yielding the following multiplication table:
+	\begin{center}
+		\begin{tabular}{c|cccccc}
+			$[\cdot,\cdot]$ & $H_1$ & $H_2$ & $E$ & $F$ & $X$ & $Y$ \\
+			\hline
+			$H_1$ & $0$ & $0$ & $F$ & $-E$ & $Y$ & $-X$ \\
+			$H_2$ & $0$ & $0$ & $-F$ & $E$ & $Y$ & $-X$ \\
+			$E$ & $-F$ & $F$ & $0$ & $2(H_1-H_2)$ & $0$ & $0$ \\
+			$F$ & $E$ & $-E$ & $-2(H_1-H_2)$ & $0$ & $ 0$ & $0$ \\
+			$X$ & $-Y$ & $-Y$ & $0$ & $0$ & $0$ & $2(H_1+H_2)$ \\
+			$Y$ & $X$ & $X$ & $0$ & $0$ & $-2(H_1+H_2)$ & $0$ 
+		\end{tabular}
+	\end{center}
+	Notice that
+	\[
+		\|H_1\|^2 = \frac{1}{2} \langle H_1, H_1 \rangle_{\text{Fr}} = 1
+	\]
+	and similarly for the other basis elements, so we see that $H_1, H_2, \frac{1}{\sqrt{2}}E, \frac{1}{\sqrt{2}}F, \frac{1}{\sqrt{2}}X, \frac{1}{\sqrt{2}}Y$ gives an orthonormal basis for $\mathfrak{so}(4)$.\footnote{This is why we scaled by $\frac{1}{2}$: we want $H_1$ and $H_2$ to be unit vectors.} 
+	
+	Hence, \Cref{thm:sectional curvature bi-invariant metric} tells us that the plane $\sigma_{H_1E}$ spanned by $H_1$ and $E$ has sectional curvature
+	\[
+		K(\sigma_{H_1E}) = \frac{1}{4}\left\|\left[H_1,\frac{1}{\sqrt{2}}E\right]\right\|^2 = \frac{1}{4}\left\|\frac{1}{\sqrt{2}}F\right\|^2 = \frac{1}{4}
+	\]
+	and in general we get the following table:
+	\begin{center}
+		\begin{tabular}{c|cccccc}
+			$K(\sigma_{\cdot, \cdot})$ & $H_1$ & $H_2$ & $E$ & $F$ & $X$ & $Y$ \\
+			\hline
+			$H_1$ &  & $0$ & $1/4$ & $1/4$ & $1/4$ & $1/4$ \\
+			$H_2$ & $0$ &  & $1/4$ & $1/4$ & $1/4$ & $1/4$ \\
+			$E$ & $1/4$ & $1/4$ &  & $1/2$ & $0$ & $0$ \\
+			$F$ & $1/4$ & $1/4$ & $1/2$ &  & $ 0$ & $0$ \\
+			$X$ & $1/4$ & $1/4$ & $0$ & $0$ &  & $1/2$ \\
+			$Y$ & $1/4$ & $1/4$ & $0$ & $0$ & $1/2$ & 
+		\end{tabular}
+	\end{center}
+	Note that the diagonal entries would make no sense: the same vector twice spans a line, not a plane.
+\end{example}
