@@ -271,17 +271,17 @@ Of course, we've defined everything in the presence of a Riemannian metric $g$, 
 
 In local coordinates, if we write $X_i = \frac{\partial}{\partial x_i}$, then there exist smooth functions $R_{ijk}^s$ so that
 \[
-	R(X_i,X_j)X_k = \sum_s R_{ijk}^s X_s.
+	R(X_j,X_k)X_i = \sum_s R_{ijk}^s X_s.
 \]
 The functions $R_{ijk}^s$ are usually called the components of $R$ in the given local coordinates. If we have vector fields $U, V, W$ with local coordinate expressions
 \[
-	U = \sum_i u^i X_i, \quad V = \sum_j v^j X_j, \quad W = \sum_k w^kX_k
+	U = \sum_j u^j X_j, \quad V = \sum_k v^k X_k, \quad W = \sum_i w^iX_i
 \]
 (note that now I am being more careful about whether indices are superscripted or subscripted), then
 \[
-	R(U,V)W = \sum_{i,j,k,s} R_{ijk}^s u^i v^j w^k X_m.
+	R(U,V)W = \sum_{i,j,k,s} R_{ijk}^s u^j v^k w^i X_s.
 \]
-(In Einstein notation, this gets written as $R(U,V)W = R_{ijk}^s u^i v^j w^k X_m$, where summation always happens over repeated indices, and repeated indices should appear in up/down pairs.)
+(In Einstein notation, this gets written as $R(U,V)W = R_{ijk}^s u^j v^k w^i X_s$, where summation always happens over repeated indices, and repeated indices should appear in up/down pairs.)
 
 \begin{exercise}
 	Show that
@@ -292,14 +292,14 @@ The functions $R_{ijk}^s$ are usually called the components of $R$ in the given 
 
 When we lower an index and think of $R$ as a $(0,4)$-tensor, then we get components
 \[
-	R_{ijks} := g(R(X_i,X_j)X_k,X_s) = \left\langle \sum_{m}R_{ijk}^m X_m, X_s \right\rangle = \sum_m R_{ijk}^m g_{ms}.
+	R_{ijks} := g(R(X_k,X_s)X_i,X_j) = \left\langle \sum_{m}R_{iks}^m X_m, X_j \right\rangle = \sum_m R_{iks}^m g_{mj}.
 \]
 
 Then \Cref{prop:symmetries of curvature tensor} implies the following symmetries for the $R_{ijks}$:
 
 \begin{corollary}\label{cor:symmetries of curvature components}
 	\begin{enumerate}
-		\item $R_{ijks} + R_{jkis} + R_{kijs} = 0$
+		\item $R_{ijks} + R_{iksj} + R_{isjk} = 0$
 		\item $R_{ijks} = -R_{jiks}$
 		\item $R_{ijks} = -R_{ijsk}$
 		\item $R_{ijks} = R_{ksij}$.

@@ -185,7 +185,7 @@ Note that the restriction that $X$ and $Y$ be orthonormal and left-invariant is 
 
 One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is that it says that sectional curvature of bi-invariant metrics on Lie groups is entirely calculable in the Lie algebra and hence is essentially algebraic. Since $\SO(3)$ and $\SU(2)$ have the same Lie algebra as $S^3$ (\Cref{prop:accidental isomorphisms}), they must also have constant sectional curvature $+1$ everywhere.
 
-\begin{example}
+\begin{example}\label{ex:SO(4) sectional curvature}
 	Let's work out the sectional curvature of the bi-invariant metric on $\SO(4)$. If we take the left-invariant metric induced by $\frac{1}{2}$ times the Frobenius inner product on $T_I \SO(4)$, then this will be bi-invariant.\footnote{It is traditional to scale by the factor of $\frac{1}{2}$ for reasons that will shortly become apparent.} Indeed, for $X,Y,Z \in \mathfrak{so}(4)$,
 	\begin{multline*}
 		\frac{1}{2}\langle [X,Y],Z \rangle_{\text{Fr}} = \frac{1}{2}\tr([X,Y]^T Z) = -\frac{1}{2} \tr([X,Y]Z) = -\frac{1}{2}\tr(XYZ-YXZ) \\
@@ -193,7 +193,7 @@ One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is th
 	\end{multline*}
 	using the cyclic-invariance of trace and the fact that $[X,Y]$ and $Y$ are skew-symmetric. Therefore, \Cref{thm:bi-invariant metric condition} implies that the induced left-invariant metric is bi-invariant.
 	
-	Now, I claim that the following gives a basis for $\mathfrak{so}(4)$:
+	I claim that the following gives a basis for $\mathfrak{so}(4)$:
 	\begin{align*}
 		H_1 & = \begin{bmatrix} 
 			0 & 1 & 0 & 0 \\
@@ -266,8 +266,9 @@ One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is th
 			0 & 0 & -1 & 0
  		\end{bmatrix} = 2(H_1 - H_2)
 	\end{multline*}
-	and similarly we can compute all the other brackets, yielding the following multiplication table:
-	\begin{center}
+	and similarly we can compute all the other brackets, yielding the multiplication table given in \Cref{tab:so4 mult table}.
+	\begin{table}
+		\begin{center}
 		\begin{tabular}{c|cccccc}
 			$[\cdot,\cdot]$ & $H_1$ & $H_2$ & $E$ & $F$ & $X$ & $Y$ \\
 			\hline
@@ -278,7 +279,10 @@ One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is th
 			$X$ & $-Y$ & $-Y$ & $0$ & $0$ & $0$ & $2(H_1+H_2)$ \\
 			$Y$ & $X$ & $X$ & $0$ & $0$ & $-2(H_1+H_2)$ & $0$ 
 		\end{tabular}
-	\end{center}
+		\end{center}
+		\caption{Lie brackets of the given basis of $\mathfrak{so}(4)$.}
+		\label{tab:so4 mult table}
+	\end{table}
 	Notice that
 	\[
 		\|H_1\|^2 = \frac{1}{2} \langle H_1, H_1 \rangle_{\text{Fr}} = 1
@@ -289,8 +293,9 @@ One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is th
 	\[
 		K(\sigma_{H_1E}) = \frac{1}{4}\left\|\left[H_1,\frac{1}{\sqrt{2}}E\right]\right\|^2 = \frac{1}{4}\left\|\frac{1}{\sqrt{2}}F\right\|^2 = \frac{1}{4}
 	\]
-	and in general we get the following table:
-	\begin{center}
+	and in general we get the sectional curvatures given in \Cref{tab:so4 sectional curvatures}.
+	\begin{table}
+		\begin{center}
 		\begin{tabular}{c|cccccc}
 			$K(\sigma_{\cdot, \cdot})$ & $H_1$ & $H_2$ & $E$ & $F$ & $X$ & $Y$ \\
 			\hline
@@ -301,6 +306,9 @@ One way of interpreting \Cref{thm:sectional curvature bi-invariant metric} is th
 			$X$ & $1/4$ & $1/4$ & $0$ & $0$ &  & $1/2$ \\
 			$Y$ & $1/4$ & $1/4$ & $0$ & $0$ & $1/2$ & 
 		\end{tabular}
-	\end{center}
+		\end{center}
+		\caption{Sectional curvatures in  $\SO(4)$.}
+		\label{tab:so4 sectional curvatures}
+	\end{table}
 	Note that the diagonal entries would make no sense: the same vector twice spans a line, not a plane.
 \end{example}
