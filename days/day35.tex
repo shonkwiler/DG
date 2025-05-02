@@ -1,0 +1,132 @@
+% !TEX root = ../dg.tex
+
+\section{Ricci and Scalar Curvatures}
+\label{sec:Ricci and scalar curvatures}
+
+Sectional curvature is an extremely powerful tool for describing the geometry of a manifold, and there is a huge amount of work out there about the impact it has on dymamics, the constraints it places on topology, and many other interactions it has with other concepts of interest. Just to give one example, the \emph{sphere theorem} says that any complete, simply-connected $n$-manifold with sectional curvatures in the interval $[1,4)$ is homeomorphic to the sphere $S^n$. This was conjectured by Hopf in 1932~\cite{hopfDifferentialgeometrieUndTopologische1932} and proved independently in 1961 by Berger~\cite{bergerVarietesRiemanniennesHomogenes1961} and Klingenberg~\cite{klingenbergUeberRiemannscheMannigfaltigkeiten1961}. In 2007, Brendle and Schoen~\cite{brendleManifolds14pinched2008} took this further and proved the \emph{differentiable sphere theorem}, which says that any Riemannian manifold with these sectional curvature bounds is diffeomorphic to $S^n$ with its standard smooth structure. These bounds are optimal: the complex projective space $\CP^n$ with the Fubini–Study metric has sectional curvatures in the closed interval $[1,4]$, and is not homeomorphic to a sphere unless $n=1$.
+
+That said, while it's conceptually somewhat simpler than the full Riemann curvature tensor, sectional curvature is still rather complicated. One way to simplify it is to take averages in the following sense: suppose $p \in M$ and $X \in T_pM$. Then we could take the average of all sectional curvatures of 2-planes $\sigma$ containing $X$. Of course, this really only depends on the line spanned by $X$, so this assigns a number to tangent lines at points. Indeed, this is the basic idea of \emph{Ricci curvature}.
+
+\begin{example}\label{ex:averaging sectional curvatures}
+	Let $M$ be a Riemannian 3-manifold, let $p \in M$, and let $Z_1,Z_2,X \in T_pM$ be an orthonormal basis. The idea of Ricci curvature at $X$ is to take the average of sectional curvatures of all 2-planes containing $X$. One way to do this is to compute
+	\[
+		\frac{1}{2} K(X,Z_1) + \frac{1}{2} K(X,Z_2),
+	\]
+	where I'm writing $K(X,Z_i)$ for the sectional curvature of the plane spanned by $X$ and $Z_i$. 
+	
+	Of course, this really only computes the average over 2 specific planes, and seemingly depends on the choice of orthonormal basis $Z_1,Z_2$ for $X^\bot \subset T_pM$. Another, apparently more principled, way of computing this average is
+	\[
+		\frac{1}{2\pi} \int_0^{2\pi} K(X, (\cos \theta) Z_1 + (\sin \theta)Z_2)d\theta.
+	\]
+	However, by multilinearity of the curvature tensor $R$ and the Riemannian metric $g$, the above integral is equal to
+	\begin{align*}
+		& \frac{1}{2\pi} \int_0^{2\pi} g(R(X, (\cos \theta) Z_1 + (\sin \theta)Z_2)((\cos \theta) Z_1 + (\sin \theta)Z_2),X) d\theta \\
+		 & = \frac{1}{2\pi} \int_0^{2\pi} \left[ \cos^2 \theta g(R(X,Z_1)Z_1,X) + \sin\theta\cos\theta g(R(X,Z_1)Z_2,X) \right.\\
+		& \qquad \qquad \qquad \qquad \left. + \sin\theta\cos\theta g(R(X,Z_2)Z_1,X) + \sin^2\theta g(R(X,Z_2)Z_2,X)\right]d\theta \\
+		& = \frac{1}{2\pi} \left[ K(X,Z_1) \int_0^2\pi \cos^2 \theta\, d\theta  + (g(R(X,Z_1)Z_2,X) + g(R(X,Z_2)Z_1,X)) \int_0^2\pi \sin \theta \cos \theta\, d\theta \right. \\
+		& \qquad \qquad \qquad \qquad \left. + K(X,Z_2)\int_0^{2\pi} \sin^2\theta \, d\theta\right] \\
+		& = \frac{1}{2\pi} \int_0^{2\pi} K(X, (\cos \theta) Z_1 + (\sin \theta)Z_2)d\theta,
+	\end{align*}
+	so we get the same thing either way we compute.
+\end{example}
+
+\begin{exercise}\label{ex:averaging sectional curvatures 2}
+	Generalize \Cref{ex:averaging sectional curvatures} as follows. Let $M$ be a Riemannian $n$-manifold, $p\in M$, and $ Z_1, \dots , Z_{n-1}, X$ an orthonormal basis for $T_pM$. Again, we want to take the average of sectional curvatures over all 2-planes containing $X$, and there are two ways to do this. Show that both computations yield the same answer.
+\end{exercise}
+
+In other words, it's enough just to average over any orthonormal basis and this will give the same answer as averaging over every 2-plane containing $X$. In fact, for reasons that will become apparent when we discuss this a little more abstractly, most people don't actually take averages, they just sum over orthonormal bases:
+
+\begin{definition}\label{def:Ricci curvature}
+	Let $M$ be an $n$-dimensional Riemannian manifold, $p \in M$ and $X \in T_pM$ a unit vector. Complete $X$ to an orthonormal basis $Z_1, \dots , Z_{n-1},X$ for $T_pM$. The \emph{Ricci curvature} of $M$ at $p$ in the direction of $X$ is
+	\[
+		\Ric_p(X) = \sum_{i=1}^{n-1} K(X,Z_i).
+	\]
+\end{definition}
+
+By \Cref{ex:averaging sectional curvatures 2}, $\frac{1}{n-1} \Ric_p(X)$ is the average (in \emph{either} sense) of the sectional curvatures of all 2-planes containing $X$. Of course, there's no reason to stop averaging there. What if we take the average of Ricci curvatures over all directions? Again, we're going to sum rather than averaging, but this gives scalar curvature:
+
+\begin{definition}\label{def:scalar curvature}
+	Let $M$ be a Riemannian manifold, $p \in M$, and $Z_1, \dots , Z_n$ an orthonormal basis for $T_pM$. The \emph{scalar curvature} of $M$ at $p$ is
+	\[
+		\Scal(p) := \sum_{i=1}^n \Ric_p(Z_i) = \sum_{i,j} K(Z_i,Z_j).
+	\]
+\end{definition}
+
+\begin{exercise}
+	Prove that $\frac{1}{n} \Scal(p)$ is the average over all unit vectors $X$ in $T_pM$ of the Ricci curvatures $\Ric_p(X)$.
+\end{exercise}
+
+\begin{exercise}
+	Prove that $\frac{1}{n(n-1)}$ is the average over all 2-dimensional subspaces $\sigma \subset T_pM$ of the sectional curvatures $K(\sigma)$. The key issue here is to figure out what it means to average over 2-dimensional subspaces.
+\end{exercise}
+
+\begin{example}
+	If $M$ is $n$-dimensional and has constant sectional curvature $K$, then it also has constant Ricci curvature $\Ric_p(X) = (n-1)K$ and constant scalar curvature $\Scal(p) = n(n-1)K$. For example, $S^3$ has Ricci curvature equal to 2 and scalar curvature equal to 6 everywhere.
+\end{example}
+
+\begin{example}
+	Recall from \Cref{ex:SO(4) sectional curvature} our orthonormal basis $\{H_1,H_2, \frac{1}{\sqrt{2}}E, \frac{1}{\sqrt{2}}F,\frac{1}{\sqrt{2}}X,\frac{1}{\sqrt{2}}Y\}$ for the left-invariant vector fields on $\SO(4)$. If $U$ is any of these basis vectors, then we can compute $\Ric_h(U)$ (at any $h \in \SO(4)$) by summing the appropriate row of \Cref{tab:so4 sectional curvatures}. But all row sums are equal to 1, so we see that, despite not having constant sectional curvature, $\SO(4)$ has constant Ricci curvature equal to 1 everywhere—and hence, since $\SO(4)$ is 6-dimensional, constant scalar curvature equal to 6 everywhere.
+\end{example}
+
+Now we make things a bit more abstract. By definition, if $X \in T_pM$ is a unit vector, then we can complete to an orthonormal basis $Z_1, \dots , Z_{n-1}, Z_n = X$ in any way we like and we have
+\[
+	\Ric_p(X) = \sum_{i=1}^{n-1} K(X,Z_i).
+\]
+Writing $K(X,Z_i) = g(R(X,Z_i)Z_i,X)$ (since $\|X \wedge Z_i\|^2=1$ for all $i$), we can also write this as
+\[
+	\Ric_p(X) = \sum_{i=1}^{n-1} g(R(X,Z_i)Z_i,X).
+\]
+In fact, since skew-symmetry of $R$ implies that $R(X,Z_n) = R(X,X) = 0$, we can sum from 1 to $n$ instead:
+\begin{equation}\label{eq:ricci curvature trace formula}
+	\Ric_p(X) = \sum_{i=1}^n g(R(X,Z_i)Z_i,X) = \sum_{i=1}^n g(R(Z_i,X)X,Z_i).
+\end{equation}
+
+In other words, $\Ric_p(X)$ is the trace of the linear map $T_p M \to T_p M$ given by
+\[
+	U \mapsto R(U,X)X.
+\]
+In particular, since trace is the sum of the diagonal entries in \emph{any} matrix representation of a linear transformation, this shows that the formula \eqref{eq:ricci curvature trace formula} for $\Ric_p(X)$ is valid for \emph{any} orthonormal basis $Z_1, \dots , Z_n$ for $T_pM$: $Z_n$ is not required to equal $X$.
+
+Now, if we forget about the requirement that $X$ be a unit vector, the expression
+\[
+	\sum_{i=1}^n g(R(Z_i,X)X,Z_i)
+\]
+is a quadratic form, which we can polarize to get a symmetric bilinear form
+\[
+	\Ric_p(X,Y) := \sum_{i=1}^n g(R(Z_i,X)Y,Z_i),
+\]
+which we've written here in terms of an orthonormal basis. Again, this is a trace so we can write more abstractly.
+
+\begin{definition}\label{def:Ricci tensor}
+	Let $M$ be a Riemannian manifold. The \emph{Ricci tensor} is a symmetric $(0,2)$-tensor field on $M$ which is defined at each $p \in M$ as the map $\Ric_p \from T_pM \times T_pM \to \R$ given by
+	\[
+		\Ric_p(X,Y) := \tr(U \mapsto R(U,X)Y).
+	\]
+\end{definition}
+
+Let's recall how to compute the trace of a linear transformation of $T_pM$. Say $X_1, \dots , X_n$ is a basis for $T_pM$, and as usual write $g_{ij} := g_p( X_i, X_j)$. If $A \from T_pM \to T_pM$ is linear, with matrix $\begin{bmatrix}a_j^i\end{bmatrix}_{i,j}$ with respect to our chosen basis, then that means
+\[
+	A(X_j) = \sum_i a_j^i X_i,
+\]
+so we have
+\[
+	g_p(A(X_j),X_k) = g_p\left(\sum_i a_j^iX_i, X_k\right) = \sum_i a_j^i g_p(X_i,X_k) = \sum_i a_j^i g_{ik}.
+\]
+Therefore, if the inverse matrix of $\begin{bmatrix}g_{ij}\end{bmatrix}_{i,j}$ is $\begin{bmatrix}g^{k\ell}\end{bmatrix}_{k,\ell}$, then we have
+\[
+	\tr(A) = \sum_i a_i^i = \sum_{i,k,\ell} a_k^i g_{i\ell}g^{\ell k} = \sum_{k,\ell} g_p(A(X_k),X_\ell)g^{\ell k}.
+\]
+
+In particular, then, if $X_i = \frac{\partial}{\partial x_i}$ in some local coordinate chart around $p$, then this implies that
+\[
+	\Ric_{ij}(p) = \Ric_p(X_i,X_j) = \tr\left(U \mapsto R(U,X_i)X_j\right) = \sum_{k,\ell}g_p(R(X_k,X_i)X_j,X_\ell)g^{\ell k} = \sum_{k,\ell} R_{j\ell ki}g^{\ell k} = \sum_k R_{jki}^k.
+\]
+This is symmetric, so we can also write $\Ric_{ij}(p) = \sum_k R_{ikj}^k$ or, in abstract index notation (with the Einstein summation convention),
+\[
+	\Ric_{ij} = R_{ikj}^k = g^{k\ell}R_{ki\ell j};
+\]
+that is, the Ricci tensor is the contraction of the Riemann curvature tensor in the first and third indices.
+
+\begin{exercise}
+	Show that the scalar curvature is the trace (or contraction) of the Ricci tensor.
+\end{exercise}
