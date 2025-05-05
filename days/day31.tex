@@ -19,7 +19,7 @@ Instead, let's go a bit deeper on geodesics on Lie groups.
 
 \subsection{Bi-Invariant Metrics}
 
-First of all, recall from \Cref{ex:left-invariant metrics} that we can define a left-invariant Riemannian metric on any Lie group $G$ by choosing an inner product $\langle \cdot , \cdot \langle$ on $T_eG \cong \mathfrak{g}$, and then pulling it back to each tangent space: for $h \in G$ and $u,v \in T_hG$,
+First of all, recall from \Cref{ex:left-invariant metrics} that we can define a left-invariant Riemannian metric on any Lie group $G$ by choosing an inner product $\langle \cdot , \cdot \rangle$ on $T_eG \cong \mathfrak{g}$, and then pulling it back to each tangent space: for $h \in G$ and $u,v \in T_hG$,
 \begin{equation}\label{eq:left-invariant metric def}
 	g_h(u,v) := \langle (dL_{h^{-1}})_h u, (dL_{h^{-1}})_hv \rangle_e,
 \end{equation}
@@ -256,7 +256,7 @@ So we've reduced to finding the geodesic from the identity to any group element 
 But inverting the matrix exponential is exactly what the matrix logarithm does. In general, since the log is multivalued, $\log(h)$ will be a collection of elements of $T_eG$, but if we choose $u$ with smallest norm and let $v = \frac{u}{\|u\|}$ then it will follow that $d(e,h) = \|u\|$ and $\gamma(t) = \exp(tv)$ is a minimizing geodesic from $e$ to $h$.
 
 \begin{example}
-	Consider $G = \SO(3)$. If $A \im \SO(3)$, then $A$ is unitarily diagonalizable:
+	Consider $G = \SO(3)$. If $A \in \SO(3)$, then $A$ is unitarily diagonalizable:
 	\[
 		A = U D U^\ast,
 	\]
