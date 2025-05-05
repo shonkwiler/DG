@@ -28,6 +28,15 @@
 	urlcolor=linkred
 }
 
+\ifpdf
+	\usepackage{algorithm}
+	\usepackage{algorithmicx}
+	\usepackage{algpseudocode}
+	\newcommand{\algorithmautorefname}{Algorithm}
+	\let\oldReturn\Return
+	\renewcommand{\Return}{\State\oldReturn}
+\fi
+
 \usepackage{enumitem}
 
 \usepackage{chirun}
@@ -120,6 +129,8 @@
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Ric}{\operatorname{Ric}}
 \newcommand{\Scal}{\operatorname{Scal}}
+\newcommand{\FP}{\operatorname{FP}}
+\newcommand{\grad}{\operatorname{grad}}
 \newcommand{\ext}[1]{%
     {\def\tmp{#1}
     \ifx\tmp\empty
@@ -220,6 +231,7 @@
 \input{days/day33}
 \input{days/day34}
 \input{days/day35}
+\input{days/day36}
 
 
 \bibliography{dg}
